@@ -1,0 +1,36 @@
+{"ts":1362652916649,"silentsave":true,"restoring":false,"patch":[[]],"length":0}
+{"contributors":[],"silentsave":true,"ts":1362652960643,"patch":[[{"diffs":[[1,"#include <stdio.h>\n#include <stdlib.h>\n\nint factorial(const int n)\n{\n\tif (n == 0)\n\t\treturn 1;\n\treturn n * factorial(n - 1);\n}\n\nint main(void)\n{\n\tprintf(\"Hello world! %d! = %d\\n\", 10, factorial(-10));\n\n\treturn EXIT_SUCCESS;\n}\n"]],"start1":0,"start2":0,"length1":0,"length2":225}]],"length":225,"saved":false}
+{"ts":1362653121362,"patch":[[{"diffs":[[0,"ctorial("],[-1,"-"],[0,"10));\n\n\t"]],"start1":185,"start2":185,"length1":17,"length2":16}]],"length":224,"saved":false}
+{"contributors":[],"silentsave":true,"ts":1362653320435,"patch":[[{"diffs":[[0,"return n"],[-1," "],[0,"* factor"]],"start1":95,"start2":95,"length1":17,"length2":16}]],"length":223,"saved":false}
+{"ts":1362653323247,"patch":[[{"diffs":[[0,"return n"],[1," "],[0,"* factor"]],"start1":95,"start2":95,"length1":16,"length2":17}]],"length":224,"saved":false}
+{"ts":1362653346701,"patch":[[{"diffs":[[0,"o world!"],[1,"\\"],[0," %d! = %"]],"start1":157,"start2":157,"length1":16,"length2":17}]],"length":225,"saved":false}
+{"ts":1362653347746,"patch":[[{"diffs":[[0," world!\\"],[1,"n\""],[0," %d! = %"]],"start1":158,"start2":158,"length1":16,"length2":18}]],"length":227,"saved":false}
+{"ts":1362653352690,"patch":[[{"diffs":[[0,"orld!\\n\""],[-1," "],[1,");\n\t"],[0,"%d! = %d"]],"start1":160,"start2":160,"length1":17,"length2":20}]],"length":230,"saved":false}
+{"ts":1362653354206,"patch":[[{"diffs":[[0,"d!\\n\");\n"],[1,"\t\n"],[0,"\t%d! = %"]],"start1":163,"start2":163,"length1":16,"length2":18}]],"length":232,"saved":false}
+{"ts":1362653355965,"patch":[[{"diffs":[[0,"n\");\n\t\n\t"],[1,"print"],[0,"%d! = %d"]],"start1":166,"start2":166,"length1":16,"length2":21}]],"length":237,"saved":false}
+{"ts":1362653357016,"patch":[[{"diffs":[[0,"\t\n\tprint"],[1,"f"],[0,"%d! = %d"]],"start1":171,"start2":171,"length1":16,"length2":17}]],"length":238,"saved":false}
+{"ts":1362653358885,"patch":[[{"diffs":[[0,"\n\tprintf"],[1,"(\""],[0,"%d! = %d"]],"start1":172,"start2":172,"length1":16,"length2":18}]],"length":240,"saved":false}
+{"ts":1362653359934,"patch":[[{"diffs":[[0,"d!\\n\");\n"],[-1,"\t"],[0,"\n\tprintf"]],"start1":163,"start2":163,"length1":17,"length2":16}]],"length":239,"saved":false}
+{"ts":1362653367902,"patch":[[{"diffs":[[0,"o world!"],[1," Let"],[0,"\\n\");\n\n\t"]],"start1":157,"start2":157,"length1":16,"length2":20}]],"length":243,"saved":false}
+{"ts":1362653378321,"patch":[[{"diffs":[[0,"rld! Let"],[1,"'s calculate the fa"],[0,"\\n\");\n\n\t"]],"start1":161,"start2":161,"length1":16,"length2":35}]],"length":262,"saved":false}
+{"ts":1362653381404,"patch":[[{"diffs":[[0,"te the f"],[1,"actorial of "],[0,"a\\n\");\n\n"]],"start1":179,"start2":179,"length1":16,"length2":28}]],"length":274,"saved":false}
+{"ts":1362653384247,"patch":[[{"diffs":[[0,"ial of a"],[1," number."],[0,"\\n\");\n\n\t"]],"start1":192,"start2":192,"length1":16,"length2":24}]],"length":282,"saved":false}
+{"contributors":[],"silentsave":true,"ts":1362653530009,"patch":[[{"diffs":[[0,"\\n\");\n\n\t"],[1,"printf(\"Hello world! Let's calculate the factorial of a number.\\n\");\n\n"],[0,"printf(\""]],"start1":208,"start2":208,"length1":16,"length2":86}]],"length":352,"saved":false}
+{"ts":1362653543610,"patch":[[{"diffs":[[0,"tf(\""],[-1,"Hello world! Let's calculate the factorial of a number.\\n"],[1,"Please "],[0,"\");\n"]],"start1":220,"start2":220,"length1":65,"length2":15}]],"length":302,"saved":false}
+{"ts":1362653546476,"patch":[[{"diffs":[[0,"\"Please "],[1,"enter a non"],[0,"\");\n\npri"]],"start1":223,"start2":223,"length1":16,"length2":27}]],"length":313,"saved":false}
+{"ts":1362653547793,"patch":[[{"diffs":[[0,"er a non"],[1,"-nega"],[0,"\");\n\npri"]],"start1":234,"start2":234,"length1":16,"length2":21}]],"length":318,"saved":false}
+{"ts":1362653549481,"patch":[[{"diffs":[[0,"non-nega"],[1,"tive i"],[0,"\");\n\npri"]],"start1":239,"start2":239,"length1":16,"length2":22}]],"length":324,"saved":false}
+{"ts":1362653552220,"patch":[[{"diffs":[[0,"gative i"],[1,"nteger:"],[0,"\");\n\npri"]],"start1":245,"start2":245,"length1":16,"length2":23}]],"length":331,"saved":false}
+{"ts":1362653556437,"patch":[[{"diffs":[[0,"er:\");\n\n"],[1,"\t"],[0,"printf(\""]],"start1":257,"start2":257,"length1":16,"length2":17}]],"length":332,"saved":false}
+{"ts":1362653558857,"patch":[[{"diffs":[[0,"eger:\");"],[1,"\n\t\n\tin"],[0,"\n\n\tprint"]],"start1":255,"start2":255,"length1":16,"length2":22}]],"length":338,"saved":false}
+{"ts":1362653560140,"patch":[[{"diffs":[[0,");\n\t\n\tin"],[1,"t "],[0,"\n\n\tprint"]],"start1":261,"start2":261,"length1":16,"length2":18}]],"length":340,"saved":false}
+{"ts":1362653563933,"patch":[[{"diffs":[[0,"\n\t\n\tint "],[1,"n;\n\t\n\tscanf"],[0,"\n\n\tprint"]],"start1":263,"start2":263,"length1":16,"length2":27}]],"length":351,"saved":false}
+{"ts":1362653564556,"patch":[[{"diffs":[[0,"\t\n\tscanf"],[1,"()"],[0,"\n\n\tprint"]],"start1":274,"start2":274,"length1":16,"length2":18}]],"length":353,"saved":false}
+{"ts":1362653566357,"patch":[[{"diffs":[[0,"\n\tscanf("],[1,"\"\""],[0,")\n\n\tprin"]],"start1":275,"start2":275,"length1":16,"length2":18}]],"length":355,"saved":false}
+{"ts":1362653570395,"patch":[[{"diffs":[[0,"\tscanf(\""],[-1,"\""],[1,"%d\", "],[0,")\n\n\tprin"]],"start1":276,"start2":276,"length1":17,"length2":21}]],"length":359,"saved":false}
+{"ts":1362653573367,"patch":[[{"diffs":[[0,"f(\"%d\", "],[1,"&"],[0,")\n\n\tprin"]],"start1":281,"start2":281,"length1":16,"length2":17}]],"length":360,"saved":false}
+{"ts":1362653576213,"patch":[[{"diffs":[[0,"(\"%d\", &"],[-1,")"],[1,"n);"],[0,"\n\n\tprint"]],"start1":282,"start2":282,"length1":17,"length2":19}]],"length":362,"saved":false}
+{"ts":1362653578320,"patch":[[{"diffs":[[0,"ctorial("],[-1,"10"],[0,"));\n\n\tre"]],"start1":323,"start2":323,"length1":18,"length2":16}]],"length":360,"saved":false}
+{"ts":1362653579765,"patch":[[{"diffs":[[0,"ctorial("],[1,"n"],[0,"));\n\n\tre"]],"start1":323,"start2":323,"length1":16,"length2":17}]],"length":361,"saved":false}
+{"ts":1362653582990,"patch":[[{"diffs":[[0,"n\", "],[-1,"10"],[1,"n"],[0,", fa"]],"start1":313,"start2":313,"length1":10,"length2":9}]],"length":360,"saved":false}
+{"ts":1362653601483,"patch":[[{"diffs":[[0,"integer:"],[1," "],[0,"\");\n\t\n\ti"]],"start1":252,"start2":252,"length1":16,"length2":17}]],"length":361,"saved":false}
