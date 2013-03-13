@@ -34,3 +34,7 @@
 {"ts":1362653579765,"patch":[[{"diffs":[[0,"ctorial("],[1,"n"],[0,"));\n\n\tre"]],"start1":323,"start2":323,"length1":16,"length2":17}]],"length":361,"saved":false}
 {"ts":1362653582990,"patch":[[{"diffs":[[0,"n\", "],[-1,"10"],[1,"n"],[0,", fa"]],"start1":313,"start2":313,"length1":10,"length2":9}]],"length":360,"saved":false}
 {"ts":1362653601483,"patch":[[{"diffs":[[0,"integer:"],[1," "],[0,"\");\n\t\n\ti"]],"start1":252,"start2":252,"length1":16,"length2":17}]],"length":361,"saved":false}
+{"contributors":["mmsequeira@picuinhas.co"],"silentsave":true,"ts":1362733279077,"patch":[[{"diffs":[[0,"\t\n\tint n"],[1,"umber"],[0,";\n\t\n\tsca"]],"start1":265,"start2":265,"length1":16,"length2":21}]],"length":366,"saved":false}
+{"ts":1362733282359,"patch":[[{"diffs":[[0,"\"%d\", &n"],[1,"umber"],[0,");\n\n\tpri"]],"start1":289,"start2":289,"length1":16,"length2":21}]],"length":371,"saved":false}
+{"ts":1362733286469,"patch":[[{"diffs":[[0,"%d\\n\", n"],[1,"umber"],[0,", factor"]],"start1":321,"start2":321,"length1":16,"length2":21}]],"length":376,"saved":false}
+{"ts":1362733289714,"patch":[[{"diffs":[[0,"torial(n"],[1,"umber"],[0,"));\n\n\tre"]],"start1":339,"start2":339,"length1":16,"length2":21}]],"length":381,"saved":false}

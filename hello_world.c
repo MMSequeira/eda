@@ -14,11 +14,11 @@ int main(void)
 
 	printf("Please enter a non-negative integer: ");
 	
-	int n;
+	int number;
 	
-	scanf("%d", &n);
+	scanf("%d", &number);
 
-	printf("%d! = %d\n", n, factorial(n));
+	printf("%d! = %d\n", number, factorial(number));
 
 	return EXIT_SUCCESS;
 }
