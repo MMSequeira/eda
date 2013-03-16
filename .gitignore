@@ -3,4 +3,4 @@
 *.exe
 *.save
 obj/Debug/*
-exe/Debug/*
+bin/Debug/*
