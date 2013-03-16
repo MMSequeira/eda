@@ -8,14 +8,14 @@ int factorial(const int n)
 	return n * factorial(n - 1);
 }
 
-int main(void)
+int main2(void)
 {
 	printf("Hello world! Let's calculate the factorial of a number.\n");
 
 	printf("Please enter a non-negative integer: ");
-	
+
 	int number;
-	
+
 	scanf("%d", &number);
 
 	printf("%d! = %d\n", number, factorial(number));

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="arrays.c" open="0" top="0" tabpos="1">
+		<Cursor position="305" topLine="21" />
+	</File>
+	<File name="hello_world.c" open="0" top="0" tabpos="0">
+		<Cursor position="136" topLine="1" />
+	</File>
+	<File name="sizeof.c" open="0" top="0" tabpos="0">
+		<Cursor position="101" topLine="12" />
+	</File>
+	<File name="wow.c" open="0" top="0" tabpos="2">
+		<Cursor position="60" topLine="0" />
+	</File>
+</CodeBlocks_layout_file>

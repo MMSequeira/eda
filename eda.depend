@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1363338482 source:/home/mmsequeira/Documents/EDA/eda/arrays.c
+	<stdio.h>
+	<stdlib.h>
+
+1363162230 source:/home/mmsequeira/Documents/EDA/eda/main.c
+	<stdio.h>
+	<stdlib.h>
+
+1363164822 source:/home/mmsequeira/Documents/EDA/eda/hello_world.c
+	<stdio.h>
+	<stdlib.h>
+
+1363338082 source:/home/mmsequeira/Documents/EDA/eda/sizeof.c
+	<stdio.h>
+	<stdlib.h>
+
+1363335583 source:/home/mmsequeira/Documents/EDA/eda/wow.c
+	<stdio.h>
+	<stdlib.h>
+
