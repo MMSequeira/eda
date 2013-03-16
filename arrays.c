@@ -12,6 +12,7 @@ double average_of(int number_of_items, int items[number_of_items])
 	return sum / 4;
 }
 
+// Declare the procedure print which is defined in another file:
 void print(int number_of_items, int items[number_of_items]);
 
 int main_arrays(void)
