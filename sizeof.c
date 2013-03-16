@@ -23,4 +23,6 @@ int main_sizeof(void)
 //	printf("%lu\n", sizeof(long long int));
 
 	print(sizeof(ages) / sizeof(int), ages);
+
+	return EXIT_SUCCESS;
 }

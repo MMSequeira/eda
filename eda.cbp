@@ -34,6 +34,9 @@
 		<Unit filename="arrays.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="fibonacci.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="hello_world.c">
 			<Option compilerVar="CC" />
 		</Unit>
