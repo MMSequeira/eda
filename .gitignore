@@ -4,3 +4,4 @@
 *.save
 obj/Debug/*
 bin/Debug/*
+gmon.out
