@@ -1,4 +1,4 @@
 eda
 ===
 
-EDA
+EDA - Estruturação do Pensamento Lógico
