@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>arrays.c</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="arrays.html">
+                arrays.c
+              </a>
+            
+              
+              <a class="source" href="fibonacci.html">
+                fibonacci.c
+              </a>
+            
+              
+              <a class="source" href="hello_world.html">
+                hello_world.c
+              </a>
+            
+              
+              <a class="source" href="main.html">
+                main.c
+              </a>
+            
+              
+              <a class="source" href="sizeof.html">
+                sizeof.c
+              </a>
+            
+              
+              <a class="source" href="wow.html">
+                wow.c
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>arrays.c</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+
+<span class="keyword">double</span> average_of(<span class="keyword">int</span> number_of_items, <span class="keyword">int</span> items[number_of_items])
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>double average_of(int* items)</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>{
+	<span class="keyword">double</span> sum = <span class="number">0.0</span>;
+
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != number_of_items; i++)
+		sum += items[i];
+
+	<span class="keyword">return</span> sum / <span class="number">4</span>;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Declare the procedure print which is defined in another file:</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">void</span> print(<span class="keyword">int</span> number_of_items, <span class="keyword">int</span> items[number_of_items]);
+
+<span class="keyword">int</span> main_arrays(<span class="keyword">void</span>)
+{
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>printf(&quot;How many students? &quot;);
+int number_of_students;
+scanf(&quot;%d&quot;, &amp;number_of_students);</p>
+<p>int student_ages[number_of_students];</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> student_ages[] = {<span class="number">23</span>, <span class="number">24</span>, <span class="number">25</span>, <span class="number">26</span>};
+	<span class="keyword">const</span> <span class="keyword">int</span> number_of_students =
+		<span class="keyword">sizeof</span>(student_ages) / <span class="keyword">sizeof</span>(<span class="keyword">int</span>);
+
+	print(number_of_students, student_ages);
+
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != number_of_students; i++)
+		printf(<span class="string">"%d\n"</span>, student_ages[i]);
+
+	printf(<span class="string">"The average age is %g.\n"</span>,
+		average_of(number_of_students, student_ages));
+
+	<span class="keyword">return</span> EXIT_SUCCESS;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
