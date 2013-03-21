@@ -19,8 +19,18 @@
           <div id="jump_page">
             
               
-              <a class="source" href="arrays.html">
-                arrays.c
+              <a class="source" href="print.html">
+                print.c
+              </a>
+            
+              
+              <a class="source" href="arrays_and_pointers.html">
+                arrays_and_pointers.c
+              </a>
+            
+              
+              <a class="source" href="arrays_basics.html">
+                arrays_basics.c
               </a>
             
               
@@ -34,18 +44,8 @@
               </a>
             
               
-              <a class="source" href="main.html">
-                main.c
-              </a>
-            
-              
-              <a class="source" href="sizeof.html">
-                sizeof.c
-              </a>
-            
-              
-              <a class="source" href="wow.html">
-                wow.c
+              <a class="source" href="sizeof_and_arrays.html">
+                sizeof_and_arrays.c
               </a>
             
           </div>
@@ -75,19 +75,42 @@
 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
 
-<span class="keyword">int</span> fibonacci(<span class="keyword">int</span> n)
+<span class="keyword">int</span> stupidly_recursive_fibonacci(<span class="keyword">int</span> n)
 {
 	<span class="keyword">if</span> (n &lt; <span class="number">2</span>)
 		<span class="keyword">return</span> <span class="number">1</span>;
-	<span class="keyword">return</span> fibonacci(n - <span class="number">2</span>) + fibonacci(n - <span class="number">1</span>);
+	<span class="keyword">return</span> stupidly_recursive_fibonacci(n - <span class="number">2</span>)
+		+ stupidly_recursive_fibonacci(n - <span class="number">1</span>);
+}
+
+<span class="keyword">int</span> iterative_fibonacci(<span class="keyword">int</span> n)
+{
+	<span class="keyword">if</span> (n == <span class="number">0</span> || n == <span class="number">1</span>)
+		<span class="keyword">return</span> <span class="number">1</span>;
+
+	<span class="keyword">int</span> f_i_1 = <span class="number">1</span>, f_i_2 = <span class="number">1</span>;
+	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i != n + <span class="number">1</span>; i++) {
+		<span class="keyword">int</span> f_i = f_i_2 + f_i_1;
+		f_i_2 = f_i_1;
+		f_i_1 = f_i;
+	}
+
+	<span class="keyword">return</span> f_i_1;
 }
 
 <span class="keyword">int</span> main()
 {
+
+	<span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n != <span class="number">10</span>; n++)
+		printf(<span class="string">"F(%d) = %d\n"</span>, n,
+			iterative_fibonacci(n));
+
+	<span class="keyword">return</span> EXIT_SUCCESS;
+
 	<span class="keyword">double</span> previous_time = <span class="number">0.0</span>;
 	<span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n != <span class="number">45</span>; n++) {
 		clock_t start = clock();
-		<span class="keyword">int</span> f = fibonacci(n);
+		<span class="keyword">int</span> f = stupidly_recursive_fibonacci(n);
 		clock_t end = clock();
 		<span class="keyword">double</span> time = (<span class="keyword">double</span>) (end - start) / CLOCKS_PER_SEC;
 		printf(<span class="string">"f(%d) = %d in %.4fs %g\n"</span>, n, f, time,

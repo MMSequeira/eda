@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Estrutura de um programa em C</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="print.html">
+                print.c
+              </a>
+            
+              
+              <a class="source" href="arrays_and_pointers.html">
+                arrays_and_pointers.c
+              </a>
+            
+              
+              <a class="source" href="arrays_basics.html">
+                arrays_basics.c
+              </a>
+            
+              
+              <a class="source" href="fibonacci.html">
+                fibonacci.c
+              </a>
+            
+              
+              <a class="source" href="hello_world.html">
+                hello_world.c
+              </a>
+            
+              
+              <a class="source" href="sizeof_and_arrays.html">
+                sizeof_and_arrays.c
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h1">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1>Estrutura de um programa em C</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Este programa ilustra a estrutura básica de um programa escrito na linguagem C. O objectivo
+deste programa é imprimir no ecrã o factorial de um número inteiro introduzido pelo
+utilizador do programa.</p>
+<h2>Avisos!</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>De modo a mantê-lo curto, optou-se por omitir deste programa todo o código de verificação de
+erros do utilizador. <em>Todos os programas têm de saber lidar com erros dos seus
+utilizadores!</em>  Não o fazer é um erro <em>grave</em>. Este programa está, assim, <em>gravemente
+errado</em>. Não diga que não o avisámos. :-)</p>
+<h2>Ficheiro e nome</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Este programa consiste numa única <em>unidade de compilação</em>. Ou seja, corresponde a um único
+ficheiro destinado a ser <em>compilado</em>. Os ficheiros em linguagem C que se destinam a ser
+compilados possuem convencionalmente a extensão <code>.c</code>. O nome do ficheiro é, assim,
+<code>hello_world.c</code>.</p>
+<p>Este ficheiro não é suficiente para <em>construir</em> o ficheiro executável, pois recorre a
+ferramentas da <em>biblioteca padrão</em> do C. Em particular, recorre a rotinas de leitura e escrita
+de dados e recorre à <em>macro</em> <code>EXIT_SUCCESS</code>.</p>
+<h2>A construção do executável</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Os passos usuais na construção de um ficheiro executável a partir de um programa em linguagem
+C são os seguintes:</p>
+<ol>
+<li><p>Pré-processar cada um dos ficheiros <code>.c</code> - O pré-processador é um programa que lê um
+ficheiro contendo código C e directivas de pré-processamente e interpreta estas directivas,
+produzindo um ficheiro contendo linguagem C apenas (bem como algumas directivas de
+pré-processamente indicando a proveniência das linhas de código). A este ficheiro contendo
+apenas linguagem C (ou quase), dá-se o nome de <em>unidade de compilação</em>. Usualmente as
+unidades de compilação não têm senão uma existência efémera, podendo mesmo não chegar a
+existir enquanto ficheiros no sistema de ficheiros do computador.</p>
+</li>
+<li><p>Compilar cada um dos ficheiros resultantes do pré-processamento, ou seja, compilar cada uma
+das unidades de compilação. A compilação é o processo de tradução da lingagem C para a
+linguagem máquina do computador em causa. O resultado da compilação de uma unidade de
+compilação é um <em>ficheiro objecto</em>. Os ficheiros objecto têm, em Linux, a extensão <code>.o</code>. Em
+Windows é típico a extensão ser <code>.obj</code>. Os ficheiros objecto não são ainda executáveis,
+pois tipicamente cada ficheiro objecto contêm código máquina que recorre a ferramentas
+externas a esse ficheiro objecto.</p>
+</li>
+<li><p>Depois de gerados os ficheiros objecto, estes têm de ser fundidos num único ficheiro
+executável. A fusão resolve as dependências entre os vários ficheiro objecto e entre
+estes e colecções de ficheiros objecto arquivados em <em>bibliotecas</em>. As bibliotecas, em
+Linux, têm a extensão <code>.a</code> (de <em>archive</em>), quando estáticas, ou <code>.so</code>, quando dinâmicas.
+Em Windows as extensões correspondentes são <code>.lib</code> e <code>.dll</code>. O resultado de uma fusão com
+sucesso é um ficheiro executável. Em Linux os ficheiros executáveis podem ser qualquer
+extensão. Em Windows, a extensão é <code>.exe</code>.</p>
+</li>
+</ol>
+<h2>Inclusão de ficheiros de cabeçalho</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>É usual os ficheiros <code>.c</code>, ou seja, os ficheiros que são pré-processados, se iniciem com </p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+
+<span class="keyword">int</span> factorial(<span class="keyword">const</span> <span class="keyword">int</span> n)
+{
+	<span class="keyword">if</span> (n == <span class="number">0</span>)
+		<span class="keyword">return</span> <span class="number">1</span>;
+	<span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);
+}
+
+<span class="keyword">int</span> main(<span class="keyword">void</span>)
+{
+	printf(<span class="string">"Hello world! Let's calculate the factorial of a number.\n"</span>);
+
+	printf(<span class="string">"Please enter a non-negative integer: "</span>);
+
+	<span class="keyword">int</span> number;
+
+	scanf(<span class="string">"%d"</span>, &amp;number);
+
+	printf(<span class="string">"%d! = %d\n"</span>, number, factorial(number));
+
+	<span class="keyword">return</span> EXIT_SUCCESS;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
