@@ -16,3 +16,4 @@ obj/Release/*
 bin/Release/*
 gmon.out
 .c9revisions
+.DS_Store
