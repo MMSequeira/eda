@@ -45,5 +45,5 @@ int main()
 		previous_time = time;
 	}
 
-    return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }
