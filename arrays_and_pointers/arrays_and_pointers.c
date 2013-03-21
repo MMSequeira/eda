@@ -1,5 +1,4 @@
-
- // Regras do C sobre _arrays_ ponteiros
+ // Regras do C sobre _arrays_ e ponteiros
  // ====================================
  //
  // A linguagem C, tem uma forma perfeitamente consistente, embora ideossincrática,
@@ -16,11 +15,11 @@
  //
  // O programa abaixo evidencia estas regras pelo absurdo. Por favor, não tire partido
  // das regras enunciadas para escrever código incompreensível!
- 
+
 #include <stdio.h>
 #include <stdlib.h>
 
-int main_wow(void)
+int main(void)
 {
 	// O nome `m` é o nome de uma matriz com três números inteiros: 1, 2 e 3.
 	int m[] = {1, 2, 3};

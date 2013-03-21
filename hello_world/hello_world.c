@@ -8,7 +8,7 @@ int factorial(const int n)
 	return n * factorial(n - 1);
 }
 
-int main2(void)
+int main(void)
 {
 	printf("Hello world! Let's calculate the factorial of a number.\n");
 

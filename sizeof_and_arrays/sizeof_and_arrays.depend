@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1363875501 source:/home/mmsequeira/Documents/GitHub/eda/sizeof_and_arrays/sizeof_and_arrays.c
+	<stdio.h>
+	<stdlib.h>
+

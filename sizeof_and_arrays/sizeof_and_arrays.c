@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Change name to something else.
 void print(int number_of_items, int items[number_of_items])
 {
 	printf("%lu\n", sizeof(items));
@@ -11,7 +12,7 @@ void print(int number_of_items, int items[number_of_items])
 
 // Eu: inicialização de arrays de comprimento variável.
 // Todos: %d para sizeof é erro.
-int main_sizeof(void)
+int main(void)
 {
 	int ages[] = {23, 24, 25, 26};
 

@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "array_utils.h"
+
 double average_of(int number_of_items, int items[number_of_items])
 //double average_of(int* items)
 {
@@ -13,9 +15,9 @@ double average_of(int number_of_items, int items[number_of_items])
 }
 
 // Declare the procedure print which is defined in another file:
-void print(int number_of_items, int items[number_of_items]);
+// void print(int number_of_items, int items[number_of_items]);
 
-int main_arrays(void)
+int main(void)
 {
 //	printf("How many students? ");
 //	int number_of_students;

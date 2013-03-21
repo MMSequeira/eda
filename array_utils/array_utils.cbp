@@ -2,25 +2,31 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="hello_world" />
+		<Option title="array_utils" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/eda" prefix_auto="1" extension_auto="1" />
+				<Option output="libarray_utils" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
 				<Option object_output="obj/Debug/" />
-				<Option type="1" />
+				<Option type="2" />
 				<Option compiler="gcc" />
+				<Option createDefFile="1" />
 				<Compiler>
+					<Add option="-Wall" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/eda" prefix_auto="1" extension_auto="1" />
+				<Option output="libarray_utils" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
 				<Option object_output="obj/Release/" />
-				<Option type="1" />
+				<Option type="2" />
 				<Option compiler="gcc" />
+				<Option createDefFile="1" />
 				<Compiler>
+					<Add option="-Wall" />
 					<Add option="-O2" />
 				</Compiler>
 				<Linker>
@@ -28,22 +34,7 @@
 				</Linker>
 			</Target>
 		</Build>
-		<Compiler>
-			<Add option="-Wall" />
-		</Compiler>
-		<Unit filename="arrays.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="fibonacci.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="hello_world.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="sizeof.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="wow.c">
+		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
