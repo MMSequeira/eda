@@ -30,8 +30,13 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="../array_utils" />
 		</Compiler>
-		<Unit filename="main.c">
+		<Linker>
+			<Add library="array_utils" />
+			<Add directory="../array_utils" />
+		</Linker>
+		<Unit filename="arrays_basics.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
