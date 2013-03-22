@@ -6,6 +6,8 @@
 		<Project filename="array_utils/array_utils.cbp" />
 		<Project filename="hello_world/hello_world.cbp" />
 		<Project filename="sizeof_and_arrays/sizeof_and_arrays.cbp" />
-		<Project filename="fibonacci/fibonacci.cbp" active="1" />
+		<Project filename="fibonacci/fibonacci.cbp" />
+		<Project filename="nans_and_other_oddities/nans_and_other_oddities.cbp" active="1" />
+		<Project filename="routine_pointers/routine_pointers.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
