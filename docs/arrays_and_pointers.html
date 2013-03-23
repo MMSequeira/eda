@@ -19,6 +19,11 @@
           <div id="jump_page">
             
               
+              <a class="source" href="array_utils.html">
+                array_utils.h
+              </a>
+            
+              
               <a class="source" href="print.html">
                 print.c
               </a>
@@ -41,6 +46,16 @@
               
               <a class="source" href="hello_world.html">
                 hello_world.c
+              </a>
+            
+              
+              <a class="source" href="nans_and_other_oddities.html">
+                nans_and_other_oddities.c
+              </a>
+            
+              
+              <a class="source" href="routine_pointers.html">
+                routine_pointers.c
               </a>
             
               
@@ -75,20 +90,22 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>A linguagem C, tem uma forma perfeitamente consistente, embora ideossincrática,
-de lidar com <em>arrays</em> e ponteiros. Algumas das regras usadas pelo C são:</p>
+              <p>A linguagem C, tem uma forma perfeitamente consistente, embora
+idiossincrática, de lidar com <em>arrays</em> e ponteiros. Algumas das regras usadas
+pelo C são:</p>
 <ol>
-<li>Sempre que o nome de um <em>array</em> surge numa expressão (com algumas excepções, tal
-como quando operando do operador <code>sizeof</code>), é convertido num ponteiro para o seu
-primeiro item. Assim, se <code>m</code> for um <em>array</em>, então <code>m</code> e <code>&amp;m[0]</code> são expressões
-equivalentes.</li>
-<li>A utilização do operador de indexação, e.g., na expressão <code>m[i]</code>, é equivalente
-à desreferenciação do ponteiro obtido da soma entre o objecto indexado e o índice
-usado. Assim, <code>m[i]</code> tem exactamente o mesmo significado que <code>*(m + 1)</code>, ou seja,
-quando <code>m</code> for um <em>array</em>, <code>m[i]</code> é exactamente o mesmo que <code>*(&amp;m[0] + 1)</code>.</li>
+<li>Sempre que o nome de um <em>array</em> surge numa expressão (com algumas
+excepções, tal como quando operando do operador <code>sizeof</code>), é convertido
+num ponteiro para o seu primeiro item. Assim, se <code>m</code> for um <em>array</em>, então
+<code>m</code> e <code>&amp;m[0]</code> são expressões equivalentes.</li>
+<li>A utilização do operador de indexação, e.g., na expressão <code>m[i]</code>, é
+equivalente à «desreferenciação» do ponteiro obtido da soma entre o
+objecto indexado e o índice usado. Assim, <code>m[i]</code> tem exactamente o mesmo
+significado que <code>*(m + 1)</code>, ou seja, quando <code>m</code> for um <em>array</em>, <code>m[i]</code> é
+exactamente o mesmo que <code>*(&amp;m[0] + 1)</code>.</li>
 </ol>
-<p>O programa abaixo evidencia estas regras pelo absurdo. Por favor, não tire partido
-das regras enunciadas para escrever código incompreensível!</p>
+<p>O programa abaixo evidencia estas regras pelo absurdo. Por favor, não tire
+partido das regras enunciadas para escrever código incompreensível!</p>
 
             </div>
             
@@ -108,7 +125,8 @@ das regras enunciadas para escrever código incompreensível!</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>O nome <code>m</code> é o nome de uma matriz com três números inteiros: 1, 2 e 3.</p>
+              <p>O nome <code>m</code> é o nome de uma matriz com três números inteiros: 1, 2 e
+3.</p>
 
             </div>
             
@@ -129,8 +147,10 @@ das regras enunciadas para escrever código incompreensível!</p>
               <p>Como chegar a este código? Simples:</p>
 <ul>
 <li><code>m[i]</code> é o mesmo que <code>*(m + i)</code>, pela segunda regra acima.</li>
-<li><code>*(m + i)</code> é o mesmo que <code>*(i + m)</code>, pela comutatividade da adição.</li>
-<li><code>*(i + m)</code> é o mesmo que <code>i[m]</code>, de novo pela segunda regra acima.</li>
+<li><code>*(m + i)</code> é o mesmo que <code>*(i + m)</code>, pela comutatividade da
+adição.</li>
+<li><code>*(i + m)</code> é o mesmo que <code>i[m]</code>, de novo pela segunda regra
+acima.</li>
 </ul>
 
             </div>
@@ -148,11 +168,11 @@ das regras enunciadas para escrever código incompreensível!</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>Este caso é absolutamente idêntico, se se tiver em conta que uma cadeia
-de caracteres literal em C é equivalente à definição de um <em>array</em> de
-<code>char</code> (e não <code>const char</code>, como seria expectável) com um nome aleatório,
-com o mesmo número de caracteres da cadeia literal, e à utilização desse
-nome no código.</p>
+              <p>Este caso é absolutamente idêntico, se se tiver em conta que uma
+cadeia de caracteres literal em C é equivalente à definição de um
+<em>array</em> de <code>char</code> (e não <code>const char</code>, como seria expectável) com um
+nome aleatório, com o mesmo número de caracteres da cadeia literal, e
+à utilização desse nome no código.</p>
 
             </div>
             

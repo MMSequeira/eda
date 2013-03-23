@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>print.c</title>
+  <title>array_utils.h</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -71,7 +71,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>print.c</h1>
+                  <h1>array_utils.h</h1>
               </div>
           </li>
         
@@ -86,13 +86,12 @@
               
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#ifndef ARRAY_UTILS_H_INCLUDED</span>
+<span class="preprocessor">#define ARRAY_UTILS_H_INCLUDED</span>
 
-<span class="keyword">void</span> print(<span class="keyword">int</span> number_of_items, <span class="keyword">int</span> items[number_of_items])
-{
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != number_of_items; i++)
-		printf(<span class="string">"%d\n"</span>, items[i]);
-}
+<span class="keyword">void</span> print(<span class="keyword">int</span> number_of_items, <span class="keyword">int</span> items[number_of_items]);
+
+<span class="preprocessor">#endif // ARRAY_UTILS_H_INCLUDED</span>
 
 </pre></div></div>
             
