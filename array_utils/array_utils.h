@@ -108,6 +108,9 @@
  * \param items The array (or rather, a pointer to its first item) whose
  * items will be printed.
  * \return Nothing (it is a procedure).
+ * \pre `number_of_items` ≥ 0
+ * \pre `items` ≠ null
+ * \pre `items` points to an array with at least `number_of_items` items
  *
  * This procedure prints `number_of_items` items from the array `items`. It
  * prints each item of the array in a separate line.

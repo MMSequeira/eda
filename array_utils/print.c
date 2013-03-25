@@ -36,8 +36,14 @@
 
 // Inclusão de ficheiros de cabeçalho necessários no código de implementação.
 // Deve ser feita apenas _após_ se incluir o ficheiro de cabeçalho corresponde
-// ao próprio ficheiro de implementação.
+// ao próprio ficheiro de implementação. Neste caso temos:
+//
+// - `stdio.h` &ndash; Necessário para poder usar o procedimento `printf`.
+//
+// - `assert.h` &ndash; necessário para se poder usar a macro `assert()` para
+//   fazer asserções no código.
 #include <stdio.h>
+#include <assert.h>
 
 // Definição da rotina (um utilitário) correspondente a este ficheiro de
 // implementação. A definição das rotinas repete (porque o C o impõe) o seu
@@ -47,6 +53,21 @@
 // implementação.
 void print(int number_of_items, int items[number_of_items])
 {
+	// Verifica explicitamente a pré-condição desta rotina de que o primeiro
+	// argumento não pode ser negativo.
+	assert(number_of_items >= 0);
+
+	// Note a utilização de uma guarda fraca, aqui. Ou seja, usamos `i !=
+	// number_of_items` em vez da guarda mais usual (e mais forte) `i <
+	// number_of_items`. A vantagem de uma guarda fraca é que leva mais
+	// facilmente a ciclos infinitos (ou, pelo menos, muito longos) _quando
+	// o código está errado_. Isso tem a vantagem de facilitar a detecção de
+	// erros. Por exemplo, o que aconteceria se a asserção acima estivesse
+	// desactivada (usual no código em produção) e fosse passado um valor
+	// negativo como primeiro argumento? No caso da guarda forte, o ciclo
+	// terminaria e tudo _pareceria_ funcionar. No caso da guarda fraca, o
+	// ciclo tornar-se-ia muito longo (mas não infinito) o que levaria à
+	// mais rápida detecção do problema.
 	for (int i = 0; i != number_of_items; i++)
 		printf("%d\n", items[i]);
 }
