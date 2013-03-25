@@ -38,7 +38,7 @@ PROJECT_NUMBER         =
 # for a project that appears at the top of each page and should give viewer 
 # a quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "Todas as ferramentas desenvolvidas no âmbito da unidade curricular"
+PROJECT_BRIEF          = "Documentação do código desenvolvido no contexto da unidade curricular de Estrutura de Dados e Algoritmos, do ISLA Campus Lisboa | Laureate International Universities."
 
 # With the PROJECT_LOGO tag one can specify an logo or icon that is 
 # included in the documentation. The maximum height of the logo should not 
@@ -677,7 +677,8 @@ WARN_LOGFILE           =
 # directories like "/usr/src/myproject". Separate the files or directories 
 # with spaces.
 
-INPUT                  = /Users/mmsequeira/Projects/eda
+INPUT                  = /Users/mmsequeira/Projects/eda \
+                         main_page.txt
 
 # This tag can be used to specify the character encoding of the source files 
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding, which is 
