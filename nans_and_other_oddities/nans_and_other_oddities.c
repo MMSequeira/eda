@@ -14,13 +14,14 @@
 // Vírgula flutuante: fujam!
 // -------------------------
 //
-// A mensagem é simples: sempre que possível, e a não ser que tenha estudado
-// bem o assunto, _deve evitar usar valores_ de vírgula flutuante nos
-// seus programas_. A computação numérica é uma disciplina difícil e cheia de
+// A mensagem é simples: sempre que possível, e a não ser que tenha estudado bem
+// o assunto, _deve evitar usar valores_ de vírgula flutuante nos seus
+// programas_. A computação numérica é uma disciplina difícil e cheia de
 // armadilhas. A programação básica e a algoritmia são desafio suficiente, neste
 // momento. Logo que possa, no entanto, tente obter uma boa formação em
-// [computação numérica](http://en.wikipedia.org/wiki/Numerical_analysis) (ou «análise numérica», ou ainda em «métodos numéricos», como a área de estudo também
-// é conhecida). Verá que vale a pena.
+// [computação numérica](http://en.wikipedia.org/wiki/Numerical_analysis) (ou
+// «análise numérica», ou ainda em «métodos numéricos», como a área de estudo
+// também é conhecida). Verá que vale a pena.
 //
 // Valores especiais
 // -----------------
@@ -53,7 +54,7 @@
 // ------
 //
 // Definição de duas macros destinadas a simplificar a escrita de código para
-// mostrar no ecrã uma expressão e o seu resoldado.
+// mostrar no ecrã uma expressão e o seu resultado.
 #define print(double_value) printf(#double_value " = %g\n", (double_value))
 #define print_boolean(boolean_value) \
 	printf(#boolean_value " is %s\n", (boolean_value) ? "true" : "false")
