@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>print.c</title>
+  <title>Estrutura elementar de um ficheiro de implementação</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -69,26 +69,110 @@
     
     <ul class="sections">
         
-          <li id="title">
-              <div class="annotation">
-                  <h1>print.c</h1>
-              </div>
-          </li>
-        
         
         
         <li id="section-1">
             <div class="annotation">
               
-              <div class="pilwrap ">
+              <div class="pilwrap for-h1">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
+              <h1>Estrutura elementar de um ficheiro de implementação</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
               
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Este é um dos ficheiros de implementação associados ao ficheiro de cabeçalho
+<a href="array_utils.html"><code>array_utils.h</code></a>. Neste caso optou-se por manter um único ficheiro de
+cabeçalho e por dividir a implementação por vários ficheiros de
+implementação. Dessa forma:</p>
+<ul>
+<li><p>Simplifica-se a vida de quem pretende utilizar os utilitários, pois terá de
+incluir apenas um ficheiro de cabeçalho. Claro está que esta vantagem se
+pode transformar numa desvantagem caso a quantidade de utilitários aumente
+substancialmente.</p>
+</li>
+<li><p>Facilita-se a manutenção das implementações, pois estas ficam separadas,
+cada uma em seu ficheiro.</p>
+</li>
+</ul>
+<p>Note que as implementações dos vários utilitários são fornecidas na forma de
+uma <em>biblioteca</em>, ou seja, na forma de um ficheiro que arquiva os ficheiros
+objecto correspondentes a cada ficheiro de implementação. Isso significa que
+a organização das implementações apenas num grande ficheiro ou, como aqui se
+sugere, em ficheiros separados para cada utilitário, <em>é totalmente
+transparente</em> para o programador cliente da biblioteca.</p>
+<p>Note ainda que, em Linux, a biblioteca terá o nome <code>libarray_utils.a</code>.</p>
+<h2>Inclusão do cabeçalho correspondente a esta implementação</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Antes de qualquer outra inclusão, incluímos o ficheiro de cabeçalho
+correspondente a este ficheiro de implementação. Isso ajuda a detectar
+inconsistências entre o ficheiro de implementação e o correspondente ficheiro
+de cabeçalho.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include "array_utils.h"</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Inclusão de ficheiros de cabeçalho necessários no código de implementação.
+Deve ser feita apenas <em>após</em> se incluir o ficheiro de cabeçalho corresponde
+ao próprio ficheiro de implementação.</p>
+
             </div>
             
             <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
 
-<span class="keyword">void</span> print(<span class="keyword">int</span> number_of_items, <span class="keyword">int</span> items[number_of_items])
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Definição da rotina (um utilitário) correspondente a este ficheiro de
+implementação. A definição das rotinas repete (porque o C o impõe) o seu
+cabeçalho, mas segue-o de um corpo onde se define o funcionamento ou
+implementação da rotina. Note que normalmente não se incluem comentários de
+documentação (e.g., <a href="http://doxygen.org">Doxygen</a>) nos ficheiros de
+implementação.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">void</span> print(<span class="keyword">int</span> number_of_items, <span class="keyword">int</span> items[number_of_items])
 {
 	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != number_of_items; i++)
 		printf(<span class="string">"%d\n"</span>, items[i]);
