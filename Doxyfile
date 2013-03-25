@@ -38,7 +38,7 @@ PROJECT_NUMBER         =
 # for a project that appears at the top of each page and should give viewer 
 # a quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "Documentação do código desenvolvido no contexto da unidade curricular de Estrutura de Dados e Algoritmos, do ISLA Campus Lisboa | Laureate International Universities."
+PROJECT_BRIEF          = "Documentation of the code developed in the framework of Estrutura de Dados e Algoritmos, an ISLA Campus Lisboa | Laureate International Universities course."
 
 # With the PROJECT_LOGO tag one can specify an logo or icon that is 
 # included in the documentation. The maximum height of the logo should not 

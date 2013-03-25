@@ -1,5 +1,21 @@
-/** \mainpage Introdução
+/** \mainpage Introduction
  *
- * Esta é a documentação de todo o código desenvolvido no âmbito da unidade
- * curricular de Estrutura de Dados e Algoritmos do [ISLA Campus Lisboa | Laureate International Universities](http://www.isla.pt/). Trata-se de documentação clássica de código em C, com descrições das interfaces (e com os contratos) das ferramentas disponibilizadas. Esta documentação é gerada automaticamente a partir de comentários C, com um formato especial, contidos no código. O gerador de documentação utilizado é o [Doxygen](http://doxygen.org/), que recomendamos. Se procurar comentários ao código apropriados para quem quer aprender acerca daquilo que ilustra cada projecto e ficheiro desde repositório, encontra-os [aqui](http://mmsequeira.github.com/eda/docs/).
+ * This is the complete documentation of the code developed in the context of 
+ * Estrutura de Dados e Algoritmos, an [ISLA Campus Lisboa | Laureate
+ * International Universities](http://www.isla.pt/) course.
+ *
+ * This is classical C documentation, containing the description of the
+ * interface of each public artifact, possibly also describing its contract. The
+ * documentation is generated automatically from C comments with a specific
+ * format. The documentation generator used is [Doxygen](http://doxygen.org/),
+ * which we highly recommend.
+ *
+ * If you are a student, this documentation may have some value for you. But you
+ * probably want to start by checking the teacher's literate programming style
+ * comment pages produced with the help of
+ * [Docco](http://jashkenas.github.com/docco/). You may find them
+ * [here](http://mmsequeira.github.com/eda/docs/).
+ *
+ * If you are looking for the complete source code, [it is available in
+ * GitHub](https://github.com/MMSequeira/eda).
  */
