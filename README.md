@@ -3,4 +3,6 @@ Estrutura de Dados e Algoritmos
 
 Este projecto contém todo o código de Estrutura de Dados e Algoritmos (turno da manhã), uma unidade curricular das licenciaturas em IG e em SIWM do [ISLA Campus Lisboa](http://www.isla.pt/) | Laureate International Universities. Contém também alguma da documentação, incluindo o [texto complementar de apoio](http://mmsequeira.github.com/eda/aed-c/texto.pdf). Para mais informação, consultar a unidade curricular no [Campus Online](http://campusonline.isla.pt/) do ISLA Campus Lisboa.
 
-Todos os ficheiros com código fonte estão documentados. Ver a [lista dos ficheiros documentados](http://mmsequeira.github.com/eda/docs/). Logo que possível tentar-se-á encontrar uma forma simples de dar acesso a essa documentação sem que seja necessário adivinhar os correspondentes URL. 
+Todos os ficheiros com código fonte estão documentados. Esta documentação tem duas formas:
+- [Documentação do código](http://mmsequeira.github.com/eda/html/) &ndash; Corresponde à documentação clássica do código, descrevendo o _software_ e servindo de referência para programadores que o queiram usar, manter ou alterar.
+- [Comentários laterais no contexto da unidade curricular](http://mmsequeira.github.com/eda/docs/) &ndash; Comentários adicionais, sem utilidade para o _software_ propriamente dito, mas que proporcionam informação adicional relevante para o aluno de EDA.
