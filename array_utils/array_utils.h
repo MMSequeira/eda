@@ -25,11 +25,19 @@
 // 1. Os comentários que estão escritos em português, tal como este mesmo, nunca
 //    surgiriam em código real: trata-se de informação útil apenas para efeitos
 //    de ensino no contexto da unidade curricular de EDA, do ISLA Campus Lisboa
-//    | Laureate International Universities.
+//    | Laureate International Universities. Como tal, surgem apenas na coluna
+//    esquerda da documentação gerada pelo
+//    [Docco](http://jashkenas.github.com/docco/). Ver
+//    [array_utils.h](array_utils.html).
 //
 // 2. Os comentários de documentação não surgem nas listagens de código fonte
-//    criadas pelo Doxygen. Ou seja, as linhas abaixo desta serão omitidas na
-//    [listagem deste ficheiro](http://mmsequeira.github.com/eda/html/array__utils_8h_source.html).
+//    criadas pelo Doxygen. Ou seja, as linhas imediatamente abaixo destas no
+//    código fonte serão omitidas na [listagem deste
+//    ficheiro](http://mmsequeira.github.com/eda/html/array__utils_8h_source.html).
+//
+// 3. A informação contida no comentário de documentação é usada para compor a
+//    documentação sobre este ficheiro. Ver
+//    [array_utils.h](http://mmsequeira.github.com/eda/html/array__utils_8h.html). 
 //
 /**
  * \file array_utils.h
