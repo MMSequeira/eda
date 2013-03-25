@@ -1,9 +1,9 @@
-// Estrutura elementar de um ficheiro de implementação
-// ===================================================
+// `print.c` &ndash; Estrutura elementar de um ficheiro de implementação
+// =====================================================================
 //
 // Este é um dos ficheiros de implementação associados ao ficheiro de cabeçalho
-// [`array_utils.h`](array_utils.html). Neste caso optou-se por manter um único ficheiro de
-// cabeçalho e por dividir a implementação por vários ficheiros de
+// [`array_utils.h`](array_utils.html). Neste caso optou-se por manter um único
+// ficheiro de cabeçalho e por dividir a implementação por vários ficheiros de
 // implementação. Dessa forma:
 //
 // - Simplifica-se a vida de quem pretende utilizar os utilitários, pois terá de
@@ -21,7 +21,9 @@
 // sugere, em ficheiros separados para cada utilitário, _é totalmente
 // transparente_ para o programador cliente da biblioteca.
 //
-// Note ainda que, em Linux, a biblioteca terá o nome `libarray_utils.a`.
+// Note ainda que, em Linux, a biblioteca terá o nome `libarray_utils.a`. Em C,
+// o nome do ficheiro com a versão estática de uma biblioteca chamada
+// <code>_biblioteca_</code> é usualmente <code>lib_biblioteca_.a</code>.
 
 // Inclusão do cabeçalho correspondente a esta implementação
 // ---------------------------------------------------------

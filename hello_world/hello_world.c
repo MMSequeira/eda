@@ -1,4 +1,4 @@
-// Estrutura de um programa em C
+// `hello_world.c` &ndash; Estrutura de um programa em C
 // =============================
 //
 // Este programa ilustra a estrutura básica de um programa escrito na linguagem

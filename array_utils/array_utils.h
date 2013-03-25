@@ -1,5 +1,5 @@
-// Estrutura elementar de ficheiros de cabeçalho
-// =============================================
+// `array_utils.h` &ndash; Estrutura elementar de ficheiros de cabeçalho
+// =====================================================================
 
 // Na linguagem C, o mecanismo de modularização de um programa em pacotes
 // físicos, ou seja, o mecanismo de divisão em diferentes ficheiros, é muito

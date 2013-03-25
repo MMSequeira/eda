@@ -1,3 +1,6 @@
+// `sizeof_and_arrays.c` &ndash; _Arrays_ e `sizeof`
+// ================================================= 
+
 #include <stdio.h>
 #include <stdlib.h>
 

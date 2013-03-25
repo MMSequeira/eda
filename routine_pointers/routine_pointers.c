@@ -1,5 +1,5 @@
-// Ponteiros para rotinas
-// ======================
+// `routine_pointers.c` &ndash; Ponteiros para rotinas
+// ===================================================
 //
 // Um dos mecanismos que mais flexibilidade confere a uma linguagem de
 // programação é a possibilidade de parametrizar módulos (e.g., rotinas ou, nas

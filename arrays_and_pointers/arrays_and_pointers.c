@@ -1,5 +1,5 @@
-// Regras do C sobre _arrays_ e ponteiros
-// ====================================
+// `array_and_pointers.c` &ndash; Regras do C sobre _arrays_ e ponteiros
+// =====================================================================
 //
 // A linguagem C, tem uma forma perfeitamente consistente, embora
 // idiossincrática, de lidar com _arrays_ e ponteiros. Algumas das regras usadas
@@ -40,10 +40,38 @@ int main(void)
 	// Este caso é absolutamente idêntico, se se tiver em conta que uma
 	// cadeia de caracteres literal em C é equivalente à definição de um
 	// _array_ de `char` (e não `const char`, como seria expectável) com um
-	// nome aleatório, com o mesmo número de caracteres da cadeia literal, e
-	// à utilização desse nome no código.
+	// nome aleatório (que não colida com qualquer nome existente no
+	// programa) e com o mesmo número de caracteres da cadeia literal, e à
+	// utilização desse nome no código no local onde se encontra a cadeia de
+	// caracteres literal. Assim, o código é equivalente ao seguinte:
+	//
+	// ```C
+	// char a_random_name[] = "Hello";
+	// for (int i = 0; i != sizeof(a_random_name) - 1; i++)
+	//         putchar(i[a_random_name]);
+	// ```
+	//
+	// Pelas regras indicadas mais acima, este código é equivalente ao
+	// seguinte:
+	//
+	// ```C
+	// char a_random_name[] = "Hello";
+	// for (int i = 0; i != sizeof(a_random_name) - 1; i++)
+	//         putchar(a_random_name[i]]);
+	// ```
+	//
+	// Atenção! Não confunda inicialização com atribuição! Na instrução
+	// 
+	// ```C
+	// char a_random_name[] = "Hello";
+	// ```
+	//
+	// não há qualquer atribuição. O que ocorre, isso sim, é uma
+	// inicilização. Neste contexto, `"Hello"` não é visto como uma cadeia
+	// de caracteres literal, mas sim como um inicializador.
 	for (int i = 0; i != sizeof("Hello") - 1; i++)
 		putchar(i["Hello"]);
 
+	//
 	return EXIT_SUCCESS;
 }
