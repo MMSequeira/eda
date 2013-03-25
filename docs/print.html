@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>Estrutura elementar de um ficheiro de implementação</title>
+  <title>`print.c` &ndash; Estrutura elementar de um ficheiro de implementação</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -77,7 +77,7 @@
               <div class="pilwrap for-h1">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h1>Estrutura elementar de um ficheiro de implementação</h1>
+              <h1><code>print.c</code> &ndash; Estrutura elementar de um ficheiro de implementação</h1>
 
             </div>
             
@@ -91,8 +91,8 @@
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
               <p>Este é um dos ficheiros de implementação associados ao ficheiro de cabeçalho
-<a href="array_utils.html"><code>array_utils.h</code></a>. Neste caso optou-se por manter um único ficheiro de
-cabeçalho e por dividir a implementação por vários ficheiros de
+<a href="array_utils.html"><code>array_utils.h</code></a>. Neste caso optou-se por manter um único
+ficheiro de cabeçalho e por dividir a implementação por vários ficheiros de
 implementação. Dessa forma:</p>
 <ul>
 <li><p>Simplifica-se a vida de quem pretende utilizar os utilitários, pois terá de
@@ -110,7 +110,9 @@ objecto correspondentes a cada ficheiro de implementação. Isso significa que
 a organização das implementações apenas num grande ficheiro ou, como aqui se
 sugere, em ficheiros separados para cada utilitário, <em>é totalmente
 transparente</em> para o programador cliente da biblioteca.</p>
-<p>Note ainda que, em Linux, a biblioteca terá o nome <code>libarray_utils.a</code>.</p>
+<p>Note ainda que, em Linux, a biblioteca terá o nome <code>libarray_utils.a</code>. Em C,
+o nome do ficheiro com a versão estática de uma biblioteca chamada
+<code><em>biblioteca</em></code> é usualmente <code>lib<em>biblioteca</em>.a</code>.</p>
 <h2>Inclusão do cabeçalho correspondente a esta implementação</h2>
 
             </div>

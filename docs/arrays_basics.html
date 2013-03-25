@@ -108,6 +108,20 @@ a que chamamos «itens», são todos do mesmo tipo. Estes dados estão
 organizados numa sequência com um comprimento fixo. Por exemplo,</p>
 <pre><code class="lang-C">  int array[4];</code></pre>
 <p>define um novo <em>array</em> com exactamente quatro inteiros.</p>
+<h2>Inicalização de <em>arrays</em></h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h3>Inicialização por omissão</h3>
 <p>Tal como acontece no caso de variáveis dos tipos básicos da linguagem, por
 omissão o C <em>não</em> inicializa os itens de um <em>array</em> (desde que seja um
 <em>array</em> automático, pois se for estático todos os itens são inicializados com
@@ -115,10 +129,11 @@ um valor nulo). Ou seja, estes começam a sua vida com valores que, do ponto
 de vista do programador, são puro lixo, mesmo que provavelmente estes valores
 consistam simplesmente numa interpretação do padrão de <em>bits</em> que se encontra
 na memória alocada para esses itens ou variáveis.</p>
+<h3>Inicialização explícita</h3>
 <p>Os <em>arrays</em> podem ser inicializados explicitamente através de uma lista
 de inicializadores:</p>
 <pre><code class="lang-C">  int array[4] = {0, 1, 2};</code></pre>
-<p>Neste caso se omitimos o valor inicial do quarto item do <em>array</em>. Quando isto
+<p>Neste caso omitimos o valor inicial do quarto item do <em>array</em>. Quando isto
 acontece, o compilador do C encarrega-se de gerar código máquina que
 inicializa os itens em falta com valores nulos. Podemos, por isso, usar um
 truque simpático para inicializar todos os itens dos <em>arrays</em> do C com o
@@ -127,7 +142,9 @@ validade de usar uma lista de inicialização vazia...):</p>
 <pre><code class="lang-C">  int array[4] = {};</code></pre>
 <p>Quando se fornece uma lista de inicialização, é possível omitir a
 dimensão dos <em>arrays</em>. Nesse caso, o <em>array</em> terá como dimensão o número
-de valores colocado entre chavetas.</p>
+de valores colocado entre chavetas. Por exemplo, o código</p>
+<pre><code class="lang-C">  int array[] = {0, 1, 2};</code></pre>
+<p>define um <em>array</em> com exactamente três itens.</p>
 <p>Inclusão de ficheiros de cabeçalho para utilização do procedimento
 printf() e para poder usar a <em>macro</em> <code>EXIT_SUCCESS</code>.</p>
 
@@ -141,11 +158,11 @@ printf() e para poder usar a <em>macro</em> <code>EXIT_SUCCESS</code>.</p>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>Incluímos o ficheiro de cabeçalho <code>array_utils.h</code>, pois contém a declaração
 do procedimento <code>void print(int number_of_items, int
@@ -154,13 +171,14 @@ encerrando o nome do ficheiro entre aspas, e não entre parênteses agudos.
 Isso faz com que o compilador procure o ficheiro não apenas nos locais padrão
 habituais (e.g., <code>/usr/include</code>) mas também no próprio projecto em que nos
 encontramos. Neste caso o ficheiro está no projecto Code::Blocks
-<code>array_utils</code>. Note que não basta que este ficheiro de cabeçalho, contendo o
-<em>protótipo</em>, esteja disponível para inclusão durante o processo de construção
-(mais precisamente durante o pré-processamento): é necessário que esteja
-também disponível uma biblioteca ou um ficheiro objecto com o resultado da
-compilação do código fonte correspondente. Essa biblioteca ou ficheiro
-objecto será <em>fundido</em> com os restantes ficheiros objecto e bibliotecas
-durante o passo da <em>fusão</em> do código.</p>
+<code>array_utils</code>, cujo propósito é a criação de uma biblioteca de utilitários
+para lidar com <em>arrays</em>. Note que não basta que este ficheiro de cabeçalho,
+contendo o <em>protótipo</em>, esteja disponível para inclusão durante o processo de
+construção (mais precisamente durante o pré-processamento): é necessário que
+esteja também disponível uma biblioteca ou um ficheiro objecto com o
+resultado da compilação do ou dos ficheiros de implementação correspondentes.
+Essa biblioteca ou ficheiro objecto será <em>fundido</em> com os restantes ficheiros
+objecto e bibliotecas durante o passo da <em>fusão</em> do código.</p>
 
             </div>
             
@@ -171,13 +189,89 @@ durante o passo da <em>fusão</em> do código.</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h1">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h1>Definição de uma função</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
+              <p>Definimos uma função que devolve a média dos itens da matriz passada como
+argumento. Uma definição de uma rotina consiste num <em>cabeçalho</em>, onde se
+caracteriza a interface da rotina, e num <em>corpo</em>, onde se coloca a
+<em>implementação</em> da rotina. Neste caso temos uma <em>definição</em>, e não uma
+simples <em>declaração</em>, pois incluímos o corpo da função. Todas as definições
+são também declarações, mas nem todas as declarações são definições. Uma
+declaração simples, sem indicação da implementação, inclui apenas o cabeçalho
+da rotina seguido de um ponto e vírgula. O ficheiro
+<a href="array_utils.html"><code>array_utils.h</code></a> contém apenas a declaração da função.</p>
+<h3>Documentação e cabeçalho da função</h3>
+<p>O <em>cabeçalho</em> de uma rotina declara a sua existência e especifica a sua forma
+de utilização, mas não especifica totalmente a <em>interface</em> da função. A
+interface completa de uma rotina inclui informação mais pormenorizada acerca
+dos objectivos da rotina, acerca do significado dos parâmetros, etc., mas,
+sobretudo, estabelece um contrato claro entre o <em>programador produtor</em> da
+rotina, i.e., o ou os programadores que a implementam e mantêm, e o
+<em>programador consumidor ou cliente</em> da rotina, i.e., o ou os programadores
+que a usam no seu código. O C não suporta directamente a especificação da
+interface completa da rotina. Por isso, essa especificação é feita recorrendo
+a um <em>comentário de documentação</em>.</p>
+<h4>Documentação</h4>
+<p>O cabeçalho é precedido de um <em>comentário de documentação</em> que indica
+claramente qual o contrato desta função. Usamos aqui o formato de
+documentação <a href="doxygen.org">Doxygen</a>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief Returns the average of the items of a given array.
+ *
+ * \param number_of_items The number of items of the array `items` to consider.
+ * \param items The array (or rather, a pointer to its first item) whose
+ * items will be averaged.
+ * \return the average of the first `number_of_items` items of array `items`.
+ *
+ * This function calculates and returns the average of the first
+ * `number_of_items` items of array `items`.
+ */</span>
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
               
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h4>Cabeçalho</h4>
+<p>Este cabeçalho inclui a seguinte informação:</p>
+<ul>
+<li>Nome da função &ndash; O nome da função deve ser tão explícito e claro
+quanto possível. Pense numa possível utilização da função para chegar a um
+bom nome. Por exemplo, suponha-se que existe um <em>array</em> chamado
+<code>student_grades</code> com a lista das notas de um dado aluno e se pretende saber
+se a sua média ultrapassa os 15 valores. O código a escrever seria o que se
+segue, que é legível quase como se se tratasse de inglês:</li>
+</ul>
+<pre><code class="lang-C">if (average_of(student_grades) &gt; 15.0)
+        ...</code></pre>
+<ul>
+<li>Tipo do valor devolvido &ndash; !!!!!!!!!!!!!!!!!!!</li>
+</ul>
+
             </div>
             
             <div class="content"><div class="highlight"><pre><span class="keyword">double</span> average_of(<span class="keyword">int</span> number_of_items, <span class="keyword">int</span> items[number_of_items])
@@ -186,11 +280,11 @@ durante o passo da <em>fusão</em> do código.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>double average_of(int* items)</p>
 
@@ -212,11 +306,11 @@ durante o passo da <em>fusão</em> do código.</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>printf(&quot;How many students? &quot;);
 int number_of_students;

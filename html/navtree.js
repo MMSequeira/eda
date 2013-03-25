@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "Estrutura de Dados e Algoritmos", "index.html", [
+    [ "Introduction", "index.html", null ],
     [ "Files", null, [
       [ "File List", "files.html", "files" ],
       [ "Globals", "globals.html", [
