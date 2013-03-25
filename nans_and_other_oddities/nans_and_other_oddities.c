@@ -1,5 +1,5 @@
-// NaN e outros que tais
-// =====================
+// `nans_and_other_oddities.c` &ndash; NaN e outros que tais
+// =========================================================
 //
 // Embora a norma da linguagem C não obrigue a isso, a maior parte das suas
 // implementações conformam-se com a norma [IEC

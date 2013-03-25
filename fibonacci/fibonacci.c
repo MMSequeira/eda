@@ -1,3 +1,5 @@
+// `fibonacci.c` &ndash; Coelhos, recursão e iteração
+// ==================================================
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>

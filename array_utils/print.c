@@ -1,5 +1,5 @@
-// Estrutura elementar de um ficheiro de implementação
-// ===================================================
+// `print.c` &ndash; Estrutura elementar de um ficheiro de implementação
+// =====================================================================
 //
 // Este é um dos ficheiros de implementação associados ao ficheiro de cabeçalho
 // [`array_utils.h`](array_utils.html). Neste caso optou-se por manter um único

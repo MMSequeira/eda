@@ -1,5 +1,5 @@
-// Regras do C sobre _arrays_ e ponteiros
-// ====================================
+// `array_and_pointers.c` &ndash; Regras do C sobre _arrays_ e ponteiros
+// =====================================================================
 //
 // A linguagem C, tem uma forma perfeitamente consistente, embora
 // idiossincrática, de lidar com _arrays_ e ponteiros. Algumas das regras usadas
