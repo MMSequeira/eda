@@ -241,3 +241,16 @@ int main()
 // Devemos usar estas regras sempre com o objectivo de tornar o código mais
 // claro, pelo que tendemos a preferir as versões mais sintéticas e que menos
 // explicitam a natureza de ponteiro dos ponteiros para rotinas.
+//
+// Magia, mesmo?
+// -------------
+//
+// O pré-processador é mesmo mágico, não é? Pois. É. Demasiado. Evite recorrer a
+// ele. Use-o apenas onde indispensável (e.g., inclusões de ficheiros de
+// cabeçalho, evitando as consequências da inclusão múltipla, etc.). O exemplo
+// de compilação condicional que aqui apresentamos encaixa-se perfeitamente no
+// conjunto de práticas a evitar sempre que possível. Usámo-lo apenas para
+// podermos manter num único ficheiro duas versões equivalentes, embora
+// diferentes, do mesmo código, pois isso traz evidentes vantagens pedagógicas.
+// Cremos que essas vantagens são suficientes para justificar a violação de uma
+// boa prática.
