@@ -1,4 +1,16 @@
-// `fibonacci.c` &ndash; Coelhos, recursão e iteração
+// `fibonacci.c`
+// =============
+/**
+ * \file fibonacci.c
+ * \brief Illustrates possible implementations of the calculation of terms of
+ * the Fibonacci sequence.
+ * 
+ * Iterative and recursive implementations of the calculation of terms of
+ * the Fibonacci sequence. These implementations are used to illustrate
+ * iteration vs. recursion, and also to show how a naïve implementation of
+ * recursion may lead to serious problems.
+ */
+// Coelhos, recursão e iteração
 // ==================================================
 #include <time.h>
 #include <stdio.h>
