@@ -2,10 +2,15 @@
 
 <html>
 <head>
-  <title>`print.c` &ndash; Estrutura elementar de um ficheiro de implementação</title>
+  <title>`print.c`</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
+  <script src="http://softwaremaniacs.org/media/soft/highlight/highlight.pack.js"></script>
+  <script>
+    hljs.tabReplace = '        ';
+    hljs.initHighlightingOnLoad();
+  </script>
 </head>
 <body>
   <div id="container">
@@ -77,7 +82,7 @@
               <div class="pilwrap for-h1">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h1><code>print.c</code> &ndash; Estrutura elementar de um ficheiro de implementação</h1>
+              <h1><code>print.c</code></h1>
 
             </div>
             
@@ -87,8 +92,21 @@
         <li id="section-2">
             <div class="annotation">
               
-              <div class="pilwrap ">
+              <div class="pilwrap for-h2">
                 <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2>Estrutura elementar de um ficheiro de implementação</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>Este é um dos ficheiros de implementação associados ao ficheiro de cabeçalho
 <a href="array_utils.html"><code>array_utils.h</code></a>. Neste caso optou-se por manter um único
@@ -113,20 +131,20 @@ transparente</em> para o programador cliente da biblioteca.</p>
 <p>Note ainda que, em Linux, a biblioteca terá o nome <code>libarray_utils.a</code>. Em C,
 o nome do ficheiro com a versão estática de uma biblioteca chamada
 <code><em>biblioteca</em></code> é usualmente <code>lib<em>biblioteca</em>.a</code>.</p>
-<h2>Inclusão do cabeçalho correspondente a esta implementação</h2>
 
             </div>
             
         </li>
         
         
-        <li id="section-3">
+        <li id="section-4">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Antes de qualquer outra inclusão, incluímos o ficheiro de cabeçalho
+              <h3>Inclusão do cabeçalho correspondente a esta implementação</h3>
+<p>Antes de qualquer outra inclusão, incluímos o ficheiro de cabeçalho
 correspondente a este ficheiro de implementação. Isso ajuda a detectar
 inconsistências entre o ficheiro de implementação e o correspondente ficheiro
 de cabeçalho.</p>
@@ -140,43 +158,110 @@ de cabeçalho.</p>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-5">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>Inclusão de ficheiros de cabeçalho necessários no código de implementação.
-Deve ser feita apenas <em>após</em> se incluir o ficheiro de cabeçalho corresponde
-ao próprio ficheiro de implementação.</p>
+              <h3>Inclusão de ficheiros de cabeçalho necessários no código de implementação</h3>
+<p>Estas inclusões ser feita apenas <em>após</em> se incluir o ficheiro de cabeçalho
+corresponde ao próprio ficheiro de implementação. Neste caso temos:</p>
+<ul>
+<li><p><code>stdio.h</code> &ndash; Necessário para poder usar o procedimento <code>printf</code>.</p>
+</li>
+<li><p><code>assert.h</code> &ndash; Necessário para se poder usar a macro <code>assert()</code> para
+fazer asserções no código.</p>
+</li>
+</ul>
 
             </div>
             
             <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;assert.h&gt;</span>
 
 </pre></div></div>
             
         </li>
         
         
-        <li id="section-5">
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h3>Definição de rotinas</h3>
+<p>Definição de todas as rotinas correspondentes a este ficheiro. Neste caso há
+apenas uma rotina a definir: <code>print()</code>.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>Definição da rotina (um utilitário) correspondente a este ficheiro de
-implementação. A definição das rotinas repete (porque o C o impõe) o seu
-cabeçalho, mas segue-o de um corpo onde se define o funcionamento ou
-implementação da rotina. Note que normalmente não se incluem comentários de
-documentação (e.g., <a href="http://doxygen.org">Doxygen</a>) nos ficheiros de
-implementação.</p>
+              <p>Definição da rotina <code>print()</code>. A definição das rotinas repete (porque o C o
+impõe) o seu cabeçalho, mas segue-o de um corpo onde se define o
+funcionamento ou implementação da rotina. Note que normalmente não se incluem
+comentários de documentação (e.g., <a href="http://doxygen.org">Doxygen</a>) nos
+ficheiros de implementação.</p>
 
             </div>
             
             <div class="content"><div class="highlight"><pre><span class="keyword">void</span> print(<span class="keyword">int</span> number_of_items, <span class="keyword">int</span> items[number_of_items])
 {
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != number_of_items; i++)
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Verifica explicitamente as pré-condições desta rotina de que o
+primeiro argumento não pode ser negativo e o segundo não pode ser um
+ponteiro nulo.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	assert(number_of_items &gt;= <span class="number">0</span>);
+	assert(items != NULL);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Note a utilização de uma guarda fraca, aqui. Ou seja, usamos <code>i !=
+number_of_items</code> em vez da guarda mais usual (e mais forte) <code>i &lt;
+number_of_items</code>. A vantagem de uma guarda fraca é que leva mais
+facilmente a ciclos infinitos (ou, pelo menos, muito longos) <em>quando
+o código está errado</em>. Isso tem a vantagem de facilitar a detecção de
+erros. Por exemplo, o que aconteceria se a asserção acima estivesse
+desactivada (usual no código em produção) e fosse passado um valor
+negativo como primeiro argumento? No caso da guarda forte, o ciclo
+terminaria e tudo <em>pareceria</em> funcionar. No caso da guarda fraca, o
+ciclo tornar-se-ia muito longo (mas não infinito) o que levaria à
+mais rápida detecção do problema.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != number_of_items; i++)
 		printf(<span class="string">"%d\n"</span>, items[i]);
 }
 

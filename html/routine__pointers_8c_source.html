@@ -20,6 +20,12 @@
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -347,13 +353,26 @@ $(document).ready(function(){initNavTree('routine__pointers_8c_source.html','');
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="comment">// Devemos usar estas regras sempre com o objectivo de tornar o código mais</span></div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">// claro, pelo que tendemos a preferir as versões mais sintéticas e que menos</span></div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="comment">// explicitam a natureza de ponteiro dos ponteiros para rotinas.</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="comment">// Magia, mesmo?</span></div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment">// -------------</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">// O pré-processador é mesmo mágico, não é? Pois. É. Demasiado. Evite recorrer a</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment">// ele. Use-o apenas onde indispensável (e.g., inclusões de ficheiros de</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment">// cabeçalho, evitando as consequências da inclusão múltipla, etc.). O exemplo</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">// de compilação condicional que aqui apresentamos encaixa-se perfeitamente no</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="comment">// conjunto de práticas a evitar sempre que possível. Usámo-lo apenas para</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="comment">// podermos manter num único ficheiro duas versões equivalentes, embora</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="comment">// diferentes, do mesmo código, pois isso traz evidentes vantagens pedagógicas.</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="comment">// Cremos que essas vantagens são suficientes para justificar a violação de uma</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment">// boa prática.</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_284fa80f9370bd69970ad6658f59f984.html">routine_pointers</a></li><li class="navelem"><b>routine_pointers.c</b></li>
-    <li class="footer">Generated on Mon Mar 25 2013 18:43:14 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Tue Mar 26 2013 16:43:37 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

@@ -20,6 +20,12 @@
 <script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -104,65 +110,95 @@ $(document).ready(function(){initNavTree('print_8c_source.html','');});
 <div class="title">print.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// `print.c` &amp;ndash; Estrutura elementar de um ficheiro de implementação</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// =====================================================================</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// `print.c`</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// =========</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// Este é um dos ficheiros de implementação associados ao ficheiro de cabeçalho</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// [`array_utils.h`](array_utils.html). Neste caso optou-se por manter um único</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// ficheiro de cabeçalho e por dividir a implementação por vários ficheiros de</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// implementação. Dessa forma:</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// - Simplifica-se a vida de quem pretende utilizar os utilitários, pois terá de</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">//   incluir apenas um ficheiro de cabeçalho. Claro está que esta vantagem se</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">//   pode transformar numa desvantagem caso a quantidade de utilitários aumente</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//   substancialmente.</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// - Facilita-se a manutenção das implementações, pois estas ficam separadas,</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//   cada uma em seu ficheiro.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// Estrutura elementar de um ficheiro de implementação</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// ---------------------------------------------------</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// Este é um dos ficheiros de implementação associados ao ficheiro de cabeçalho</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// [`array_utils.h`](array_utils.html). Neste caso optou-se por manter um único</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// ficheiro de cabeçalho e por dividir a implementação por vários ficheiros de</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// implementação. Dessa forma:</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// - Simplifica-se a vida de quem pretende utilizar os utilitários, pois terá de</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">//   incluir apenas um ficheiro de cabeçalho. Claro está que esta vantagem se</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">//   pode transformar numa desvantagem caso a quantidade de utilitários aumente</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//   substancialmente.</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// Note que as implementações dos vários utilitários são fornecidas na forma de</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">// uma _biblioteca_, ou seja, na forma de um ficheiro que arquiva os ficheiros</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">// objecto correspondentes a cada ficheiro de implementação. Isso significa que</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">// a organização das implementações apenas num grande ficheiro ou, como aqui se</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">// sugere, em ficheiros separados para cada utilitário, _é totalmente</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">// transparente_ para o programador cliente da biblioteca.</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">// Note ainda que, em Linux, a biblioteca terá o nome `libarray_utils.a`. Em C,</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">// o nome do ficheiro com a versão estática de uma biblioteca chamada</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">// &lt;code&gt;_biblioteca_&lt;/code&gt; é usualmente &lt;code&gt;lib_biblioteca_.a&lt;/code&gt;.</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">// Inclusão do cabeçalho correspondente a esta implementação</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// ---------------------------------------------------------</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">// Antes de qualquer outra inclusão, incluímos o ficheiro de cabeçalho</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">// correspondente a este ficheiro de implementação. Isso ajuda a detectar</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">// inconsistências entre o ficheiro de implementação e o correspondente ficheiro</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">// de cabeçalho.</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="array__utils_8h.html" title="Header file for the array utilities.">array_utils.h</a>&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">// Inclusão de ficheiros de cabeçalho necessários no código de implementação.</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">// Deve ser feita apenas _após_ se incluir o ficheiro de cabeçalho corresponde</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">// ao próprio ficheiro de implementação.</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">// Definição da rotina (um utilitário) correspondente a este ficheiro de</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">// implementação. A definição das rotinas repete (porque o C o impõe) o seu</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">// cabeçalho, mas segue-o de um corpo onde se define o funcionamento ou</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">// implementação da rotina. Note que normalmente não se incluem comentários de</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">// documentação (e.g., [Doxygen](http://doxygen.org)) nos ficheiros de</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">// implementação.</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="code" href="array__utils_8h.html#a9bc29752c2a34f3f1ce9bf74e2073dc3">   48</a></span>&#160;<span class="keywordtype">void</span> print(<span class="keywordtype">int</span> number_of_items, <span class="keywordtype">int</span> items[number_of_items])</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != number_of_items; i++)</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                printf(<span class="stringliteral">&quot;%d\n&quot;</span>, items[i]);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// - Facilita-se a manutenção das implementações, pois estas ficam separadas,</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">//   cada uma em seu ficheiro.</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">// Note que as implementações dos vários utilitários são fornecidas na forma de</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">// uma _biblioteca_, ou seja, na forma de um ficheiro que arquiva os ficheiros</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">// objecto correspondentes a cada ficheiro de implementação. Isso significa que</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">// a organização das implementações apenas num grande ficheiro ou, como aqui se</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">// sugere, em ficheiros separados para cada utilitário, _é totalmente</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">// transparente_ para o programador cliente da biblioteca.</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">// Note ainda que, em Linux, a biblioteca terá o nome `libarray_utils.a`. Em C,</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">// o nome do ficheiro com a versão estática de uma biblioteca chamada</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">// &lt;code&gt;_biblioteca_&lt;/code&gt; é usualmente &lt;code&gt;lib_biblioteca_.a&lt;/code&gt;.</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">// ### Inclusão do cabeçalho correspondente a esta implementação</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">// Antes de qualquer outra inclusão, incluímos o ficheiro de cabeçalho</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">// correspondente a este ficheiro de implementação. Isso ajuda a detectar</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">// inconsistências entre o ficheiro de implementação e o correspondente ficheiro</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">// de cabeçalho.</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="array__utils_8h.html" title="Header file for the array utilities.">array_utils.h</a>&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">// ### Inclusão de ficheiros de cabeçalho necessários no código de implementação</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">// Estas inclusões ser feita apenas _após_ se incluir o ficheiro de cabeçalho</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">// corresponde ao próprio ficheiro de implementação. Neste caso temos:</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">// - `stdio.h` &amp;ndash; Necessário para poder usar o procedimento `printf`.</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">// - `assert.h` &amp;ndash; Necessário para se poder usar a macro `assert()` para</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">//   fazer asserções no código.</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">// ### Definição de rotinas</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">// Definição de todas as rotinas correspondentes a este ficheiro. Neste caso há</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">// apenas uma rotina a definir: `print()`.</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">// Definição da rotina `print()`. A definição das rotinas repete (porque o C o</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">// impõe) o seu cabeçalho, mas segue-o de um corpo onde se define o</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">// funcionamento ou implementação da rotina. Note que normalmente não se incluem</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">// comentários de documentação (e.g., [Doxygen](http://doxygen.org)) nos</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">// ficheiros de implementação.</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="array__utils_8h.html#a9bc29752c2a34f3f1ce9bf74e2073dc3">   61</a></span>&#160;<span class="keywordtype">void</span> print(<span class="keywordtype">int</span> number_of_items, <span class="keywordtype">int</span> items[number_of_items])</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;{</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="comment">// Verifica explicitamente as pré-condições desta rotina de que o</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">// primeiro argumento não pode ser negativo e o segundo não pode ser um</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="comment">// ponteiro nulo.</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        assert(number_of_items &gt;= 0);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        assert(items != NULL);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="comment">// Note a utilização de uma guarda fraca, aqui. Ou seja, usamos `i !=</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="comment">// number_of_items` em vez da guarda mais usual (e mais forte) `i &lt;</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="comment">// number_of_items`. A vantagem de uma guarda fraca é que leva mais</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">// facilmente a ciclos infinitos (ou, pelo menos, muito longos) _quando</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment">// o código está errado_. Isso tem a vantagem de facilitar a detecção de</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="comment">// erros. Por exemplo, o que aconteceria se a asserção acima estivesse</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">// desactivada (usual no código em produção) e fosse passado um valor</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment">// negativo como primeiro argumento? No caso da guarda forte, o ciclo</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="comment">// terminaria e tudo _pareceria_ funcionar. No caso da guarda fraca, o</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="comment">// ciclo tornar-se-ia muito longo (mas não infinito) o que levaria à</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="comment">// mais rápida detecção do problema.</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != number_of_items; i++)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                printf(<span class="stringliteral">&quot;%d\n&quot;</span>, items[i]);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_ac1f0e84aef42f190c9fdcb54d6c9717.html">array_utils</a></li><li class="navelem"><b>print.c</b></li>
-    <li class="footer">Generated on Mon Mar 25 2013 18:43:14 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Tue Mar 26 2013 16:43:37 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

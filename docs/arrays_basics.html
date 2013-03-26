@@ -2,10 +2,15 @@
 
 <html>
 <head>
-  <title>O básico sobre os _arrays_</title>
+  <title>`arrays_basics.c`</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
+  <script src="http://softwaremaniacs.org/media/soft/highlight/highlight.pack.js"></script>
+  <script>
+    hljs.tabReplace = '        ';
+    hljs.initHighlightingOnLoad();
+  </script>
 </head>
 <body>
   <div id="container">
@@ -77,7 +82,7 @@
               <div class="pilwrap for-h1">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h1>O básico sobre os <em>arrays</em></h1>
+              <h1><code>arrays_basics.c</code></h1>
 
             </div>
             
@@ -87,12 +92,18 @@
         <li id="section-2">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <h2>O que são os <em>arrays</em></h2>
-
+              
             </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/**
+ * \file arrays_basics.c
+ * \brief An introduction, in code, to the basics about arrays. 
+ */</span>
+
+</pre></div></div>
             
         </li>
         
@@ -100,15 +111,10 @@
         <li id="section-3">
             <div class="annotation">
               
-              <div class="pilwrap ">
+              <div class="pilwrap for-h2">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Os <em>arrays</em> são uma das formas de agregar dados em C. Nos <em>arrays</em> os dados,
-a que chamamos «itens», são todos do mesmo tipo. Estes dados estão
-organizados numa sequência com um comprimento fixo. Por exemplo,</p>
-<pre><code class="lang-C">  int array[4];</code></pre>
-<p>define um novo <em>array</em> com exactamente quatro inteiros.</p>
-<h2>Inicalização de <em>arrays</em></h2>
+              <h2>O básico sobre os <em>arrays</em></h2>
 
             </div>
             
@@ -121,7 +127,14 @@ organizados numa sequência com um comprimento fixo. Por exemplo,</p>
               <div class="pilwrap for-h3">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <h3>Inicialização por omissão</h3>
+              <h3>O que são os <em>arrays</em></h3>
+<p>Os <em>arrays</em> são uma das formas de agregar dados em C. Nos <em>arrays</em> os dados,
+a que chamamos «itens», são todos do mesmo tipo. Estes dados estão
+organizados numa sequência com um comprimento fixo. Por exemplo,</p>
+<pre><code class="lang-C">int array[4];</code></pre>
+<p>define um novo <em>array</em> com exactamente quatro inteiros.</p>
+<h3>Inicialização de <em>arrays</em></h3>
+<h4>Inicialização por omissão</h4>
 <p>Tal como acontece no caso de variáveis dos tipos básicos da linguagem, por
 omissão o C <em>não</em> inicializa os itens de um <em>array</em> (desde que seja um
 <em>array</em> automático, pois se for estático todos os itens são inicializados com
@@ -129,31 +142,24 @@ um valor nulo). Ou seja, estes começam a sua vida com valores que, do ponto
 de vista do programador, são puro lixo, mesmo que provavelmente estes valores
 consistam simplesmente numa interpretação do padrão de <em>bits</em> que se encontra
 na memória alocada para esses itens ou variáveis.</p>
-<h3>Inicialização explícita</h3>
+<h4>Inicialização explícita</h4>
 <p>Os <em>arrays</em> podem ser inicializados explicitamente através de uma lista
 de inicializadores:</p>
-<pre><code class="lang-C">  int array[4] = {0, 1, 2};</code></pre>
+<pre><code class="lang-C">int array[4] = {0, 1, 2};</code></pre>
 <p>Neste caso omitimos o valor inicial do quarto item do <em>array</em>. Quando isto
 acontece, o compilador do C encarrega-se de gerar código máquina que
 inicializa os itens em falta com valores nulos. Podemos, por isso, usar um
 truque simpático para inicializar todos os itens dos <em>arrays</em> do C com o
 valor zero (no entanto, a norma que especifica o C11 não é clara quanto à
 validade de usar uma lista de inicialização vazia...):</p>
-<pre><code class="lang-C">  int array[4] = {};</code></pre>
+<pre><code class="lang-C">int array[4] = {};</code></pre>
 <p>Quando se fornece uma lista de inicialização, é possível omitir a
 dimensão dos <em>arrays</em>. Nesse caso, o <em>array</em> terá como dimensão o número
 de valores colocado entre chavetas. Por exemplo, o código</p>
-<pre><code class="lang-C">  int array[] = {0, 1, 2};</code></pre>
+<pre><code class="lang-C">int array[] = {0, 1, 2};</code></pre>
 <p>define um <em>array</em> com exactamente três itens.</p>
-<p>Inclusão de ficheiros de cabeçalho para utilização do procedimento
-printf() e para poder usar a <em>macro</em> <code>EXIT_SUCCESS</code>.</p>
 
             </div>
-            
-            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
-<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
-
-</pre></div></div>
             
         </li>
         
@@ -161,10 +167,50 @@ printf() e para poder usar a <em>macro</em> <code>EXIT_SUCCESS</code>.</p>
         <li id="section-5">
             <div class="annotation">
               
-              <div class="pilwrap ">
+              <div class="pilwrap for-h2">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>Incluímos o ficheiro de cabeçalho <code>array_utils.h</code>, pois contém a declaração
+              <h2>Inclusão de ficheiros de cabeçalho</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Inclusão de ficheiros de cabeçalho:</p>
+<ul>
+<li><p><code>stdio.h</code> &ndash; Para declaração do procedimento <code>printf()</code>.</p>
+</li>
+<li><p><code>stdlib.h</code> &ndash; Para definição da <em>macro</em> <code>EXIT_SUCCESS</code>.</p>
+</li>
+<li><p><code>assert.h</code> &ndash; Para definição da macro <code>assert()</code>.</p>
+</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<span class="preprocessor">#include &lt;assert.h&gt;</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Incluímos também o ficheiro de cabeçalho <code>array_utils.h</code>, pois contém a declaração
 do procedimento <code>void print(int number_of_items, int
 items[number_of_items])</code>, usado mais abaixo. A inclusão está a ser feita
 encerrando o nome do ficheiro entre aspas, e não entre parênteses agudos.
@@ -179,6 +225,21 @@ esteja também disponível uma biblioteca ou um ficheiro objecto com o
 resultado da compilação do ou dos ficheiros de implementação correspondentes.
 Essa biblioteca ou ficheiro objecto será <em>fundido</em> com os restantes ficheiros
 objecto e bibliotecas durante o passo da <em>fusão</em> do código.</p>
+<p>É de notar que a ordem de inclusão dos ficheiros de cabeçalho é relevante e
+que devemos seguir algumas boas práticas:</p>
+<ul>
+<li><p>Se a inclusão se realiza dentro do ficheiro de implementação de um <em>módulo
+físico</em>, então a primeira inclusão deve ser a do correspondente ficheiro de
+cabeçalho.</p>
+</li>
+<li><p>As inclusões de ficheiros de cabeçalho da biblioteca padrão (ou de outras
+bibliotecas com um estatuto de quase-padrão ou de alguma forma oficiais)
+devem ser feitas antes da inclusão dos ficheiros de cabeçalho específicas
+do próprio projecto.</p>
+</li>
+</ul>
+<p>Grosso modo, devemos incluir primeiro o próprio <code>.h</code>, depois os que se
+incluem com <code>&lt;&gt;</code> e finalmente os que se incluem com <code>&quot;&quot;</code>.</p>
 
             </div>
             
@@ -189,24 +250,24 @@ objecto e bibliotecas durante o passo da <em>fusão</em> do código.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-8">
             <div class="annotation">
               
-              <div class="pilwrap for-h1">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <h1>Definição de uma função</h1>
+              <h2>Definição de uma função</h2>
 
             </div>
             
         </li>
         
         
-        <li id="section-7">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>Definimos uma função que devolve a média dos itens da matriz passada como
 argumento. Uma definição de uma rotina consiste num <em>cabeçalho</em>, onde se
@@ -228,10 +289,31 @@ rotina, i.e., o ou os programadores que a implementam e mantêm, e o
 que a usam no seu código. O C não suporta directamente a especificação da
 interface completa da rotina. Por isso, essa especificação é feita recorrendo
 a um <em>comentário de documentação</em>.</p>
-<h4>Documentação</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <h4>Documentação</h4>
 <p>O cabeçalho é precedido de um <em>comentário de documentação</em> que indica
 claramente qual o contrato desta função. Usamos aqui o formato de
 documentação <a href="doxygen.org">Doxygen</a>.</p>
+<p>O comentário de documentação inclui:</p>
+<ul>
+<li>Descrição breve da função.</li>
+<li>Decrição mais longa da função (no final).</li>
+<li>Descrição de cada parâmetro.</li>
+<li>Descrição do valor devolvido.</li>
+<li>Indicação das pré-condições (do contrato).</li>
+<li>Indicação das pós-condições (do contrato).</li>
+</ul>
 
             </div>
             
@@ -241,6 +323,12 @@ documentação <a href="doxygen.org">Doxygen</a>.</p>
  * \param items The array (or rather, a pointer to its first item) whose
  * items will be averaged.
  * \return the average of the first `number_of_items` items of array `items`.
+ * \pre `number_of_items` ≥ 0
+ * \pre `items` ≠ null
+ * \pre `items` points to an array with at least `number_of_items` items
+ * \post result = \f$\frac{\sum_{i=0}^{\text{number_of_items-1}}
+ *                \text{items}_i}{\text{number_of_items}}\f$
+ *                (unless `number_of_items` is zero, in which case result = NaN)
  *
  * This function calculates and returns the average of the first
  * `number_of_items` items of array `items`.
@@ -250,11 +338,11 @@ documentação <a href="doxygen.org">Doxygen</a>.</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap for-h4">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <h4>Cabeçalho</h4>
 <p>Este cabeçalho inclui a seguinte informação:</p>
@@ -269,72 +357,442 @@ segue, que é legível quase como se se tratasse de inglês:</li>
 <pre><code class="lang-C">if (average_of(student_grades) &gt; 15.0)
         ...</code></pre>
 <ul>
-<li>Tipo do valor devolvido &ndash; !!!!!!!!!!!!!!!!!!!</li>
+<li><p>Tipo do valor devolvido &ndash; No caso de se tratar de um procedimento, o
+mais natural será usar <code>void</code>, e não devolver nada (embora em C seja
+bastante usual devolver um valor que permita lidar com potenciais erros).
+No caso de se tratar de uma função, será o tipo do valor a devolver quando
+esta retornar. Neste caso pretende-se devolver a média de um conjunto de
+itens inteiros. Como a média de números inteiros só esporadicamente será
+também um número inteiro, optou-se por um tipo que abarca valores
+racionais.</p>
+</li>
+<li><p>Tipo e nome de cada dos parâmetros que serão inicializados com o valor do
+argumento respectivo sempre que a rotina for invocada. Neste caso
+particular declaram-se dois parâmetros. O primeiro é um inteiro que será
+inicializado com o número dos itens do <em>array</em> sobre os quais se deve
+devolver a média. O segundo é o <em>array</em> que contém os itens cuja média será
+devolvida.</p>
+</li>
 </ul>
 
             </div>
             
             <div class="content"><div class="highlight"><pre><span class="keyword">double</span> average_of(<span class="keyword">int</span> number_of_items, <span class="keyword">int</span> items[number_of_items])
+
 </pre></div></div>
             
         </li>
         
         
-        <li id="section-9">
+        <li id="section-12">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <p>double average_of(int* items)</p>
+              <h4>E no entanto...</h4>
+<p>E no entanto, o número de itens no segundo parâmetro é ignorado pelo C. Isso
+mesmo: ignorado. Sempre que o C encontra uma declaração de um parâmetro como
+um <em>array</em>, ignora a dimensão do <em>array</em>. Ou seja, o cabeçalho usado é
+equivalente ao seguinte:</p>
+<pre><code class="lang-C">double average_of(int number_of_items, int items[])</code></pre>
+<p>Sendo assim, como pode o compilador saber qual a dimensão do <em>array</em>? Bem,
+não pode! É que as transformações não ficam por aqui. O compilador, na
+realidade, não se limita a ignorar a dimensão do <em>array</em>. Na realidade altera
+a declaração de qualquer parâmetro que esteja uma <em>array</em> num ponteiro para o
+tipo dos itens desse <em>array</em>. Ou seja, na realidade a declaração de um
+parâmetro como <em>array</em> é <em>pura cosmética</em>. O que não é necessariamente mau,
+pois essa «cosmética» pode deixar mais clara a intenção do programador do que
+uma versão mais fiel à realidade. Será que prefere mesmo a versão fiel? Veja
+o resultado:</p>
+<pre><code class="lang-C">double average_of(int number_of_items, int* items)</code></pre>
+<p>Nesta última versão não é de todo claro, excepto pelo facto de o nome do
+parâmetro estar no plural, de que se trata de um <em>array</em> de itens.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <h3>Corpo da função</h3>
+<p>Tal como o cabeçalho de uma rotina é parte da especificação da sua interface,
+especificando parcialmente o seu «como se usa», o corpo de uma rotina é a sua
+implementação, definindo o seu «como funciona». O corpo de uma rotina
+estrutura-se usualmente como se segue:</p>
+<ol>
+<li><p>Verificação de pré-condições. Verificam-se duas pré-condições, nesta
+função.</p>
+</li>
+<li><p>Resolução de casos especiais, por ordem decrescente de especificidade. Não
+se aplica nesta função.</p>
+</li>
+<li><p>Resolução do caso geral.</p>
+</li>
+<li><p>Verificação de pós-condições. No nosso caso não é prático verificar a pós-
+condição, infelizmente.</p>
+</li>
+<li><p>Retorno da rotina, com possível devolução de um valor. Neste caso retorna-
+se devolvendo a média pretendida.</p>
+</li>
+</ol>
 
             </div>
             
             <div class="content"><div class="highlight"><pre>{
-	<span class="keyword">double</span> sum = <span class="number">0.0</span>;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Há três formas muito diferentes de lidar com as violações das pré-
+condições.</p>
+<p>A primeira forma, usada aqui, passa por fazer asserções acerca das
+pré- condições. As asserções são proposições que se afirma serem
+verdadeiras acerca do estado do programa. Se as asserções forem
+realizadas recorrendo à <em>macro</em> <code>assert()</code>, então o programa abortará
+no caso de alguma das proposições testada não ser verdadeira. Por
+exemplo, na função em definição afirma-se que o primeiro argumento
+não pode ser negativo e que o segundo não pode ser um ponteiro nulo.
+Embora estas afirmações não esgotem as pré- condições da função, são
+as que é possível ou prático fazer. Tal como no caso das pós-
+condições, é um bom exercício tentar cobrir as pré-condições, tanto
+quanto possível ou prático, com asserções. Que acontece quando uma
+das asserções desta função, a primeira, por exemplo, falha? Para além
+de o programa abortar, é mostrada uma mensagem de erro apropriada:</p>
+<pre>
+Assertion failed: (number_of_items >= 0), function average_of,
+file /Users/mmsequeira/Projects/eda/arrays_basics/arrays_basics.c,
+line 311.
+</pre>
 
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != number_of_items; i++)
+<p>Esta primeira forma de lidar com violações de pré-condições é também
+a única aceitável no caso da violação de pós-condições, uma vez o
+erro é detectado pelo mesmo troço de código que o causou, não havendo
+por isso qualquer possibilidade de recuperação: trata-se sempre do
+programador produtor da rotina em causa.</p>
+<p>A segunda forma de lidar com violações de pré-condições reconhece que
+a responsabilidade por estas violações não é do programador produtor
+da rotina, mas sim do programador cliente, sendo por isso boa ideia
+dar a esse programador uma possibilidade de recuperar dos seus
+próprios erros. Para o permitir, a rotina, ao detectar a violação,
+retorna imediatamente, devolvendo um valor especial que indica ter
+ocorrido um erro. No caso de um procedimento, que sem esta
+preocupação não devolveria nada, usando <code>void</code> como tipo de
+devolução, é fácil e convencional lidar com erros: o tipo de
+devolução passa a <code>int</code> e a devolução que um qualquer valor não nulo
+significa que ocorreu um erro. O valor exacto devolvido pode ser
+usado como um código permitindo identificar o tipo de erro ocorrido.
+A devolução de 0 tem o significado oposto: significa que o
+procedimento foi executado com sucesso. No caso de uma função, esta
+solução só pode ser usada se o conjunto imagem da função (o conjunto
+dos valores que a função pode devolver em caso de sucesso) não
+esgotar o seu contra-domínio (dado pelo tipo de devolução). Ou seja,
+pode ser usado se a função <em>não for sobrejectiva</em> e, por isso, se
+podem usar valores que não pertençam à imagem da função como códigos
+de erro. Por exemplo, uma função de calcule e devolva um comprimento
+de uma sequência tem o tipo <code>int</code> com contradomínio mas como imagem
+tem apenas os inteiros não negativos, pelo que qualquer valor
+negativo pode ser usado como código de erro. Esta segunda forma de
+lidar com os erros não é possível no caso desta função, pois qualquer
+valor do tipo <code>double</code> é média de um número indefinido de possíveis
+<em>arrays</em>.</p>
+<p>A terceira forma de lidar com erros passa por usar uma variável
+global para registar um código do erro ocorrido. Embora usada, esta
+forma de assinalar erros é muito perigosa, tal como qualquer programa
+que recorra a variáveis globais o é. Para mais informação estude o
+ficheiro de cabeçalho da biblioteca padrão
+<a href="http://en.wikipedia.org/wiki/Errno.h"><code>errno.h</code></a>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	assert(number_of_items &gt;= <span class="number">0</span>);
+	assert(items != NULL);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>A variável <code>sum</code> é um <em>acumulador</em> que guarda, em cada passo do
+ciclo, a soma dos primeiros <code>i</code> itens do <em>array</em> <code>items</code> (note como,
+mesmo sabendo que <code>items</code> é um ponteiro para o primeiro item de um
+<em>array</em>, e não um <em>array</em> propriamente dito, continuamos a chamar-lhe
+<em>array</em>). Uma vez que a acumulação a realizar é uma soma, o
+acumulador é inicializado com o elemento neutro da soma: 0 (zero).</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">double</span> sum = <span class="number">0.0</span>;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>O ciclo percorre os primeiros <code>number_of_items</code> itens do <em>array</em>
+<code>items</code>, actualizando as variáveis <code>sum</code> e <code>i</code> de forma a que <code>sum</code>
+se mantenha sempre como a soma dos primeiros <code>i</code> items de <code>items</code> e
+de forma a que <code>i</code> progrida um a um, desde o valor inicial até
+atingir o valor <code>número_de_itens</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != number_of_items; i++)
 		sum += items[i];
 
-	<span class="keyword">return</span> sum / <span class="number">4</span>;
-}
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>A função retorna devolvendo a média pretendida, que é dada pelo
+quociente entre a soma calculada e o número de items somados.</p>
 
-<span class="keyword">int</span> main(<span class="keyword">void</span>)
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">return</span> sum / number_of_items;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Final da definição da função <code>average_of()</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <h2>O procedimento <code>main()</code></h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Este procedimento é o ponto de entrada dos programas em C. É a primeira
+rotina a ser invocada nos programas em C. Neste caso particular queremos
+ignorar possíveis argumentos da linha de comandos, pelo que declaramos o
+procedimento colocando apenas <code>void</code> na lista de parâmetros.</p>
+<p>Note que, ao contrário do que acontece noutras linguagens, <code>int main()</code> não
+significa que o procedimento não receba qualquer argumento: significa que
+recebe argumentos não especificados. Trata-se de um resquício do passado da
+linguagem C que há que evitar a todo o custo. Para indicar que uma rotina não
+recebe qualquer argumento deve usar-se sempre <code>void</code> na lista de parâmetros.</p>
+<p>Apesar de se tratar de um procedimento, não se usa <code>void</code> como tipo de
+devolução. Isso deve-se ao facto de os possível erros ocorridos durante a
+execução do programa serem codificados através do valor inteiro devolvido.
+Esta prática é comum e foi apresentada mais atrás. O valor a devolver é
+usualmente 0, mas em rigor depende do sistema operativo (estamos a devolver
+um valor ao retornar da execução da primeira rotina do programa, pelo que o
+valor devolvido é usado pela entidade que executou o programa, possivelmente
+o sistema operativo). Assim, é comum usar as macros <code>EXIT_SUCCESS</code> para
+assinalar sucesso e <code>EXIT_FAILURE</code> para assinalar um erro.</p>
+<p>O programa, no nosso caso, tem um objectivo simples: escrever no ecrã uma
+sequência de idades de alunos dada e, em seguida, indicar qual a média de
+idades desses alunos.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">int</span> main(<span class="keyword">void</span>)
 {
 </pre></div></div>
             
         </li>
         
         
-        <li id="section-10">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
-              <p>printf(&quot;How many students? &quot;);
-int number_of_students;
-scanf(&quot;%d&quot;, &amp;number_of_students);</p>
-<p>int student_ages[number_of_students];</p>
+              <p>Definição do <em>array</em> <code>student_ages</code> com inicialização explícita. Note
+que não indicámos explicitamente o tamanho do <em>array</em>, pelo que o
+compilador o calculará contando o número de valores da lista de
+inicializadores. Neste caso, por isso, o número de itens é 4.</p>
 
             </div>
             
             <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> student_ages[] = {<span class="number">23</span>, <span class="number">24</span>, <span class="number">25</span>, <span class="number">26</span>};
-	<span class="keyword">const</span> <span class="keyword">int</span> number_of_students =
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>O C não fornece nenhuma forma directa de obter o número de itens de
+um <em>array</em>. No entanto, quando acesso ao <em>array</em> propriamente dito, e
+não a um ponteiro para o seu primeiro item, podemos usar um truque
+interessante para obter esse número: usar o operador <code>sizeof</code> para
+obter o espaço total em octetos ocupado pelo <em>array</em> em memória e
+dividi-lo pelo espaço ocupado em memória por cada um dos seus itens.
+É isso que é feito neste local. O resultado é guardado numa
+<em>constante</em>, ou seja, numa «variável» que, devido ao qualificador
+<code>const</code>, o compilador não permitirá que seja alterada. Note que é boa
+ideia declarar explicitamente como constantes todos os <em>objectos</em> que
+não se pretenda alterar depois de inicializados.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">const</span> <span class="keyword">int</span> number_of_students =
 		<span class="keyword">sizeof</span>(student_ages) / <span class="keyword">sizeof</span>(<span class="keyword">int</span>);
 
-	print(number_of_students, student_ages);
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Invocação do procedimento <code>print()</code>, definido noutro local, passando
+o número de alunos como primeiro argumento e o <em>array</em> com as suas
+idades como segundo argumento. Mais uma vez, é importante perceber
+que, na realidade, e ao contrário do que a frase anterior sugere, o
+que é passado como primeiro argumento <em>não é</em> o <em>array</em>
+<code>student_ages</code>, mas sim <em>um ponteiro para o seu primeiro item</em>.</p>
 
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != number_of_students; i++)
-		printf(<span class="string">"%d\n"</span>, student_ages[i]);
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	print(number_of_students, student_ages);
 
-	printf(<span class="string">"The average age is %g.\n"</span>,
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Impressão da média no ecrã. A média é obtida como resultado da
+invocação da função <code>average_of()</code> passando-lhe os parâmetros
+apropriados.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	printf(<span class="string">"The average age is %g.\n"</span>,
 		average_of(number_of_students, student_ages));
 
-	<span class="keyword">return</span> EXIT_SUCCESS;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Retorno do procedimento devolvendo ao sistema operativo o valor
+apropriado para assinalar que a execução teve sucesso.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">return</span> EXIT_SUCCESS;
 }
 
 </pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>É possível pedir ao utilizador o número de idades cuja média pretende e
+pedir-lhe também que insira cada uma das idades. O código abaixo implementa
+essa ideia, embora de forma demasiado simplista, pois não verifica os
+valores introduzidos pelo utilizador. Sob esse ponto de vista, o programa
+está errado, note-se.</p>
+<pre><code class="lang-C">int main(void)
+{
+        printf(&quot;How many students? &quot;);
+        int number_of_students;
+        scanf(&quot;%d&quot;, &amp;number_of_students);
+
+        int student_ages[number_of_students];
+        for (int i = 0; i != number_of_students; i++) {
+                printf(&quot;Please enter age no. %d: &quot;, i);
+                scanf(&quot;%d&quot;, &amp;student_ages[i]);
+        }
+
+        print(number_of_students, student_ages);
+
+        printf(&quot;The average age is %g.\n&quot;,
+                average_of(number_of_students, student_ages));
+        return EXIT_SUCCESS;
+}</code></pre>
+
+            </div>
             
         </li>
         

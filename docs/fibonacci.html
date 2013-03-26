@@ -2,10 +2,15 @@
 
 <html>
 <head>
-  <title>`fibonacci.c` &ndash; Coelhos, recursão e iteração</title>
+  <title>`fibonacci.c`</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
+  <script src="http://softwaremaniacs.org/media/soft/highlight/highlight.pack.js"></script>
+  <script>
+    hljs.tabReplace = '        ';
+    hljs.initHighlightingOnLoad();
+  </script>
 </head>
 <body>
   <div id="container">
@@ -77,7 +82,7 @@
               <div class="pilwrap for-h1">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h1><code>fibonacci.c</code> &ndash; Coelhos, recursão e iteração</h1>
+              <h1><code>fibonacci.c</code></h1>
 
             </div>
             
@@ -93,25 +98,253 @@
               
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;time.h&gt;</span>
-<span class="preprocessor">#include &lt;stdio.h&gt;</span>
-<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+            <div class="content"><div class="highlight"><pre><span class="comment">/**
+ * \file fibonacci.c
+ * \brief Illustrates possible implementations of the calculation of terms of
+ * the Fibonacci sequence.
+ * 
+ * Iterative and recursive implementations of the calculation of terms of
+ * the Fibonacci sequence. These implementations are used to illustrate
+ * iteration vs. recursion, and also to show how a naïve implementation of
+ * recursion may lead to serious problems.
+ */</span>
+ 
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2>Coelhos, recursão e iteração</h2>
 
-<span class="keyword">long</span> stupidly_recursive_fibonacci(<span class="keyword">int</span> n)
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Ofereceram ao o Sr. Fibonacci um casal de coelhos, recém-nascidos, de um
+espécie curiosa: tornam-se férteis ao fim de um mês de vida, concebem logo
+que possível, têm uma gestação de exactamente um mês, cada ninhada consiste
+sempre num casalinho de coelhos. Nunca morrem. O Sr. Fibonacci preocupou-se:
+teria comida que chegue para os coelhos? Pôs-se calcular a evolução do número
+de casais de coelhos ao longo do tempo:</p>
+<ol>
+<li><p>No primeiro mês há um casal de coelhos inférteis.</p>
+</li>
+<li><p>No segundo mês há um casal de coelhos, já férteis e, claro está, com a
+coelha no início da gestação de mais um casalinho.</p>
+</li>
+<li><p>No terceiro mês há o casal de coelhos original, fértil, e já no início da
+gestação de mais um casalinho de coelhos. E há, claro está, um casal recém-
+nascido e, por isso, infértil. Ou seja, há dois casais de coelhos, um fértil
+e outro infértil.</p>
+</li>
+<li><p>No quarto mês há os dois casais do mês anterior, já férteis, adicionados
+de um casal recém-nascido, resultado do acasalamento do único casal fértil do
+mês anterior. Ou seja, há três casais de coelhos, dois férteis e um infértil.</p>
+</li>
+<li><p>No quinto mês há os três casais do mês anterior, já férteis, adicionados
+de dois casais recém-nascidos, resultado do acasalamento entre os dois casais
+férteis do mês anterior. Ou seja, há cinco casais de coelhos, três férteis e
+dois inférteis.</p>
+</li>
+</ol>
+<p>O Sr. Fibonacci concluiu rapidamente que, a partir do terceiro mês,</p>
+<ul>
+<li><p>o número de casais férteis num mês é sempre igual ao número total de casais
+no mês anterior e</p>
+</li>
+<li><p>o número total de casais num mês é sempre igual à soma do número total de
+casais existente no mês anterior com o número de casais recém-nascidos, que
+é igual ao número de casais férteis no mês anterior e que, por isso, é
+igual ao número total de casais existentes dois meses antes.</p>
+</li>
+</ul>
+<p>Sendo <img src="http://latex.codecogs.com/gif.latex?F%28n%29" alt="F(n)"> o número de casais de
+coelhos no mês <img src="http://latex.codecogs.com/gif.latex?n" alt="n">, então, desde que
+<img src="http://latex.codecogs.com/gif.latex?n%3E2" alt="n&gt;2">,
+<img src="http://latex.codecogs.com/gif.latex?F%28n%29%3DF%28n-2%29%2BF%28n-1%29" alt="F(n)=F(n-2)+F(n-1)">. Quando
+<img src="http://latex.codecogs.com/gif.latex?n%3D1" alt="n=1"> ou
+<img src="http://latex.codecogs.com/gif.latex?n%3D2" alt="n=2">,
+<img src="http://latex.codecogs.com/gif.latex?F%28n%29%3D1" alt="F(n)=1">. Ou seja, esta sucessão
+pode ser descrita de forma <em>recursiva</em>, ou seja, definindo os termos da
+sucessão em função de outros termos da mesma sucessão.</p>
+<p>O que se pretende aqui é implementar uma função <code>fibonacci()</code> que receba o
+mês como argumento e devolva o número de casais existentes nesses mês.</p>
+<h2>Implementação</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h3>Inclusão de ficheiros de cabeçalho</h3>
+<p>Inclusão de ficheiros de cabeçalho:</p>
+<ul>
+<li><p><code>stdio.h</code> &ndash; Para declaração do procedimento <code>printf()</code>.</p>
+</li>
+<li><p><code>stdlib.h</code> &ndash; Para definição da <em>macro</em> <code>EXIT_SUCCESS</code>.</p>
+</li>
+<li><p><code>time.h</code> &ndash; Para definição da função <code>clock()</code> e da macro
+<code>CLOCKS_PER_SEC</code>.</p>
+</li>
+<li><p><code>assert.h</code> &ndash; Para definição da macro <code>assert()</code>.</p>
+</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<span class="preprocessor">#include &lt;time.h&gt;</span>
+<span class="preprocessor">#include &lt;assert.h&gt;</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h3>Implementação recursiva «estúpida»</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h4>Documentação</h4>
+<p>!!!!!!!!</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief !!!!!!!!!!!! (includes month 0)
+ *
+ * \param n !!!!!!!!!
+ * \return !!!!!!!!!!!
+ * \pre `n` ≥ 0
+ * \post !!!
+ *
+ * !!!!!!!!!!!!!!!
+ */</span>
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h4>Definição</h4>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">long</span> stupidly_recursive_fibonacci(<span class="keyword">int</span> n)
 {
-	<span class="keyword">if</span> (n &lt; <span class="number">2</span>)
+	assert(n &gt;= <span class="number">0</span>);
+
+	<span class="keyword">if</span> (n == <span class="number">0</span>)
+		<span class="keyword">return</span> <span class="number">0L</span>;
+	<span class="keyword">if</span> (n == <span class="number">1L</span>)
 		<span class="keyword">return</span> <span class="number">1L</span>;
 	<span class="keyword">return</span> stupidly_recursive_fibonacci(n - <span class="number">2</span>)
 		+ stupidly_recursive_fibonacci(n - <span class="number">1</span>);
 }
 
-<span class="keyword">long</span> iterative_fibonacci(<span class="keyword">int</span> n)
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h3>Implementação iterativa</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <h4>Documentação</h4>
+<p>!!!!!!!!</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief !!!!!!!!!!!! (includes month 0)
+ *
+ * \param n !!!!!!!!!
+ * \return !!!!!!!!!!!
+ * \pre `n` ≥ 0
+ * \post !!!
+ *
+ * !!!!!!!!!!!!!!!
+ */</span>
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h4>Definição</h4>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">long</span> iterative_fibonacci(<span class="keyword">int</span> n)
 {
-	<span class="keyword">if</span> (n == <span class="number">0</span> || n == <span class="number">1</span>)
+	assert(n &gt;= <span class="number">0</span>);
+
+	<span class="keyword">if</span> (n == <span class="number">0</span>)
+		<span class="keyword">return</span> <span class="number">0L</span>;
+	<span class="keyword">if</span> (n == <span class="number">1L</span>)
 		<span class="keyword">return</span> <span class="number">1L</span>;
 
-	<span class="keyword">long</span> f_i_1 = <span class="number">1</span>, f_i_2 = <span class="number">1</span>;
-	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i != n + <span class="number">1</span>; i++) {
+	<span class="keyword">long</span> f_i_1 = <span class="number">1</span>, f_i_2 = <span class="number">0</span>;
+	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i != n + <span class="number">1</span>; i++) {
 		<span class="keyword">long</span> f_i = f_i_2 + f_i_1;
 		f_i_2 = f_i_1;
 		f_i_1 = f_i;
@@ -120,7 +353,60 @@
 	<span class="keyword">return</span> f_i_1;
 }
 
-<span class="keyword">void</span> experiment_efficiency_of(<span class="keyword">char</span> title[], <span class="keyword">long</span> fibonacci(<span class="keyword">int</span>),
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <h3>Procedimento !!!!!!!</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <h4>Documentação</h4>
+<p>!!!!!!!!</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief !!!!!!!!!!!! (includes month 0)
+ *
+ * \param n !!!!!!!!!
+ * \return !!!!!!!!!!!
+ * \pre `n` ≥ 0
+ * \post !!!
+ *
+ * !!!!!!!!!!!!!!!
+ */</span>
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <h4>Definição</h4>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">void</span> experiment_efficiency_of(<span class="keyword">char</span> title[], <span class="keyword">long</span> fibonacci(<span class="keyword">int</span>),
 			<span class="keyword">int</span> last_term)
 {
 	printf(<span class="string">"%s\n"</span>, title);
@@ -136,27 +422,25 @@
 	}
 }
 
-<span class="keyword">int</span> main()
-{
 </pre></div></div>
             
         </li>
         
         
-        <li id="section-3">
+        <li id="section-15">
             <div class="annotation">
               
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>for (int n = 0; n != 10; n++)
-    printf(&quot;F(%d) = %d\n&quot;, n,
-        iterative_fibonacci(n));</p>
-<p>return EXIT_SUCCESS;</p>
+              <h3>Procedimento !!!!!!!</h3>
+<p>!!!!!!!!</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	experiment_efficiency_of(<span class="string">"Stupidly recursive implementation of the fibonacci sequence:"</span>,
+            <div class="content"><div class="highlight"><pre><span class="keyword">int</span> main(<span class="keyword">void</span>)
+{
+	experiment_efficiency_of(<span class="string">"Stupidly recursive implementation of the fibonacci sequence:"</span>,
 				stupidly_recursive_fibonacci, <span class="number">35</span>);
 	experiment_efficiency_of(<span class="string">"Three variable iterative implementation of the fibonacci sequence:"</span>,
 				iterative_fibonacci, <span class="number">1000</span>);

@@ -2,10 +2,15 @@
 
 <html>
 <head>
-  <title>`array_and_pointers.c` &ndash; Regras do C sobre _arrays_ e ponteiros</title>
+  <title>`arrays_and_pointers.c`</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
+  <script src="http://softwaremaniacs.org/media/soft/highlight/highlight.pack.js"></script>
+  <script>
+    hljs.tabReplace = '        ';
+    hljs.initHighlightingOnLoad();
+  </script>
 </head>
 <body>
   <div id="container">
@@ -77,7 +82,7 @@
               <div class="pilwrap for-h1">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h1><code>array_and_pointers.c</code> &ndash; Regras do C sobre <em>arrays</em> e ponteiros</h1>
+              <h1><code>arrays_and_pointers.c</code></h1>
 
             </div>
             
@@ -90,26 +95,19 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>A linguagem C, tem uma forma perfeitamente consistente, embora
-idiossincrática, de lidar com <em>arrays</em> e ponteiros. Algumas das regras usadas
-pelo C são:</p>
-<ol>
-<li>Sempre que o nome de um <em>array</em> surge numa expressão (com algumas
-excepções, tal como quando operando do operador <code>sizeof</code>), é convertido
-num ponteiro para o seu primeiro item. Assim, se <code>m</code> for um <em>array</em>, então
-<code>m</code> e <code>&amp;m[0]</code> são expressões equivalentes.</li>
-<li>A utilização do operador de indexação, e.g., na expressão <code>m[i]</code>, é
-equivalente à «desreferenciação» do ponteiro obtido da soma entre o
-objecto indexado e o índice usado. Assim, <code>m[i]</code> tem exactamente o mesmo
-significado que <code>*(m + 1)</code>, ou seja, quando <code>m</code> for um <em>array</em>, <code>m[i]</code> é
-exactamente o mesmo que <code>*(&amp;m[0] + 1)</code>.</li>
-</ol>
-<p>O programa abaixo evidencia estas regras pelo absurdo. Por favor, não tire
-partido das regras enunciadas para escrever código incompreensível!</p>
-
+              
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+            <div class="content"><div class="highlight"><pre><span class="comment">/**
+ * \file arrays_and_pointers.c
+ * \brief Illustrates the relation between arrays and pointers in C.
+ * 
+ * This C file illustrating the relation between arrays and pointers in the C
+ * language. The code is presented tongue-in-cheek, since if makes use C rules
+ * regarding arrays, pointers, and indexing to produce silly and obscure code. 
+ */</span>
+
+<span class="preprocessor">#include &lt;stdio.h&gt;</span>
 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
 
 <span class="keyword">int</span> main(<span class="keyword">void</span>)
@@ -122,8 +120,53 @@ partido das regras enunciadas para escrever código incompreensível!</p>
         <li id="section-3">
             <div class="annotation">
               
-              <div class="pilwrap ">
+              <div class="pilwrap for-h2">
                 <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2>Regras do C sobre <em>arrays</em> e ponteiros</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>A linguagem C tem uma forma perfeitamente consistente, embora
+idiossincrática, de lidar com <em>arrays</em> e ponteiros. Algumas das
+regras usadas pelo C são:</p>
+<ol>
+<li><p>Sempre que o nome de um <em>array</em> surge numa expressão (com algumas
+excepções, tal como quando operando do operador <code>sizeof</code>), é
+convertido    num ponteiro para o seu primeiro item. Assim, se <code>m</code>
+for um <em>array</em>, então    <code>m</code> e <code>&amp;m[0]</code> são expressões equivalentes.</p>
+</li>
+<li><p>A utilização do operador de indexação, e.g., na expressão <code>m[i]</code>,
+é    equivalente à «desreferenciação» do ponteiro obtido da soma
+entre o    objecto indexado e o índice usado. Assim, <code>m[i]</code> tem
+exactamente o mesmo    significado que <code>*(m + 1)</code>, ou seja, quando
+<code>m</code> for um <em>array</em>, <code>m[i]</code> é exactamente o mesmo que <code>*(&amp;m[0] +
+1)</code>.</p>
+</li>
+</ol>
+<p>O programa abaixo evidencia estas regras pelo absurdo. Por favor, não
+tire partido das regras enunciadas para escrever código
+incompreensível!</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>O nome <code>m</code> é o nome de uma matriz com três números inteiros: 1, 2 e
 3.</p>
@@ -138,11 +181,11 @@ partido das regras enunciadas para escrever código incompreensível!</p>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Como chegar a este código? Simples:</p>
 <ul>
@@ -162,11 +205,11 @@ acima.</li>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>Este caso é absolutamente idêntico, se se tiver em conta que uma
 cadeia de caracteres literal em C é equivalente à definição de um
@@ -199,11 +242,11 @@ de caracteres literal, mas sim como um inicializador.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               
             </div>

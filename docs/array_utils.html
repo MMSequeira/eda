@@ -2,10 +2,15 @@
 
 <html>
 <head>
-  <title>`array_utils.h` &ndash; Estrutura elementar de ficheiros de cabeçalho</title>
+  <title>`array_utils.h`</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
+  <script src="http://softwaremaniacs.org/media/soft/highlight/highlight.pack.js"></script>
+  <script>
+    hljs.tabReplace = '        ';
+    hljs.initHighlightingOnLoad();
+  </script>
 </head>
 <body>
   <div id="container">
@@ -77,7 +82,7 @@
               <div class="pilwrap for-h1">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              <h1><code>array_utils.h</code> &ndash; Estrutura elementar de ficheiros de cabeçalho</h1>
+              <h1><code>array_utils.h</code></h1>
 
             </div>
             
@@ -87,10 +92,11 @@
         <li id="section-2">
             <div class="annotation">
               
-              <div class="pilwrap ">
+              <div class="pilwrap for-h2">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Na linguagem C, o mecanismo de modularização de um programa em pacotes
+              <h2>Estrutura elementar de ficheiros de cabeçalho</h2>
+<p>Na linguagem C, o mecanismo de modularização de um programa em pacotes
 físicos, ou seja, o mecanismo de divisão em diferentes ficheiros, é muito
 primitivo. Implica a manutenção de dois tipos de ficheiros em paralelo: (a)
 os ficheiros com as implementações dos módulos físicos (ficheiros em código
@@ -109,10 +115,10 @@ nome de <em>ficheiros de cabeçalho</em>.</p>
         <li id="section-3">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap for-h3">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <h2>Comentário de documentação do ficheiro de cabeçalho</h2>
+              <h3>Comentário de documentação do ficheiro de cabeçalho</h3>
 <p>No topo do ficheiro de cabeçalho incluímos um <em>comentário de documentação</em>
 que explica o propósito e o conteúdo deste ficheiro de cabeçalho. Os
 comentários de documentação têm um formato que depende do sistema de
@@ -144,7 +150,7 @@ documentação sobre este ficheiro. Ver
  * \file array_utils.h
  * \brief Header file for the array utilities.
  * 
- * This header file declarares all the array utilities available for use
+ * This header file declares all the array utilities available for use
  * throughout the EDA code.
  */</span>
 
@@ -156,10 +162,10 @@ documentação sobre este ficheiro. Ver
         <li id="section-4">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap for-h3">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <h2>Protecção contra inclusões múltiplas</h2>
+              <h3>Protecção contra inclusões múltiplas</h3>
 <p>Os ficheiros de cabeçalho são usados através de um mecanismo também ele muito
 primitivo: a directiva de inclusão (<code>#include</code>) do pré-processador. Este
 mecanismo leva a que seja frequente a ocorrência de múltiplas inclusões do
@@ -211,10 +217,10 @@ biblioteca a que pertence.</p>
         <li id="section-5">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap for-h3">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <h2>Declarações</h2>
+              <h3>Declarações</h3>
 <p>Finalmente, o objectivo deste ficheiro de cabeçalho é declarar (e, em alguns
 casos, definir) as ferramentas disponibilizadas pelo módulo físico (ou pelos
 módulos físicos) que lhe correspondem.</p>
@@ -227,10 +233,10 @@ módulos físicos) que lhe correspondem.</p>
         <li id="section-6">
             <div class="annotation">
               
-              <div class="pilwrap for-h3">
+              <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <h3>Comentário de documentação de rotina</h3>
+              <h4>Comentário de documentação de rotina</h4>
 <p>A declaração é precedida de um <em>comentário de documentação</em> que indica
 claramente qual o contrato desta rotina. Mais uma vez, usamos aqui o
 <a href="doxygen.org">Doxygen</a>.</p>
@@ -243,6 +249,9 @@ claramente qual o contrato desta rotina. Mais uma vez, usamos aqui o
  * \param items The array (or rather, a pointer to its first item) whose
  * items will be printed.
  * \return Nothing (it is a procedure).
+ * \pre `number_of_items` ≥ 0
+ * \pre `items` ≠ null
+ * \pre `items` points to an array with at least `number_of_items` items
  *
  * This procedure prints `number_of_items` items from the array `items`. It
  * prints each item of the array in a separate line.
@@ -255,10 +264,10 @@ claramente qual o contrato desta rotina. Mais uma vez, usamos aqui o
         <li id="section-7">
             <div class="annotation">
               
-              <div class="pilwrap for-h3">
+              <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <h3>Declaração propriamente dita</h3>
+              <h4>Declaração propriamente dita</h4>
 <p>Procedimento de impressão dos itens de um <em>array</em>. A declaração não inclui
 corpo, que seria parte da implementação do módulo. Inclui apenas o
 <em>cabeçalho</em> do procedimento, pois é o que é necessário para verificar a
