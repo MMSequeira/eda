@@ -53,9 +53,11 @@
 // implementação.
 void print(int number_of_items, int items[number_of_items])
 {
-	// Verifica explicitamente a pré-condição desta rotina de que o primeiro
-	// argumento não pode ser negativo.
+	// Verifica explicitamente as pré-condições desta rotina de que o
+	// primeiro argumento não pode ser negativo e o segundo não pode ser um
+	// ponteiro nulo.
 	assert(number_of_items >= 0);
+	assert(items != NULL);
 
 	// Note a utilização de uma guarda fraca, aqui. Ou seja, usamos `i !=
 	// number_of_items` em vez da guarda mais usual (e mais forte) `i <
