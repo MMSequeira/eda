@@ -1,7 +1,18 @@
-// `array_and_pointers.c` &ndash; Regras do C sobre _arrays_ e ponteiros
+// `arrays_and_pointers.c`
+// ======================
+/**
+ * \file arrays_and_pointers.c
+ * \brief Illustrates the relation between arrays and pointers in C.
+ * 
+ * This C file illustrating the relation between arrays and pointers in the C
+ * language. The code is presented tongue-in-cheek, since if makes use C rules
+ * regarding arrays, pointers, and indexing to produce silly and obscure code. 
+ */
+
+// Regras do C sobre _arrays_ e ponteiros
 // =====================================================================
 //
-// A linguagem C, tem uma forma perfeitamente consistente, embora
+// A linguagem C tem uma forma perfeitamente consistente, embora
 // idiossincrática, de lidar com _arrays_ e ponteiros. Algumas das regras usadas
 // pelo C são:
 //
