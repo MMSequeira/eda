@@ -1,6 +1,9 @@
-// `array_utils.h` &ndash; Estrutura elementar de ficheiros de cabeçalho
-// =====================================================================
+// `array_utils.h`
+// ===============
 
+// Estrutura elementar de ficheiros de cabeçalho
+// ---------------------------------------------
+//
 // Na linguagem C, o mecanismo de modularização de um programa em pacotes
 // físicos, ou seja, o mecanismo de divisão em diferentes ficheiros, é muito
 // primitivo. Implica a manutenção de dois tipos de ficheiros em paralelo: (a)
@@ -11,9 +14,8 @@
 // arquivados para fusão estática ou dinâmica)  e (b) os ficheiros com as
 // interfaces desses módulos físicos, com a extensão `.h`, e aos quais se dá o
 // nome de _ficheiros de cabeçalho_.
-
-// Comentário de documentação do ficheiro de cabeçalho
-// ---------------------------------------------------
+  
+// ### Comentário de documentação do ficheiro de cabeçalho
 //
 // No topo do ficheiro de cabeçalho incluímos um _comentário de documentação_
 // que explica o propósito e o conteúdo deste ficheiro de cabeçalho. Os
@@ -47,8 +49,7 @@
  * throughout the EDA code.
  */
 
-// Protecção contra inclusões múltiplas
-// ------------------------------------
+// ### Protecção contra inclusões múltiplas
 //
 // Os ficheiros de cabeçalho são usados através de um mecanismo também ele muito
 // primitivo: a directiva de inclusão (`#include`) do pré-processador. Este
@@ -90,14 +91,13 @@
 #ifndef ISLA_EDA_ARRAY_UTILS_H_INCLUDED
 #define ISLA_EDA_ARRAY_UTILS_H_INCLUDED
 
-// Declarações
-// -----------
+// ### Declarações
 //
 // Finalmente, o objectivo deste ficheiro de cabeçalho é declarar (e, em alguns
 // casos, definir) as ferramentas disponibilizadas pelo módulo físico (ou pelos
 // módulos físicos) que lhe correspondem.
 
-// ### Comentário de documentação de rotina
+// #### Comentário de documentação de rotina
 //
 // A declaração é precedida de um _comentário de documentação_ que indica
 // claramente qual o contrato desta rotina. Mais uma vez, usamos aqui o
@@ -115,7 +115,7 @@
  * This procedure prints `number_of_items` items from the array `items`. It
  * prints each item of the array in a separate line.
  */
-// ### Declaração propriamente dita
+// #### Declaração propriamente dita
 //
 // Procedimento de impressão dos itens de um _array_. A declaração não inclui
 // corpo, que seria parte da implementação do módulo. Inclui apenas o
