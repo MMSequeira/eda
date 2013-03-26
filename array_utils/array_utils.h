@@ -43,7 +43,7 @@
  * \file array_utils.h
  * \brief Header file for the array utilities.
  * 
- * This header file declarares all the array utilities available for use
+ * This header file declares all the array utilities available for use
  * throughout the EDA code.
  */
 
