@@ -1,5 +1,8 @@
-// `print.c` &ndash; Estrutura elementar de um ficheiro de implementação
-// =====================================================================
+// `print.c`
+// =========
+//
+// Estrutura elementar de um ficheiro de implementação
+// ---------------------------------------------------
 //
 // Este é um dos ficheiros de implementação associados ao ficheiro de cabeçalho
 // [`array_utils.h`](array_utils.html). Neste caso optou-se por manter um único
@@ -24,9 +27,8 @@
 // Note ainda que, em Linux, a biblioteca terá o nome `libarray_utils.a`. Em C,
 // o nome do ficheiro com a versão estática de uma biblioteca chamada
 // <code>_biblioteca_</code> é usualmente <code>lib_biblioteca_.a</code>.
-
-// Inclusão do cabeçalho correspondente a esta implementação
-// ---------------------------------------------------------
+  
+// ### Inclusão do cabeçalho correspondente a esta implementação
 //
 // Antes de qualquer outra inclusão, incluímos o ficheiro de cabeçalho
 // correspondente a este ficheiro de implementação. Isso ajuda a detectar
@@ -34,23 +36,28 @@
 // de cabeçalho.
 #include "array_utils.h"
 
-// Inclusão de ficheiros de cabeçalho necessários no código de implementação.
-// Deve ser feita apenas _após_ se incluir o ficheiro de cabeçalho corresponde
-// ao próprio ficheiro de implementação. Neste caso temos:
+// ### Inclusão de ficheiros de cabeçalho necessários no código de implementação
+//
+// Estas inclusões ser feita apenas _após_ se incluir o ficheiro de cabeçalho
+// corresponde ao próprio ficheiro de implementação. Neste caso temos:
 //
 // - `stdio.h` &ndash; Necessário para poder usar o procedimento `printf`.
 //
-// - `assert.h` &ndash; necessário para se poder usar a macro `assert()` para
+// - `assert.h` &ndash; Necessário para se poder usar a macro `assert()` para
 //   fazer asserções no código.
 #include <stdio.h>
 #include <assert.h>
 
-// Definição da rotina (um utilitário) correspondente a este ficheiro de
-// implementação. A definição das rotinas repete (porque o C o impõe) o seu
-// cabeçalho, mas segue-o de um corpo onde se define o funcionamento ou
-// implementação da rotina. Note que normalmente não se incluem comentários de
-// documentação (e.g., [Doxygen](http://doxygen.org)) nos ficheiros de
-// implementação.
+// ### Definição de rotinas
+//
+// Definição de todas as rotinas correspondentes a este ficheiro. Neste caso há
+// apenas uma rotina a definir: `print()`.
+  
+// Definição da rotina `print()`. A definição das rotinas repete (porque o C o
+// impõe) o seu cabeçalho, mas segue-o de um corpo onde se define o
+// funcionamento ou implementação da rotina. Note que normalmente não se incluem
+// comentários de documentação (e.g., [Doxygen](http://doxygen.org)) nos
+// ficheiros de implementação.
 void print(int number_of_items, int items[number_of_items])
 {
 	// Verifica explicitamente as pré-condições desta rotina de que o
