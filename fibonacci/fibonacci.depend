@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1364554930 source:/Users/mmsequeira/Projects/eda/fibonacci/fibonacci.c
-	<stdio.h>
-	<stdlib.h>
-	<time.h>
-	<assert.h>
-

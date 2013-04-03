@@ -1,5 +1,0 @@
-# depslib dependency file v1.0
-1363902968 source:/home/mmsequeira/Documents/GitHub/eda/hello_world/hello_world.c
-	<stdio.h>
-	<stdlib.h>
-
