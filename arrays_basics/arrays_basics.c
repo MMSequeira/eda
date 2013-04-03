@@ -142,7 +142,7 @@
 // O comentário de documentação inclui:
 //
 // - Descrição breve da função.
-// - Decrição mais longa da função (no final).
+// - Descrição mais longa da função (no final).
 // - Descrição de cada parâmetro.
 // - Descrição do valor devolvido.
 // - Indicação das pré-condições (do contrato).
@@ -152,12 +152,12 @@
  * \param number_of_items The number of items of the array `items` to consider.
  * \param items The array (or rather, a pointer to its first item) whose
  * items will be averaged.
- * \return the average of the first `number_of_items` items of array `items`.
+ * \return The average of the first `number_of_items` items of array `items`.
  * \pre `number_of_items` ≥ 0
  * \pre `items` ≠ null
  * \pre `items` points to an array with at least `number_of_items` items
- * \post result = \f$\frac{\sum_{i=0}^{\text{number_of_items-1}}
- *                \text{items}_i}{\text{number_of_items}}\f$
+ * \post result = \f$\frac{\sum_{i=0}^{\mathtt{number\_of\_items}-1}
+ *                \text{items}[i]}{\mathtt{number\_of\_items}}\f$
  *                (unless `number_of_items` is zero, in which case result = NaN)
  *
  * This function calculates and returns the average of the first
