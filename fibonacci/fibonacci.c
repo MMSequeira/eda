@@ -4,13 +4,13 @@
  * \file fibonacci.c
  * \brief Illustrates possible implementations of the calculation of terms of
  * the Fibonacci sequence.
- * 
+ *
  * Iterative and recursive implementations of the calculation of terms of
  * the Fibonacci sequence. These implementations are used to illustrate
  * iteration vs. recursion, and also to show how a naïve implementation of
  * recursion may lead to serious problems.
  */
- 
+
 // Coelhos, recursão e iteração
 // ----------------------------
 //
@@ -114,7 +114,7 @@
 #include <assert.h>
 
 // ### Implementação recursiva «estúpida»
-  
+
 // #### Documentação
 // A documentação da função é feita no formato do
 // [Doxygen](http://doxygen.org/), como habitualmente.
@@ -131,8 +131,8 @@
  * the sequence is defined by
  * \f[
  * F_n = \left\{\begin{array}{ll}
- *     0                 & \text{if } n=0, \\ 
- *     1                 & \text{if } n=1\text{, and} \\ 
+ *     0                 & \text{if } n=0, \\
+ *     1                 & \text{if } n=1\text{, and} \\
  *     F_{n-2} + F_{n-1} & \text{if } n>1.
  *   \end{array}\right.
  * \f]
@@ -151,8 +151,24 @@ long stupidly_recursive_fibonacci(int n)
 		+ stupidly_recursive_fibonacci(n - 1);
 }
 
+long recursive_fibonacci(int n)
+{
+	static long F[93] = {0, 1};
+	static int number_of_calculated_terms = 2;
+
+	assert(n >= 0);
+	assert(n < 93);
+
+	if (n < number_of_calculated_terms)
+		return F[n];
+
+	number_of_calculated_terms++;
+	return F[n] = recursive_fibonacci(n - 2) + recursive_fibonacci(n - 1);
+//	number_of_calculated_terms = n + 1;
+}
+
 // ### Implementação iterativa
-  
+
 // #### Documentação
 // A documentação da função é feita no formato do
 // [Doxygen](http://doxygen.org/), como habitualmente.
@@ -160,7 +176,7 @@ long stupidly_recursive_fibonacci(int n)
  *
  * \param n The number of the term to return (first valid value is 0).
  * \return The value of the `n`th term of the Fibonacci sequence. The time taken
- * by the function grows linearly with `n`. 
+ * by the function grows linearly with `n`.
  * \pre `n` ≥ 0
  * \post result = \f$F_{\mathtt{n}}\f$
  *
@@ -169,8 +185,8 @@ long stupidly_recursive_fibonacci(int n)
  * the sequence is defined by
  * \f[
  * F_n = \left\{\begin{array}{ll}
- *     0                 & \text{if } n=0, \\ 
- *     1                 & \text{if } n=1\text{, and} \\ 
+ *     0                 & \text{if } n=0, \\
+ *     1                 & \text{if } n=1\text{, and} \\
  *     F_{n-2} + F_{n-1} & \text{if } n>1.
  *   \end{array}\right.
  * \f]
@@ -196,7 +212,7 @@ long iterative_fibonacci(int n)
 }
 
 // ### Procedimento !!!!!!!
-  
+
 // #### Documentação
 // !!!!!!!!
 /** \brief !!!!!!!!!!!! (includes month 0)
@@ -230,8 +246,9 @@ void experiment_efficiency_of(char title[], long fibonacci(int),
 // !!!!!!!!
 int main(void)
 {
-	for (int n = 0; n != 11; n++) {
-		printf("F(%d) [stupid recursive] = %ld\n", n, stupidly_recursive_fibonacci(n));
+	for (int n = 0; n != 100; n++) {
+//		printf("F(%d) [stupid recursive] = %ld\n", n, stupidly_recursive_fibonacci(n));
+		printf("F(%d) [recursive] = %ld\n", n, recursive_fibonacci(n));
 		printf("F(%d) [iterative] = %ld\n", n, iterative_fibonacci(n));
 	}
 
