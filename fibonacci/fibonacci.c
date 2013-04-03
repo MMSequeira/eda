@@ -14,12 +14,15 @@
 // Coelhos, recursão e iteração
 // ----------------------------
 //
-// Ofereceram ao o Sr. Fibonacci um casal de coelhos, recém-nascidos, de um
+// Ofereceram ao Sr. Fibonacci um casal de coelhos, recém-nascidos, de um
 // espécie curiosa: tornam-se férteis ao fim de um mês de vida, concebem logo
 // que possível, têm uma gestação de exactamente um mês, cada ninhada consiste
 // sempre num casalinho de coelhos. Nunca morrem. O Sr. Fibonacci preocupou-se:
-// teria comida que chegue para os coelhos? Pôs-se calcular a evolução do número
-// de casais de coelhos ao longo do tempo:
+// teria comida que chegue para os coelhos? Pôs-se a calcular a evolução do
+// número de casais de coelhos ao longo do tempo:
+//
+// 0. No mês zero o Sr. Fibonacci vivia feliz, sem qualquer coelho. Mal
+// calculava o seu destino...
 //
 // 1. No primeiro mês há um casal de coelhos inférteis.
 //
@@ -50,25 +53,52 @@
 //   é igual ao número de casais férteis no mês anterior e que, por isso, é
 //   igual ao número total de casais existentes dois meses antes.
 //
-// Sendo ![F(n)](http://latex.codecogs.com/gif.latex?F%28n%29) o número de casais de
-// coelhos no mês ![n](http://latex.codecogs.com/gif.latex?n), então, desde que
-// ![n>2](http://latex.codecogs.com/gif.latex?n%3E2),
-// ![F(n)=F(n-2)+F(n-1)](http://latex.codecogs.com/gif.latex?F%28n%29%3DF%28n-2%29%2BF%28n-1%29). Quando
-// ![n=1](http://latex.codecogs.com/gif.latex?n%3D1) ou
-// ![n=2](http://latex.codecogs.com/gif.latex?n%3D2),
-// ![F(n)=1](http://latex.codecogs.com/gif.latex?F%28n%29%3D1). Ou seja, esta sucessão
-// pode ser descrita de forma _recursiva_, ou seja, definindo os termos da
-// sucessão em função de outros termos da mesma sucessão.
+// Sendo ![F(n)](http://latex.codecogs.com/gif.latex?%5Cinline%20F_n) o número
+// de casais de coelhos no mês
+// ![n](http://latex.codecogs.com/gif.latex?%5Cinline%20n), então, desde que
+// ![n>2](http://latex.codecogs.com/gif.latex?%5Cinline%20n%3E2), ![F(n)=F(n-2)+
+// F(n-1)](http://latex.codecogs.com/gif.latex?%5Cinline%20F_n%3DF_%7Bn-2%7D&plus;F_%7Bn-1%7D). Quando
+// ![n=1](http://latex.codecogs.com/gif.latex?%5Cinline%20n%3D1) ou
+// ![n=2](http://latex.codecogs.com/gif.latex?%5Cinline%20n%3D2),
+// ![F(n)=1](http://latex.codecogs.com/gif.latex?%5Cinline%20F_n%3D1). Ou seja,
+// esta sucessão pode ser descrita de forma _recursiva_, ou seja, definindo os
+// termos da sucessão em função de outros termos da mesma sucessão.
 //
-// O que se pretende aqui é implementar uma função `fibonacci()` que receba o
-// mês como argumento e devolva o número de casais existentes nesses mês.
+// O que pretendemos aqui é implementar uma função que receba o mês como
+// argumento e devolva o número de casais existentes nesse mês. Como não
+// fornecemos apenas uma implementação, mas várias, com diferentes eficiências,
+// os nomes dessas funções não poderão ser simplesmente `fibonacci()`, incluindo
+// no seu nome um sufixo que identifica o tipo de implementação usado. Pode
+// argumentar-se que, sendo a eficiência parte da interface de um módulo, então
+// é razoável usar esses sufixos. No entanto, seria preferível, se o nosso
+// objectivo não fosse o estudo dos algoritmos em si, mas a criação de
+// ferramentas para utilização futura ou para disponibilização a terceiros, usar
+// sufixos que fossem reveladores da eficiência da função, e não da sua
+// implementação.
+//
+// Antes, porém, de passar às implementações, é preciso dizer que o presente
+// oferecido ao Sr. Fibonacci está realmente envenenado. Com efeito, a sequência
+// de Fibonacci cresce de forma extremamente rápida. Assim, no mês 120, ou seja,
+// dez anos depois da oferta do casal original, o número de casais a alimentar é
+// exactamente 5&thinsp;358&thinsp;359&thinsp;254&thinsp;990&thinsp;966&thinsp;640&thinsp;871&thinsp;840.
+// Este valor é demasiado grande para os `int` nas nossas máquinas habituais,
+// que têm 32 _bits_, ou mesmo para os _long_, com 64 _bits_ nessas mesmas
+// máquinas. Por outro lado, a precisão limitada dos tipos de virgula flutuante
+// pode pôr problemas complicados ao cálculo dos termos da sequência (já
+// tínhamos dito que dos tipos de vírgula flutuante se foge como diabo da
+// cruz?). O código abaixo recorre ao tipo `long`, numa tentativa de evitar que
+// se atinjam muito cedo os limites dos inteiros. É uma ná solução, no entanto.
+// Uma boa solução passaria pela utilização de um tipo capaz de representar
+// números inteiros de dimensão arbitrária (desde que haja memória para o
+// guardar, bem entendido). A implementação de um tal tipo é um excelente
+// exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.
 
 // Implementação
 // -------------
 //
 // ### Inclusão de ficheiros de cabeçalho
 //
-// Inclusão de ficheiros de cabeçalho:
+// Incluímos os seguintes ficheiros de cabeçalho:
 //
 // - `stdio.h` &ndash; Para declaração do procedimento `printf()`.
 //
@@ -86,15 +116,26 @@
 // ### Implementação recursiva «estúpida»
   
 // #### Documentação
-// !!!!!!!!
-/** \brief !!!!!!!!!!!! (includes month 0)
+// A documentação da função é feita no formato do
+// [Doxygen](http://doxygen.org/), como habitualmente.
+/** \brief Returns the `n`th term of the Fiboncci sequence.
  *
- * \param n !!!!!!!!!
- * \return !!!!!!!!!!!
+ * \param n The number of the term to return (first valid value is 0).
+ * \return The value of the `n`th term of the Fibonacci sequence. The time taken
+ * by the function grows exponentially with `n`.
  * \pre `n` ≥ 0
- * \post !!!
+ * \post result = \f$F_{\mathtt{n}}\f$
  *
- * !!!!!!!!!!!!!!!
+ * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
+ * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
+ * the sequence is defined by
+ * \f[
+ * F_n = \left\{\begin{array}{ll}
+ *     0                 & \text{if } n=0, \\ 
+ *     1                 & \text{if } n=1\text{, and} \\ 
+ *     F_{n-2} + F_{n-1} & \text{if } n>1.
+ *   \end{array}\right.
+ * \f]
  */
 // #### Definição
 long stupidly_recursive_fibonacci(int n)
@@ -103,8 +144,9 @@ long stupidly_recursive_fibonacci(int n)
 
 	if (n == 0)
 		return 0L;
-	if (n == 1L)
+	if (n == 1)
 		return 1L;
+
 	return stupidly_recursive_fibonacci(n - 2)
 		+ stupidly_recursive_fibonacci(n - 1);
 }
@@ -112,15 +154,26 @@ long stupidly_recursive_fibonacci(int n)
 // ### Implementação iterativa
   
 // #### Documentação
-// !!!!!!!!
-/** \brief !!!!!!!!!!!! (includes month 0)
+// A documentação da função é feita no formato do
+// [Doxygen](http://doxygen.org/), como habitualmente.
+/** \brief Returns the `n`th term of the Fiboncci sequence.
  *
- * \param n !!!!!!!!!
- * \return !!!!!!!!!!!
+ * \param n The number of the term to return (first valid value is 0).
+ * \return The value of the `n`th term of the Fibonacci sequence. The time taken
+ * by the function grows linearly with `n`. 
  * \pre `n` ≥ 0
- * \post !!!
+ * \post result = \f$F_{\mathtt{n}}\f$
  *
- * !!!!!!!!!!!!!!!
+ * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
+ * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
+ * the sequence is defined by
+ * \f[
+ * F_n = \left\{\begin{array}{ll}
+ *     0                 & \text{if } n=0, \\ 
+ *     1                 & \text{if } n=1\text{, and} \\ 
+ *     F_{n-2} + F_{n-1} & \text{if } n>1.
+ *   \end{array}\right.
+ * \f]
  */
 // #### Definição
 long iterative_fibonacci(int n)
@@ -129,17 +182,17 @@ long iterative_fibonacci(int n)
 
 	if (n == 0)
 		return 0L;
-	if (n == 1L)
+	if (n == 1)
 		return 1L;
 
-	long f_i_1 = 1, f_i_2 = 0;
-	for(int i = 1; i != n + 1; i++) {
-		long f_i = f_i_2 + f_i_1;
-		f_i_2 = f_i_1;
-		f_i_1 = f_i;
+	long previous_term = 1L;
+	long current_term = 1L;
+	for(int i = 2; i != n; i++) {
+		current_term += previous_term;
+		previous_term = current_term - previous_term;
 	}
 
-	return f_i_1;
+	return current_term;
 }
 
 // ### Procedimento !!!!!!!
@@ -177,6 +230,13 @@ void experiment_efficiency_of(char title[], long fibonacci(int),
 // !!!!!!!!
 int main(void)
 {
+	for (int n = 0; n != 11; n++) {
+		printf("F(%d) [stupid recursive] = %ld\n", n, stupidly_recursive_fibonacci(n));
+		printf("F(%d) [iterative] = %ld\n", n, iterative_fibonacci(n));
+	}
+
+	return EXIT_SUCCESS;
+
 	experiment_efficiency_of("Stupidly recursive implementation of the fibonacci sequence:",
 				stupidly_recursive_fibonacci, 35);
 	experiment_efficiency_of("Three variable iterative implementation of the fibonacci sequence:",
