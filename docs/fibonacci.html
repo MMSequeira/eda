@@ -133,13 +133,16 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Ofereceram ao o Sr. Fibonacci um casal de coelhos, recém-nascidos, de um
+              <p>Ofereceram ao Sr. Fibonacci um casal de coelhos, recém-nascidos, de um
 espécie curiosa: tornam-se férteis ao fim de um mês de vida, concebem logo
 que possível, têm uma gestação de exactamente um mês, cada ninhada consiste
 sempre num casalinho de coelhos. Nunca morrem. O Sr. Fibonacci preocupou-se:
-teria comida que chegue para os coelhos? Pôs-se calcular a evolução do número
-de casais de coelhos ao longo do tempo:</p>
+teria comida que chegue para os coelhos? Pôs-se a calcular a evolução do
+número de casais de coelhos ao longo do tempo:</p>
 <ol>
+<li><p>No mês zero o Sr. Fibonacci vivia feliz, sem qualquer coelho. Mal
+calculava o seu destino...</p>
+</li>
 <li><p>No primeiro mês há um casal de coelhos inférteis.</p>
 </li>
 <li><p>No segundo mês há um casal de coelhos, já férteis e, claro está, com a
@@ -171,17 +174,43 @@ casais existente no mês anterior com o número de casais recém-nascidos, que
 igual ao número total de casais existentes dois meses antes.</p>
 </li>
 </ul>
-<p>Sendo <img src="http://latex.codecogs.com/gif.latex?F%28n%29" alt="F(n)"> o número de casais de
-coelhos no mês <img src="http://latex.codecogs.com/gif.latex?n" alt="n">, então, desde que
-<img src="http://latex.codecogs.com/gif.latex?n%3E2" alt="n&gt;2">,
-<img src="http://latex.codecogs.com/gif.latex?F%28n%29%3DF%28n-2%29%2BF%28n-1%29" alt="F(n)=F(n-2)+F(n-1)">. Quando
-<img src="http://latex.codecogs.com/gif.latex?n%3D1" alt="n=1"> ou
-<img src="http://latex.codecogs.com/gif.latex?n%3D2" alt="n=2">,
-<img src="http://latex.codecogs.com/gif.latex?F%28n%29%3D1" alt="F(n)=1">. Ou seja, esta sucessão
-pode ser descrita de forma <em>recursiva</em>, ou seja, definindo os termos da
-sucessão em função de outros termos da mesma sucessão.</p>
-<p>O que se pretende aqui é implementar uma função <code>fibonacci()</code> que receba o
-mês como argumento e devolva o número de casais existentes nesses mês.</p>
+<p>Sendo <img src="http://latex.codecogs.com/gif.latex?%5Cinline%20F_n" alt="F(n)"> o número
+de casais de coelhos no mês
+<img src="http://latex.codecogs.com/gif.latex?%5Cinline%20n" alt="n">, então, desde que
+<img src="http://latex.codecogs.com/gif.latex?%5Cinline%20n%3E2" alt="n&gt;2">, <img src="http://latex.codecogs.com/gif.latex?%5Cinline%20F_n%3DF_%7Bn-2%7D&plus;F_%7Bn-1%7D" alt="F(n)=F(n-2)+
+F(n-1)">. Quando
+<img src="http://latex.codecogs.com/gif.latex?%5Cinline%20n%3D1" alt="n=1"> ou
+<img src="http://latex.codecogs.com/gif.latex?%5Cinline%20n%3D2" alt="n=2">,
+<img src="http://latex.codecogs.com/gif.latex?%5Cinline%20F_n%3D1" alt="F(n)=1">. Ou seja,
+esta sucessão pode ser descrita de forma <em>recursiva</em>, ou seja, definindo os
+termos da sucessão em função de outros termos da mesma sucessão.</p>
+<p>O que pretendemos aqui é implementar uma função que receba o mês como
+argumento e devolva o número de casais existentes nesse mês. Como não
+fornecemos apenas uma implementação, mas várias, com diferentes eficiências,
+os nomes dessas funções não poderão ser simplesmente <code>fibonacci()</code>, incluindo
+no seu nome um sufixo que identifica o tipo de implementação usado. Pode
+argumentar-se que, sendo a eficiência parte da interface de um módulo, então
+é razoável usar esses sufixos. No entanto, seria preferível, se o nosso
+objectivo não fosse o estudo dos algoritmos em si, mas a criação de
+ferramentas para utilização futura ou para disponibilização a terceiros, usar
+sufixos que fossem reveladores da eficiência da função, e não da sua
+implementação.</p>
+<p>Antes, porém, de passar às implementações, é preciso dizer que o presente
+oferecido ao Sr. Fibonacci está realmente envenenado. Com efeito, a sequência
+de Fibonacci cresce de forma extremamente rápida. Assim, no mês 120, ou seja,
+dez anos depois da oferta do casal original, o número de casais a alimentar é
+exactamente 5&thinsp;358&thinsp;359&thinsp;254&thinsp;990&thinsp;966&thinsp;640&thinsp;871&thinsp;840.
+Este valor é demasiado grande para os <code>int</code> nas nossas máquinas habituais,
+que têm 32 <em>bits</em>, ou mesmo para os <em>long</em>, com 64 <em>bits</em> nessas mesmas
+máquinas. Por outro lado, a precisão limitada dos tipos de virgula flutuante
+pode pôr problemas complicados ao cálculo dos termos da sequência (já
+tínhamos dito que dos tipos de vírgula flutuante se foge como diabo da
+cruz?). O código abaixo recorre ao tipo <code>long</code>, numa tentativa de evitar que
+se atinjam muito cedo os limites dos inteiros. É uma ná solução, no entanto.
+Uma boa solução passaria pela utilização de um tipo capaz de representar
+números inteiros de dimensão arbitrária (desde que haja memória para o
+guardar, bem entendido). A implementação de um tal tipo é um excelente
+exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p>
 <h2>Implementação</h2>
 
             </div>
@@ -196,7 +225,7 @@ mês como argumento e devolva o número de casais existentes nesses mês.</p>
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <h3>Inclusão de ficheiros de cabeçalho</h3>
-<p>Inclusão de ficheiros de cabeçalho:</p>
+<p>Incluímos os seguintes ficheiros de cabeçalho:</p>
 <ul>
 <li><p><code>stdio.h</code> &ndash; Para declaração do procedimento <code>printf()</code>.</p>
 </li>
@@ -241,18 +270,29 @@ mês como argumento e devolva o número de casais existentes nesses mês.</p>
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <h4>Documentação</h4>
-<p>!!!!!!!!</p>
+<p>A documentação da função é feita no formato do
+<a href="http://doxygen.org/">Doxygen</a>, como habitualmente.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief !!!!!!!!!!!! (includes month 0)
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief Returns the `n`th term of the Fiboncci sequence.
  *
- * \param n !!!!!!!!!
- * \return !!!!!!!!!!!
+ * \param n The number of the term to return (first valid value is 0).
+ * \return The value of the `n`th term of the Fibonacci sequence. The time taken
+ * by the function grows exponentially with `n`.
  * \pre `n` ≥ 0
- * \post !!!
+ * \post result = \f$F_{\mathtt{n}}\f$
  *
- * !!!!!!!!!!!!!!!
+ * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
+ * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
+ * the sequence is defined by
+ * \f[
+ * F_n = \left\{\begin{array}{ll}
+ *     0                 &amp; \text{if } n=0, \\ 
+ *     1                 &amp; \text{if } n=1\text{, and} \\ 
+ *     F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1.
+ *   \end{array}\right.
+ * \f]
  */</span>
 </pre></div></div>
             
@@ -275,8 +315,9 @@ mês como argumento e devolva o número de casais existentes nesses mês.</p>
 
 	<span class="keyword">if</span> (n == <span class="number">0</span>)
 		<span class="keyword">return</span> <span class="number">0L</span>;
-	<span class="keyword">if</span> (n == <span class="number">1L</span>)
+	<span class="keyword">if</span> (n == <span class="number">1</span>)
 		<span class="keyword">return</span> <span class="number">1L</span>;
+
 	<span class="keyword">return</span> stupidly_recursive_fibonacci(n - <span class="number">2</span>)
 		+ stupidly_recursive_fibonacci(n - <span class="number">1</span>);
 }
@@ -306,18 +347,29 @@ mês como argumento e devolva o número de casais existentes nesses mês.</p>
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <h4>Documentação</h4>
-<p>!!!!!!!!</p>
+<p>A documentação da função é feita no formato do
+<a href="http://doxygen.org/">Doxygen</a>, como habitualmente.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief !!!!!!!!!!!! (includes month 0)
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief Returns the `n`th term of the Fiboncci sequence.
  *
- * \param n !!!!!!!!!
- * \return !!!!!!!!!!!
+ * \param n The number of the term to return (first valid value is 0).
+ * \return The value of the `n`th term of the Fibonacci sequence. The time taken
+ * by the function grows linearly with `n`. 
  * \pre `n` ≥ 0
- * \post !!!
+ * \post result = \f$F_{\mathtt{n}}\f$
  *
- * !!!!!!!!!!!!!!!
+ * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
+ * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
+ * the sequence is defined by
+ * \f[
+ * F_n = \left\{\begin{array}{ll}
+ *     0                 &amp; \text{if } n=0, \\ 
+ *     1                 &amp; \text{if } n=1\text{, and} \\ 
+ *     F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1.
+ *   \end{array}\right.
+ * \f]
  */</span>
 </pre></div></div>
             
@@ -340,17 +392,17 @@ mês como argumento e devolva o número de casais existentes nesses mês.</p>
 
 	<span class="keyword">if</span> (n == <span class="number">0</span>)
 		<span class="keyword">return</span> <span class="number">0L</span>;
-	<span class="keyword">if</span> (n == <span class="number">1L</span>)
+	<span class="keyword">if</span> (n == <span class="number">1</span>)
 		<span class="keyword">return</span> <span class="number">1L</span>;
 
-	<span class="keyword">long</span> f_i_1 = <span class="number">1</span>, f_i_2 = <span class="number">0</span>;
-	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i != n + <span class="number">1</span>; i++) {
-		<span class="keyword">long</span> f_i = f_i_2 + f_i_1;
-		f_i_2 = f_i_1;
-		f_i_1 = f_i;
+	<span class="keyword">long</span> previous_term = <span class="number">1L</span>;
+	<span class="keyword">long</span> current_term = <span class="number">1L</span>;
+	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i != n; i++) {
+		current_term += previous_term;
+		previous_term = current_term - previous_term;
 	}
 
-	<span class="keyword">return</span> f_i_1;
+	<span class="keyword">return</span> current_term;
 }
 
 </pre></div></div>
@@ -440,6 +492,13 @@ mês como argumento e devolva o número de casais existentes nesses mês.</p>
             
             <div class="content"><div class="highlight"><pre><span class="keyword">int</span> main(<span class="keyword">void</span>)
 {
+	<span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n != <span class="number">11</span>; n++) {
+		printf(<span class="string">"F(%d) [stupid recursive] = %ld\n"</span>, n, stupidly_recursive_fibonacci(n));
+		printf(<span class="string">"F(%d) [iterative] = %ld\n"</span>, n, iterative_fibonacci(n));
+	}
+
+	<span class="keyword">return</span> EXIT_SUCCESS;
+
 	experiment_efficiency_of(<span class="string">"Stupidly recursive implementation of the fibonacci sequence:"</span>,
 				stupidly_recursive_fibonacci, <span class="number">35</span>);
 	experiment_efficiency_of(<span class="string">"Three variable iterative implementation of the fibonacci sequence:"</span>,
