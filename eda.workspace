@@ -4,10 +4,12 @@
 		<Project filename="array_utils/array_utils.cbp" />
 		<Project filename="arrays_and_pointers/arrays_and_pointers.cbp" />
 		<Project filename="arrays_basics/arrays_basics.cbp" />
-		<Project filename="fibonacci/fibonacci.cbp" active="1" />
+		<Project filename="fibonacci/fibonacci.cbp" />
 		<Project filename="hello_world/hello_world.cbp" />
 		<Project filename="nans_and_other_oddities/nans_and_other_oddities.cbp" />
+		<Project filename="rationals_with_structs/rationals_with_structs.cbp" />
 		<Project filename="routine_pointers/routine_pointers.cbp" />
+		<Project filename="sequence_of_longs/sequence_of_longs.cbp" active="1" />
 		<Project filename="sizeof_and_arrays/sizeof_and_arrays.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
