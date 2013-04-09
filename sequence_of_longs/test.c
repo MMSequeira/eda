@@ -3,8 +3,7 @@
 
 struct sequence_of_longs {
 	long* items;
-	int length;	;
-	;
+	int length;
 };
 
 void SEQL_println(struct sequence_of_longs s)
