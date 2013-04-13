@@ -86,6 +86,6 @@ int main(void)
 	for (int i = 0; i != sizeof("Hello") - 1; i++)
 		putchar(i["Hello"]);
 
-	//
+	// Terminamos assinalando que o programa teve sucesso.
 	return EXIT_SUCCESS;
 }
