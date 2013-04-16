@@ -36,7 +36,7 @@ int SEQL_item(struct sequence_of_longs* sl, int index)
 	return sl->items[index];
 }
 
-int main(void)
+int main_experiment(void)
 {
 	struct sequence_of_longs sequence;
 	SEQL_initialize(&sequence);
@@ -50,7 +50,7 @@ int main(void)
 
 	printf("Itens are: ");
 	for (int i = 0; i != SEQL_length(&sequence); i++)
-		printf(" %d", SEQL_item(&sequence, i);
+		printf(" %d", SEQL_item(&sequence, i));
 	putchar('\n');
 
 	return EXIT_SUCCESS;
