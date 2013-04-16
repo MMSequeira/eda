@@ -17,7 +17,7 @@ Suite *sequence_of_longs_suite(void)
 	return suite;
 }
 
-int main(void)
+int main_tests(void)
 {
 	Suite *suite = sequence_of_longs_suite();
 	SRunner *suite_runner = srunner_create(suite);

@@ -2,16 +2,25 @@
 #include <stdlib.h>
 
 struct sequence_of_longs {
-	long* items;
+	long *items;
 	int length;
 };
 
+void SEQL_print(struct sequence_of_longs *sl)
+{
+	putchar('{');
+	for (int i = 0; i != sl->length; i++) {
+		if (i != 0)
+			printf(", ");
+		printf("%ld", sl->items[i]);
+	}
+	putchar('}');
+}
+
 void SEQL_println(struct sequence_of_longs *sl)
 {
-	printf("Length: %d\nItems:", sl->length);
-	for (int i = 0; i != sl->length; i++)
-		printf(" %ld", sl->items[i]);
-	printf("\n");
+	SEQL_print(sl);
+	putchar('\n');
 }
 
 void SEQL_initialize(struct sequence_of_longs *sl)
@@ -31,12 +40,12 @@ void SEQL_add(struct sequence_of_longs *sl, long new_item)
 	sl->items[sl->length++] = new_item;
 }
 
-int SEQL_item(struct sequence_of_longs* sl, int index)
+long SEQL_item(struct sequence_of_longs *sl, int index)
 {
 	return sl->items[index];
 }
 
-int main_experiment(void)
+int main(void)
 {
 	struct sequence_of_longs sequence;
 	SEQL_initialize(&sequence);
@@ -44,13 +53,14 @@ int main_experiment(void)
 	for (long i = 0L; i != 10L; i++)
 		SEQL_add(&sequence, i);
 
-	printf("Length = %d\n", SEQL_length(&sequence));
+	printf("The length is: %d\n", SEQL_length(&sequence));
 
+	printf("The sequence is: ");
 	SEQL_println(&sequence);
 
-	printf("Itens are: ");
+	printf("The items are:");
 	for (int i = 0; i != SEQL_length(&sequence); i++)
-		printf(" %d", SEQL_item(&sequence, i));
+		printf(" %ld", SEQL_item(&sequence, i));
 	putchar('\n');
 
 	return EXIT_SUCCESS;
