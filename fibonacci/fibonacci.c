@@ -180,7 +180,8 @@
 // qualquer decomposição adicional. A definição recursiva da sucessão de
 // Fibonacci aparenta adequar-se bem a esta estratégia:
 //
-// ![F(n)={0, se n = 0, 1, se n = 1, e F(n-2) + F(n-1), se n > 1}](http://bit.ly/13TPIpP)
+// ![F(n)={0, se n = 0, 1, se n = 1, e F(n-2) + F(n-1), se n > 
+// 1}](http://bit.ly/13TPIpP)
 long stupidly_recursive_fibonacci(int n)
 {
 	// Em primeiro lugar, verificamos as pré-condições e lidamos com as
