@@ -34,6 +34,14 @@
 		<Unit filename="experiments.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="naive_sequence_of_longs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="naive_sequence_of_longs.h" />
+		<Unit filename="sequence_of_longs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sequence_of_longs.h" />
 		<Unit filename="tests.c">
 			<Option compilerVar="CC" />
 			<Option compile="0" />
