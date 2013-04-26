@@ -3,6 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct naive_sequence_of_longs {
+	long *items;
+	int length;
+};
+
 void NSEQL_print(struct naive_sequence_of_longs *sl)
 {
 	putchar('{');
@@ -20,10 +25,13 @@ void NSEQL_println(struct naive_sequence_of_longs *sl)
 	putchar('\n');
 }
 
-void NSEQL_initialize(struct naive_sequence_of_longs *sl)
+struct naive_sequence_of_longs *NSEQL_new(void)
 {
+	struct naive_sequence_of_longs *sl =
+		malloc(sizeof(struct naive_sequence_of_longs));
 	sl->length = 0;
 	sl->items = NULL;
+	return sl;
 }
 
 int NSEQL_length(struct naive_sequence_of_longs *sl)

@@ -1,17 +1,13 @@
 #ifndef ISLA_EDA_SEQUENCE_OF_LONGS_HEADER
 #define ISLA_EDA_SEQUENCE_OF_LONGS_HEADER
 
-struct sequence_of_longs {
-	long *items;
-	int length;
-	int capacity;
-};
+struct sequence_of_longs;
+
+struct sequence_of_longs *SEQL_new(void);
 
 void SEQL_print(struct sequence_of_longs *sl);
 
 void SEQL_println(struct sequence_of_longs *sl);
-
-void SEQL_initialize(struct sequence_of_longs *sl);
 
 int SEQL_length(struct sequence_of_longs *sl);
 

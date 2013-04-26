@@ -1,16 +1,13 @@
 #ifndef ISLA_EDA_NAIVE_naive_sequence_of_longs_HEADER
 #define ISLA_EDA_NAIVE_naive_sequence_of_longs_HEADER
 
-struct naive_sequence_of_longs {
-	long *items;
-	int length;
-};
+struct naive_sequence_of_longs;
+
+struct naive_sequence_of_longs *NSEQL_new(void);
 
 void NSEQL_print(struct naive_sequence_of_longs *sl);
 
 void NSEQL_println(struct naive_sequence_of_longs *sl);
-
-void NSEQL_initialize(struct naive_sequence_of_longs *sl);
 
 int NSEQL_length(struct naive_sequence_of_longs *sl);
 
