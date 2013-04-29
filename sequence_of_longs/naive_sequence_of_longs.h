@@ -1,5 +1,5 @@
-#ifndef ISLA_EDA_NAIVE_naive_sequence_of_longs_HEADER
-#define ISLA_EDA_NAIVE_naive_sequence_of_longs_HEADER
+#ifndef ISLA_EDA_NAIVE_SEQUENCE_OF_LONGS_H_INCLUDED
+#define ISLA_EDA_NAIVE_SEQUENCE_OF_LONGS_H_INCLUDED
 
 struct naive_sequence_of_longs;
 
@@ -15,5 +15,5 @@ void NSEQL_add(struct naive_sequence_of_longs *sl, long new_item);
 
 long NSEQL_item(struct naive_sequence_of_longs *sl, int index);
 
-#endif // ISLA_EDA_naive_sequence_of_longs_HEADER
+#endif // ISLA_EDA_NAIVE_SEQUENCE_OF_LONGS_H_INCLUDED
 
