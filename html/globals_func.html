@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.8.3.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -27,6 +28,11 @@
 });
 </script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(document).ready(function(){
+      $(".line:has(.comment)").hide();
+    });
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -51,6 +57,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -102,7 +109,7 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -125,6 +132,27 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 <li>print()
 : <a class="el" href="array__utils_8h.html#a9bc29752c2a34f3f1ce9bf74e2073dc3">array_utils.h</a>
 </li>
+<li>recursive_fibonacci()
+: <a class="el" href="fibonacci_8c.html#aad4f80cb4d854c4b639188b058303a4d">fibonacci.c</a>
+</li>
+<li>SEQL_add()
+: <a class="el" href="sequence__of__longs_8h.html#a007887cafcae9110cb38270737dd0126">sequence_of_longs.h</a>
+</li>
+<li>SEQL_length()
+: <a class="el" href="sequence__of__longs_8h.html#ab09ce4c443e1ab19f3f8723f06a53ad1">sequence_of_longs.h</a>
+</li>
+<li>SEQL_new()
+: <a class="el" href="sequence__of__longs_8h.html#af1b7a4e710bf2818e247da9f1673d8c9">sequence_of_longs.h</a>
+</li>
+<li>SEQL_print()
+: <a class="el" href="sequence__of__longs_8h.html#a408b4c46e9460aa736e644f3c4fdf6e2">sequence_of_longs.h</a>
+</li>
+<li>SEQL_println()
+: <a class="el" href="sequence__of__longs_8h.html#a35e711b9f3115443ee3cb36f67addc7f">sequence_of_longs.h</a>
+</li>
+<li>SEQL_term()
+: <a class="el" href="sequence__of__longs_8h.html#a1639a83f203b7d930f4d10e212706609">sequence_of_longs.h</a>
+</li>
 <li>stupidly_recursive_fibonacci()
 : <a class="el" href="fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0">fibonacci.c</a>
 </li>
@@ -134,7 +162,7 @@ $(document).ready(function(){initNavTree('globals_func.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Apr 3 2013 06:52:10 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Wed May 1 2013 23:52:15 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

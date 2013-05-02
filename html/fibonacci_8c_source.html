@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.8.3.1-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -27,6 +28,11 @@
 });
 </script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(document).ready(function(){
+      $(".line:has(.comment)").hide();
+    });
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -51,6 +57,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -96,7 +103,7 @@ $(document).ready(function(){initNavTree('fibonacci_8c_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -154,157 +161,245 @@ $(document).ready(function(){initNavTree('fibonacci_8c_source.html','');});
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">//   é igual ao número de casais férteis no mês anterior e que, por isso, é</span></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">//   igual ao número total de casais existentes dois meses antes.</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">// Sendo ![F(n)](http://latex.codecogs.com/gif.latex?%5Cinline%20F_n) o número</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">// de casais de coelhos no mês</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">// ![n](http://latex.codecogs.com/gif.latex?%5Cinline%20n), então, desde que</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">// ![n&gt;2](http://latex.codecogs.com/gif.latex?%5Cinline%20n%3E2), ![F(n)=F(n-2)+</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">// F(n-1)](http://latex.codecogs.com/gif.latex?%5Cinline%20F_n%3DF_%7Bn-2%7D&amp;plus;F_%7Bn-1%7D). Quando</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">// ![n=1](http://latex.codecogs.com/gif.latex?%5Cinline%20n%3D1) ou</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">// ![n=2](http://latex.codecogs.com/gif.latex?%5Cinline%20n%3D2),</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">// ![F(n)=1](http://latex.codecogs.com/gif.latex?%5Cinline%20F_n%3D1). Ou seja,</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">// esta sucessão pode ser descrita de forma _recursiva_, ou seja, definindo os</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">// termos da sucessão em função de outros termos da mesma sucessão.</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">// O que pretendemos aqui é implementar uma função que receba o mês como</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">// argumento e devolva o número de casais existentes nesse mês. Como não</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">// fornecemos apenas uma implementação, mas várias, com diferentes eficiências,</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">// os nomes dessas funções não poderão ser simplesmente `fibonacci()`, incluindo</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">// no seu nome um sufixo que identifica o tipo de implementação usado. Pode</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">// argumentar-se que, sendo a eficiência parte da interface de um módulo, então</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">// é razoável usar esses sufixos. No entanto, seria preferível, se o nosso</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">// objectivo não fosse o estudo dos algoritmos em si, mas a criação de</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">// ferramentas para utilização futura ou para disponibilização a terceiros, usar</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">// sufixos que fossem reveladores da eficiência da função, e não da sua</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">// implementação.</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">// Antes, porém, de passar às implementações, é preciso dizer que o presente</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">// oferecido ao Sr. Fibonacci está realmente envenenado. Com efeito, a sequência</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">// de Fibonacci cresce de forma extremamente rápida. Assim, no mês 120, ou seja,</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">// dez anos depois da oferta do casal original, o número de casais a alimentar é</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">// exactamente 5&amp;thinsp;358&amp;thinsp;359&amp;thinsp;254&amp;thinsp;990&amp;thinsp;966&amp;thinsp;640&amp;thinsp;871&amp;thinsp;840.</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">// Este valor é demasiado grande para os `int` nas nossas máquinas habituais,</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">// que têm 32 _bits_, ou mesmo para os _long_, com 64 _bits_ nessas mesmas</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">// máquinas. Por outro lado, a precisão limitada dos tipos de virgula flutuante</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">// pode pôr problemas complicados ao cálculo dos termos da sequência (já</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">// tínhamos dito que dos tipos de vírgula flutuante se foge como diabo da</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">// cruz?). O código abaixo recorre ao tipo `long`, numa tentativa de evitar que</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">// se atinjam muito cedo os limites dos inteiros. É uma ná solução, no entanto.</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">// Uma boa solução passaria pela utilização de um tipo capaz de representar</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">// números inteiros de dimensão arbitrária (desde que haja memória para o</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">// guardar, bem entendido). A implementação de um tal tipo é um excelente</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">// exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">// Implementação</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">// -------------</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">// ### Inclusão de ficheiros de cabeçalho</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">// Incluímos os seguintes ficheiros de cabeçalho:</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">// - `stdio.h` &amp;ndash; Para declaração do procedimento `printf()`.</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">// - `stdlib.h` &amp;ndash; Para definição da _macro_ `EXIT_SUCCESS`.</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">// - `time.h` &amp;ndash; Para definição da função `clock()` e da macro</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">//   `CLOCKS_PER_SEC`.</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">// - `assert.h` &amp;ndash; Para definição da macro `assert()`.</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">// ### Implementação recursiva «estúpida»</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  </div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">// #### Documentação</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">// A documentação da função é feita no formato do</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">// [Doxygen](http://doxygen.org/), como habitualmente.</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment"></span><span class="comment">// #### Definição</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno"><a class="code" href="fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0">  141</a></span>&#160;<span class="keywordtype">long</span> <a class="code" href="fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0" title="Returns the nth term of the Fiboncci sequence.">stupidly_recursive_fibonacci</a>(<span class="keywordtype">int</span> n)</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;{</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        assert(n &gt;= 0);</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        <span class="keywordflow">if</span> (n == 0)</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                <span class="keywordflow">return</span> 0L;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="keywordflow">if</span> (n == 1)</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                <span class="keywordflow">return</span> 1L;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">// Sendo ![F(n)](http://bit.ly/ZCdcqY) o número de casais de coelhos no mês</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">// ![n](http://bit.ly/Z4ELdk), então, desde que ![n&gt;2](http://bit.ly/10vWeOB),</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">// ![F(n)=F(n-2)+F(n-1)](http://bit.ly/10zLPR3). Quando</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">// ![n=1](http://bit.ly/14HsgeM) ou ![n=2](http://bit.ly/YVICg2),</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">// ![F(n)=1](http://bit.ly/13V3GYG). Ou seja, esta sucessão pode ser descrita de</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">// forma _recursiva_, ou seja, definindo os termos da sucessão em função de</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">// outros termos da mesma sucessão.</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">// O que pretendemos aqui é implementar uma função que receba o mês como</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">// argumento e devolva o número de casais existentes nesse mês. Como não</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">// fornecemos apenas uma implementação, mas várias, com diferentes eficiências,</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">// os nomes dessas funções não poderão ser simplesmente `fibonacci()`, incluindo</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">// no seu nome um sufixo que identifica o tipo de implementação usado. Pode</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">// argumentar-se que, sendo a eficiência parte da interface de um módulo, então</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">// é razoável usar esses sufixos. No entanto, seria preferível, se o nosso</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">// objectivo não fosse o estudo dos algoritmos em si, mas a criação de</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">// ferramentas para utilização futura ou para disponibilização a terceiros, usar</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">// sufixos que fossem reveladores da eficiência da função, e não da sua</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">// implementação.</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">// Antes, porém, de passar às implementações, é preciso dizer que o presente</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">// oferecido ao Sr. Fibonacci está realmente envenenado. Com efeito, a sucessão</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">// de Fibonacci cresce de forma extremamente rápida. Assim, no mês 120, ou seja,</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">// dez anos depois da oferta do casal original, o número de casais a alimentar é</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">// exactamente 5&amp;thinsp;358&amp;thinsp;359&amp;thinsp;254&amp;thinsp;990&amp;thinsp;966&amp;thinsp;640&amp;thinsp;871&amp;thinsp;840.</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">// Este valor é demasiado grande para os `int` nas nossas máquinas habituais,</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">// que têm 32 _bits_, ou mesmo para os _long_, com 64 _bits_ nessas mesmas</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">// máquinas. Por outro lado, a precisão limitada dos tipos de virgula flutuante</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">// pode pôr problemas complicados ao cálculo dos termos da sucessão (já</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">// tínhamos dito que dos tipos de vírgula flutuante se foge como diabo da</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">// cruz?). O código abaixo recorre ao tipo `long`, numa tentativa de evitar que</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">// se atinjam muito cedo os limites dos inteiros. É uma má solução, no entanto.</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">// Uma boa solução passaria pela utilização de um tipo capaz de representar</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">// números inteiros de dimensão arbitrária (desde que haja memória para o</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">// guardar, bem entendido). A implementação de um tal tipo é um excelente</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">// exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">// Implementação</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">// -------------</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">// Como se referiu, usamos `long` como tipo de devolução das funções de cálculo</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">// dos termos da sucessão de Fibonacci. Será que isso adianta muito, em relação</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">// à utilização de _int_? Fazendo algumas experiências, é fácil verificar que,</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">// em máquinas em que os `int` têm 32 _bits_, ou seja, em máquinas em que o</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">// maior valor representável num `int` é 2&amp;thinsp;147&amp;thinsp;483&amp;thinsp;647, o</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="comment">// maior termo da sucessão de Fibonacci representável num `int` é o termo 46, ou</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">// seja, ![F(46)](http://bit.ly/XgffV7), cujo valor é</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">// 1&amp;thinsp;836&amp;thinsp;311&amp;thinsp;903. Isto é, usando `int` só conseguimos obter</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">// valores correctos para os primeiros 47 termos da sucessão. Usando `long`, é</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="comment">// fácil verificar que, em máquinas em que os `long` têm 64 _bits_, ou seja, em</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">// máquinas em que o maior valor representável num `long` é</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">// 9&amp;thinsp;223&amp;thinsp;372&amp;thinsp;036&amp;thinsp;854&amp;thinsp;775&amp;thinsp;807, o maior</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">// termo da sucessão de Fibonacci representável num `long` é o termo 92, ou</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">// seja, ![F(92)](http://bit.ly/12kthcr), cujo valor é</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">// 7&amp;thinsp;540&amp;thinsp;113&amp;thinsp;804&amp;thinsp;746&amp;thinsp;346&amp;thinsp;429. Isto é,</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">// usando `long` só conseguimos obter valores correctos para os primeiros 93</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">// termos da sucessão. Melhor que os 47 se se usasse `int`, mas ainda assim um</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">// valor bem pequeno.</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="comment">// O maior termo calculável usando `long`, 92, deve ser usado nas pré-condições</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">// das funções abaixo. Usar o valor literal nesse código é muito má ideia, pois</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">// torna mais difícil a compreensão do código. Afinal, haverá que perceba</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="comment">// imediatamente o significado desse valor? Para resolver o problema definimos</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">// uma constante para guardar esse valor. Uma vez que esta constante será usada</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">// para dimensionar _arrays_ que pretendemos inicializar usando as usuais listas</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="comment">// de inicializadores do C, não podemos usar a forma mais óbvia de definir</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">// constantes em C, i.e., não podemos usar</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">// ```C</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="comment">// const int maximum_term_fitting_a_long = 92;</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">// ```</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">// tendo, pelo contrário de usar uma macro do pré-processador.</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#define MAXIMUM_TERM_FITTING_A_LONG 92</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">// ### Inclusão de ficheiros de cabeçalho</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="comment">// Incluímos os seguintes ficheiros de cabeçalho:</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">// - `stdio.h` &amp;ndash; Para declaração do procedimento `printf()`.</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="comment">// - `stdlib.h` &amp;ndash; Para definição da _macro_ `EXIT_SUCCESS`.</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="comment">// - `time.h` &amp;ndash; Para definição da função `clock()` e da macro</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="comment">//   `CLOCKS_PER_SEC`.</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment">// - `assert.h` &amp;ndash; Para definição da macro `assert()`.</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">// ### Implementação recursiva «estúpida»</span></div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0" title="Returns the nth term of the Fiboncci sequence.">stupidly_recursive_fibonacci</a>(n - 2)</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                + <a class="code" href="fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0" title="Returns the nth term of the Fiboncci sequence.">stupidly_recursive_fibonacci</a>(n - 1);</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;}</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment">// ### Implementação iterativa</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">// #### Documentação</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">// A documentação da função é feita no formato do</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">// [Doxygen](http://doxygen.org/), como habitualmente.</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment"></span><span class="comment">// #### Definição</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno"><a class="code" href="fibonacci_8c.html#af99f473187cfddf7364d23891af07138">  179</a></span>&#160;<span class="keywordtype">long</span> <a class="code" href="fibonacci_8c.html#af99f473187cfddf7364d23891af07138" title="Returns the nth term of the Fiboncci sequence.">iterative_fibonacci</a>(<span class="keywordtype">int</span> n)</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;{</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        assert(n &gt;= 0);</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="keywordflow">if</span> (n == 0)</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                <span class="keywordflow">return</span> 0L;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <span class="keywordflow">if</span> (n == 1)</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                <span class="keywordflow">return</span> 1L;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="keywordtype">long</span> previous_term = 1L;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordtype">long</span> current_term = 1L;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 2; i != n; i++) {</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                current_term += previous_term;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                previous_term = current_term - previous_term;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        }</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="keywordflow">return</span> current_term;</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;}</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">// ### Procedimento !!!!!!!</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;  </div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">// #### Documentação</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">// !!!!!!!!</span></div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment"></span><span class="comment">// #### Definição</span></div>
-<div class="line"><a name="l00212"></a><span class="lineno"><a class="code" href="fibonacci_8c.html#a72151cfd376a83712ac4d74aa2955a97">  212</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="fibonacci_8c.html#a72151cfd376a83712ac4d74aa2955a97" title="!!!!!!!!!!!! (includes month 0)">experiment_efficiency_of</a>(<span class="keywordtype">char</span> title[], <span class="keywordtype">long</span> fibonacci(<span class="keywordtype">int</span>),</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                        <span class="keywordtype">int</span> last_term)</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;{</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        printf(<span class="stringliteral">&quot;%s\n&quot;</span>, title);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        <span class="keywordtype">double</span> previous_time = 0.0;</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> n = 0; n != last_term + 1; n++) {</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;                clock_t start = clock();</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                <span class="keywordtype">int</span> f = fibonacci(n);</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                clock_t end = clock();</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;                <span class="keywordtype">double</span> time = (double) (end - start) / CLOCKS_PER_SEC;</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                printf(<span class="stringliteral">&quot;f(%d) = %d in %.4fs %g\n&quot;</span>, n, f, time,</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;                        time / previous_time);</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                previous_time = time;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        }</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;}</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">// ### Procedimento !!!!!!!</span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment">// !!!!!!!!</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;{</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> n = 0; n != 11; n++) {</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                printf(<span class="stringliteral">&quot;F(%d) [stupid recursive] = %ld\n&quot;</span>, n, <a class="code" href="fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0" title="Returns the nth term of the Fiboncci sequence.">stupidly_recursive_fibonacci</a>(n));</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                printf(<span class="stringliteral">&quot;F(%d) [iterative] = %ld\n&quot;</span>, n, <a class="code" href="fibonacci_8c.html#af99f473187cfddf7364d23891af07138" title="Returns the nth term of the Fiboncci sequence.">iterative_fibonacci</a>(n));</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        }</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <a class="code" href="fibonacci_8c.html#a72151cfd376a83712ac4d74aa2955a97" title="!!!!!!!!!!!! (includes month 0)">experiment_efficiency_of</a>(<span class="stringliteral">&quot;Stupidly recursive implementation of the fibonacci sequence:&quot;</span>,</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                                <a class="code" href="fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0" title="Returns the nth term of the Fiboncci sequence.">stupidly_recursive_fibonacci</a>, 35);</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <a class="code" href="fibonacci_8c.html#a72151cfd376a83712ac4d74aa2955a97" title="!!!!!!!!!!!! (includes month 0)">experiment_efficiency_of</a>(<span class="stringliteral">&quot;Three variable iterative implementation of the fibonacci sequence:&quot;</span>,</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                                <a class="code" href="fibonacci_8c.html#af99f473187cfddf7364d23891af07138" title="Returns the nth term of the Fiboncci sequence.">iterative_fibonacci</a>, 1000);</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;}</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="comment">// #### Documentação</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="comment">// A documentação da função é feita no formato do</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">// [Doxygen](http://doxygen.org/), como habitualmente.</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment"></span><span class="comment">// #### Definição</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">// Esta implementação segue a estratégia mais comum das soluções recursivas:</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="comment">// decompor o problema em problemas mais simples, resolver esses problemas mais</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="comment">// simples usando exactamente a mesma estratégia, recursivamente, e compor as</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">// soluções dos subproblemas de modo a obter a solução do problema como um todo.</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="comment">// Uma solução recursiva, como esta, precisa de possuir casos de paragem (ou</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">// casos especiais), para os quais a solução é imediata, não sendo necessária</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="comment">// qualquer decomposição adicional. A definição recursiva da sucessão de</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">// Fibonacci aparenta adequar-se bem a esta estratégia:</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">// ![F(n)={0, se n = 0, 1, se n = 1, e F(n-2) + F(n-1), se n &gt; </span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">// 1}](http://bit.ly/13TPIpP)</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno"><a class="code" href="fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0">  185</a></span>&#160;<span class="keywordtype">long</span> <a class="code" href="fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0" title="Returns the nth term of the Fiboncci sequence.">stupidly_recursive_fibonacci</a>(<span class="keywordtype">int</span> n)</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;{</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="comment">// Em primeiro lugar, verificamos as pré-condições e lidamos com as</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="comment">// violações que forem detectadas.</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        assert(n &gt;= 0);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        assert(n &lt;= MAXIMUM_TERM_FITTING_A_LONG);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="comment">// Depois, lidamos com os dois casos especiais da sucessão. Estes casos</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="comment">// servem também para garantir que as invocações recursivas desta função</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <span class="comment">// acabarão sempre por terminar (em tempo finito).</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="keywordflow">if</span> (n == 0)</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                <span class="keywordflow">return</span> 0L;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="keywordflow">if</span> (n == 1)</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                <span class="keywordflow">return</span> 1L;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        <span class="comment">// O caso geral é simplesmente a devolução da soma dos termos anterior</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        <span class="comment">// da sucessão. Para os obter, invocamos a própria função com os dois</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <span class="comment">// valores inteiros anteriores a `n`. O problema desta implenentação é</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="comment">// que se está a reduzir o problema de calcular</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        <span class="comment">// ![F(n)](http://bit.ly/ZCdcqY) aos subproblemas de calcular</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        <span class="comment">// ![F(n-2)](http://bit.ly/14HrTAK) e de calcular</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;        <span class="comment">// ![F(n-1)](http://bit.ly/13V2Vid), _mas estes subproblemas não são</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="comment">// independentes!_</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0" title="Returns the nth term of the Fiboncci sequence.">stupidly_recursive_fibonacci</a>(n - 2)</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                + <a class="code" href="fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0" title="Returns the nth term of the Fiboncci sequence.">stupidly_recursive_fibonacci</a>(n - 1);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;}</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment">// ### Implementação recursiva com _lookup_</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="comment">// #### Documentação</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="comment">// A documentação da função é feita no formato do</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment">// [Doxygen](http://doxygen.org/), como habitualmente.</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment"></span><span class="comment">// #### Definição</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno"><a class="code" href="fibonacci_8c.html#aad4f80cb4d854c4b639188b058303a4d">  237</a></span>&#160;<span class="keywordtype">long</span> <a class="code" href="fibonacci_8c.html#aad4f80cb4d854c4b639188b058303a4d" title="Returns the nth term of the Fiboncci sequence.">recursive_fibonacci</a>(<span class="keywordtype">int</span> n)</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;{</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="comment">// Em primeiro lugar, verificamos as pré-condições e lidamos com as</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="comment">// violações que forem detectadas.</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        assert(n &gt;= 0);</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        assert(n &lt;= MAXIMUM_TERM_FITTING_A_LONG);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <span class="comment">// !!!!!!!!!!!! Inicialização e static. Casos especiais.</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">long</span> F[MAXIMUM_TERM_FITTING_A_LONG + 1] = {0, 1};</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">int</span> number_of_calculated_terms = 2;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        <span class="comment">// Se o termo já constar na memória de termos calculados, limitamo-nos</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        <span class="comment">// a devolvê-lo.</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        <span class="keywordflow">if</span> (n &lt; number_of_calculated_terms)</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                <span class="keywordflow">return</span> F[n];</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        <span class="comment">// O caso geral passa por invocar recursivamente !!!!!!! ordem de cálculo é relevante?!!!!!!!</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        number_of_calculated_terms++;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <span class="keywordflow">return</span> F[n] = <a class="code" href="fibonacci_8c.html#aad4f80cb4d854c4b639188b058303a4d" title="Returns the nth term of the Fiboncci sequence.">recursive_fibonacci</a>(n - 2) + <a class="code" href="fibonacci_8c.html#aad4f80cb4d854c4b639188b058303a4d" title="Returns the nth term of the Fiboncci sequence.">recursive_fibonacci</a>(n - 1);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment">//      number_of_calculated_terms = n + 1;</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;}</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment">// ### Implementação iterativa</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment">// #### Documentação</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="comment">// A documentação da função é feita no formato do</span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment">// [Doxygen](http://doxygen.org/), como habitualmente.</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="comment"></span><span class="comment">// #### Definição</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno"><a class="code" href="fibonacci_8c.html#af99f473187cfddf7364d23891af07138">  284</a></span>&#160;<span class="keywordtype">long</span> <a class="code" href="fibonacci_8c.html#af99f473187cfddf7364d23891af07138" title="Returns the nth term of the Fiboncci sequence.">iterative_fibonacci</a>(<span class="keywordtype">int</span> n)</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;{</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        assert(n &gt;= 0);</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        assert(n &lt;= MAXIMUM_TERM_FITTING_A_LONG);</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        <span class="keywordflow">if</span> (n == 0)</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                <span class="keywordflow">return</span> 0L;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        <span class="keywordflow">if</span> (n == 1)</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                <span class="keywordflow">return</span> 1L;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        <span class="keywordtype">long</span> previous_term = 1L;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;        <span class="keywordtype">long</span> current_term = 1L;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 2; i != n; i++) {</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                current_term += previous_term;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                previous_term = current_term - previous_term;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        }</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        <span class="keywordflow">return</span> current_term;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;}</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="comment">// ### Procedimento !!!!!!!</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="comment">// #### Documentação</span></div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="comment">// !!!!!!!!</span></div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="comment"></span><span class="comment">// #### Definição</span></div>
+<div class="line"><a name="l00318"></a><span class="lineno"><a class="code" href="fibonacci_8c.html#a72151cfd376a83712ac4d74aa2955a97">  318</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="fibonacci_8c.html#a72151cfd376a83712ac4d74aa2955a97" title="!!!!!!!!!!!! (includes month 0)">experiment_efficiency_of</a>(<span class="keywordtype">char</span> title[], <span class="keywordtype">long</span> fibonacci(<span class="keywordtype">int</span>),</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;                        <span class="keywordtype">int</span> last_term)</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;{</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        printf(<span class="stringliteral">&quot;%s\n&quot;</span>, title);</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        <span class="keywordtype">double</span> previous_time = 0.0;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> n = 0; n != last_term + 1; n++) {</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;                clock_t start = clock();</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                <span class="keywordtype">int</span> f = fibonacci(n);</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                clock_t end = clock();</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                <span class="keywordtype">double</span> time = (double) (end - start) / CLOCKS_PER_SEC;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                printf(<span class="stringliteral">&quot;f(%d) = %d in %.4fs %g\n&quot;</span>, n, f, time,</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;                        time / previous_time);</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;                previous_time = time;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;        }</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;}</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="comment">// ### Procedimento !!!!!!!</span></div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="comment">// !!!!!!!!</span></div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;{</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> n = 0; n != 100; n++) {</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;<span class="comment">//              printf(&quot;F(%d) [stupid recursive] = %ld\n&quot;, n, stupidly_recursive_fibonacci(n));</span></div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;                printf(<span class="stringliteral">&quot;F(%d) [recursive] = %ld\n&quot;</span>, n, <a class="code" href="fibonacci_8c.html#aad4f80cb4d854c4b639188b058303a4d" title="Returns the nth term of the Fiboncci sequence.">recursive_fibonacci</a>(n));</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;                printf(<span class="stringliteral">&quot;F(%d) [iterative] = %ld\n&quot;</span>, n, <a class="code" href="fibonacci_8c.html#af99f473187cfddf7364d23891af07138" title="Returns the nth term of the Fiboncci sequence.">iterative_fibonacci</a>(n));</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;        }</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;        <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;        <a class="code" href="fibonacci_8c.html#a72151cfd376a83712ac4d74aa2955a97" title="!!!!!!!!!!!! (includes month 0)">experiment_efficiency_of</a>(<span class="stringliteral">&quot;Stupidly recursive implementation of the fibonacci sequence:&quot;</span>,</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;                                <a class="code" href="fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0" title="Returns the nth term of the Fiboncci sequence.">stupidly_recursive_fibonacci</a>, 35);</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;        <a class="code" href="fibonacci_8c.html#a72151cfd376a83712ac4d74aa2955a97" title="!!!!!!!!!!!! (includes month 0)">experiment_efficiency_of</a>(<span class="stringliteral">&quot;Three variable iterative implementation of the fibonacci sequence:&quot;</span>,</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;                                <a class="code" href="fibonacci_8c.html#af99f473187cfddf7364d23891af07138" title="Returns the nth term of the Fiboncci sequence.">iterative_fibonacci</a>, 1000);</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;        <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_0d0726f1923a95bf995d2bf64c3b8142.html">fibonacci</a></li><li class="navelem"><a class="el" href="fibonacci_8c.html">fibonacci.c</a></li>
-    <li class="footer">Generated on Wed Apr 3 2013 06:52:10 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Wed May 1 2013 23:52:14 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

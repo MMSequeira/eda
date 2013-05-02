@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>tests.c</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+  <script src="http://softwaremaniacs.org/media/soft/highlight/highlight.pack.js"></script>
+  <script>
+    hljs.tabReplace = '        ';
+    hljs.initHighlightingOnLoad();
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="array_utils.h.html">
+                array_utils.h
+              </a>
+            
+              
+              <a class="source" href="print.c.html">
+                print.c
+              </a>
+            
+              
+              <a class="source" href="arrays_and_pointers.c.html">
+                arrays_and_pointers.c
+              </a>
+            
+              
+              <a class="source" href="arrays_basics.c.html">
+                arrays_basics.c
+              </a>
+            
+              
+              <a class="source" href="fibonacci.c.html">
+                fibonacci.c
+              </a>
+            
+              
+              <a class="source" href="hello_world.c.html">
+                hello_world.c
+              </a>
+            
+              
+              <a class="source" href="malloc_stuff.c.html">
+                malloc_stuff.c
+              </a>
+            
+              
+              <a class="source" href="nans_and_other_oddities.c.html">
+                nans_and_other_oddities.c
+              </a>
+            
+              
+              <a class="source" href="rationals_with_structs.c.html">
+                rationals_with_structs.c
+              </a>
+            
+              
+              <a class="source" href="routine_pointers.c.html">
+                routine_pointers.c
+              </a>
+            
+              
+              <a class="source" href="experiments.c.html">
+                experiments.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.c.html">
+                naive_sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.h.html">
+                naive_sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.c.html">
+                sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.h.html">
+                sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="tests.c.html">
+                tests.c
+              </a>
+            
+              
+              <a class="source" href="sizeof_and_arrays.c.html">
+                sizeof_and_arrays.c
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>tests.c</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<span class="preprocessor">#include &lt;check.h&gt;</span>
+
+START_TEST(one_plus_one_equals_two_test)
+{
+	fail_unless(<span class="number">1</span> + <span class="number">1</span> == <span class="number">3</span>, <span class="string">"One plus one should always equal 3."</span>);
+}
+END_TEST
+
+Suite *sequence_of_longs_suite(<span class="keyword">void</span>)
+{
+	Suite *suite = suite_create(<span class="string">"Sequence of longs"</span>);
+	TCase *core_test_case = tcase_create(<span class="string">"Core"</span>);
+	tcase_add_test(core_test_case, one_plus_one_equals_two_test);
+	suite_add_tcase(suite, core_test_case);
+
+	<span class="keyword">return</span> suite;
+}
+
+<span class="keyword">int</span> main_tests(<span class="keyword">void</span>)
+{
+	Suite *suite = sequence_of_longs_suite();
+	SRunner *suite_runner = srunner_create(suite);
+	srunner_run_all(suite_runner, CK_VERBOSE);
+	<span class="keyword">int</span> number_of_failed_tests = srunner_ntests_failed(suite_runner);
+	srunner_free(suite_runner);
+	<span class="keyword">return</span> (number_of_failed_tests == <span class="number">0</span>) ? EXIT_SUCCESS : EXIT_FAILURE;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

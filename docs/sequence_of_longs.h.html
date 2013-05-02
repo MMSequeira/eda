@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>`sequence_of_longs.h`</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+  <script src="http://softwaremaniacs.org/media/soft/highlight/highlight.pack.js"></script>
+  <script>
+    hljs.tabReplace = '        ';
+    hljs.initHighlightingOnLoad();
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="array_utils.h.html">
+                array_utils.h
+              </a>
+            
+              
+              <a class="source" href="print.c.html">
+                print.c
+              </a>
+            
+              
+              <a class="source" href="arrays_and_pointers.c.html">
+                arrays_and_pointers.c
+              </a>
+            
+              
+              <a class="source" href="arrays_basics.c.html">
+                arrays_basics.c
+              </a>
+            
+              
+              <a class="source" href="fibonacci.c.html">
+                fibonacci.c
+              </a>
+            
+              
+              <a class="source" href="hello_world.c.html">
+                hello_world.c
+              </a>
+            
+              
+              <a class="source" href="malloc_stuff.c.html">
+                malloc_stuff.c
+              </a>
+            
+              
+              <a class="source" href="nans_and_other_oddities.c.html">
+                nans_and_other_oddities.c
+              </a>
+            
+              
+              <a class="source" href="rationals_with_structs.c.html">
+                rationals_with_structs.c
+              </a>
+            
+              
+              <a class="source" href="routine_pointers.c.html">
+                routine_pointers.c
+              </a>
+            
+              
+              <a class="source" href="experiments.c.html">
+                experiments.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.c.html">
+                naive_sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.h.html">
+                naive_sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.c.html">
+                sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.h.html">
+                sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="tests.c.html">
+                tests.c
+              </a>
+            
+              
+              <a class="source" href="sizeof_and_arrays.c.html">
+                sizeof_and_arrays.c
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h1">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1><code>sequence_of_longs.h</code></h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2>Interface do módulo físico <code>sequence_of_longs</code></h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Este ficheiro de cabeçalho destina-se a ser utilizado pelo código cliente do
+módulo físico <code>sequence_of_longs</code>. Os ficheiros de cabeçalho ou ficheiros de
+interface contêm apenas a interface de um dado módulo físico. A implementação
+deste módulo encontra-se no ficheiro de implementação
+<a href="sequence_of_longs.c.html"><code>sequence_of_longs.c</code></a>. Este módulo físico contém
+o TAD (Tipo Abstracto de Dados) sucessão de <code>long</code>, com o mesmo nome que o
+módulo físico, i.e., <code>sequence_of_longs</code>. Este ficheiro de cabeçalho faz jus
+ao seu nome, contendo apenas os «cabeçalhos», i.e., as interfaces, dos
+artefactos em causa, nada revelando acerca da sua implementação.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h3>Comentário de documentação do ficheiro de cabeçalho</h3>
+<p>No topo do ficheiro de cabeçalho incluímos um <em>comentário de documentação</em>
+que explica o propósito e o conteúdo deste ficheiro de cabeçalho. Os
+comentários de documentação têm um formato que depende do sistema de
+documentação usado. Aqui utilizamos e recomendamos o <a href="doxygen.org">Doxygen</a>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/**
+ * \file sequence_of_longs.h
+ * \brief Header file for the `sequence_of_longs` module, containing the ADT
+ * (Abstract Data Type) with the same name: `sequence_of_longs`.
+ *
+ * This header file declares the basic structure used to store the sequences
+ * of longs and all the routines used to manipulate these sequences.
+ */</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h3>Protecção contra inclusões múltiplas</h3>
+<p>Todo o código do ficheiro de cabeçalho fica envolto numa instrução
+condicional do pré-processador. Ou seja, esse código só é considerado pelo
+compilador se a macro <code>ISLA_EDA_SEQUENCE_OF_LONGS_H_INCLUDED</code> não estiver
+definida. Se isso acontecer, a macro em causa será definida, de modo a que
+futuras inclusões (duplicadas) não levem a considerar o código do ficheiro de
+cabeçalho uma segunda vez.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#ifndef ISLA_EDA_SEQUENCE_OF_LONGS_H_INCLUDED</span>
+<span class="preprocessor">#define ISLA_EDA_SEQUENCE_OF_LONGS_H_INCLUDED</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h3>Comentário de documentação da <code>struct</code> <code>sequence_of_long</code></h3>
+<p>Este comentário de documentação serve para gerar documentação estruturada
+sobre esta estrutura, como aliás acontece nos restantes casos em que este
+tipo de comentário é usado.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \struct sequence_of_longs
+ * \brief C structure used to represent the sequence of `long`s and to
+ * store its terms.
+ *
+ * This TAD guarantees constant time additions of new terms, but at the cost of
+ * allocating more memory than strictly necessary. The memory allocated may
+ * approach the double of the minimum strictly necessary memory.
+ */</span>
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h3>Declaração da <code>struct</code> que representa as sucessões de <code>long</code></h3>
+<p>Note que não é uma definição da estrutura, mas sim uma sua mera declaração.
+Sem acesso à definição da estrutura, o código cliente deste módulo físico não
+pode declarar directamente variáveis do tipo <code>struct sequence_of_longs</code>
+(e.g., na pilha), nem tão pouco pode reservar directamente variáveis
+dinâmicas desse tipo (no monte), usando <code>malloc()</code> e recorrendo ao operador
+<code>sizeof</code>: sem acesso à definição da estrutura, o compilador não pode
+adivinhar quanto espaço deve reservar para estas variáveis, seja na pilha
+(<em>stack</em>), seja no monte (<em>heap</em>).</p>
+<p>A definição da estrutura neste local, em vez da declaração existente,
+eliminaria estas restrições. No entanto, levaria a uma pior separação entre
+interface e implementação, pois alterações na forma de representação do TAD
+levariam quase inevitavelmente a alterações na definição da estrutura e, por
+isso, a alterações neste ficheiro de interface e, consequentemente, à
+necessidade de recompilar todo o código cliente deste módulo físico, ou seja,
+todo o código que inclui este ficheiro de interface.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">struct</span> sequence_of_longs;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h3>Construtor do TAD</h3>
+<p>Tendo acesso apenas à declaração da estrutura <code>struct sequence_of_longs</code>, o
+código cliente não pode criar directamente variáveis desse tipo, nem na
+pilha, nem no monte. O máximo que pode fazer é declarar e manipular
+indirectamente variáveis dinâmicas desse tipo que sejam criadas
+indirectamente através de rotinas associadas ao TAD em causa. Esta função tem
+justamente como objectivo permitir ao código cliente obter um ponteiro para
+uma nova variável dinâmica do tipo <code>struct sequence_of_longs</code> devidamente
+inicializada e pronta a ser usada por meio das restantes rotinas fornecidas
+neste módulo e declaradas neste ficheiro.</p>
+<p>Note-se que o nome desta função, como de resto o nome de todas as restantes
+rotinas da interface do TAD, tem o prefixo <code>SEQL_</code>. A utilização destes
+prefixos é convencional e tem como objectivo reduzir a probabilidade de
+ocorrência de conflitos entre nomes de rotinas diferentes módulos físicos,
+possivelmente em diferentes bibliotecas.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief Returns a pointer to a newly created and initialized
+ * `sequence_of_longs`.
+ *
+ * \return A pointer to a newly (heap) allocated and initialized
+ * `struct sequence_of_longs`. 
+ * \post The returned pointer refers to a new `struct sequence_of_longs`
+ * representing an empty (i.e., length 0) sequence of `long`s.
+ *
+ * This function is a constructor of the sequence of `long`s ADT.
+ */</span>
+<span class="keyword">struct</span> sequence_of_longs *SEQL_new(<span class="keyword">void</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h3>Operações do TAD</h3>
+<p>Seguem-se as declarações de todas as operações do TAD, representadas aqui por
+rotinas, i.e., funções e procedimentos, do C. Note-se que todas estas rotinas
+recebem um <em>ponteiro</em> para uma <code>struct sequence_of_long</code> como argumento. Isto
+adequa-se à ideia de que o código cliente pode apenas recorrer a variáveis
+dinâmicas para usar este TAD. A colocação desse ponteiro como primeiro
+argumento das rotinas é uma convenção do C (ver, por exemplo, <code>fprintf()</code>)
+que tem a vantagem de permitir um mapeamento mental mais fácil para o que
+ocorreria se o TAD fosse implementado usando uma linguagem orientada por
+objectos, em que esse ponteiro seria passado implicitamente e estaria
+acessível através de um nome convencional, como <code>this</code> ou <code>self</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief Prints the sequence of longs in the format `{term_1, ... term_n}`.
+ *
+ * \param sl A pointer to the sequence of `long`s to print.
+ * \pre `sl` ≠ null
+ */</span>
+<span class="keyword">void</span> SEQL_print(<span class="keyword">struct</span> sequence_of_longs *sl);
+
+<span class="comment">/** \brief Prints the sequence of longs in the format `{term_1, ... term_n}` and
+ * ends the line with `\n`.
+ *
+ * \param sl A pointer to the sequence of `long`s to print.
+ * \pre `sl` ≠ null
+ */</span>
+<span class="keyword">void</span> SEQL_println(<span class="keyword">struct</span> sequence_of_longs *sl);
+
+<span class="comment">/** \brief Returns the number of terms so far in a given sequence of `long`s.
+ *
+ * \param sl A pointer to the sequence of `long`s whose length will be returned.
+ * \return The number of terms in the sequence so far.
+ * \pre `sl` ≠ null
+ */</span>
+<span class="keyword">int</span> SEQL_length(<span class="keyword">struct</span> sequence_of_longs *sl);
+
+<span class="comment">/** \brief Adds a given value as a further term of the given sequence of
+ * `long`s.
+ *
+ * \param sl A pointer to the sequence of `long`s to which the new term will be
+ * added.
+ * \param new_term The new term to add to the sequence.
+ * \post The sequence contains the same terms it contained before, in the same
+ * order, plus the new term in its last position.
+ * \pre `sl` ≠ null
+ *
+ * The time required to add the new term depends on the non-observable state of
+ * the sequence. If this time is amortized over the series of additions prior to
+ * addition being performed, then this time is constant with regards to the
+ * length of the sequence.
+ */</span>
+<span class="keyword">void</span> SEQL_add(<span class="keyword">struct</span> sequence_of_longs *sl, <span class="keyword">long</span> new_term);
+
+<span class="comment">/** \brief Returns the term of the given sequence at the given position or
+ * index. 
+ *
+ * \param sl A pointer to the sequence of `long`s whose length will be returned.
+ * \param index The index or position of the term of the sequence to return.
+ * \return The term of the sequence given in the position or index given.
+ * \pre `sl` ≠ null
+ * \pre 0 ≤ `index` &lt; `SEQL_length(sl)`
+ */</span>
+<span class="keyword">long</span> SEQL_term(<span class="keyword">struct</span> sequence_of_longs *sl, <span class="keyword">int</span> index);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <h3>Fim do ficheiro</h3>
+<p>Final da instrução condicional do pré-processador.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#endif // ISLA_EDA_SEQUENCE_OF_LONGS_H_INCLUDED</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h3>Considerações finais</h3>
+<p>O que falta aqui? Bem, falta pelo menos um procedimento para libertação
+disciplinada da memória associada a uma sucessão de <code>long</code>s. Isto porque a
+utilização de <code>free()</code> pelo código cliente levará inevitavelmente a uma fuga
+de memória, nomeadamente a memória em que os termos da sucessão são
+armazenados.</p>
+<p>Falta também equipar a implementação de todas as rotinas com a correspondente
+verificação das pré-condições e com critérios para lidarem com as respectivas
+violações.</p>
+<p>Finalmente, falta lidar de forma airosa com possível falhas durante a reserva
+de memória.</p>
+
+            </div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

@@ -24,47 +24,87 @@
           <div id="jump_page">
             
               
-              <a class="source" href="array_utils.html">
+              <a class="source" href="array_utils.h.html">
                 array_utils.h
               </a>
             
               
-              <a class="source" href="print.html">
+              <a class="source" href="print.c.html">
                 print.c
               </a>
             
               
-              <a class="source" href="arrays_and_pointers.html">
+              <a class="source" href="arrays_and_pointers.c.html">
                 arrays_and_pointers.c
               </a>
             
               
-              <a class="source" href="arrays_basics.html">
+              <a class="source" href="arrays_basics.c.html">
                 arrays_basics.c
               </a>
             
               
-              <a class="source" href="fibonacci.html">
+              <a class="source" href="fibonacci.c.html">
                 fibonacci.c
               </a>
             
               
-              <a class="source" href="hello_world.html">
+              <a class="source" href="hello_world.c.html">
                 hello_world.c
               </a>
             
               
-              <a class="source" href="nans_and_other_oddities.html">
+              <a class="source" href="malloc_stuff.c.html">
+                malloc_stuff.c
+              </a>
+            
+              
+              <a class="source" href="nans_and_other_oddities.c.html">
                 nans_and_other_oddities.c
               </a>
             
               
-              <a class="source" href="routine_pointers.html">
+              <a class="source" href="rationals_with_structs.c.html">
+                rationals_with_structs.c
+              </a>
+            
+              
+              <a class="source" href="routine_pointers.c.html">
                 routine_pointers.c
               </a>
             
               
-              <a class="source" href="sizeof_and_arrays.html">
+              <a class="source" href="experiments.c.html">
+                experiments.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.c.html">
+                naive_sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.h.html">
+                naive_sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.c.html">
+                sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.h.html">
+                sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="tests.c.html">
+                tests.c
+              </a>
+            
+              
+              <a class="source" href="sizeof_and_arrays.c.html">
                 sizeof_and_arrays.c
               </a>
             
@@ -102,13 +142,13 @@
  * \file fibonacci.c
  * \brief Illustrates possible implementations of the calculation of terms of
  * the Fibonacci sequence.
- * 
+ *
  * Iterative and recursive implementations of the calculation of terms of
  * the Fibonacci sequence. These implementations are used to illustrate
  * iteration vs. recursion, and also to show how a naïve implementation of
  * recursion may lead to serious problems.
  */</span>
- 
+
 </pre></div></div>
             
         </li>
@@ -174,16 +214,13 @@ casais existente no mês anterior com o número de casais recém-nascidos, que
 igual ao número total de casais existentes dois meses antes.</p>
 </li>
 </ul>
-<p>Sendo <img src="http://latex.codecogs.com/gif.latex?%5Cinline%20F_n" alt="F(n)"> o número
-de casais de coelhos no mês
-<img src="http://latex.codecogs.com/gif.latex?%5Cinline%20n" alt="n">, então, desde que
-<img src="http://latex.codecogs.com/gif.latex?%5Cinline%20n%3E2" alt="n&gt;2">, <img src="http://latex.codecogs.com/gif.latex?%5Cinline%20F_n%3DF_%7Bn-2%7D&plus;F_%7Bn-1%7D" alt="F(n)=F(n-2)+
-F(n-1)">. Quando
-<img src="http://latex.codecogs.com/gif.latex?%5Cinline%20n%3D1" alt="n=1"> ou
-<img src="http://latex.codecogs.com/gif.latex?%5Cinline%20n%3D2" alt="n=2">,
-<img src="http://latex.codecogs.com/gif.latex?%5Cinline%20F_n%3D1" alt="F(n)=1">. Ou seja,
-esta sucessão pode ser descrita de forma <em>recursiva</em>, ou seja, definindo os
-termos da sucessão em função de outros termos da mesma sucessão.</p>
+<p>Sendo <img src="http://bit.ly/ZCdcqY" alt="F(n)"> o número de casais de coelhos no mês
+<img src="http://bit.ly/Z4ELdk" alt="n">, então, desde que <img src="http://bit.ly/10vWeOB" alt="n&gt;2">,
+<img src="http://bit.ly/10zLPR3" alt="F(n)=F(n-2)+F(n-1)">. Quando
+<img src="http://bit.ly/14HsgeM" alt="n=1"> ou <img src="http://bit.ly/YVICg2" alt="n=2">,
+<img src="http://bit.ly/13V3GYG" alt="F(n)=1">. Ou seja, esta sucessão pode ser descrita de
+forma <em>recursiva</em>, ou seja, definindo os termos da sucessão em função de
+outros termos da mesma sucessão.</p>
 <p>O que pretendemos aqui é implementar uma função que receba o mês como
 argumento e devolva o número de casais existentes nesse mês. Como não
 fornecemos apenas uma implementação, mas várias, com diferentes eficiências,
@@ -196,17 +233,17 @@ ferramentas para utilização futura ou para disponibilização a terceiros, usa
 sufixos que fossem reveladores da eficiência da função, e não da sua
 implementação.</p>
 <p>Antes, porém, de passar às implementações, é preciso dizer que o presente
-oferecido ao Sr. Fibonacci está realmente envenenado. Com efeito, a sequência
+oferecido ao Sr. Fibonacci está realmente envenenado. Com efeito, a sucessão
 de Fibonacci cresce de forma extremamente rápida. Assim, no mês 120, ou seja,
 dez anos depois da oferta do casal original, o número de casais a alimentar é
 exactamente 5&thinsp;358&thinsp;359&thinsp;254&thinsp;990&thinsp;966&thinsp;640&thinsp;871&thinsp;840.
 Este valor é demasiado grande para os <code>int</code> nas nossas máquinas habituais,
 que têm 32 <em>bits</em>, ou mesmo para os <em>long</em>, com 64 <em>bits</em> nessas mesmas
 máquinas. Por outro lado, a precisão limitada dos tipos de virgula flutuante
-pode pôr problemas complicados ao cálculo dos termos da sequência (já
+pode pôr problemas complicados ao cálculo dos termos da sucessão (já
 tínhamos dito que dos tipos de vírgula flutuante se foge como diabo da
 cruz?). O código abaixo recorre ao tipo <code>long</code>, numa tentativa de evitar que
-se atinjam muito cedo os limites dos inteiros. É uma ná solução, no entanto.
+se atinjam muito cedo os limites dos inteiros. É uma má solução, no entanto.
 Uma boa solução passaria pela utilização de um tipo capaz de representar
 números inteiros de dimensão arbitrária (desde que haja memória para o
 guardar, bem entendido). A implementação de um tal tipo é um excelente
@@ -221,8 +258,52 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
         <li id="section-5">
             <div class="annotation">
               
-              <div class="pilwrap for-h3">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Como se referiu, usamos <code>long</code> como tipo de devolução das funções de cálculo
+dos termos da sucessão de Fibonacci. Será que isso adianta muito, em relação
+à utilização de <em>int</em>? Fazendo algumas experiências, é fácil verificar que,
+em máquinas em que os <code>int</code> têm 32 <em>bits</em>, ou seja, em máquinas em que o
+maior valor representável num <code>int</code> é 2&thinsp;147&thinsp;483&thinsp;647, o
+maior termo da sucessão de Fibonacci representável num <code>int</code> é o termo 46, ou
+seja, <img src="http://bit.ly/XgffV7" alt="F(46)">, cujo valor é
+1&thinsp;836&thinsp;311&thinsp;903. Isto é, usando <code>int</code> só conseguimos obter
+valores correctos para os primeiros 47 termos da sucessão. Usando <code>long</code>, é
+fácil verificar que, em máquinas em que os <code>long</code> têm 64 <em>bits</em>, ou seja, em
+máquinas em que o maior valor representável num <code>long</code> é
+9&thinsp;223&thinsp;372&thinsp;036&thinsp;854&thinsp;775&thinsp;807, o maior
+termo da sucessão de Fibonacci representável num <code>long</code> é o termo 92, ou
+seja, <img src="http://bit.ly/12kthcr" alt="F(92)">, cujo valor é
+7&thinsp;540&thinsp;113&thinsp;804&thinsp;746&thinsp;346&thinsp;429. Isto é,
+usando <code>long</code> só conseguimos obter valores correctos para os primeiros 93
+termos da sucessão. Melhor que os 47 se se usasse <code>int</code>, mas ainda assim um
+valor bem pequeno.</p>
+<p>O maior termo calculável usando <code>long</code>, 92, deve ser usado nas pré-condições
+das funções abaixo. Usar o valor literal nesse código é muito má ideia, pois
+torna mais difícil a compreensão do código. Afinal, haverá que perceba
+imediatamente o significado desse valor? Para resolver o problema definimos
+uma constante para guardar esse valor. Uma vez que esta constante será usada
+para dimensionar <em>arrays</em> que pretendemos inicializar usando as usuais listas
+de inicializadores do C, não podemos usar a forma mais óbvia de definir
+constantes em C, i.e., não podemos usar</p>
+<pre><code class="lang-C">const int maximum_term_fitting_a_long = 92;</code></pre>
+<p>tendo, pelo contrário de usar uma macro do pré-processador.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#define MAXIMUM_TERM_FITTING_A_LONG 92</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <h3>Inclusão de ficheiros de cabeçalho</h3>
 <p>Incluímos os seguintes ficheiros de cabeçalho:</p>
@@ -250,26 +331,14 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
         </li>
         
         
-        <li id="section-6">
-            <div class="annotation">
-              
-              <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-6">&#182;</a>
-              </div>
-              <h3>Implementação recursiva «estúpida»</h3>
-
-            </div>
-            
-        </li>
-        
-        
         <li id="section-7">
             <div class="annotation">
               
-              <div class="pilwrap for-h4">
+              <div class="pilwrap for-h3">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <h4>Documentação</h4>
+              <h3>Implementação recursiva «estúpida»</h3>
+<h4>Documentação</h4>
 <p>A documentação da função é feita no formato do
 <a href="http://doxygen.org/">Doxygen</a>, como habitualmente.</p>
 
@@ -288,8 +357,8 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
  * the sequence is defined by
  * \f[
  * F_n = \left\{\begin{array}{ll}
- *     0                 &amp; \text{if } n=0, \\ 
- *     1                 &amp; \text{if } n=1\text{, and} \\ 
+ *     0                 &amp; \text{if } n=0, \\
+ *     1                 &amp; \text{if } n=1\text{, and} \\
  *     F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1.
  *   \end{array}\right.
  * \f]
@@ -306,22 +375,21 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <h4>Definição</h4>
+<p>Esta implementação segue a estratégia mais comum das soluções recursivas:
+decompor o problema em problemas mais simples, resolver esses problemas mais
+simples usando exactamente a mesma estratégia, recursivamente, e compor as
+soluções dos subproblemas de modo a obter a solução do problema como um todo.
+Uma solução recursiva, como esta, precisa de possuir casos de paragem (ou
+casos especiais), para os quais a solução é imediata, não sendo necessária
+qualquer decomposição adicional. A definição recursiva da sucessão de
+Fibonacci aparenta adequar-se bem a esta estratégia:</p>
+<p><img src="http://bit.ly/13TPIpP" alt="F(n)={0, se n = 0, 1, se n = 1, e F(n-2) + F(n-1), se n &gt; 
+1}"></p>
 
             </div>
             
             <div class="content"><div class="highlight"><pre><span class="keyword">long</span> stupidly_recursive_fibonacci(<span class="keyword">int</span> n)
 {
-	assert(n &gt;= <span class="number">0</span>);
-
-	<span class="keyword">if</span> (n == <span class="number">0</span>)
-		<span class="keyword">return</span> <span class="number">0L</span>;
-	<span class="keyword">if</span> (n == <span class="number">1</span>)
-		<span class="keyword">return</span> <span class="number">1L</span>;
-
-	<span class="keyword">return</span> stupidly_recursive_fibonacci(n - <span class="number">2</span>)
-		+ stupidly_recursive_fibonacci(n - <span class="number">1</span>);
-}
-
 </pre></div></div>
             
         </li>
@@ -330,12 +398,18 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
         <li id="section-9">
             <div class="annotation">
               
-              <div class="pilwrap for-h3">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <h3>Implementação iterativa</h3>
+              <p>Em primeiro lugar, verificamos as pré-condições e lidamos com as
+violações que forem detectadas.</p>
 
             </div>
+            
+            <div class="content"><div class="highlight"><pre>	assert(n &gt;= <span class="number">0</span>);
+	assert(n &lt;= MAXIMUM_TERM_FITTING_A_LONG);
+
+</pre></div></div>
             
         </li>
         
@@ -343,10 +417,59 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
         <li id="section-10">
             <div class="annotation">
               
-              <div class="pilwrap for-h4">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <h4>Documentação</h4>
+              <p>Depois, lidamos com os dois casos especiais da sucessão. Estes casos
+servem também para garantir que as invocações recursivas desta função
+acabarão sempre por terminar (em tempo finito).</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (n == <span class="number">0</span>)
+		<span class="keyword">return</span> <span class="number">0L</span>;
+	<span class="keyword">if</span> (n == <span class="number">1</span>)
+		<span class="keyword">return</span> <span class="number">1L</span>;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>O caso geral é simplesmente a devolução da soma dos termos anterior
+da sucessão. Para os obter, invocamos a própria função com os dois
+valores inteiros anteriores a <code>n</code>. O problema desta implenentação é
+que se está a reduzir o problema de calcular
+<img src="http://bit.ly/ZCdcqY" alt="F(n)"> aos subproblemas de calcular
+<img src="http://bit.ly/14HrTAK" alt="F(n-2)"> e de calcular
+<img src="http://bit.ly/13V2Vid" alt="F(n-1)">, <em>mas estes subproblemas não são
+independentes!</em></p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">return</span> stupidly_recursive_fibonacci(n - <span class="number">2</span>)
+		+ stupidly_recursive_fibonacci(n - <span class="number">1</span>);
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <h3>Implementação recursiva com <em>lookup</em></h3>
+<h4>Documentação</h4>
 <p>A documentação da função é feita no formato do
 <a href="http://doxygen.org/">Doxygen</a>, como habitualmente.</p>
 
@@ -356,7 +479,7 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
  *
  * \param n The number of the term to return (first valid value is 0).
  * \return The value of the `n`th term of the Fibonacci sequence. The time taken
- * by the function grows linearly with `n`. 
+ * by the function grows !!!!!!!!!!!!!!!!!!!! with `n`.
  * \pre `n` ≥ 0
  * \post result = \f$F_{\mathtt{n}}\f$
  *
@@ -365,8 +488,8 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
  * the sequence is defined by
  * \f[
  * F_n = \left\{\begin{array}{ll}
- *     0                 &amp; \text{if } n=0, \\ 
- *     1                 &amp; \text{if } n=1\text{, and} \\ 
+ *     0                 &amp; \text{if } n=0, \\
+ *     1                 &amp; \text{if } n=1\text{, and} \\
  *     F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1.
  *   \end{array}\right.
  * \f]
@@ -376,11 +499,155 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
         </li>
         
         
-        <li id="section-11">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap for-h4">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <h4>Definição</h4>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">long</span> recursive_fibonacci(<span class="keyword">int</span> n)
+{
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Em primeiro lugar, verificamos as pré-condições e lidamos com as
+violações que forem detectadas.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	assert(n &gt;= <span class="number">0</span>);
+	assert(n &lt;= MAXIMUM_TERM_FITTING_A_LONG);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>!!!!!!!!!!!! Inicialização e static. Casos especiais.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">static</span> <span class="keyword">long</span> F[MAXIMUM_TERM_FITTING_A_LONG + <span class="number">1</span>] = {<span class="number">0</span>, <span class="number">1</span>};
+	<span class="keyword">static</span> <span class="keyword">int</span> number_of_calculated_terms = <span class="number">2</span>;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Se o termo já constar na memória de termos calculados, limitamo-nos
+a devolvê-lo.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (n &lt; number_of_calculated_terms)
+		<span class="keyword">return</span> F[n];
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>O caso geral passa por invocar recursivamente !!!!!!! ordem de cálculo é relevante?!!!!!!!</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	number_of_calculated_terms++;
+	<span class="keyword">return</span> F[n] = recursive_fibonacci(n - <span class="number">2</span>) + recursive_fibonacci(n - <span class="number">1</span>);
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>number_of_calculated_terms = n + 1;</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <h3>Implementação iterativa</h3>
+<h4>Documentação</h4>
+<p>A documentação da função é feita no formato do
+<a href="http://doxygen.org/">Doxygen</a>, como habitualmente.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief Returns the `n`th term of the Fiboncci sequence.
+ *
+ * \param n The number of the term to return (first valid value is 0).
+ * \return The value of the `n`th term of the Fibonacci sequence. The time taken
+ * by the function grows linearly with `n`.
+ * \pre `n` ≥ 0
+ * \post result = \f$F_{\mathtt{n}}\f$
+ *
+ * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
+ * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
+ * the sequence is defined by
+ * \f[
+ * F_n = \left\{\begin{array}{ll}
+ *     0                 &amp; \text{if } n=0, \\
+ *     1                 &amp; \text{if } n=1\text{, and} \\
+ *     F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1.
+ *   \end{array}\right.
+ * \f]
+ */</span>
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <h4>Definição</h4>
 
@@ -389,6 +656,7 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
             <div class="content"><div class="highlight"><pre><span class="keyword">long</span> iterative_fibonacci(<span class="keyword">int</span> n)
 {
 	assert(n &gt;= <span class="number">0</span>);
+	assert(n &lt;= MAXIMUM_TERM_FITTING_A_LONG);
 
 	<span class="keyword">if</span> (n == <span class="number">0</span>)
 		<span class="keyword">return</span> <span class="number">0L</span>;
@@ -410,26 +678,14 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
         </li>
         
         
-        <li id="section-12">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <h3>Procedimento !!!!!!!</h3>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-13">
-            <div class="annotation">
-              
-              <div class="pilwrap for-h4">
-                <a class="pilcrow" href="#section-13">&#182;</a>
-              </div>
-              <h4>Documentação</h4>
+<h4>Documentação</h4>
 <p>!!!!!!!!</p>
 
             </div>
@@ -448,11 +704,11 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
         </li>
         
         
-        <li id="section-14">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap for-h4">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <h4>Definição</h4>
 
@@ -479,11 +735,11 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
         </li>
         
         
-        <li id="section-15">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <h3>Procedimento !!!!!!!</h3>
 <p>!!!!!!!!</p>
@@ -492,8 +748,23 @@ exercício de algoritmos e estruturas de dados, mas não o resolveremos aqui.</p
             
             <div class="content"><div class="highlight"><pre><span class="keyword">int</span> main(<span class="keyword">void</span>)
 {
-	<span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n != <span class="number">11</span>; n++) {
-		printf(<span class="string">"F(%d) [stupid recursive] = %ld\n"</span>, n, stupidly_recursive_fibonacci(n));
+	<span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n != <span class="number">100</span>; n++) {
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <pre><code>printf(&quot;F(%d) [stupid recursive] = %ld\n&quot;, n, stupidly_recursive_fibonacci(n));</code></pre>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		printf(<span class="string">"F(%d) [recursive] = %ld\n"</span>, n, recursive_fibonacci(n));
 		printf(<span class="string">"F(%d) [iterative] = %ld\n"</span>, n, iterative_fibonacci(n));
 	}
 

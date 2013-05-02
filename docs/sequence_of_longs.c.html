@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>`sequence_of_longs.c`</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+  <script src="http://softwaremaniacs.org/media/soft/highlight/highlight.pack.js"></script>
+  <script>
+    hljs.tabReplace = '        ';
+    hljs.initHighlightingOnLoad();
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="array_utils.h.html">
+                array_utils.h
+              </a>
+            
+              
+              <a class="source" href="print.c.html">
+                print.c
+              </a>
+            
+              
+              <a class="source" href="arrays_and_pointers.c.html">
+                arrays_and_pointers.c
+              </a>
+            
+              
+              <a class="source" href="arrays_basics.c.html">
+                arrays_basics.c
+              </a>
+            
+              
+              <a class="source" href="fibonacci.c.html">
+                fibonacci.c
+              </a>
+            
+              
+              <a class="source" href="hello_world.c.html">
+                hello_world.c
+              </a>
+            
+              
+              <a class="source" href="malloc_stuff.c.html">
+                malloc_stuff.c
+              </a>
+            
+              
+              <a class="source" href="nans_and_other_oddities.c.html">
+                nans_and_other_oddities.c
+              </a>
+            
+              
+              <a class="source" href="rationals_with_structs.c.html">
+                rationals_with_structs.c
+              </a>
+            
+              
+              <a class="source" href="routine_pointers.c.html">
+                routine_pointers.c
+              </a>
+            
+              
+              <a class="source" href="experiments.c.html">
+                experiments.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.c.html">
+                naive_sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.h.html">
+                naive_sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.c.html">
+                sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.h.html">
+                sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="tests.c.html">
+                tests.c
+              </a>
+            
+              
+              <a class="source" href="sizeof_and_arrays.c.html">
+                sizeof_and_arrays.c
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h1">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1><code>sequence_of_longs.c</code></h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2>Implementação do módulo físico <code>sequence_of_longs</code></h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Este ficheiro de implementação contém a implementação do módulo físico
+<code>sequence_of_longs</code>. A interface deste módulo encontra-se no ficheiro de
+cabeçalho ou de interface <a href="sequence_of_longs.h.html"><code>sequence_of_longs.h</code></a>.
+Este módulo físico contém o TAD (Tipo Abstracto de Dados) sucessão de <code>long</code>,
+com o mesmo nome que o módulo físico, i.e., <code>sequence_of_longs</code>. Este
+ficheiro de implementação faz jus ao seu nome, contendo as implementações
+correspondentes aos «cabeçalhos», i.e., às interfaces, que se encontram no
+correspondente ficheiro de cabeçalho.</p>
+<p>Note-se que este ficheiro não possui comentários de documentação (começados
+por <code>/**</code>). Tratando-se de um ficheiro de implementação, nada contém que seja
+relevante na documentação do módulo físico, já que esta está relacionada
+apenas com a sua interface.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h3>Inclusão do cabeçalho correspondente a esta implementação</h3>
+<p>Antes de qualquer outra inclusão, incluímos o ficheiro de cabeçalho
+correspondente a este ficheiro de implementação. Isso ajuda a detectar
+inconsistências entre o ficheiro de implementação e o correspondente ficheiro
+de cabeçalho.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include "sequence_of_longs.h"</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h3>Inclusão de ficheiros de cabeçalho necessários no código de implementação</h3>
+<p>Estas inclusões ser feita apenas <em>após</em> se incluir o ficheiro de cabeçalho
+corresponde ao próprio ficheiro de implementação. Neste caso temos:</p>
+<ul>
+<li><p><code>stdio.h</code> &ndash; Necessário para poder usar os procedimentos <code>printf()</code> e
+<code>putchar()</code>.</p>
+</li>
+<li><p><code>stdlib.h</code> &ndash; Necessário para se poder usar a macro <code>NULL</code> (que será
+usada no futuro) e as rotinas  <code>malloc()</code>, <code>free()</code> e <code>realloc()</code>.</p>
+</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h3>Definição da estrutura <code>struct sequence_of_long</code></h3>
+<p>Esta estrutura contém três campos ou atributos:</p>
+<ul>
+<li><p><code>terms</code> &ndash; Um ponteiro para o <em>array</em> dinâmico que contém os termos da
+sucessão.</p>
+</li>
+<li><p><code>length</code> &ndash; Inteiro guardando o comprimento actual da sucessão, i.e.,
+o seu número de termos. Note que o comprimento da sucessão é sempre
+inferior ou igual ao comprimento do <code>array</code> que guarda os termos, a que
+chamamos «capacidade».</p>
+</li>
+<li><p><code>capacity</code> &ndash; Inteiro guardando o comprimento actual do <code>array</code>
+dinâmico que guarda os <code>length</code> termos actualmente na sucessão.</p>
+</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">struct</span> sequence_of_longs {
+	<span class="keyword">long</span> *terms;
+	<span class="keyword">int</span> length;
+	<span class="keyword">int</span> capacity;
+};
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h3>Implementação dos procedimentos que imprimem as sucessões</h3>
+<p>Note-se que todas as rotinas de manipulação das sucessões, com excepção
+naturalmente do construtor, recebem um ponteiro para a sucessão em causa como
+primeiro argumento. Convencionou-se chamar <code>sl</code> ao correspondente parâmetro
+em todas as definições de rotinas abaixo, com a excepção referida.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">void</span> SEQL_print(<span class="keyword">struct</span> sequence_of_longs *sl)
+{
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>O procedimento <code>putchar()</code> imprime no ecrã o caractere que recebe
+como argumento. Neste caso trata-se da chaveta inicial da
+representação textual da sucessão.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	putchar(<span class="string">'{'</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Depois de impressa a chaveta inicial, imprimimos cada um dos termos
+da sucessão usando um ciclo <code>for</code>. Note que o ciclo imprime apenas os
+termos da sucessão, e não todos os itens do <em>array</em> dinâmico que os
+armazena. Daí que a sua guarda se refira a <code>sl-&gt;length</code>, e não a
+<code>sl-&gt;capacity</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != sl-&gt;length; i++) {
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Os termos são separados uns dos outros por <code>,␣</code> (usamos o
+caractere <code>␣</code> para representar o espaço). Assim, podemos
+preceder cada termo do separador <em>com excepção do primeiro</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		<span class="keyword">if</span> (i != <span class="number">0</span>)
+			printf(<span class="string">", "</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Imprimimos cada termo usando a especificação de conversão
+<code>%ld</code>, e não simplesmente <code>%d</code>, pois os termos da sucessão
+são <code>long</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		printf(<span class="string">"%ld"</span>, sl-&gt;terms[i]);
+	}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Terminamos imprimindo a chaveta de fecho.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	putchar(<span class="string">'}'</span>);
+}
+
+<span class="keyword">void</span> SEQL_println(<span class="keyword">struct</span> sequence_of_longs *sl)
+{
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Neste caso a implementação é fácil. Começa-se por invocar o
+procedimento acima:</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	SEQL_print(sl);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Depois imprime-se o caractere <code>\n</code>, para finalizar a linha:</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	putchar(<span class="string">'\n'</span>);
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <h3>Implementação do construtor do TAD</h3>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">struct</span> sequence_of_longs *SEQL_new(<span class="keyword">void</span>)
+{
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Reservamos primeiro espaço para uma nova <code>struct sequence_of_longs</code>
+usando a rotina <code>malloc()</code>. Obtemos a quantidade de unidades de
+memória a reservar usando o operador <code>sizeof</code>. Guardamos o endereço
+dessa nova variável dinâmica no ponteiro <code>sl</code>, através do qual se
+passará a manipular a nova sucessão de <code>long</code>. No final do construtor
+este ponteiro será devolvido.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">struct</span> sequence_of_longs *sl = malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> sequence_of_longs));
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>De seguida inicializamos os campos ou atributos da rotina com valores
+apropriados para uma sucessão vazia. O comprimento de uma sucessão
+vazia é naturalmente 0. A capacidade do <em>array</em> dinâmico que guarda
+os termos também poderia ser inicialmente 0. No entanto, como se verá
+mais abaixo, a estratégia usada é a de duplicar a capacidade sempre
+que ela está esgotada e se pretende adicionar um termo à sucessão.
+Ora, uma capacidade de 0 estaria esgotada logo na primeira adição de
+um termo e, pior, o dobro de 0 é... 0! É mais sensato, por isso,
+começar com um capacidade maior que zero. Começar com 1 é uma
+possibilidade, embora qualquer outro valor positivo fosse igualmente
+eficaz. Quanto maior for a capacidade inicial, maior a eficiência das
+adições, mas pior a eficiência na utilização da memória. Daí que a
+escolha de uma capacidade inicial unitária não seja totalmente
+desprovida de sentido.</p>
+<p>Ah! E não se esqueça que o compilador traduz <code>sl-&gt;length</code> por
+<code>(*sl).length</code>. Ou seja, o significado de <code>sl-&gt;length</code> é «o campo
+<code>length</code> da estrutura apontada pelo ponteiro <code>sl</code>».</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	sl-&gt;length = <span class="number">0</span>;
+	sl-&gt;capacity = <span class="number">1</span>;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Inicializados os campos que guardam o comprimento da sucessão e a
+capacidade do <em>array</em> dinâmico que guarda os termos da sucessão, há
+que reservar espaço de memória para este <em>array</em> e guardar o endereço
+do seu primeiro item no campo <code>terms</code>. É o que se faz aqui,
+recorrendo à rotina <code>malloc()</code>. Note-se que se reserva espaço
+suficiente para <code>sl-&gt;capacity</code> termos.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	sl-&gt;terms = malloc(sl-&gt;capacity * <span class="keyword">sizeof</span>(<span class="keyword">long</span>));
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Terminada a construção da nova sucessão, há que devolver o seu
+endereço (ou ponteiro), guardado na variável <code>sl</code>. Será através dele
+que o código cliente fará uso da sucessão, passando-o como primeiro
+argumento às rotinas fornecidas por este módulo físico.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">return</span> sl;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <h3>Implementação do <em>inspector</em> do comprimento</h3>
+<p>Dá-se o nome de inspector a uma função que permite obter uma propriedade de
+uma instância de um TAD sem alterar essa instância. (A palavra «instância»
+não tem nada de especial. Uma «instância» é um exemplar ou caso particular de
+um tipo. Por exemplo, o valor <code>5</code> é uma instância do tipo <code>int</code>, em C.)</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">int</span> SEQL_length(<span class="keyword">struct</span> sequence_of_longs *sl)
+{
+	<span class="keyword">return</span> sl-&gt;length;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <h3>Implementação do <em>modificador</em> de adição de um novo termo à sucessão</h3>
+<p>Dá-se o nome de modificador a um procedimento que altera uma instância de um
+TAD. Neste caso o modificador é o procedimento <code>SEQL_add()</code>, que altera a
+sucessão cujo ponteiro é <code>sl</code> adicionando-lhe um novo termo <code>new_term</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">void</span> SEQL_add(<span class="keyword">struct</span> sequence_of_longs *sl, <span class="keyword">long</span> new_term)
+{
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Antes de adicionar o termo há que verificar se o <em>array</em> dinâmico
+onde será guardado tem capacidade suficiente para ele. Se o
+comprimento actual da sucessão for igual à capacidade desse <em>array</em>,
+então a capacidade está esgotada, sendo necessário aumentá-la.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (sl-&gt;length == sl-&gt;capacity)
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Para aumentar a capacidade, duplicamos o valor do campo
+<code>sl-&gt;capacity</code> e usamos a rotina <code>realloc()</code> para reservar um
+novo <em>array</em> dinâmico com essa nova capacidade <em>e incluindo
+todos os termos que já constam na sucessão</em>. É este último
+requisito que nos leva a usar a rotina <code>realloc()</code>, e não a
+rotina <code>malloc()</code>. A rotina <code>realloc()</code>, se precisar de
+reservar nova memória, i.e., se não conseguir simplesmente
+estender o <em>array</em> existente, copiará automaticamente os
+termos da memória original. É por isso que o primeiro
+argumento passado a <code>realloc()</code> é um ponteiro para o <em>array</em>
+original.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		sl-&gt;terms = realloc(sl-&gt;terms,
+				    (sl-&gt;capacity *= <span class="number">2</span>) * <span class="keyword">sizeof</span>(<span class="keyword">long</span>));
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Estas linhas poderiam ser substituídas pelo código abaixo. À parte a
+possibilidade de estender o <em>array</em> original, de que a rotina
+<code>realloc()</code> pode tirar partido, o resultado seria exactamente o
+mesmo. Preferimos, naturalmente, a versão mais curta... Quanto à
+duplicação da capacidade numa instrução à parte, é certamente
+preferível, mas é tão comum (idiomático) encontrar o código
+condensado numa única instrução, que optámos pela versão mais
+críptica.</p>
+<pre><code class="lang-C">if (sl-&gt;length == sl-&gt;capacity) {
+   sl-&gt;capacity *= 2;
+   long *new_array = malloc(sl-&gt;capacity * sizeof(long));
+   for (int i = 0; i != sl-&gt;length; i++)
+       new_array[i] = sl-&gt;terms[i];
+   free(sl-&gt;terms);
+   sl-&gt;terms = new_array;
+}</code></pre>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Finalmente, guardamos o novo termo <code>new_term</code> no local apropriado do
+<em>array</em>, que neste ponto já tem certamente (hmmmm... será?)
+capacidade suficiente, i.e., na posição <code>sl-&gt;length</code>. Depois,
+incrementamos o comprimento da sucessão. Mais uma vez, a condensação
+de duas alterações numa única instrução é uma má prática, mas tão
+generalizada na programação em C que já se tornou idiomática. A
+alternativa, mais clara, seria usar:</p>
+<pre><code class="lang-C">sl-&gt;terms[sl-&gt;length] = new_term;
+sl-&gt;length++;</code></pre>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	sl-&gt;terms[sl-&gt;length++] = new_term;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <h3>Implementação do <em>inspector</em> de termo</h3>
+<p>Este inspector permite obter o termo da sucessão na posição dada por <em>index</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">long</span> SEQL_term(<span class="keyword">struct</span> sequence_of_longs *sl, <span class="keyword">int</span> index)
+{
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Note a utilização da indexação do item <code>index</code> do <em>array</em> dinâmico
+<code>sl-&gt;terms</code>, ao qual se acede usando o operador <code>-&gt;</code> sobre o ponteiro
+<code>sl</code> para a estrutura que representa a sucessão.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">return</span> sl-&gt;terms[index];
+}
+
+
+</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

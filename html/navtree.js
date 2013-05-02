@@ -2,6 +2,10 @@ var NAVTREE =
 [
   [ "Estrutura de Dados e Algoritmos", "index.html", [
     [ "Introduction", "index.html", null ],
+    [ "Data Structures", null, [
+      [ "Data Structures", "annotated.html", "annotated" ],
+      [ "Data Structure Index", "classes.html", null ]
+    ] ],
     [ "Files", null, [
       [ "File List", "files.html", "files" ],
       [ "Globals", "globals.html", [
@@ -14,7 +18,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"array__utils_8h.html"
+"annotated.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

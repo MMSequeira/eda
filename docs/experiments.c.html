@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>experiments.c</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+  <script src="http://softwaremaniacs.org/media/soft/highlight/highlight.pack.js"></script>
+  <script>
+    hljs.tabReplace = '        ';
+    hljs.initHighlightingOnLoad();
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="array_utils.h.html">
+                array_utils.h
+              </a>
+            
+              
+              <a class="source" href="print.c.html">
+                print.c
+              </a>
+            
+              
+              <a class="source" href="arrays_and_pointers.c.html">
+                arrays_and_pointers.c
+              </a>
+            
+              
+              <a class="source" href="arrays_basics.c.html">
+                arrays_basics.c
+              </a>
+            
+              
+              <a class="source" href="fibonacci.c.html">
+                fibonacci.c
+              </a>
+            
+              
+              <a class="source" href="hello_world.c.html">
+                hello_world.c
+              </a>
+            
+              
+              <a class="source" href="malloc_stuff.c.html">
+                malloc_stuff.c
+              </a>
+            
+              
+              <a class="source" href="nans_and_other_oddities.c.html">
+                nans_and_other_oddities.c
+              </a>
+            
+              
+              <a class="source" href="rationals_with_structs.c.html">
+                rationals_with_structs.c
+              </a>
+            
+              
+              <a class="source" href="routine_pointers.c.html">
+                routine_pointers.c
+              </a>
+            
+              
+              <a class="source" href="experiments.c.html">
+                experiments.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.c.html">
+                naive_sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.h.html">
+                naive_sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.c.html">
+                sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.h.html">
+                sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="tests.c.html">
+                tests.c
+              </a>
+            
+              
+              <a class="source" href="sizeof_and_arrays.c.html">
+                sizeof_and_arrays.c
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>experiments.c</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+
+<span class="preprocessor">#include "sequence_of_longs.h"</span>
+<span class="preprocessor">#include "naive_sequence_of_longs.h"</span>
+
+<span class="keyword">int</span> main(<span class="keyword">void</span>)
+{
+	<span class="keyword">struct</span> sequence_of_longs *sequence = SEQL_new();
+
+	<span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0L</span>; i != <span class="number">1000L</span>; i++)
+		SEQL_add(sequence, i);
+
+	printf(<span class="string">"The length is: %d\n"</span>, SEQL_length(sequence));
+
+	printf(<span class="string">"The sequence is: "</span>);
+	SEQL_println(sequence);
+
+	printf(<span class="string">"The items are:"</span>);
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != SEQL_length(sequence); i++)
+		printf(<span class="string">" %ld"</span>, SEQL_term(sequence, i));
+	putchar(<span class="string">'\n'</span>);
+
+	free(sequence);
+
+	<span class="keyword">struct</span> naive_sequence_of_longs *naive_sequence = NSEQL_new();
+
+	<span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0L</span>; i != <span class="number">1000L</span>; i++)
+		NSEQL_add(naive_sequence, i);
+
+	printf(<span class="string">"The length (naive) is: %d\n"</span>, NSEQL_length(naive_sequence));
+
+	printf(<span class="string">"The sequence (naive) is: "</span>);
+	NSEQL_println(naive_sequence);
+
+	printf(<span class="string">"The items (naive) are:"</span>);
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != NSEQL_length(naive_sequence); i++)
+		printf(<span class="string">" %ld"</span>, NSEQL_term(naive_sequence, i));
+	putchar(<span class="string">'\n'</span>);
+
+	free(naive_sequence);
+
+	<span class="keyword">return</span> EXIT_SUCCESS;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
