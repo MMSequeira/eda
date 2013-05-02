@@ -135,7 +135,7 @@ $(document).ready(function(){initNavTree('naive__sequence__of__longs_8c_source.h
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;  </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// ### Inclusão do cabeçalho correspondente a esta implementação</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;naive_sequence_of_longs.h&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="naive__sequence__of__longs_8h.html" title="Header file for the naive_sequence_of_longs module, containing the ADT (Abstract Data Type) with the ...">naive_sequence_of_longs.h</a>&quot;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">// ### Inclusão de ficheiros de cabeçalho necessários no código de implementação</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">//</span></div>
@@ -159,7 +159,7 @@ $(document).ready(function(){initNavTree('naive__sequence__of__longs_8c_source.h
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">// ### Implementação dos procedimentos que imprimem as sucessões</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> NSEQL_print(<span class="keyword">struct</span> <a class="code" href="structnaive__sequence__of__longs.html">naive_sequence_of_longs</a> *sl)</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="naive__sequence__of__longs_8h.html#a0bfb4cd3206f19aeec56d3f34b0adc3e">   43</a></span>&#160;<span class="keywordtype">void</span> NSEQL_print(<span class="keyword">struct</span> <a class="code" href="structnaive__sequence__of__longs.html">naive_sequence_of_longs</a> *sl)</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        putchar(<span class="charliteral">&#39;{&#39;</span>);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != sl-&gt;length; i++) {</div>
@@ -170,7 +170,7 @@ $(document).ready(function(){initNavTree('naive__sequence__of__longs_8c_source.h
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        putchar(<span class="charliteral">&#39;}&#39;</span>);</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> NSEQL_println(<span class="keyword">struct</span> <a class="code" href="structnaive__sequence__of__longs.html">naive_sequence_of_longs</a> *sl)</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="naive__sequence__of__longs_8h.html#af8fcd84a7db6447a8063a9ef6c02744b">   54</a></span>&#160;<span class="keywordtype">void</span> NSEQL_println(<span class="keyword">struct</span> <a class="code" href="structnaive__sequence__of__longs.html">naive_sequence_of_longs</a> *sl)</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;{</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        NSEQL_print(sl);</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        putchar(<span class="charliteral">&#39;\n&#39;</span>);</div>
@@ -178,7 +178,7 @@ $(document).ready(function(){initNavTree('naive__sequence__of__longs_8c_source.h
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">// ### Implementação do construtor do TAD</span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">struct </span><a class="code" href="structnaive__sequence__of__longs.html">naive_sequence_of_longs</a> *NSEQL_new(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="naive__sequence__of__longs_8h.html#a9dbd5b3af09e863e4fd1f5fa719cd869">   62</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structnaive__sequence__of__longs.html">naive_sequence_of_longs</a> *NSEQL_new(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">// Reservamos primeiro espaço para uma nova `struct sequence_of_longs`</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="comment">// usando a rotina `malloc()`. Obtemos a quantidade de unidades de</span></div>
@@ -204,14 +204,14 @@ $(document).ready(function(){initNavTree('naive__sequence__of__longs_8c_source.h
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">// ### Implementação do _inspector_ do comprimento</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">int</span> NSEQL_length(<span class="keyword">struct</span> <a class="code" href="structnaive__sequence__of__longs.html">naive_sequence_of_longs</a> *sl)</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="code" href="naive__sequence__of__longs_8h.html#a529391aa0d901341222a99b4eee9ffb2">   88</a></span>&#160;<span class="keywordtype">int</span> NSEQL_length(<span class="keyword">struct</span> <a class="code" href="structnaive__sequence__of__longs.html">naive_sequence_of_longs</a> *sl)</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">return</span> sl-&gt;length;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;}</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">// ### Implementação do _modificador_ de adição de um novo termo à sucessão</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">void</span> NSEQL_add(<span class="keyword">struct</span> <a class="code" href="structnaive__sequence__of__longs.html">naive_sequence_of_longs</a> *sl, <span class="keywordtype">long</span> new_term)</div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="code" href="naive__sequence__of__longs_8h.html#a2f7724e951dee7e2ada385dfa027399c">   95</a></span>&#160;<span class="keywordtype">void</span> NSEQL_add(<span class="keyword">struct</span> <a class="code" href="structnaive__sequence__of__longs.html">naive_sequence_of_longs</a> *sl, <span class="keywordtype">long</span> new_term)</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;{</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="comment">// Uma vez que o _array_ dinâmico tem sempre a sua capacidade esgotada, adicionar um novo termo à sucessão implica sempre redimensionar esse _array_. Para aumentar a capacidade, usamos a rotina `realloc()` para reservar um</span></div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="comment">// novo _array_ dinâmico com capacidade para mais um termo _e incluindo</span></div>
@@ -234,7 +234,7 @@ $(document).ready(function(){initNavTree('naive__sequence__of__longs_8c_source.h
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">// ### Implementação do _inspector_ de termo</span></div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keywordtype">long</span> NSEQL_term(<span class="keyword">struct</span> <a class="code" href="structnaive__sequence__of__longs.html">naive_sequence_of_longs</a> *sl, <span class="keywordtype">int</span> index)</div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="code" href="naive__sequence__of__longs_8h.html#a235cee94a4330aeee132bd9008e0fa6a">  118</a></span>&#160;<span class="keywordtype">long</span> NSEQL_term(<span class="keyword">struct</span> <a class="code" href="structnaive__sequence__of__longs.html">naive_sequence_of_longs</a> *sl, <span class="keywordtype">int</span> index)</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;{</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keywordflow">return</span> sl-&gt;terms[index];</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
@@ -246,7 +246,7 @@ $(document).ready(function(){initNavTree('naive__sequence__of__longs_8c_source.h
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d1df231a7ad9331b7f8d9d68722a0ef9.html">sequence_of_longs</a></li><li class="navelem"><b>naive_sequence_of_longs.c</b></li>
-    <li class="footer">Generated on Wed May 1 2013 23:52:15 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Thu May 2 2013 02:51:44 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>
