@@ -145,6 +145,14 @@
 #include <time.h>
 #include <assert.h>
 
+// ### Inclusão de ficheiros de cabeçalho próprios
+//
+// Incluímos apenas um ficheiro de cabeçalho «não oficial»:
+//
+// - `sequence_of_longs.h` &ndash; Para declaração do TAD sucessão de `long`
+// usado para guardar em memória dos termos da sucessão já calculados.
+#include "sequence_of_longs.h"
+
 // ### Implementação recursiva «estúpida»
 
 // #### Documentação
@@ -214,7 +222,7 @@ long stupidly_recursive_fibonacci(int n)
 // #### Documentação
 // A documentação da função é feita no formato do
 // [Doxygen](http://doxygen.org/), como habitualmente.
-/** \brief Returns the `n`th term of the Fiboncci sequence.
+/** \brief Returns the `n`th term of the Fibonacci sequence.
  *
  * \param n The number of the term to return (first valid value is 0).
  * \return The value of the `n`th term of the Fibonacci sequence. The time taken
@@ -254,6 +262,62 @@ long recursive_fibonacci(int n)
 	number_of_calculated_terms++;
 	return F[n] = recursive_fibonacci(n - 2) + recursive_fibonacci(n - 1);
 //	number_of_calculated_terms = n + 1;
+}
+
+// ### Implementação recursiva com _lookup_ usando TAD
+
+// #### Documentação
+// A documentação da função é feita no formato do
+// [Doxygen](http://doxygen.org/), como habitualmente.
+/** \brief Returns the `n`th term of the Fibonacci sequence.
+ *
+ * \param n The number of the term to return (first valid value is 0).
+ * \return The value of the `n`th term of the Fibonacci sequence. The time taken
+ * by the function grows !!!!!!!!!!!!!!!!!!!! with `n`.
+ * \pre `n` ≥ 0
+ * \post result = \f$F_{\mathtt{n}}\f$
+ *
+ * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
+ * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
+ * the sequence is defined by
+ * \f[
+ * F_n = \left\{\begin{array}{ll}
+ *     0                 & \text{if } n=0, \\
+ *     1                 & \text{if } n=1\text{, and} \\
+ *     F_{n-2} + F_{n-1} & \text{if } n>1.
+ *   \end{array}\right.
+ * \f]
+ */
+// #### Definição
+long recursive_fibonacci_using_ADT(int n)
+{
+	// Em primeiro lugar, verificamos as pré-condições e lidamos com as
+	// violações que forem detectadas.
+	assert(n >= 0);
+	assert(n <= MAXIMUM_TERM_FITTING_A_LONG);
+
+	// !!!!!!!!!!!! Inicialização e static. Casos especiais.
+	static struct sequence_of_longs *F = NULL;
+
+	if (F == NULL)
+		F = SEQL_new();
+
+	// Se o termo já constar na memória de termos calculados, limitamo-nos
+	// a devolvê-lo.
+	if (n < SEQL_length(F))
+		return SEQL_term(F, n);
+
+	long F_n;
+	if (n == 0)
+		F_n = 0L;
+	else if (n == 1)
+		F_n = 1L;
+	else
+		F_n = recursive_fibonacci_using_ADT(n - 2) + 
+			recursive_fibonacci_using_ADT(n - 1);
+
+	SEQL_add(F, F_n);
+	return F_n;
 }
 
 // ### Implementação iterativa
@@ -336,18 +400,22 @@ void experiment_efficiency_of(char title[], long fibonacci(int),
 // !!!!!!!!
 int main(void)
 {
-	for (int n = 0; n != 100; n++) {
+	for (int n = 0; n != MAXIMUM_TERM_FITTING_A_LONG + 1; n++) {
 //		printf("F(%d) [stupid recursive] = %ld\n", n, stupidly_recursive_fibonacci(n));
-		printf("F(%d) [recursive] = %ld\n", n, recursive_fibonacci(n));
-		printf("F(%d) [iterative] = %ld\n", n, iterative_fibonacci(n));
+		printf("F(%d) [recursive         ] = %ld\n", n, recursive_fibonacci(n));
+		printf("F(%d) [recursive with ADT] = %ld\n", n, recursive_fibonacci_using_ADT(n));
+		printf("F(%d) [iterative         ] = %ld\n", n, iterative_fibonacci(n));
+		putchar('\n');
 	}
-
-	return EXIT_SUCCESS;
 
 	experiment_efficiency_of("Stupidly recursive implementation of the fibonacci sequence:",
 				stupidly_recursive_fibonacci, 35);
+	experiment_efficiency_of("Recursive implementation of the fibonacci sequence:",
+				recursive_fibonacci, 35);
+	experiment_efficiency_of("Recursive implementation of the fibonacci sequence using ADT for storage:",
+				recursive_fibonacci_using_ADT, 35);
 	experiment_efficiency_of("Three variable iterative implementation of the fibonacci sequence:",
-				iterative_fibonacci, 1000);
+				iterative_fibonacci, 35);
 
 	return EXIT_SUCCESS;
 }

@@ -30,13 +30,19 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="../sequence_of_longs" />
 		</Compiler>
+		<Linker>
+			<Add library="sequence_of_longs" />
+			<Add directory="../sequence_of_longs" />
+		</Linker>
 		<Unit filename="fibonacci.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
