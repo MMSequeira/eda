@@ -33,11 +33,11 @@ int main(void)
 	// `m` for um _array_, `m[i]` é exactamente o mesmo que `*(&m[0] +
 	// 1)`.
 	//
-	// O programa abaixo evidencia estas regras pelo absurdo. Por favor, não
+	// O código abaixo evidencia estas regras pelo absurdo. Por favor, não
 	// tire partido das regras enunciadas para escrever código
 	// incompreensível!
 	  
-	// O nome `m` é o nome de uma matriz com três números inteiros: 1, 2 e
+	// O nome `m` é o nome de um _array_ com três números inteiros: 1, 2 e
 	// 3.
 	int m[] = {1, 2, 3};
 
