@@ -28,9 +28,9 @@
 // ### Comentário de documentação do ficheiro de cabeçalho
 //
 /**
- * \file sequence_of_longs.h
- * \brief Header file for the `sequence_of_longs` module, containing the ADT
- * (Abstract Data Type) with the same name: `sequence_of_longs`.
+ * \file naive_sequence_of_longs.h
+ * \brief Header file for the `naive_sequence_of_longs` module, containing the
+ * ADT (Abstract Data Type) with the same name: `naive_sequence_of_longs`.
  *
  * This header file declares the basic structure used to store the sequences
  * of longs and all the routines used to manipulate these sequences.
