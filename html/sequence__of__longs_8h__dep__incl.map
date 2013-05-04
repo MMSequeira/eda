@@ -1,4 +1,5 @@
 <map id="sequence_of_longs/sequence_of_longs.h" name="sequence_of_longs/sequence_of_longs.h">
-<area shape="rect" id="node2" href="$experiments_8c_source.html" title="sequence_of_longs/experiments.c" alt="" coords="4,107,227,135"/>
-<area shape="rect" id="node3" href="$sequence__of__longs_8c_source.html" title="sequence_of_longs/sequence\l_of_longs.c" alt="" coords="251,99,449,143"/>
+<area shape="rect" id="node2" href="$fibonacci_8c.html" title="Illustrates possible implementations of the calculation of terms of the Fibonacci sequence..." alt="" coords="4,107,144,135"/>
+<area shape="rect" id="node3" href="$experiments_8c_source.html" title="sequence_of_longs/experiments.c" alt="" coords="169,107,392,135"/>
+<area shape="rect" id="node4" href="$sequence__of__longs_8c_source.html" title="sequence_of_longs/sequence\l_of_longs.c" alt="" coords="417,99,615,143"/>
 </map>

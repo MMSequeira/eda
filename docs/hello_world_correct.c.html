@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>experiments.c</title>
+  <title>hello_world_correct.c</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -121,7 +121,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>experiments.c</h1>
+                  <h1>hello_world_correct.c</h1>
               </div>
           </li>
         
@@ -138,45 +138,39 @@
             
             <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<span class="preprocessor">#include &lt;stdbool.h&gt;</span>
+<span class="preprocessor">#include &lt;assert.h&gt;</span>
 
-<span class="preprocessor">#include "sequence_of_longs.h"</span>
-<span class="preprocessor">#include "naive_sequence_of_longs.h"</span>
+<span class="keyword">int</span> factorial(<span class="keyword">const</span> <span class="keyword">int</span> n)
+{
+	assert(<span class="number">0</span> &lt;= n &amp;&amp; n &lt;= <span class="number">12</span>);
+
+	<span class="keyword">if</span> (n == <span class="number">0</span>)
+		<span class="keyword">return</span> <span class="number">1</span>;
+	<span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);
+}
 
 <span class="keyword">int</span> main(<span class="keyword">void</span>)
 {
-	<span class="keyword">struct</span> sequence_of_longs *sequence = SEQL_new();
+	printf(<span class="string">"Hello world! Let's calculate the factorial of a number.\n"</span>);
 
-	<span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0L</span>; i != <span class="number">1000L</span>; i++)
-		SEQL_add(sequence, i);
+	<span class="keyword">int</span> number;
+	<span class="keyword">while</span>(<span class="keyword">true</span>) {
+		printf(<span class="string">"Please enter a non-negative integer "</span>
+		       <span class="string">"between 0 and 12: "</span>);
+		<span class="keyword">if</span> (scanf(<span class="string">"%d"</span>, &amp;number) == <span class="number">1</span> &amp;&amp; <span class="number">0</span> &lt;= number &amp;&amp; number &lt;= <span class="number">12</span>)
+			<span class="keyword">break</span>;
+		<span class="keyword">if</span> (feof(stdin) || ferror(stdin)) {
+			fprintf(stderr,
+				<span class="string">"Unrecoverable error reading user response. "</span>
+				<span class="string">"Exiting.\n"</span>);
+			<span class="keyword">return</span> EXIT_FAILURE;
+		}
+		printf(<span class="string">"Invalid response. Try again.\n"</span>);
+		scanf(<span class="string">"%*[^\n]%*1[\n]"</span>);
+	}
 
-	printf(<span class="string">"The length is: %d\n"</span>, SEQL_length(sequence));
-
-	printf(<span class="string">"The sequence is: "</span>);
-	SEQL_println(sequence);
-
-	printf(<span class="string">"The items are:"</span>);
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != SEQL_length(sequence); i++)
-		printf(<span class="string">" %ld"</span>, SEQL_term(sequence, i));
-	putchar(<span class="string">'\n'</span>);
-
-	free(sequence);
-
-	<span class="keyword">struct</span> naive_sequence_of_longs *naive_sequence = NSEQL_new();
-
-	<span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0L</span>; i != <span class="number">1000L</span>; i++)
-		NSEQL_add(naive_sequence, i);
-
-	printf(<span class="string">"The length (naive) is: %d\n"</span>, NSEQL_length(naive_sequence));
-
-	printf(<span class="string">"The sequence (naive) is: "</span>);
-	NSEQL_println(naive_sequence);
-
-	printf(<span class="string">"The items (naive) are:"</span>);
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != NSEQL_length(naive_sequence); i++)
-		printf(<span class="string">" %ld"</span>, NSEQL_term(naive_sequence, i));
-	putchar(<span class="string">'\n'</span>);
-
-	free(naive_sequence);
+	printf(<span class="string">"%d! = %d\n"</span>, number, factorial(number));
 
 	<span class="keyword">return</span> EXIT_SUCCESS;
 }
