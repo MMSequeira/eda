@@ -150,7 +150,7 @@
 // Incluímos apenas um ficheiro de cabeçalho «não oficial»:
 //
 // - `sequence_of_longs.h` &ndash; Para declaração do TAD sucessão de `long`
-// usado para guardar em memória dos termos da sucessão já calculados.
+// usada para guardar em memória dos termos da sucessão já calculados.
 #include "sequence_of_longs.h"
 
 // ### Implementação recursiva «estúpida»
@@ -220,8 +220,6 @@ long stupidly_recursive_fibonacci(int n)
 // ### Implementação recursiva com _lookup_
 
 // #### Documentação
-// A documentação da função é feita no formato do
-// [Doxygen](http://doxygen.org/), como habitualmente.
 /** \brief Returns the `n`th term of the Fibonacci sequence.
  *
  * \param n The number of the term to return (first valid value is 0).
@@ -244,24 +242,103 @@ long stupidly_recursive_fibonacci(int n)
 // #### Definição
 long recursive_fibonacci(int n)
 {
-	// Em primeiro lugar, verificamos as pré-condições e lidamos com as
-	// violações que forem detectadas.
 	assert(n >= 0);
 	assert(n <= MAXIMUM_TERM_FITTING_A_LONG);
 
-	// !!!!!!!!!!!! Inicialização e static. Casos especiais.
+	// Esta implementação evita os cálculos repetidos dos mesmos termos da
+	// sucessão de Fibonacci usando uma memória auxiliar. A ideia é calcular
+	// cada termo da sucessão uma única vez, guardar o seu valor em memória
+	// e, das próximas vezes que o termo for solicitado, usar o valor
+	// guardado em memória. Isto implica, naturalmente, que a memória usada
+	// persista para além do âmbito restrito de uma execução da função. Ou
+	// seja, não podemos de forma nenhuma usar variáveis locais
+	// _automáticas_, pois estas são construídas quando a instrução que as
+	// define é executada, e destruídas quando se atinge o final do bloco
+	// onde a sua definição se encontra. Em vez de partir daqui as variáveis
+	// globais, cujo tempo de vida abarca todo o tempo de execução do
+	// programa, e que são visíveis em todo o programa, preferimos usar
+	// variáveis locais _estáticas_. Estas variáveis definem-se usando o
+	// _qualificador_ `static`, duram desde a execução da instrução que as
+	// define até o final do programa e têm a mesma visibilidade restrita
+	// que qualquer variável local tem. Note-se que a instrução de definição
+	// de qualquer variável local estática é executada uma única vez,
+	// nomeadamente a primeira vez que o fluxo de execução do programa passa
+	// por essa instrução. A partir daí a instrução de definição, com a
+	// respectiva inicialização, é ignorada. Logo, a inicialização de uma
+	// variável local estática _é feita uma única vez_ durante a execução do
+	// programa.
+	//
+	// Uma vez que o número de termos da sucessão de Fibonacci calculáveis
+	// através desta função é limitado, dado que ela devolve valores `long`,
+	// só se podendo calcular o valor dos termos entre 0 e
+	// `MAXIMUM_TERM_FITTING_A_LONG`, podemos reservar espaço para todos os
+	// termos num _array_ `F` de `long`. A utilização de uma macro
+	// `MAXIMUM_TERM_FITTING_A_LONG` na expressão para cálculo do
+	// comprimento do _array_ permite-nos usar inicializadores do C. Dessa
+	// forma, podemos inicializar a memória dos termos da sucessão de
+	// Fibonacci com os dois primeiros termos dessa sucessão, que têm os
+	// valores 0 e 1, respectivamente, correspondentes aos termos com
+	// índices 0 e 1.
 	static long F[MAXIMUM_TERM_FITTING_A_LONG + 1] = {0, 1};
+	// Não basta definir o espaço de memória dos termos da sucessão: é
+	// necessário definir uma variável que guarde em cada instante quantos
+	// termos estão já calculados. Neste caso inicializa-se a variável com o
+	// valor 2, uma vez que se inicializou a memória com os dois primeiros
+	// termos da sucessão de Fibonacci.
 	static int number_of_calculated_terms = 2;
 
-	// Se o termo já constar na memória de termos calculados, limitamo-nos
-	// a devolvê-lo.
+	// Estamos agora preparados para indagar o valor do termo da sucessão de
+	// Fibonacci solicitado. Se o termo já constar na memória de termos
+	// calculados, i.e., se o valor `n` for inferior a
+	// `number_of_calculated_terms` limitamo-nos a devolver o valor
+	// memorizado.
 	if (n < number_of_calculated_terms)
 		return F[n];
 
-	// O caso geral passa por invocar recursivamente !!!!!!! ordem de cálculo é relevante?!!!!!!!
+	// O caso geral passa por
+	//
+	// 1. invocar recursivamente a própria função para obter os termos `n -
+	// 2` e `n - 1`,
+	//
+	// 2. calcular o termo `n` como soma dos dois termos anteriores
+	// calculados,
+	//
+	// 3. guardar esse novo termo na memória, de modo a não precisar de ser
+	// recalculado, e
+	//
+	// 4. terminar a função, devolvendo o valor do novo termo ao retornar ao
+	// ponto de invocação da função.
+	//
+	// Estes passos estão condensados em apenas duas linhas de código. Essa
+	// condensação seria considerada uma má prática em quase todas as
+	// linguagens de programação, mas este tipo de código é idiomático em C,
+	// pelo que preferimos apresentá-lo desta forma. Seja como for, uma
+	// forma ortodoxa de escrever este código seria:
+	//
+	// ```C
+	// F[n] = recursive_fibonacci(n - 2) + recursive_fibonacci(n - 1);
+	// number_of_calculated_terms++;
+	//
+	// return F[n];
+	// ```
+	//
+	// Alternativamente, podemos considerar que o caso especial é aquele em
+	// que o termo pretendido _não_ foi ainda calculado, o que nos levaria
+	// ao seguinte código, bem mais legível, que substitui não apenas as
+	// duas últimas linhas do código apresentado, mas também as duas
+	// anteriores:
+	//
+	// ```C
+	// if (number_of_calculated_terms <= n) {
+	//         F[n] = recursive_fibonacci(n - 2) + 
+	//                recursive_fibonacci(n - 1);
+	//         number_of_calculated_terms++;
+	// }
+	//
+	// return F[n];
+	// ```
 	number_of_calculated_terms++;
 	return F[n] = recursive_fibonacci(n - 2) + recursive_fibonacci(n - 1);
-//	number_of_calculated_terms = n + 1;
 }
 
 // ### Implementação recursiva com _lookup_ usando TAD
