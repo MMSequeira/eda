@@ -189,7 +189,7 @@
 // Fibonacci aparenta adequar-se bem a esta estratégia:
 //
 // ![F(n)={0, se n = 0, 1, se n = 1, e F(n-2) + F(n-1), se n > 
-// 1}](http://bit.ly/13TPIpP)
+// 1}](http://bit.ly/169sagW)
 long stupidly_recursive_fibonacci(int n)
 {
 	// Em primeiro lugar, verificamos as pré-condições e lidamos com as
@@ -212,11 +212,122 @@ long stupidly_recursive_fibonacci(int n)
 	// ![F(n)](http://bit.ly/ZCdcqY) aos subproblemas de calcular
 	// ![F(n-2)](http://bit.ly/14HrTAK) e de calcular
 	// ![F(n-1)](http://bit.ly/13V2Vid), _mas estes subproblemas não são
-	// independentes!_
+	// independentes!_ Isso faz com que esta implementação seja muitíssimo
+	// ineficiente.
 	return stupidly_recursive_fibonacci(n - 2)
 		+ stupidly_recursive_fibonacci(n - 1);
 }
 
+// Para compreendemos bem a ineficiência desta implementação, vamos calcular
+// alguns valores interessantes.
+//
+// Em primeiro lugar, uma revelação: a sucessão de Fibonacci pode ser expressa
+// de forma fechada. «Estamos aqui com tudo isto e a coisa resume-se a uma
+// fórmula fechada?», podem perguntar. Sim. Mas pode haver boas razões para não
+// recorrer a essa fórmula: ela obriga-nos a trabalhar com valores de vírgula
+// flutuante e, por isso, a lidar com as correspondentes limitações de precisão.
+// As nossas implementações, recorrendo a _long_, são exactas... Podem encontrar
+// informação sobre a sucessão de Fibonacci em vários locais. Recomendo os
+// seguintes:
+//
+// - [F_n](http://www.wolframalpha.com/input/?i=F_n) no
+// [Wolfram|Alpha](http://www.wolframalpha.com/) - O Wolfram|Alpha é um motor
+// de pesquisa com a [Wolfram](http://www.wolfram.com/) por trás (a mesma que
+// produz o maravilhoso
+// [Wolfram|Mathematica](http://www.wolfram.com/mathematica/)) só podia ser
+// excelente. E é-o.
+//
+// - [Fibonacci Number](http://mathworld.wolfram.com/FibonacciNumber.html) no
+// [Wolfram|MathWorld](http://mathworld.wolfram.com/) - O Wolfram|MathWorld é
+// uma enciclopédia matemática também com a garantia de qualidade da
+// [Wolfram](http://www.wolfram.com/). Outra excelente fonte de informação.
+//
+// - [Fibonacci number](http://en.wikipedia.org/wiki/Fibonacci_number) na
+// [Wikipédia](http://en.wikipedia.org/).
+//
+// A forma fechada da sucessão de Fibonacci é
+//
+// ![F_n=(phi^n - psi^n)/sqrt(5)](http://bit.ly/10fxJ6c),
+//
+// onde
+//
+// ![phi=(1+sqrt(5))/2](http://bit.ly/15hTKsW), que é chamado _número de ouro_,
+// e
+//
+// ![psi=(1-sqrt(5))/2](http://bit.ly/12Elq43).
+//
+// Outra forma fechada é
+//
+// ![F_n=arred(phi^n/sqrt(5))](http://bit.ly/1254VAx),
+//
+// onde
+//
+// ![arred(x)](http://bit.ly/10bSbcU)
+//
+// é a função que resulta no inteiro mais próximo ou arredondamento de
+// ![x](http://bit.ly/12ElMrk), sendo que em caso de empate entre dois inteiros
+// mais próximos se escolhe o inteiro que for par.
+//
+// Ambas as formas mostram bem o que já tínhamos observado: o crescimento da
+// sucessão de Fibonacci é extremamente rápido. Mais precisamente, o crescimento
+// da sucessão de Fibonacci é _exponencial_, sendo a base da exponencial o
+// número de ouro e o expoente o número do termo da sucessão.
+//
+// Vamos agora calcular o número de invocações da função `recursive_fibonacci()`
+// que ocorrem durante a cálculo de um dado termo ![n](http://bit.ly/Z4ELdk) da
+// sucessão de Fibonacci, ou seja, durante a execução da função que acabámos de
+// definir quando se lhe passa como argumento esse valor
+// ![n](http://bit.ly/Z4ELdk). Chamemos a esse número de invocações
+// ![N_n](http://bit.ly/139Mk7p).
+//
+// Em primeiro lugar, é evidente que invocar `recursive_fibonacci()` com
+// ![n](http://bit.ly/Z4ELdk) como argumento leva a uma invocação inicial,
+// nomeadamente a que acabámos de referir, com ![n](http://bit.ly/Z4ELdk) como
+// argumento. Se o valor de ![n](http://bit.ly/Z4ELdk) for 0 ou 1, então não é
+// realizada qualquer outra invocação. Ou seja, ![N_n=1](http://bit.ly/YwMaHD)
+// quando ![n=0](http://bit.ly/10afb7o) ou ![n=1](http://bit.ly/14HsgeM). Se o
+// valor de ![n](http://bit.ly/Z4ELdk) for maior que 1, então a função será
+// invocada recursivamente com os valores ![n-2](http://bit.ly/18mQyLi) e
+// ![n-1](http://bit.ly/10fBCrR) como argumento, o que resultará num total de
+// ![1+N_n-2+N_n-1](http://bit.ly/Zxxpzv) invocações. Ou seja, o número de
+// invocações recursivas da função pode ser expresso também de forma recursiva:
+//
+// ![definição recursiva de N_n](http://bit.ly/125adMb)
+//
+// Esta definição é muito parecida com a definição recursiva da própria sucessão
+// de Fibonacci. De facto, é fácil demonstrar que ![N_n =
+// 2F_n+1-1](http://bit.ly/10zTgWa). Ou seja, o número de invocações cresce
+// exponencialmente, tal como a própria sucessão de Fibonacci! Não admira que
+// esta implementação seja absolutamente inaceitável...
+//
+// Já agora, podemos também calcular o número de somas realizadas. Seja
+// ![S_n](http://bit.ly/13g3vTT) o número de somas realizadas quando se invoca
+// `recursive_fibonacci()` com o argumento ![n](http://bit.ly/Z4ELdk). É fácil
+// ver que, quando ![n](http://bit.ly/Z4ELdk) é 0 ou 1, a invocação de
+// `recursive_fibonacci()` resulta em 0 somas. Quando se invoca com
+// ![n](http://bit.ly/Z4ELdk) maior que 1, realiza-se uma soma dos resultados
+// das invocações recursivas com os valores ![n-2](http://bit.ly/18mQyLi) e
+// ![n-1](http://bit.ly/10fBCrR) como argumento, o que resultará num total de
+// ![1+S_n-2+S_n-1](http://bit.ly/YnkQcQ) somas. Ou seja, o número de somas
+// realizadas durante a invocação da função pode ser expresso também de forma
+// recursiva:
+//
+// ![definição recursiva de S_n](http://bit.ly/13VO8Ql)
+//
+// Esta definição é também muito parecida com a definição recursiva da própria
+// sucessão de Fibonacci. De facto, é fácil demonstrar que ![S_n =
+// F_n+1-1](http://bit.ly/139Tdpr). Ou seja, o número de somas cresce
+// exponencialmente, tal como a própria sucessão de Fibonacci! Isto quando uma
+// implementação iterativa trivial precisa de 0 somas para calcular o termo 0 da
+// sucessão e de ![n-1](http://bit.ly/10fBCrR) somas para calcular o termo
+// ![n](http://bit.ly/Z4ELdk) quando ![n>0](http://bit.ly/ZteSVa). Mais uma vez,
+// não admira que esta implementação seja absolutamente inaceitável.
+//
+// A moral desta estória não é que a recursividade seja naturalmente perversa.
+// Não o é. As soluções recursivas podem ser tão eficientes quanto as soluções
+// iterativas. O problema aqui não é a recursividade em si, mas o algoritmo
+// usado.
+  
 // ### Implementação recursiva com _lookup_
 
 // #### Documentação
@@ -344,8 +455,6 @@ long recursive_fibonacci(int n)
 // ### Implementação recursiva com _lookup_ usando TAD
 
 // #### Documentação
-// A documentação da função é feita no formato do
-// [Doxygen](http://doxygen.org/), como habitualmente.
 /** \brief Returns the `n`th term of the Fibonacci sequence.
  *
  * \param n The number of the term to return (first valid value is 0).
@@ -368,33 +477,128 @@ long recursive_fibonacci(int n)
 // #### Definição
 long recursive_fibonacci_using_ADT(int n)
 {
-	// Em primeiro lugar, verificamos as pré-condições e lidamos com as
-	// violações que forem detectadas.
 	assert(n >= 0);
 	assert(n <= MAXIMUM_TERM_FITTING_A_LONG);
 
-	// !!!!!!!!!!!! Inicialização e static. Casos especiais.
+	// Em vez de se um _array_ de `long` como memória para os termos já
+	// calculados da sucessão de Fibonacci, bem como um inteiro indicando a
+	// quantidade de termos memorizados, recorremos aqui ao TAD sucessão de
+	// `long`, representado pela estrutura `struct sequence_of_longs`. No
+	// caso particular da sequência se Fibonacci, a utilização deste TAD não
+	// traz grandes vantagens face à utilização de um _array_, dada a
+	// pequena quantidade de termos da sucessão representáveis no tipo
+	// _long_. No entanto, é um bom exercício recorrer aqui ao TAD,
+	// exercício que nos pode ser útil noutros casos em que o
+	// dimensionamento _a priori_ do _array_ não seja tão fácil.
+	//
+	// Tal como definido o TAD, o código cliente só pode trabalhar com as
+	// sucessões através de ponteiros. Assim, precisamos de definir uma
+	// variável local _estática_ (de modo a que o seu valor persiste entre
+	// invocações da função `recursive_fibonacci_using_ADT`). Dadas as
+	// restrições do C, não podemos usar o construtor `SEQL_new()`
+	// directamente na inicialização, que tem de ser feita usando uma
+	// _expressão constante_. Assim, optámos por inicializar o ponteiro `F`
+	// com o valor especial `NULL`.
 	static struct sequence_of_longs *F = NULL;
 
+	// Dada a inicialização do ponteiro com `NULL`, podemos agora detectar o
+	// seu valor inicial `NULL` para lhe atribuir o endereço de uma nova
+	// estrutura `struct sequence_of_longs` construída de forma dinâmica
+	// através do construtor `SEQL_new()`. Este código é executado sempre
+	// que a função é invocada, o que é uma infelicidade, mas não há forma
+	// de o evitar, dado que não é possível inicializar o ponteiro `F` para
+	// a sucessão de `long` com o valor devolvido pela função `SEQL_new()`.
+	//
+	// Outro problema associado às limitações do C é o da libertação de
+	// memória. O C não fornece nenhum mecanismo para executar código no
+	// contexto das variáveis locais estáticas no final do programa de modo
+	// a podermos «arrumar a casa», ou seja, libertar recursos que lhes
+	// estejam associados. Neste caso os recursos são apenas duas variáveis
+	// dinâmicas: (a) a `struct sequence_of_long` apontada por `F` e
+	// (embora, como clientes, não o devêssemos precisar de saber) e (b) o
+	// _array_ dinâmico usado internamente pelo TAD para guardar os termos.
+	// Como toda a memória dinâmica associada ao programa em execução é
+	// libertada durante a sua terminação, a nossa violação do princípio de
+	// que quem reserva memória explicitamente a deve também libertar
+	// explicitamente não é dramática.
 	if (F == NULL)
 		F = SEQL_new();
 
-	// Se o termo já constar na memória de termos calculados, limitamo-nos
-	// a devolvê-lo.
+	// Se o termo já constar na sucessão de `long` com os termos da sucessão
+	// de Fibonacci já calculados, limitamo-nos a devolvê-lo.
 	if (n < SEQL_length(F))
 		return SEQL_term(F, n);
 
-	long F_n;
-	if (n == 0)
-		F_n = 0L;
-	else if (n == 1)
-		F_n = 1L;
-	else
-		F_n = recursive_fibonacci_using_ADT(n - 2) + 
-			recursive_fibonacci_using_ADT(n - 1);
+	// Se o termo não está ainda calculado, há que fazê-lo. Uma vez que,
+	// depois de o calcular, teremos de o adicionar à memória e devolver,
+	// definimos uma variável `F_n` para guardar o valor calculado. Uma vez
+	// que o valor usado para inicializar esta variável depende do valor de
+	// `n`, usamos o operador `?:` do C para discriminar entre as três
+	// diferentes formas de inicialização, evitando ter de recorrer a uma
+	// definição sem inicialização seguida de duas instruções de selecção
+	// encadeadas:
+	//
+	// ```C
+	// long F_n;
+	// if (n == 0)
+	//         F_n = 0L;
+	// else if (n == 1)
+	//         F_n = 1L;
+	// else
+	//         F_n = recursive_fibonacci_using_ADT(n - 2) + 
+	//               recursive_fibonacci_using_ADT(n - 1);
+	// ```
+	long F_n = n == 0 ? 0L : n == 1 ? 1L :
+		recursive_fibonacci_using_ADT(n - 2) + 
+		recursive_fibonacci_using_ADT(n - 1);
 
+	// Agora que já temos o valor de `F_n` calculado, devemos guardá-lo em
+	// memória, na nossa sucessão de `long`, de modo a não precisar de ser
+	// calculado de novo.
 	SEQL_add(F, F_n);
+
+	// Finalmente, devolvemos o valor calculado.
 	return F_n;
+}
+
+// ###Implementação recursiva eficiente sem memória
+
+// #### Função auxiliar
+long tr_fibonacci(int n, int previous_value, int value)
+{
+    if (n == 1)
+        return value;
+
+    return tr_fibonacci(n - 1, value, previous_value + value);
+}
+
+// #### Documentação
+/** \brief Returns the `n`th term of the Fibonacci sequence.
+ *
+ * \param n The number of the term to return (first valid value is 0).
+ * \return The value of the `n`th term of the Fibonacci sequence. The time taken
+ * by the function grows !!!!!!!!!!!!!!!!!!!! with `n`.
+ * \pre `n` ≥ 0
+ * \post result = \f$F_{\mathtt{n}}\f$
+ *
+ * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
+ * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
+ * the sequence is defined by
+ * \f[
+ * F_n = \left\{\begin{array}{ll}
+ *     0                 & \text{if } n=0, \\
+ *     1                 & \text{if } n=1\text{, and} \\
+ *     F_{n-2} + F_{n-1} & \text{if } n>1.
+ *   \end{array}\right.
+ * \f]
+ */
+// #### Definição
+long tail_recursive_fibonacci(int n)
+{
+    if (n == 0)
+        return 0;
+
+    return tr_fibonacci(n, 0, 1);
 }
 
 // ### Implementação iterativa
