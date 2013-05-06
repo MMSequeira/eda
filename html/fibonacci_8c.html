@@ -155,6 +155,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a1cae2292e1037fe827aeb2ff8feceb1c"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fibonacci_8c.html#a1cae2292e1037fe827aeb2ff8feceb1c">recursive_fibonacci_using_ADT</a> (int n)</td></tr>
 <tr class="memdesc:a1cae2292e1037fe827aeb2ff8feceb1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code>n</code>th term of the Fibonacci sequence.  <a href="#a1cae2292e1037fe827aeb2ff8feceb1c">More...</a><br/></td></tr>
 <tr class="separator:a1cae2292e1037fe827aeb2ff8feceb1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ef5ee673c2f202285f8decfab340a68"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ef5ee673c2f202285f8decfab340a68"></a>
+long&#160;</td><td class="memItemRight" valign="bottom"><b>tr_fibonacci</b> (int n, int previous_value, int value)</td></tr>
+<tr class="separator:a5ef5ee673c2f202285f8decfab340a68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d792c5885a5273e29538ccda0417de3"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fibonacci_8c.html#a4d792c5885a5273e29538ccda0417de3">tail_recursive_fibonacci</a> (int n)</td></tr>
+<tr class="memdesc:a4d792c5885a5273e29538ccda0417de3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code>n</code>th term of the Fibonacci sequence.  <a href="#a4d792c5885a5273e29538ccda0417de3">More...</a><br/></td></tr>
+<tr class="separator:a4d792c5885a5273e29538ccda0417de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af99f473187cfddf7364d23891af07138"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fibonacci_8c.html#af99f473187cfddf7364d23891af07138">iterative_fibonacci</a> (int n)</td></tr>
 <tr class="memdesc:af99f473187cfddf7364d23891af07138"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code>n</code>th term of the Fiboncci sequence.  <a href="#af99f473187cfddf7364d23891af07138">More...</a><br/></td></tr>
 <tr class="separator:af99f473187cfddf7364d23891af07138"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,7 +219,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></
 <dl class="section post"><dt>Postcondition</dt><dd>!!!</dd></dl>
 <p>!!!!!!!!!!!!!!! </p>
 
-<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00459">459</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
+<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00663">663</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
 
 </div>
 </div>
@@ -246,7 +252,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></
 \[ F_n = \left\{\begin{array}{ll} 0 &amp; \text{if } n=0, \\ 1 &amp; \text{if } n=1\text{, and} \\ F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1. \end{array}\right. \]
 </p>
  
-<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00425">425</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
+<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00629">629</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
 
 </div>
 </div>
@@ -279,7 +285,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></
 \[ F_n = \left\{\begin{array}{ll} 0 &amp; \text{if } n=0, \\ 1 &amp; \text{if } n=1\text{, and} \\ F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1. \end{array}\right. \]
 </p>
  
-<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00243">243</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
+<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00354">354</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
 
 </div>
 </div>
@@ -312,7 +318,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></
 \[ F_n = \left\{\begin{array}{ll} 0 &amp; \text{if } n=0, \\ 1 &amp; \text{if } n=1\text{, and} \\ F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1. \end{array}\right. \]
 </p>
  
-<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00369">369</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
+<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00478">478</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
 
 </div>
 </div>
@@ -349,13 +355,46 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></
 
 </div>
 </div>
+<a class="anchor" id="a4d792c5885a5273e29538ccda0417de3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long tail_recursive_fibonacci </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the <code>n</code>th term of the Fibonacci sequence. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>The number of the term to return (first valid value is 0). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of the <code>n</code>th term of the Fibonacci sequence. The time taken by the function grows !!!!!!!!!!!!!!!!!!!! with <code>n</code>. </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>n</code> ≥ 0 </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>result = \(F_{\mathtt{n}}\)</dd></dl>
+<p>Returns the <code>n</code>th term of the Fibonacci sequence. It is assumed the sequence starts at <code>n</code> = 0, with value 0, followed by value 1, at <code>n</code> = 1. That is, the sequence is defined by </p>
+<p class="formulaDsp">
+\[ F_n = \left\{\begin{array}{ll} 0 &amp; \text{if } n=0, \\ 1 &amp; \text{if } n=1\text{, and} \\ F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1. \end{array}\right. \]
+</p>
+ 
+<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00596">596</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_0d0726f1923a95bf995d2bf64c3b8142.html">fibonacci</a></li><li class="navelem"><a class="el" href="fibonacci_8c.html">fibonacci.c</a></li>
-    <li class="footer">Generated on Sat May 4 2013 16:42:40 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Mon May 6 2013 12:43:33 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

@@ -6,5 +6,7 @@ var fibonacci_8c =
     [ "main", "fibonacci_8c.html#a840291bc02cba5474a4cb46a9b9566fe", null ],
     [ "recursive_fibonacci", "fibonacci_8c.html#aad4f80cb4d854c4b639188b058303a4d", null ],
     [ "recursive_fibonacci_using_ADT", "fibonacci_8c.html#a1cae2292e1037fe827aeb2ff8feceb1c", null ],
-    [ "stupidly_recursive_fibonacci", "fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0", null ]
+    [ "stupidly_recursive_fibonacci", "fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0", null ],
+    [ "tail_recursive_fibonacci", "fibonacci_8c.html#a4d792c5885a5273e29538ccda0417de3", null ],
+    [ "tr_fibonacci", "fibonacci_8c.html#a5ef5ee673c2f202285f8decfab340a68", null ]
 ];
