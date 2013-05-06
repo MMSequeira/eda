@@ -8,7 +8,8 @@
  * Iterative and recursive implementations of the calculation of terms of
  * the Fibonacci sequence. These implementations are used to illustrate
  * iteration vs. recursion, and also to show how a naïve implementation of
- * recursion may lead to serious problems.
+ * recursion may lead to serious problems and how lookup tables can be used to
+ * speed up calculations.
  */
 
 // Coelhos, recursão e iteração
@@ -126,6 +127,9 @@
 // ```
 //
 // tendo, pelo contrário de usar uma macro do pré-processador.
+/** \brief The index of the largest term of the Fibonacci sequence that fits
+ * within a `long`.
+ */
 #define MAXIMUM_TERM_FITTING_A_LONG 92
 
 // ### Inclusão de ficheiros de cabeçalho
@@ -149,8 +153,9 @@
 //
 // Incluímos apenas um ficheiro de cabeçalho «não oficial»:
 //
-// - `sequence_of_longs.h` &ndash; Para declaração do TAD sucessão de `long`
-// usada para guardar em memória dos termos da sucessão já calculados.
+// - `sequence_of_longs.h` &ndash; Para declaração do TAD (tipo abstracto de
+// dados) sucessão de `long` usada para guardar em memória dos termos da
+// sucessão já calculados.
 #include "sequence_of_longs.h"
 
 // ### Implementação recursiva «estúpida»
@@ -161,14 +166,15 @@
 /** \brief Returns the `n`th term of the Fiboncci sequence.
  *
  * \param n The number of the term to return (first valid value is 0).
- * \return The value of the `n`th term of the Fibonacci sequence. The time taken
- * by the function grows exponentially with `n`.
+ * \return The value of the `n`th term \f$F_{\mathtt{n}}\f$ of the Fibonacci
+ * sequence.
  * \pre `n` ≥ 0
  * \post result = \f$F_{\mathtt{n}}\f$
  *
- * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
- * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
- * the sequence is defined by
+ * Returns the `n`th term of the [Fibonacci
+ * sequence]()http://mathworld.wolfram.com/FibonacciNumber.html. It is assumed
+ * the sequence starts at `n` = 0, with value 0, followed by value 1,
+ * at `n` = 1. That is, the sequence is defined by
  * \f[
  * F_n = \left\{\begin{array}{ll}
  *     0                 & \text{if } n=0, \\
@@ -176,6 +182,21 @@
  *     F_{n-2} + F_{n-1} & \text{if } n>1.
  *   \end{array}\right.
  * \f]
+ * It can be shown that
+ * \f[
+ * F_n = \frac{\phi^n-\psi^n}{\sqrt{5}},
+ * \f]
+ * where \f$\phi=\frac{1+\sqrt{5}}{2}\f$ and \f$\psi=\frac{1-\sqrt{5}}{2}\f$,
+ * or, even simpler,
+ * \f[
+ * F_n = \left[\frac{\phi^n}{\sqrt{5}}\right],
+ * \f]
+ * where \f$[x]\f$ is the nearest integer function.
+ *
+ * The time taken by the function grows exponentially with `n`. More precisely,
+ * the number of (recursive) executions of this function performed
+ * while calculating \f$F_{\mathtt{n}}\f$ by calling `recursive_fibonacci(n)` is
+ * \f$2F_{n+1}-1\f$ and the number of aditions performed is \f$2F_{n+1}-1\f$.
  */
 // #### Definição
 //
@@ -188,7 +209,7 @@
 // qualquer decomposição adicional. A definição recursiva da sucessão de
 // Fibonacci aparenta adequar-se bem a esta estratégia:
 //
-// ![F(n)={0, se n = 0, 1, se n = 1, e F(n-2) + F(n-1), se n > 
+// ![F(n)={0, se n = 0, 1, se n = 1, e F(n-2) + F(n-1), se n >
 // 1}](http://bit.ly/169sagW)
 long stupidly_recursive_fibonacci(int n)
 {
@@ -327,7 +348,7 @@ long stupidly_recursive_fibonacci(int n)
 // Não o é. As soluções recursivas podem ser tão eficientes quanto as soluções
 // iterativas. O problema aqui não é a recursividade em si, mas o algoritmo
 // usado.
-  
+
 // ### Implementação recursiva com _lookup_
 
 // #### Documentação
@@ -441,7 +462,7 @@ long recursive_fibonacci(int n)
 	//
 	// ```C
 	// if (number_of_calculated_terms <= n) {
-	//         F[n] = recursive_fibonacci(n - 2) + 
+	//         F[n] = recursive_fibonacci(n - 2) +
 	//                recursive_fibonacci(n - 1);
 	//         number_of_calculated_terms++;
 	// }
@@ -545,11 +566,11 @@ long recursive_fibonacci_using_ADT(int n)
 	// else if (n == 1)
 	//         F_n = 1L;
 	// else
-	//         F_n = recursive_fibonacci_using_ADT(n - 2) + 
+	//         F_n = recursive_fibonacci_using_ADT(n - 2) +
 	//               recursive_fibonacci_using_ADT(n - 1);
 	// ```
 	long F_n = n == 0 ? 0L : n == 1 ? 1L :
-		recursive_fibonacci_using_ADT(n - 2) + 
+		recursive_fibonacci_using_ADT(n - 2) +
 		recursive_fibonacci_using_ADT(n - 1);
 
 	// Agora que já temos o valor de `F_n` calculado, devemos guardá-lo em
