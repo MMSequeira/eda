@@ -128,8 +128,7 @@
 //
 // tendo, pelo contrário de usar uma macro do pré-processador.
 /** \brief The index of the largest term of the Fibonacci sequence that fits
- * within a `long`.
- */
+ * within a `long`. */
 #define MAXIMUM_TERM_FITTING_A_LONG 92
 
 // ### Inclusão de ficheiros de cabeçalho
@@ -159,7 +158,7 @@
 #include "sequence_of_longs.h"
 
 // ### Implementação recursiva «estúpida»
-
+  
 // #### Documentação
 // A documentação da função é feita no formato do
 // [Doxygen](http://doxygen.org/), como habitualmente.
@@ -172,9 +171,10 @@
  * \post result = \f$F_{\mathtt{n}}\f$
  *
  * Returns the `n`th term of the [Fibonacci
- * sequence]()http://mathworld.wolfram.com/FibonacciNumber.html. It is assumed
- * the sequence starts at `n` = 0, with value 0, followed by value 1,
- * at `n` = 1. That is, the sequence is defined by
+ * sequence](http://mathworld.wolfram.com/FibonacciNumber.html), i.e.,
+ * \f$F_{\mathtt{n}}\f$. It is assumed the sequence \f$F_n\f$ starts at
+ * \f$n=0\f$, with value 0, followed by value 1, at \f$n=1\f$. That is, the
+ * sequence is defined by
  * \f[
  * F_n = \left\{\begin{array}{ll}
  *     0                 & \text{if } n=0, \\
@@ -187,16 +187,17 @@
  * F_n = \frac{\phi^n-\psi^n}{\sqrt{5}},
  * \f]
  * where \f$\phi=\frac{1+\sqrt{5}}{2}\f$ and \f$\psi=\frac{1-\sqrt{5}}{2}\f$,
- * or, even simpler,
+ * and also that, even more simple,
  * \f[
  * F_n = \left[\frac{\phi^n}{\sqrt{5}}\right],
  * \f]
- * where \f$[x]\f$ is the nearest integer function.
+ * where \f$[\cdot]\f$ is the nearest integer function.
  *
  * The time taken by the function grows exponentially with `n`. More precisely,
  * the number of (recursive) executions of this function performed
- * while calculating \f$F_{\mathtt{n}}\f$ by calling `recursive_fibonacci(n)` is
- * \f$2F_{n+1}-1\f$ and the number of aditions performed is \f$2F_{n+1}-1\f$.
+ * while calculating \f$F_n\f$ by calling
+ * `stupidly_recursive_fibonacci(`\f$n\f$`)` is \f$2F_{n+1}-1\f$ and the number
+ * of aditions performed is \f$F_{n+1}-1\f$.
  */
 // #### Definição
 //
@@ -248,8 +249,8 @@ long stupidly_recursive_fibonacci(int n)
 // recorrer a essa fórmula: ela obriga-nos a trabalhar com valores de vírgula
 // flutuante e, por isso, a lidar com as correspondentes limitações de precisão.
 // As nossas implementações, recorrendo a _long_, são exactas... Podem encontrar
-// informação sobre a sucessão de Fibonacci em vários locais. Recomendo os
-// seguintes:
+// informação sobre a sucessão de Fibonacci, e sobre a sua forma fechada, em
+// vários locais. Recomendamos os seguintes:
 //
 // - [F_n](http://www.wolframalpha.com/input/?i=F_n) no
 // [Wolfram|Alpha](http://www.wolframalpha.com/) - O Wolfram|Alpha é um motor
@@ -348,28 +349,43 @@ long stupidly_recursive_fibonacci(int n)
 // Não o é. As soluções recursivas podem ser tão eficientes quanto as soluções
 // iterativas. O problema aqui não é a recursividade em si, mas o algoritmo
 // usado.
-
+  
 // ### Implementação recursiva com _lookup_
-
+  
 // #### Documentação
-/** \brief Returns the `n`th term of the Fibonacci sequence.
+/** \brief Returns the `n`th term of the Fiboncci sequence.
  *
  * \param n The number of the term to return (first valid value is 0).
- * \return The value of the `n`th term of the Fibonacci sequence. The time taken
- * by the function grows !!!!!!!!!!!!!!!!!!!! with `n`.
+ * \return The value of the `n`th term \f$F_{\mathtt{n}}\f$ of the Fibonacci
+ * sequence.
  * \pre `n` ≥ 0
  * \post result = \f$F_{\mathtt{n}}\f$
  *
- * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
- * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
- * the sequence is defined by
- * \f[
- * F_n = \left\{\begin{array}{ll}
- *     0                 & \text{if } n=0, \\
- *     1                 & \text{if } n=1\text{, and} \\
- *     F_{n-2} + F_{n-1} & \text{if } n>1.
- *   \end{array}\right.
- * \f]
+ * Returns the `n`th term of the [Fibonacci
+ * sequence](http://mathworld.wolfram.com/FibonacciNumber.html), i.e.,
+ * \f$F_{\mathtt{n}}\f$. See stupidly_recursive_fibonacci() for further
+ * information.
+ * 
+ * This function uses a static array of #MAXIMUM_TERM_FITTING_A_LONG `long`s to
+ * store calculated values of the terms of the sequence. After a call to the
+ * function with argument \f$n\f$, all future calls to the function with any
+ * argument between 0 and \f$n\f$ will execute in constant time. When this
+ * doesn't apply, the function will execute in linear time, i.e., \f$O(n)\f$.
+ * More precisely, while calculating \f$F_n\f$ by calling
+ * `recursive_fibonacci(`\f$n\f$`)`,
+ * * the number \f$N(n)\f$ of (recursive) executions of this function is 1 if 
+ *   \f$n=0\f$ and is \f$2n-1\f$ if \f$n>0\f$;
+ * * the number \f$S(n)\f$ of aditions performed is 0 if \f$n=0\f$ and is
+ *   \f$n-1\f$ if \f$n>0\f$;
+ * * the number \f$T(n)\f$ of array item assignments performed is 1 if \f$n=0\f$
+ *   or \f$n=1\f$, and is \f$n+1\f$ if \f$n>1\f$;
+ * * the number \f$R(n)\f$ of array item reads performed is 0 if \f$n=0\f$
+ *   or \f$n=1\f$, and is \f$n-2\f$ if \f$n>1\f$.
+ *
+ * These numbers are exact if no other calls to the function have been performed
+ * previously, otherwise the values will be either smaller or equal to these. If
+ * other calls with an argument larger or equal to \f$n\f$ were performed
+ * previously, then \f$N(n)=1\f$, \f$S(n)=0\f$, \f$T(n)=0\f$, and \f$R(n)=1\f$. 
  */
 // #### Definição
 long recursive_fibonacci(int n)
@@ -474,26 +490,53 @@ long recursive_fibonacci(int n)
 }
 
 // ### Implementação recursiva com _lookup_ usando TAD
-
+  
 // #### Documentação
-/** \brief Returns the `n`th term of the Fibonacci sequence.
+/** \brief Returns the `n`th term of the Fiboncci sequence.
  *
  * \param n The number of the term to return (first valid value is 0).
- * \return The value of the `n`th term of the Fibonacci sequence. The time taken
- * by the function grows !!!!!!!!!!!!!!!!!!!! with `n`.
+ * \return The value of the `n`th term \f$F_{\mathtt{n}}\f$ of the Fibonacci
+ * sequence.
  * \pre `n` ≥ 0
  * \post result = \f$F_{\mathtt{n}}\f$
  *
- * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
- * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
- * the sequence is defined by
- * \f[
- * F_n = \left\{\begin{array}{ll}
- *     0                 & \text{if } n=0, \\
- *     1                 & \text{if } n=1\text{, and} \\
- *     F_{n-2} + F_{n-1} & \text{if } n>1.
- *   \end{array}\right.
- * \f]
+ * Returns the `n`th term of the [Fibonacci
+ * sequence](http://mathworld.wolfram.com/FibonacciNumber.html), i.e.,
+ * \f$F_{\mathtt{n}}\f$. See stupidly_recursive_fibonacci() and
+ * recursive_fibonacci() for further information.
+ * 
+ * This function uses the ADT `struct sequence_of_longs` store calculated values
+ * of the terms of the sequence. After a call to the function with argument
+ * \f$n\f$, all future calls to the function with any argument between 0 and
+ * \f$n\f$ will execute in constant time. When this doesn't apply, the function
+ * will execute in linear time, i.e., \f$O(n)\f$. More precisely, while
+ * calculating \f$F_n\f$ by calling `recursive_fibonacci_using_ADT(`\f$n\f$`)`,
+ * * the number \f$N(n)\f$ of (recursive) executions of this function is 1 if 
+ *   \f$n=0\f$ and is \f$2n-1\f$ if \f$n>0\f$;
+ * * the number \f$S(n)\f$ of aditions performed is 0 if \f$n=0\f$ and is
+ *   \f$n-1\f$ if \f$n>0\f$;
+ * * the number \f$T(n)\f$ of additions to the memory of terms is 1 if
+ *   \f$n=0\f$ or \f$n=1\f$, and is \f$n+1\f$ if \f$n>1\f$;
+ * * the number \f$R(n)\f$ of accesses to the memory of terms is 0 if \f$n=0\f$
+ *   or \f$n=1\f$, and is \f$n-2\f$ if \f$n>1\f$.
+ *
+ * These numbers are exact if no other calls to the function have been performed
+ * previously, otherwise the values will be either smaller or equal to these. If
+ * other calls with an argument larger or equal to \f$n\f$ were performed
+ * previously, then \f$N(n)=1\f$, \f$S(n)=0\f$, \f$T(n)=0\f$, and \f$R(n)=1\f$.
+ *
+ * Additions of calculated terms to the term memory are less efficient when the
+ * ADT `struct sequence_of_longs` is used than when a fixed size array is used.
+ * However:
+ * * The ADT guarantees that the amortized number of copies of terms perfomed
+ *   while adding a new term is always less than 2, approaching 1 as the number
+ *   of terms in the sequence grows to infinity.
+ * * An ADT such as the one used would be necessary if big integers were used
+ *   for the result of this function.
+ *
+ * See iterative_fibonacci() and tail_recursive_fibonacci() for fast
+ * implementations of the Fibonacci sequence that do not require static storage
+ * and that execute in linear time. 
  */
 // #### Definição
 long recursive_fibonacci_using_ADT(int n)
@@ -583,7 +626,7 @@ long recursive_fibonacci_using_ADT(int n)
 }
 
 // ###Implementação recursiva eficiente sem memória
-
+  
 // #### Função auxiliar
 long tr_fibonacci(int n, int previous_value, int value)
 {
