@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.3.1"/>
-<title>Estrutura de Dados e Algoritmos: array_utils/array_utils.h File Reference</title>
+<title>Estrutura de Dados e Algoritmos: Globals</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,7 +80,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>Globals</span></a></li>
+      <li class="current"><a href="globals.html"><span>Globals</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li><a href="globals.html"><span>All</span></a></li>
+      <li><a href="globals_func.html"><span>Functions</span></a></li>
+      <li class="current"><a href="globals_defs.html"><span>Macros</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -95,7 +102,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('array__utils_8h.html','');});
+$(document).ready(function(){initNavTree('globals_defs.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -112,89 +119,18 @@ $(document).ready(function(){initNavTree('array__utils_8h.html','');});
 </iframe>
 </div>
 
-<div class="header">
-  <div class="summary">
-<a href="#func-members">Functions</a>  </div>
-  <div class="headertitle">
-<div class="title">array_utils.h File Reference</div>  </div>
-</div><!--header-->
 <div class="contents">
-
-<p>Header file for the array utilities.  
-<a href="#details">More...</a></p>
-<div class="textblock"><div class="dynheader">
-This graph shows which files directly or indirectly include this file:</div>
-<div class="dyncontent">
-<div class="center"><img src="array__utils_8h__dep__incl.png" border="0" usemap="#array__utils_2array__utils_8hdep" alt=""/></div>
-<map name="array__utils_2array__utils_8hdep" id="array__utils_2array__utils_8hdep">
-<area shape="rect" id="node2" href="print_8c_source.html" title="array_utils/print.c" alt="" coords="5,91,128,119"/><area shape="rect" id="node3" href="arrays__basics_8c.html" title="An introduction, in code, to the basics about arrays." alt="" coords="152,83,296,127"/></map>
-</div>
-</div>
-<p><a href="array__utils_8h_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a9bc29752c2a34f3f1ce9bf74e2073dc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array__utils_8h.html#a9bc29752c2a34f3f1ce9bf74e2073dc3">print</a> (int number_of_items, int items[number_of_items])</td></tr>
-<tr class="memdesc:a9bc29752c2a34f3f1ce9bf74e2073dc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a given array's items in <code>stdout</code>, one item per line.  <a href="#a9bc29752c2a34f3f1ce9bf74e2073dc3">More...</a><br/></td></tr>
-<tr class="separator:a9bc29752c2a34f3f1ce9bf74e2073dc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Header file for the array utilities. </p>
-<p>This header file declares all the array utilities available for use throughout the EDA code. </p>
-
-<p>Definition in file <a class="el" href="array__utils_8h_source.html">array_utils.h</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a9bc29752c2a34f3f1ce9bf74e2073dc3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void print </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>number_of_items</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>items</em>[number_of_items]&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Print a given array's items in <code>stdout</code>, one item per line. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">number_of_items</td><td>The number of items of the array <code>items</code> to print. </td></tr>
-    <tr><td class="paramname">items</td><td>The array (or rather, a pointer to its first item) whose items will be printed. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Nothing (it is a procedure). </dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>number_of_items</code> ≥ 0 </dd>
-<dd>
-<code>items</code> ≠ null </dd>
-<dd>
-<code>items</code> points to an array with at least <code>number_of_items</code> items</dd></dl>
-<p>This procedure prints <code>number_of_items</code> items from the array <code>items</code>. It prints each item of the array in a separate line. </p>
-
-<p>Definition at line <a class="el" href="print_8c_source.html#l00061">61</a> of file <a class="el" href="print_8c_source.html">print.c</a>.</p>
-
-</div>
-</div>
+&#160;<ul>
+<li>MAXIMUM_TERM_FITTING_A_LONG
+: <a class="el" href="fibonacci_8c.html#a671b3d5b9ff240a9ff7f09bee66bea07">fibonacci.c</a>
+</li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_ac1f0e84aef42f190c9fdcb54d6c9717.html">array_utils</a></li><li class="navelem"><a class="el" href="array__utils_8h.html">array_utils.h</a></li>
-    <li class="footer">Generated on Tue May 7 2013 17:24:22 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Tue May 7 2013 17:24:23 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

@@ -151,7 +151,8 @@
  * Iterative and recursive implementations of the calculation of terms of
  * the Fibonacci sequence. These implementations are used to illustrate
  * iteration vs. recursion, and also to show how a naïve implementation of
- * recursion may lead to serious problems.
+ * recursion may lead to serious problems and how lookup tables can be used to
+ * speed up calculations.
  */</span>
 
 </pre></div></div>
@@ -297,7 +298,9 @@ constantes em C, i.e., não podemos usar</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="preprocessor">#define MAXIMUM_TERM_FITTING_A_LONG 92</span>
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief The index of the largest term of the Fibonacci sequence that fits
+ * within a `long`. */</span>
+<span class="preprocessor">#define MAXIMUM_TERM_FITTING_A_LONG 92</span>
 
 </pre></div></div>
             
@@ -345,8 +348,9 @@ constantes em C, i.e., não podemos usar</p>
               <h3>Inclusão de ficheiros de cabeçalho próprios</h3>
 <p>Incluímos apenas um ficheiro de cabeçalho «não oficial»:</p>
 <ul>
-<li><code>sequence_of_longs.h</code> &ndash; Para declaração do TAD sucessão de <code>long</code>
-usada para guardar em memória dos termos da sucessão já calculados.</li>
+<li><code>sequence_of_longs.h</code> &ndash; Para declaração do TAD (tipo abstracto de
+dados) sucessão de <code>long</code> usada para guardar em memória dos termos da
+sucessão já calculados.</li>
 </ul>
 
             </div>
@@ -365,32 +369,8 @@ usada para guardar em memória dos termos da sucessão já calculados.</li>
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <h3>Implementação recursiva «estúpida»</h3>
-<h4>Documentação</h4>
-<p>A documentação da função é feita no formato do
-<a href="http://doxygen.org/">Doxygen</a>, como habitualmente.</p>
 
             </div>
-            
-            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief Returns the `n`th term of the Fiboncci sequence.
- *
- * \param n The number of the term to return (first valid value is 0).
- * \return The value of the `n`th term of the Fibonacci sequence. The time taken
- * by the function grows exponentially with `n`.
- * \pre `n` ≥ 0
- * \post result = \f$F_{\mathtt{n}}\f$
- *
- * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
- * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
- * the sequence is defined by
- * \f[
- * F_n = \left\{\begin{array}{ll}
- *     0                 &amp; \text{if } n=0, \\
- *     1                 &amp; \text{if } n=1\text{, and} \\
- *     F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1.
- *   \end{array}\right.
- * \f]
- */</span>
-</pre></div></div>
             
         </li>
         
@@ -401,6 +381,60 @@ usada para guardar em memória dos termos da sucessão já calculados.</li>
               <div class="pilwrap for-h4">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
+              <h4>Documentação</h4>
+<p>A documentação da função é feita no formato do
+<a href="http://doxygen.org/">Doxygen</a>, como habitualmente.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief Returns the `n`th term of the Fiboncci sequence.
+ *
+ * \param n The number of the term to return (first valid value is 0).
+ * \return The value of the `n`th term \f$F_{\mathtt{n}}\f$ of the Fibonacci
+ * sequence.
+ * \pre `n` ≥ 0
+ * \post result = \f$F_{\mathtt{n}}\f$
+ *
+ * Returns the `n`th term of the [Fibonacci
+ * sequence](http://mathworld.wolfram.com/FibonacciNumber.html), i.e.,
+ * \f$F_{\mathtt{n}}\f$. It is assumed the sequence \f$F_n\f$ starts at
+ * \f$n=0\f$, with value 0, followed by value 1, at \f$n=1\f$. That is, the
+ * sequence is defined by
+ * \f[
+ * F_n = \left\{\begin{array}{ll}
+ *     0                 &amp; \text{if } n=0, \\
+ *     1                 &amp; \text{if } n=1\text{, and} \\
+ *     F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1.
+ *   \end{array}\right.
+ * \f]
+ * It can be shown that
+ * \f[
+ * F_n = \frac{\phi^n-\psi^n}{\sqrt{5}},
+ * \f]
+ * where \f$\phi=\frac{1+\sqrt{5}}{2}\f$ and \f$\psi=\frac{1-\sqrt{5}}{2}\f$,
+ * and also that, even more simple,
+ * \f[
+ * F_n = \left[\frac{\phi^n}{\sqrt{5}}\right],
+ * \f]
+ * where \f$[\cdot]\f$ is the nearest integer function.
+ *
+ * The time taken by the function grows exponentially with `n`. More precisely,
+ * the number of (recursive) executions of this function performed
+ * while calculating \f$F_n\f$ by calling
+ * `stupidly_recursive_fibonacci(`\f$n\f$`)` is \f$2F_{n+1}-1\f$ and the number
+ * of aditions performed is \f$F_{n+1}-1\f$.
+ */</span>
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
               <h4>Definição</h4>
 <p>Esta implementação segue a estratégia mais comum das soluções recursivas:
 decompor o problema em problemas mais simples, resolver esses problemas mais
@@ -410,7 +444,7 @@ Uma solução recursiva, como esta, precisa de possuir casos de paragem (ou
 casos especiais), para os quais a solução é imediata, não sendo necessária
 qualquer decomposição adicional. A definição recursiva da sucessão de
 Fibonacci aparenta adequar-se bem a esta estratégia:</p>
-<p><img src="http://bit.ly/169sagW" alt="F(n)={0, se n = 0, 1, se n = 1, e F(n-2) + F(n-1), se n &gt; 
+<p><img src="http://bit.ly/169sagW" alt="F(n)={0, se n = 0, 1, se n = 1, e F(n-2) + F(n-1), se n &gt;
 1}"></p>
 
             </div>
@@ -422,11 +456,11 @@ Fibonacci aparenta adequar-se bem a esta estratégia:</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Em primeiro lugar, verificamos as pré-condições e lidamos com as
 violações que forem detectadas.</p>
@@ -441,11 +475,11 @@ violações que forem detectadas.</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>Depois, lidamos com os dois casos especiais da sucessão. Estes casos
 servem também para garantir que as invocações recursivas desta função
@@ -463,11 +497,11 @@ acabarão sempre por terminar (em tempo finito).</p>
         </li>
         
         
-        <li id="section-12">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>O caso geral é simplesmente a devolução da soma dos termos anterior
 da sucessão. Para os obter, invocamos a própria função com os dois
@@ -490,11 +524,11 @@ ineficiente.</p>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>Para compreendemos bem a ineficiência desta implementação, vamos calcular
 alguns valores interessantes.</p>
@@ -504,8 +538,8 @@ fórmula fechada?», podem perguntar. Sim. Mas pode haver boas razões para não
 recorrer a essa fórmula: ela obriga-nos a trabalhar com valores de vírgula
 flutuante e, por isso, a lidar com as correspondentes limitações de precisão.
 As nossas implementações, recorrendo a <em>long</em>, são exactas... Podem encontrar
-informação sobre a sucessão de Fibonacci em vários locais. Recomendo os
-seguintes:</p>
+informação sobre a sucessão de Fibonacci, e sobre a sua forma fechada, em
+vários locais. Recomendamos os seguintes:</p>
 <ul>
 <li><p><a href="http://www.wolframalpha.com/input/?i=F_n">F_n</a> no
 <a href="http://www.wolframalpha.com/">Wolfram|Alpha</a> - O Wolfram|Alpha é um motor
@@ -593,46 +627,73 @@ usado.</p>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <h3>Implementação recursiva com <em>lookup</em></h3>
-<h4>Documentação</h4>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief Returns the `n`th term of the Fibonacci sequence.
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <h4>Documentação</h4>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief Returns the `n`th term of the Fiboncci sequence.
  *
  * \param n The number of the term to return (first valid value is 0).
- * \return The value of the `n`th term of the Fibonacci sequence. The time taken
- * by the function grows !!!!!!!!!!!!!!!!!!!! with `n`.
+ * \return The value of the `n`th term \f$F_{\mathtt{n}}\f$ of the Fibonacci
+ * sequence.
  * \pre `n` ≥ 0
  * \post result = \f$F_{\mathtt{n}}\f$
  *
- * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
- * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
- * the sequence is defined by
- * \f[
- * F_n = \left\{\begin{array}{ll}
- *     0                 &amp; \text{if } n=0, \\
- *     1                 &amp; \text{if } n=1\text{, and} \\
- *     F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1.
- *   \end{array}\right.
- * \f]
+ * Returns the `n`th term of the [Fibonacci
+ * sequence](http://mathworld.wolfram.com/FibonacciNumber.html), i.e.,
+ * \f$F_{\mathtt{n}}\f$. See stupidly_recursive_fibonacci() for further
+ * information.
+ * 
+ * This function uses a static array of #MAXIMUM_TERM_FITTING_A_LONG `long`s to
+ * store calculated values of the terms of the sequence. After a call to the
+ * function with argument \f$n\f$, all future calls to the function with any
+ * argument between 0 and \f$n\f$ will execute in constant time. When this
+ * doesn't apply, the function will execute in linear time, i.e., \f$O(n)\f$.
+ * More precisely, while calculating \f$F_n\f$ by calling
+ * `recursive_fibonacci(`\f$n\f$`)`,
+ * * the number \f$N(n)\f$ of (recursive) executions of this function is 1 if 
+ *   \f$n=0\f$ and is \f$2n-1\f$ if \f$n&gt;0\f$;
+ * * the number \f$S(n)\f$ of aditions performed is 0 if \f$n=0\f$ and is
+ *   \f$n-1\f$ if \f$n&gt;0\f$;
+ * * the number \f$T(n)\f$ of array item assignments performed is 1 if \f$n=0\f$
+ *   or \f$n=1\f$, and is \f$n+1\f$ if \f$n&gt;1\f$;
+ * * the number \f$R(n)\f$ of array item reads performed is 0 if \f$n=0\f$
+ *   or \f$n=1\f$, and is \f$n-2\f$ if \f$n&gt;1\f$.
+ *
+ * These numbers are exact if no other calls to the function have been performed
+ * previously, otherwise the values will be either smaller or equal to these. If
+ * other calls with an argument larger or equal to \f$n\f$ were performed
+ * previously, then \f$N(n)=1\f$, \f$S(n)=0\f$, \f$T(n)=0\f$, and \f$R(n)=1\f$. 
  */</span>
 </pre></div></div>
             
         </li>
         
         
-        <li id="section-15">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap for-h4">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <h4>Definição</h4>
 
@@ -648,11 +709,11 @@ usado.</p>
         </li>
         
         
-        <li id="section-16">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Esta implementação evita os cálculos repetidos dos mesmos termos da
 sucessão de Fibonacci usando uma memória auxiliar. A ideia é calcular
@@ -696,11 +757,11 @@ valores 0 e 1, respectivamente, correspondentes aos termos com
         </li>
         
         
-        <li id="section-17">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Não basta definir o espaço de memória dos termos da sucessão: é
 necessário definir uma variável que guarde em cada instante quantos
@@ -717,11 +778,11 @@ termos da sucessão de Fibonacci.</p>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Estamos agora preparados para indagar o valor do termo da sucessão de
 Fibonacci solicitado. Se o termo já constar na memória de termos
@@ -739,11 +800,11 @@ memorizado.</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>O caso geral passa por</p>
 <ol>
@@ -775,7 +836,7 @@ ao seguinte código, bem mais legível, que substitui não apenas as
 duas últimas linhas do código apresentado, mas também as duas
 anteriores:</p>
 <pre><code class="lang-C">if (number_of_calculated_terms &lt;= n) {
-        F[n] = recursive_fibonacci(n - 2) + 
+        F[n] = recursive_fibonacci(n - 2) +
                recursive_fibonacci(n - 1);
         number_of_calculated_terms++;
 }
@@ -793,46 +854,85 @@ return F[n];</code></pre>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <h3>Implementação recursiva com <em>lookup</em> usando TAD</h3>
-<h4>Documentação</h4>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief Returns the `n`th term of the Fibonacci sequence.
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <h4>Documentação</h4>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \brief Returns the `n`th term of the Fiboncci sequence.
  *
  * \param n The number of the term to return (first valid value is 0).
- * \return The value of the `n`th term of the Fibonacci sequence. The time taken
- * by the function grows !!!!!!!!!!!!!!!!!!!! with `n`.
+ * \return The value of the `n`th term \f$F_{\mathtt{n}}\f$ of the Fibonacci
+ * sequence.
  * \pre `n` ≥ 0
  * \post result = \f$F_{\mathtt{n}}\f$
  *
- * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
- * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
- * the sequence is defined by
- * \f[
- * F_n = \left\{\begin{array}{ll}
- *     0                 &amp; \text{if } n=0, \\
- *     1                 &amp; \text{if } n=1\text{, and} \\
- *     F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1.
- *   \end{array}\right.
- * \f]
+ * Returns the `n`th term of the [Fibonacci
+ * sequence](http://mathworld.wolfram.com/FibonacciNumber.html), i.e.,
+ * \f$F_{\mathtt{n}}\f$. See stupidly_recursive_fibonacci() and
+ * recursive_fibonacci() for further information.
+ * 
+ * This function uses the ADT `struct sequence_of_longs` store calculated values
+ * of the terms of the sequence. After a call to the function with argument
+ * \f$n\f$, all future calls to the function with any argument between 0 and
+ * \f$n\f$ will execute in constant time. When this doesn't apply, the function
+ * will execute in linear time, i.e., \f$O(n)\f$. More precisely, while
+ * calculating \f$F_n\f$ by calling `recursive_fibonacci_using_ADT(`\f$n\f$`)`,
+ * * the number \f$N(n)\f$ of (recursive) executions of this function is 1 if 
+ *   \f$n=0\f$ and is \f$2n-1\f$ if \f$n&gt;0\f$;
+ * * the number \f$S(n)\f$ of aditions performed is 0 if \f$n=0\f$ and is
+ *   \f$n-1\f$ if \f$n&gt;0\f$;
+ * * the number \f$T(n)\f$ of additions to the memory of terms is 1 if
+ *   \f$n=0\f$ or \f$n=1\f$, and is \f$n+1\f$ if \f$n&gt;1\f$;
+ * * the number \f$R(n)\f$ of accesses to the memory of terms is 0 if \f$n=0\f$
+ *   or \f$n=1\f$, and is \f$n-2\f$ if \f$n&gt;1\f$.
+ *
+ * These numbers are exact if no other calls to the function have been performed
+ * previously, otherwise the values will be either smaller or equal to these. If
+ * other calls with an argument larger or equal to \f$n\f$ were performed
+ * previously, then \f$N(n)=1\f$, \f$S(n)=0\f$, \f$T(n)=0\f$, and \f$R(n)=1\f$.
+ *
+ * Additions of calculated terms to the term memory are less efficient when the
+ * ADT `struct sequence_of_longs` is used than when a fixed size array is used.
+ * However:
+ * * The ADT guarantees that the amortized number of copies of terms perfomed
+ *   while adding a new term is always less than 2, approaching 1 as the number
+ *   of terms in the sequence grows to infinity.
+ * * An ADT such as the one used would be necessary if big integers were used
+ *   for the result of this function.
+ *
+ * See iterative_fibonacci() and tail_recursive_fibonacci() for fast
+ * implementations of the Fibonacci sequence that do not require static storage
+ * and that execute in linear time. 
  */</span>
 </pre></div></div>
             
         </li>
         
         
-        <li id="section-21">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap for-h4">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <h4>Definição</h4>
 
@@ -848,11 +948,11 @@ return F[n];</code></pre>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Em vez de se um <em>array</em> de <code>long</code> como memória para os termos já
 calculados da sucessão de Fibonacci, bem como um inteiro indicando a
@@ -882,11 +982,11 @@ com o valor especial <code>NULL</code>.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>Dada a inicialização do ponteiro com <code>NULL</code>, podemos agora detectar o
 seu valor inicial <code>NULL</code> para lhe atribuir o endereço de uma nova
@@ -918,11 +1018,11 @@ explicitamente não é dramática.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>Se o termo já constar na sucessão de <code>long</code> com os termos da sucessão
 de Fibonacci já calculados, limitamo-nos a devolvê-lo.</p>
@@ -937,11 +1037,11 @@ de Fibonacci já calculados, limitamo-nos a devolvê-lo.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Se o termo não está ainda calculado, há que fazê-lo. Uma vez que,
 depois de o calcular, teremos de o adicionar à memória e devolver,
@@ -957,13 +1057,13 @@ if (n == 0)
 else if (n == 1)
         F_n = 1L;
 else
-        F_n = recursive_fibonacci_using_ADT(n - 2) + 
+        F_n = recursive_fibonacci_using_ADT(n - 2) +
               recursive_fibonacci_using_ADT(n - 1);</code></pre>
 
             </div>
             
             <div class="content"><div class="highlight"><pre>	<span class="keyword">long</span> F_n = n == <span class="number">0</span> ? <span class="number">0L</span> : n == <span class="number">1</span> ? <span class="number">1L</span> :
-		recursive_fibonacci_using_ADT(n - <span class="number">2</span>) + 
+		recursive_fibonacci_using_ADT(n - <span class="number">2</span>) +
 		recursive_fibonacci_using_ADT(n - <span class="number">1</span>);
 
 </pre></div></div>
@@ -971,11 +1071,11 @@ else
         </li>
         
         
-        <li id="section-26">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>Agora que já temos o valor de <code>F_n</code> calculado, devemos guardá-lo em
 memória, na nossa sucessão de <code>long</code>, de modo a não precisar de ser
@@ -990,11 +1090,11 @@ calculado de novo.</p>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>Finalmente, devolvemos o valor calculado.</p>
 
@@ -1008,14 +1108,26 @@ calculado de novo.</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <h3>Implementação recursiva eficiente sem memória</h3>
-<h4>Função auxiliar</h4>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h4">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <h4>Função auxiliar</h4>
 
             </div>
             
@@ -1032,11 +1144,11 @@ calculado de novo.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap for-h4">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <h4>Documentação</h4>
 
@@ -1066,11 +1178,11 @@ calculado de novo.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap for-h4">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <h4>Definição</h4>
 
@@ -1089,11 +1201,11 @@ calculado de novo.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <h3>Implementação iterativa</h3>
 <h4>Documentação</h4>
@@ -1126,11 +1238,11 @@ calculado de novo.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap for-h4">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <h4>Definição</h4>
 
@@ -1161,11 +1273,11 @@ calculado de novo.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <h3>Procedimento !!!!!!!</h3>
 <h4>Documentação</h4>
@@ -1187,11 +1299,11 @@ calculado de novo.</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap for-h4">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <h4>Definição</h4>
 
@@ -1218,11 +1330,11 @@ calculado de novo.</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <h3>Procedimento !!!!!!!</h3>
 <p>!!!!!!!!</p>
@@ -1237,11 +1349,11 @@ calculado de novo.</p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <pre><code>printf(&quot;F(%d) [stupid recursive] = %ld\n&quot;, n, stupidly_recursive_fibonacci(n));</code></pre>
 
