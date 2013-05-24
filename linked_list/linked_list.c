@@ -11,7 +11,6 @@ int main()
 	struct singly_linked_int_node *first;
 
 	first = malloc(sizeof(struct singly_linked_int_node));
-	//(*first).value = 10;
 	first->value = 10;
 	first->next = NULL;
 

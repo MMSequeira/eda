@@ -12,6 +12,7 @@
 		<Project filename="sequence_of_longs/sequence_of_longs.cbp" />
 		<Project filename="sizeof_and_arrays/sizeof_and_arrays.cbp" />
 		<Project filename="malloc_stuff/malloc_stuff.cbp" />
-		<Project filename="linked_list/linked_list.cbp" active="1" />
+		<Project filename="linked_list/linked_list.cbp" />
+		<Project filename="command_line/command_line.cbp" active="1" />
 	</Workspace>
 </CodeBlocks_workspace_file>
