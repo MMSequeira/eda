@@ -158,7 +158,7 @@
 #include "sequence_of_longs.h"
 
 // ### Implementação recursiva «estúpida»
-  
+
 // #### Documentação
 // A documentação da função é feita no formato do
 // [Doxygen](http://doxygen.org/), como habitualmente.
@@ -349,9 +349,9 @@ long stupidly_recursive_fibonacci(int n)
 // Não o é. As soluções recursivas podem ser tão eficientes quanto as soluções
 // iterativas. O problema aqui não é a recursividade em si, mas o algoritmo
 // usado.
-  
+
 // ### Implementação recursiva com _lookup_
-  
+
 // #### Documentação
 /** \brief Returns the `n`th term of the Fiboncci sequence.
  *
@@ -365,7 +365,7 @@ long stupidly_recursive_fibonacci(int n)
  * sequence](http://mathworld.wolfram.com/FibonacciNumber.html), i.e.,
  * \f$F_{\mathtt{n}}\f$. See stupidly_recursive_fibonacci() for further
  * information.
- * 
+ *
  * This function uses a static array of #MAXIMUM_TERM_FITTING_A_LONG `long`s to
  * store calculated values of the terms of the sequence. After a call to the
  * function with argument \f$n\f$, all future calls to the function with any
@@ -373,7 +373,7 @@ long stupidly_recursive_fibonacci(int n)
  * doesn't apply, the function will execute in linear time, i.e., \f$O(n)\f$.
  * More precisely, while calculating \f$F_n\f$ by calling
  * `recursive_fibonacci(`\f$n\f$`)`,
- * * the number \f$N(n)\f$ of (recursive) executions of this function is 1 if 
+ * * the number \f$N(n)\f$ of (recursive) executions of this function is 1 if
  *   \f$n=0\f$ and is \f$2n-1\f$ if \f$n>0\f$;
  * * the number \f$S(n)\f$ of aditions performed is 0 if \f$n=0\f$ and is
  *   \f$n-1\f$ if \f$n>0\f$;
@@ -385,7 +385,7 @@ long stupidly_recursive_fibonacci(int n)
  * These numbers are exact if no other calls to the function have been performed
  * previously, otherwise the values will be either smaller or equal to these. If
  * other calls with an argument larger or equal to \f$n\f$ were performed
- * previously, then \f$N(n)=1\f$, \f$S(n)=0\f$, \f$T(n)=0\f$, and \f$R(n)=1\f$. 
+ * previously, then \f$N(n)=1\f$, \f$S(n)=0\f$, \f$T(n)=0\f$, and \f$R(n)=1\f$.
  */
 // #### Definição
 long recursive_fibonacci(int n)
@@ -402,9 +402,9 @@ long recursive_fibonacci(int n)
 	// seja, não podemos de forma nenhuma usar variáveis locais
 	// _automáticas_, pois estas são construídas quando a instrução que as
 	// define é executada, e destruídas quando se atinge o final do bloco
-	// onde a sua definição se encontra. Em vez de partir daqui as variáveis
-	// globais, cujo tempo de vida abarca todo o tempo de execução do
-	// programa, e que são visíveis em todo o programa, preferimos usar
+	// onde a sua definição se encontra. Em vez de partir daqui para as
+	// variáveis globais, cujo tempo de vida abarca todo o tempo de execução
+	// do programa, e que são visíveis em todo o programa, preferimos usar
 	// variáveis locais _estáticas_. Estas variáveis definem-se usando o
 	// _qualificador_ `static`, duram desde a execução da instrução que as
 	// define até o final do programa e têm a mesma visibilidade restrita
@@ -490,7 +490,7 @@ long recursive_fibonacci(int n)
 }
 
 // ### Implementação recursiva com _lookup_ usando TAD
-  
+
 // #### Documentação
 /** \brief Returns the `n`th term of the Fiboncci sequence.
  *
@@ -504,14 +504,14 @@ long recursive_fibonacci(int n)
  * sequence](http://mathworld.wolfram.com/FibonacciNumber.html), i.e.,
  * \f$F_{\mathtt{n}}\f$. See stupidly_recursive_fibonacci() and
  * recursive_fibonacci() for further information.
- * 
+ *
  * This function uses the ADT `struct sequence_of_longs` store calculated values
  * of the terms of the sequence. After a call to the function with argument
  * \f$n\f$, all future calls to the function with any argument between 0 and
  * \f$n\f$ will execute in constant time. When this doesn't apply, the function
  * will execute in linear time, i.e., \f$O(n)\f$. More precisely, while
  * calculating \f$F_n\f$ by calling `recursive_fibonacci_using_ADT(`\f$n\f$`)`,
- * * the number \f$N(n)\f$ of (recursive) executions of this function is 1 if 
+ * * the number \f$N(n)\f$ of (recursive) executions of this function is 1 if
  *   \f$n=0\f$ and is \f$2n-1\f$ if \f$n>0\f$;
  * * the number \f$S(n)\f$ of aditions performed is 0 if \f$n=0\f$ and is
  *   \f$n-1\f$ if \f$n>0\f$;
@@ -536,7 +536,7 @@ long recursive_fibonacci(int n)
  *
  * See iterative_fibonacci() and tail_recursive_fibonacci() for fast
  * implementations of the Fibonacci sequence that do not require static storage
- * and that execute in linear time. 
+ * and that execute in linear time.
  */
 // #### Definição
 long recursive_fibonacci_using_ADT(int n)
@@ -544,7 +544,7 @@ long recursive_fibonacci_using_ADT(int n)
 	assert(n >= 0);
 	assert(n <= MAXIMUM_TERM_FITTING_A_LONG);
 
-	// Em vez de se um _array_ de `long` como memória para os termos já
+	// Em vez de se usar um _array_ de `long` como memória para os termos já
 	// calculados da sucessão de Fibonacci, bem como um inteiro indicando a
 	// quantidade de termos memorizados, recorremos aqui ao TAD sucessão de
 	// `long`, representado pela estrutura `struct sequence_of_longs`. No
@@ -578,18 +578,18 @@ long recursive_fibonacci_using_ADT(int n)
 	// contexto das variáveis locais estáticas no final do programa de modo
 	// a podermos «arrumar a casa», ou seja, libertar recursos que lhes
 	// estejam associados. Neste caso os recursos são apenas duas variáveis
-	// dinâmicas: (a) a `struct sequence_of_long` apontada por `F` e
-	// (embora, como clientes, não o devêssemos precisar de saber) e (b) o
-	// _array_ dinâmico usado internamente pelo TAD para guardar os termos.
-	// Como toda a memória dinâmica associada ao programa em execução é
-	// libertada durante a sua terminação, a nossa violação do princípio de
-	// que quem reserva memória explicitamente a deve também libertar
-	// explicitamente não é dramática.
+	// dinâmicas: (a) a `struct sequence_of_long` apontada por `F` e, embora
+	// como clientes não o devêssemos precisar de o saber, (b) o _array_
+	// dinâmico usado internamente pelo TAD para guardar os termos. Como
+	// toda a memória dinâmica associada ao programa em execução é libertada
+	// durante a sua terminação, a nossa violação do princípio de que quem
+	// reserva memória explicitamente a deve também libertar explicitamente
+	// não é dramática.
 	if (F == NULL)
 		F = SEQL_new();
 
-	// Se o termo já constar na sucessão de `long` com os termos da sucessão
-	// de Fibonacci já calculados, limitamo-nos a devolvê-lo.
+	// Se o termo já constar na sucessão de `long` contendo os termos da
+	// sucessão de Fibonacci já calculados, então limitamo-nos a devolvê-lo.
 	if (n < SEQL_length(F))
 		return SEQL_term(F, n);
 
@@ -625,29 +625,48 @@ long recursive_fibonacci_using_ADT(int n)
 	return F_n;
 }
 
-// ###Implementação recursiva eficiente sem memória
-  
-// #### Função auxiliar
-long tr_fibonacci(int n, int previous_value, int value)
-{
-    if (n == 1)
-        return value;
+// ### Implementação recursiva eficiente sem memória
+//
+// Esta implementação recursiva dispensa a utilização de memória auxiliar e tem
+// uma eficiência semelhante à da implementação iterativa. No entanto, requer a
+// definição de uma função auxiliar. Assim, serão definidas duas funções:
+//
+// - `tail_recursive_fibonacci()` &ndash; Função com ligação (_linkage_)
+// externa, i.e., visível em outros ficheiros de implementação que componham o
+// programa, que tem uma interface idêntica à das restantes funções para cálculo
+// de termos da sucessão de Fibonacci definidas até agora.
+//
+// - `tr_fibonacci()` &ndash; Função com ligação interna, i.e., invisível
+// noutros ficheiros de implementação que componham o programa, e que
+// corresponde à implementação recursiva do cálculo de termos da sucessão de
+// Fibonacci. A razão para a utilização de um função auxiliar prende-se com o
+// facto de esta possuir dois parâmetros adicionais, `previous_value` e
+// `value`, que _não são relevantes para os clientes do código_. Assim, a
+// função `tail_recursive_fibonacci()` limitar-se-á a invocar esta função,
+// passando-lhe os argumentos apropriados, devolvendo o valor que ela por sua
+// vez devolver.
 
-    return tr_fibonacci(n - 1, value, previous_value + value);
-}
+// #### Declaração da função auxiliar
+//
+// O especificador `static` usado nesta declaração, e na correspondente
+// definição que se encontra mais abaixo, tem como objectivo alterar a ligação
+// desta função de externa (que é a ligação por omissão) para interna.
+static long tr_fibonacci(int n, long previous_value, long value);
 
 // #### Documentação
-/** \brief Returns the `n`th term of the Fibonacci sequence.
+/** \brief Returns the `n`th term of the Fiboncci sequence.
  *
  * \param n The number of the term to return (first valid value is 0).
- * \return The value of the `n`th term of the Fibonacci sequence. The time taken
- * by the function grows !!!!!!!!!!!!!!!!!!!! with `n`.
+ * \return The value of the `n`th term \f$F_{\mathtt{n}}\f$ of the Fibonacci
+ * sequence.
  * \pre `n` ≥ 0
  * \post result = \f$F_{\mathtt{n}}\f$
  *
- * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
- * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
- * the sequence is defined by
+ * Returns the `n`th term of the [Fibonacci
+ * sequence](http://mathworld.wolfram.com/FibonacciNumber.html), i.e.,
+ * \f$F_{\mathtt{n}}\f$. It is assumed the sequence \f$F_n\f$ starts at
+ * \f$n=0\f$, with value 0, followed by value 1, at \f$n=1\f$. That is, the
+ * sequence is defined by
  * \f[
  * F_n = \left\{\begin{array}{ll}
  *     0                 & \text{if } n=0, \\
@@ -655,32 +674,169 @@ long tr_fibonacci(int n, int previous_value, int value)
  *     F_{n-2} + F_{n-1} & \text{if } n>1.
  *   \end{array}\right.
  * \f]
+ * It can be shown that
+ * \f[
+ * F_n = \frac{\phi^n-\psi^n}{\sqrt{5}},
+ * \f]
+ * where \f$\phi=\frac{1+\sqrt{5}}{2}\f$ and \f$\psi=\frac{1-\sqrt{5}}{2}\f$,
+ * and also that, even more simple,
+ * \f[
+ * F_n = \left[\frac{\phi^n}{\sqrt{5}}\right],
+ * \f]
+ * where \f$[\cdot]\f$ is the nearest integer function.
+ *
+ * The time taken by the function grows linearly with `n`. More precisely,
+ * the number of (recursive) executions of function `tr_fibonacci()` performed
+ * while calculating \f$F_n\f$ by calling
+ * `tail_recursive_fibonacci(`\f$n\f$`)` is \f$n\f$ and the number
+ * of aditions performed is 0 if \f$n=0\f$ and \f$n-1\f$ if \f$n>0\f$.
+ *
+ * See iterative_fibonacci() for a fast, iterative implementation of the
+ * Fibonacci sequence with approximately the same efficiency as this
+ * implementation.
  */
 // #### Definição
+//
+// A função com ligação externa serve apenas para lidar com o caso especial da
+// invocação com argumento nulo e para invocar a função auxiliar com os
+// argumentos apropriados. Estes argumentos correspondem aos valores iniciais da
+// sucessão de Fibonacci. A função auxiliar usará os parâmetros correspondentes
+// para ir acumulando os termos da sucessão, como se verá.
 long tail_recursive_fibonacci(int n)
 {
-    if (n == 0)
-        return 0;
+	assert(n >= 0);
+	assert(n <= MAXIMUM_TERM_FITTING_A_LONG);
 
-    return tr_fibonacci(n, 0, 1);
+	// Começamos por lidar com o caso especial correspondente ao termo 0 da
+	// sucessão.
+	if (n == 0)
+        	return 0L;
+
+        // Finalmente, devolvemos o valor devolvido pela invocação da função
+        // auxiliar `tr_fibonacci()`, passando-lhe como argumentos o número `n`
+        // do termo a calcular da sucessão de Fibonacci e os valores dos dois
+        // primeiros termos da sucessão de Fibonacci.
+	return tr_fibonacci(n, 0L, 1L);
 }
+
+// #### Definição da função auxiliar
+//
+// Esta função calcula de forma recursiva o termo ![n](http://bit.ly/Z4ELdk) da
+// sucessão de Fibonacci, desde que ![n>0](http://bit.ly/ZteSVa). Para que isso
+// aconteça, no entanto, a invocação inicial da função deve ser feita não apenas
+// com o primeiro argumento ![n](http://bit.ly/Z4ELdk), mas também com segundo e
+// terceiro argumentos 0 e 1, respectivamente, ou seja,
+// `tr_fibonacci`(![n](http://bit.ly/Z4ELdk), 0, 1). Estes argumentos são usados
+// para inicializar os parâmetros correspondentes, ou seja, `n`,
+// `previous_value` e `value`. Essa invocação inicial dará origem a outras
+// invocações recursivas da mesma função, pelo que ocorrerá uma sequência de
+// execuções da função. Podemos identificar cada uma dessas execuções pelo seu
+// número de ordem, a que podemos chamar ![k](http://bit.ly/13HLQ6t). A primeira
+// execução corresponde a ![k=1](http://bit.ly/12JgpO1), a segunda a
+// ![k=2](http://bit.ly/11YI327) e assim sucessivamente. Iremos demonstrar que,
+// numa dada execução ![k](http://bit.ly/13HLQ6t), é sempre verdadeira a
+// seguinte proposição acerca dos valores dos parâmetros da função:
+//
+// - `n` = ![n+1-k](http://bit.ly/196CV28),
+//
+// - `previous_value` = ![F_k-1](http://bit.ly/13EUC6S) e
+//
+// - `value` = ![F_k](http://bit.ly/17K5che).
+//
+// A demonstração desta proposição faz-se por indução matemática.
+//
+// Quando ![k=1](http://bit.ly/12JgpO1), os valores dos parâmetros correspondem
+// aos argumentos passados na invocação inicial, que por hipótese são
+// respectivamente ![n](http://bit.ly/Z4ELdk), 0 e 1. Substituindo esses valores
+// nas igualdades acima e fazendo nelas também ![k=1](http://bit.ly/12JgpO1),
+// chegamos a
+//
+// - ![n](http://bit.ly/Z4ELdk) = ![n+1-1](http://bit.ly/12Jhdm0), ou seja,
+//   ![n](http://bit.ly/Z4ELdk) = ![n](http://bit.ly/Z4ELdk),
+//
+// - 0 = ![F_1-1](http://bit.ly/11yBl2I), ou seja, 0 =
+//   ![F_0](http://bit.ly/17K5X9W) e
+//
+// - 1 = ![F_1](http://bit.ly/11Kux6h),
+//
+// que é obviamente uma proposição verdadeira, dada a definição da sucessão de
+// Fibonacci.
+//
+// Seja uma execução ![k+1](http://bit.ly/13EW0q0) resultante da invocação
+// recursiva da função realizada durante a execução ![k](http://bit.ly/13HLQ6t).
+// Admitamos que a proposição é verdadeira para ![k](http://bit.ly/13HLQ6t), ou
+// seja, que
+//
+// - `n` = ![n+1-k](http://bit.ly/196CV28),
+//
+// - `previous_value` = ![F_k-1](http://bit.ly/13EUC6S) e
+//
+// - `value` = ![F_k](http://bit.ly/17K5che).
+//
+// Será que também o é para a execução ![k+1](http://bit.ly/13EW0q0)? Os
+// argumentos passados à função na invocação recursiva que ocorre durante a
+// execução ![k](http://bit.ly/13HLQ6t) da função são, por ordem,
+//
+// - `n - 1` = ![n+1-k-1](http://bit.ly/175YPW6) =
+//   ![n+1-(k+1)](http://bit.ly/11cdCdk),
+//
+// - `value` = ![F_k](http://bit.ly/17K5che) =
+//   ![F_(k+1)-1](http://bit.ly/12JiFov) e
+//
+// - `previous_value + value` = ![F_k-1 + F_k](http://bit.ly/18CJzjX) =
+//   ![F_k+1](http://bit.ly/11iwVhG) (pela definição da sucessão de Fibonacci).
+//
+// Conclui-se assim facilmente que, durante a execução
+// ![k+1](http://bit.ly/13EW0q0), os valores dos parâmetros são
+//
+// - `n` = ![n+1-(k+1)](http://bit.ly/11cdCdk),
+//
+// - `previous_value` = ![F_(k+1)-1](http://bit.ly/12JiFov) e
+//
+// - `value` = ![F_k+1](http://bit.ly/11iwVhG),
+//
+// pelo que a proposição também é verdadeira durante a execução
+// ![k+1](http://bit.ly/13EW0q0).
+//
+// Também é fácil ver que o número de execuções da função decorrentes da
+// invocação inicial com argumentos ![n](http://bit.ly/Z4ELdk) (com
+// ![n>0](http://bit.ly/ZteSVa)), 0 e 1 é exactamente
+// ![n](http://bit.ly/Z4ELdk). Assim, a última execução, durante a qual o caso
+// especial `n == 1` é atingido, corresponde a ![k=n](http://bit.ly/12JjOwh), e
+// por isso o valor devolvido pela instrução `return` é `value` =
+// ![F_n](http://bit.ly/16jh6vj), tal como pretendido. Esse valor é depois
+// sucessivamente devolvido pelas execuções intermédias da função,
+// inclusivamente pela invocação inicial. Logo,
+// `tr_fibonacci`(![n](http://bit.ly/Z4ELdk), 0, 1) =
+// ![F_n](http://bit.ly/16jh6vj).
+static long tr_fibonacci(int n, long previous_value, long value)
+{
+	assert(n >= 1);
+	assert(n <= MAXIMUM_TERM_FITTING_A_LONG);
+
+	if (n == 1)
+        	return value;
+
+	return tr_fibonacci(n - 1, value, previous_value + value);
+}
+
 
 // ### Implementação iterativa
 
 // #### Documentação
-// A documentação da função é feita no formato do
-// [Doxygen](http://doxygen.org/), como habitualmente.
 /** \brief Returns the `n`th term of the Fiboncci sequence.
  *
  * \param n The number of the term to return (first valid value is 0).
- * \return The value of the `n`th term of the Fibonacci sequence. The time taken
- * by the function grows linearly with `n`.
+ * \return The value of the `n`th term \f$F_{\mathtt{n}}\f$ of the Fibonacci
+ * sequence.
  * \pre `n` ≥ 0
  * \post result = \f$F_{\mathtt{n}}\f$
  *
- * Returns the `n`th term of the Fibonacci sequence. It is assumed the sequence
- * starts at `n` = 0, with value 0, followed by value 1, at `n` = 1. That is,
- * the sequence is defined by
+ * Returns the `n`th term of the [Fibonacci
+ * sequence](http://mathworld.wolfram.com/FibonacciNumber.html), i.e.,
+ * \f$F_{\mathtt{n}}\f$. It is assumed the sequence \f$F_n\f$ starts at
+ * \f$n=0\f$, with value 0, followed by value 1, at \f$n=1\f$. That is, the
+ * sequence is defined by
  * \f[
  * F_n = \left\{\begin{array}{ll}
  *     0                 & \text{if } n=0, \\
@@ -688,6 +844,24 @@ long tail_recursive_fibonacci(int n)
  *     F_{n-2} + F_{n-1} & \text{if } n>1.
  *   \end{array}\right.
  * \f]
+ * It can be shown that
+ * \f[
+ * F_n = \frac{\phi^n-\psi^n}{\sqrt{5}},
+ * \f]
+ * where \f$\phi=\frac{1+\sqrt{5}}{2}\f$ and \f$\psi=\frac{1-\sqrt{5}}{2}\f$,
+ * and also that, even more simple,
+ * \f[
+ * F_n = \left[\frac{\phi^n}{\sqrt{5}}\right],
+ * \f]
+ * where \f$[\cdot]\f$ is the nearest integer function.
+ *
+ * The time taken by the function grows linearly with `n`. More precisely,
+ * the number of aditions and subtractions performed is 0 if \f$n=0\f$ or
+ * \f$n=1\f$, and \f$2(n-2)\f$ if \f$n>1\f$.
+ *
+ * See tail_recursive_fibonacci() for a fast, tail recursive implementation of
+ * the Fibonacci sequence with approximately the same efficiency as this
+ * implementation.
  */
 // #### Definição
 long iterative_fibonacci(int n)
@@ -695,72 +869,204 @@ long iterative_fibonacci(int n)
 	assert(n >= 0);
 	assert(n <= MAXIMUM_TERM_FITTING_A_LONG);
 
+	// Começamos primeiro por lidar com os casos especiais da sucessão.
 	if (n == 0)
 		return 0L;
 	if (n == 1)
 		return 1L;
 
+	// Recorremos a duas variáveis que guardam, em cada passo do ciclo, o
+	// valor do termo anterior e o valor corrente da sucessão.
 	long previous_term = 1L;
 	long current_term = 1L;
+
+	// O ciclo é executado `n` - 2 vezes, uma vez que os valores iniciais
+	// das variáveis acima correspondem aos termos 1 e 2 da sucessão.
 	for(int i = 2; i != n; i++) {
+		// O novo termo corrente, correspondente a `i` + 1, é obtido
+		// pela soma do termo corrente, correspondente a `i`, com o
+		// termo anterior, correspondente a `i` - 1.
 		current_term += previous_term;
+		// Neste momento temos apenas disponíveis os termos `i` + 1 e
+		// `i` - 1. Precisamos de obter o novo termo anterior, ou seja,
+		// o termo `i`, que perdemos devido à atribuição anterior!
+		// Podemos recuperá-lo obtendo a diferença entre o termo `i` + 1
+		// e o termo `i` - 1. Note-se que este truque _requer uma
+		// subtracção adicional por cada iteração do ciclo_! Podíamos
+		// facilmente evitar essa operação se tivéssemos usado uma
+		// variável auxiliar.
 		previous_term = current_term - previous_term;
 	}
 
+	// Finalmente, devolvemos o termo corrente.
 	return current_term;
 }
 
-// ### Procedimento !!!!!!!
-
+// ### Obtenção de estimativas para o tempo de execução das funções
+//
+// Definimos agora um procedimento que realiza experiências para estimar o tempo
+// de execução de uma qualquer das várias funções de cálculo de termos da
+// sucessão de Fibonacci que desenvolvemos.
+  
 // #### Documentação
-// !!!!!!!!
-/** \brief !!!!!!!!!!!! (includes month 0)
+/** \brief Experiments a given Fibonacci sequence term calculation function for
+ * a sequence of terms and reports the extimated execution times to `stdout`.
  *
- * \param n !!!!!!!!!
- * \return !!!!!!!!!!!
- * \pre `n` ≥ 0
- * \post !!!
+ * \param title The title of the experiment.
+ * \param fibonacci Pointer to the function to experiment with.
+ * \param last_term_to_test The function will be experimented with terms from 0
+ * up to this number.
+ * \pre `title` ≠ null
+ * \pre `fibonacci` ≠ null
+ * \pre `last_term_to_test` ≥ 0
+ * \post The results of the experiment are writen in `stdout`.
  *
- * !!!!!!!!!!!!!!!
+ * This procedure performs experiments with the provided Fibonacci function
+ * `fibonacci()`, reporting the estimated execution times for terms 0 up to
+ * `last_term_to_test`. In order to overcome clock resolution issues, each
+ * experiment is repeated until a total of at least 0.1 seconds is reached. For
+ * all but the first term, the relative increases in execution time are also
+ * reported.
+ *
+ * \bug The minimum accumulated time should not be hardcoded as 0.1 seconds. It
+ * should be a parameter of the procedure instead.
  */
 // #### Definição
 void experiment_efficiency_of(char title[], long fibonacci(int),
-			int last_term)
+			int last_term_to_test)
 {
+	assert(title != NULL);
+	assert(fibonacci != NULL);
+	assert(last_term_to_test >= 0);
+
+	// Calculamos o número mínimo de _clocks_ do relógio a passar durante as
+	// repetições das execuções da função em teste para perfazer um tempo
+	// mínimo de 0,1 segundos. Dessa forma garantimos um mínimo de precisão
+	// nas medidas sem, com isso, se realizar um número excessivo de
+	// repetições (não queremos esperar muito...). A macro `CLOCKS_PER_SEC`
+	// representa o número (inteiro) de _clocks_ ou tiques do relógio que
+	// ocorrem num segundo. O tipo `clock_t` é um sinónimo de um dos tipos
+	// inteiros sem sinal do C (o tipo exacto depende da implementação).
+	const clock_t minimum_accumulated_clocks =
+		(clock_t) (0.1 * CLOCKS_PER_SEC);
+
+	// Imprimimos o título da experiência em curso.
 	printf("%s\n", title);
+
+	// A variável `previous_time` guardará o tempo de execução estimado da
+	// função para o valor anterior de `n`. Dessa forma podermos calcular o
+	// aumento percentual do tempo de execução com o aumento em uma unidade
+	// do número do termo da sucessão de Fibonacci em cálculo.
 	double previous_time = 0.0;
-	for (int n = 0; n != last_term + 1; n++) {
+
+	// Ciclo de repetição de experiências para números crescentes do termo
+	// da sucessão a calcular. Note que os tempos de execução estimados
+	// para as implementações recursivas com memória são afectados por dois
+	// factos: (a) já se calcularam os termos com números inferiores,
+	// que por isso estão memorizados, e (b) após a primeira repetição, o
+	// próprio termo em experiência fica memorizado... Analise os tempos
+	// obtidos tendo estes factos em conta.
+	for (int n = 0; n != last_term_to_test + 1; n++) {
+		long f_n;
+
+		// Este primeiro ciclo serve para calcular o número de
+		// repetições necessário para se acumular o tempo mínimo de 0.1
+		// segundos.
 		clock_t start = clock();
-		int f = fibonacci(n);
+		int repetitions = 0;
+
+		do {
+			f_n = fibonacci(n);
+			repetitions++;
+		} while (clock() < start + minimum_accumulated_clocks);
+
+		// Uma vez que o tempo de execução do ciclo anterior foi
+		// afectado pelo próprio tempo de execução da função `clock()`,
+		// executamos de novo as repetições para obtermos as estimativas
+		// do tempo de execução da função de cálculo da sucessão de
+		// Fibonacci excluindo o tempo de execução da função `clock()`.
+		start = clock();
+
+		for (int r = 0; r != repetitions; r++)
+			f_n = fibonacci(n);
+
 		clock_t end = clock();
-		double time = (double) (end - start) / CLOCKS_PER_SEC;
-		printf("f(%d) = %d in %.4fs %g\n", n, f, time,
-			time / previous_time);
+
+		// Estimamos o tempo de execução da função de cálculo da
+		// sucessão de Fibonacci dividindo o tempo total de execução do
+		// ciclo pelo seu número de iterações (`repetitions`). O tempo
+		// de execução do ciclo em segundos é calculado dividindo o
+		// número total de _clocks_ ou tiques do relógio decorridos
+		// entre o início e o fim do ciclo pelo número de tiques por
+		// segundo.
+		double time =
+			(double) (end - start) / CLOCKS_PER_SEC / repetitions;
+
+		// Imprimimos o valor do termo da sucessão calculado bem como a
+		// estimativa do tempo necessário para efectuar esse cálculo. Se
+		// não se tratar do primeiro termo da sucessão, imprimimos
+		// também a variação percentual desse tempo face ao necessário
+		// para o cálculo do termo anterior.
+		if (previous_time == 0.0)
+			printf("F(%d) = %ld in %g s\n", n, f_n, time);
+		else
+			printf("F(%d) = %ld in %.3g seconds, %+.1f%%\n", n, f_n,
+				time, time / previous_time * 100.0 - 100.0);
+
+		// Guardamos o tempo estimado como tempo anterior a usar na
+		// próxima iteração do ciclo.
 		previous_time = time;
 	}
 }
 
-// ### Procedimento !!!!!!!
-//
-// !!!!!!!!
+// ### Programa principal
 int main(void)
 {
+	// Definimos uma constante que guarda o número do maior termo da
+	// sucessão de Fibonacci que será usado nas experiências realizadas com
+	// a função que usa o algoritmo recursivo estúpido. Sem este cuidado, o
+	// nosso programa não terminaria em tempo útil.
+	const int last_term_to_test_with_stupid_algorithm = 42;
+
+	// Realizamos experiências com cada uma das funções, para obter
+	// estimativas do seu tempo de execução.
+	experiment_efficiency_of(
+		"Stupidly recursive implementation of the fibonacci sequence:",
+		stupidly_recursive_fibonacci,
+		last_term_to_test_with_stupid_algorithm);
+	experiment_efficiency_of(
+		"Recursive implementation of the fibonacci sequence using array"
+		" for storage:",
+		recursive_fibonacci, MAXIMUM_TERM_FITTING_A_LONG);
+	experiment_efficiency_of(
+		"Recursive implementation of the fibonacci sequence using ADT"
+		" for storage:",
+		recursive_fibonacci_using_ADT, MAXIMUM_TERM_FITTING_A_LONG);
+	experiment_efficiency_of(
+		"Tail recursive implementation of the fibonacci sequence:",
+		iterative_fibonacci, MAXIMUM_TERM_FITTING_A_LONG);
+	experiment_efficiency_of(
+		"Two variable iterative implementation of the fibonacci"
+		" sequence:",
+		iterative_fibonacci, MAXIMUM_TERM_FITTING_A_LONG);
+
+	// Finalmente, usamos cada uma das funções para obter os termos da
+	// sucessão, podendo assim mais facilmente confirmar que os cálculos
+	// estão a ser realizados correctamente.
 	for (int n = 0; n != MAXIMUM_TERM_FITTING_A_LONG + 1; n++) {
-//		printf("F(%d) [stupid recursive] = %ld\n", n, stupidly_recursive_fibonacci(n));
-		printf("F(%d) [recursive         ] = %ld\n", n, recursive_fibonacci(n));
-		printf("F(%d) [recursive with ADT] = %ld\n", n, recursive_fibonacci_using_ADT(n));
-		printf("F(%d) [iterative         ] = %ld\n", n, iterative_fibonacci(n));
+		if (n <= last_term_to_test_with_stupid_algorithm)
+			printf("F(%d) [stupidly recursive] = %ld\n",
+				n, stupidly_recursive_fibonacci(n));
+		printf("F(%d) [recursive         ] = %ld\n",
+			n, recursive_fibonacci(n));
+		printf("F(%d) [recursive with ADT] = %ld\n",
+			n, recursive_fibonacci_using_ADT(n));
+		printf("F(%d) [tail recursive    ] = %ld\n",
+			n, tail_recursive_fibonacci(n));
+		printf("F(%d) [iterative         ] = %ld\n",
+			n, iterative_fibonacci(n));
 		putchar('\n');
 	}
-
-	experiment_efficiency_of("Stupidly recursive implementation of the fibonacci sequence:",
-				stupidly_recursive_fibonacci, 35);
-	experiment_efficiency_of("Recursive implementation of the fibonacci sequence:",
-				recursive_fibonacci, 35);
-	experiment_efficiency_of("Recursive implementation of the fibonacci sequence using ADT for storage:",
-				recursive_fibonacci_using_ADT, 35);
-	experiment_efficiency_of("Three variable iterative implementation of the fibonacci sequence:",
-				iterative_fibonacci, 35);
 
 	return EXIT_SUCCESS;
 }
