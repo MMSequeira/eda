@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>hello_world_correct.c</title>
+  <title>`hello_world_correct.c` &ndash; Versão correcta do `hello_world.c`</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -22,6 +22,11 @@
           <a class="small" href="javascript:void(0);">+</a>
           <div id="jump_wrapper">
           <div id="jump_page">
+            
+              
+              <a class="source" href="array_of_routines.c.html">
+                array_of_routines.c
+              </a>
             
               
               <a class="source" href="array_utils.h.html">
@@ -44,6 +49,11 @@
               </a>
             
               
+              <a class="source" href="command_line.c.html">
+                command_line.c
+              </a>
+            
+              
               <a class="source" href="fibonacci.c.html">
                 fibonacci.c
               </a>
@@ -56,6 +66,11 @@
               
               <a class="source" href="hello_world_correct.c.html">
                 hello_world_correct.c
+              </a>
+            
+              
+              <a class="source" href="linked_list.c.html">
+                linked_list.c
               </a>
             
               
@@ -113,27 +128,74 @@
                 sizeof_and_arrays.c
               </a>
             
+              
+              <a class="source" href="string_io.c.html">
+                string_io.c
+              </a>
+            
           </div>
         </li>
       </ul>
     
     <ul class="sections">
         
-          <li id="title">
-              <div class="annotation">
-                  <h1>hello_world_correct.c</h1>
-              </div>
-          </li>
-        
         
         
         <li id="section-1">
             <div class="annotation">
               
-              <div class="pilwrap ">
+              <div class="pilwrap for-h1">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
+              <h1><code>hello_world_correct.c</code> &ndash; Versão correcta do <code>hello_world.c</code></h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
               
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Este programa é a versão corrigida do código em
+<a href="hello_world.c.html"><code>hello_world.c</code></a>).</p>
+<h2>Inclusão de ficheiros de cabeçalho</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Incluímos quatro dos ficheiros de cabeçalho da biblioteca padrão do C, i.e.,
+da biblioteca que acompanha a linguagem C tal como definida pela sua norma:</p>
+<ul>
+<li><p><code>stdio.h</code> &ndash; Declara os procedimentos <code>printf()</code> e <code>scanf()</code>, usados
+respectivamente para escrever no ecrã (ou melhor, no canal de saída) e
+para ler do teclado (ou melhor, do canal de entrada). Declara também
+<code>feof()</code>, <code>ferror()</code>, <code>fprintf()</code> e <code>stderr</code>.</p>
+</li>
+<li><p><code>stdlib.h</code> &ndash; Define a <em>macro</em> <code>EXIT_SUCCESS</code>, que é usada para
+assinalar sucesso na execução de um programa, quando este termina, ou
+seja, quando se <em>sai</em> do programa, e a macro <code>EXIT_FAILURE</code>, que é usada da
+mesma forma, mas para assinalar insucesso.</p>
+</li>
+<li><p><code>stdbool.h</code> &ndash; Para podermos usar o valor booleano <code>true</code> como 
+<em>guarda</em> do ciclo <code>while</code>.</p>
+</li>
+<li><p><code>assert.h</code> &ndash; Para podermos usar a rotina <code>assert()</code> para verificar a
+validade dos argumentos passados à função <code>factorial()</code>.</p>
+</li>
+</ul>
+
             </div>
             
             <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
@@ -141,38 +203,443 @@
 <span class="preprocessor">#include &lt;stdbool.h&gt;</span>
 <span class="preprocessor">#include &lt;assert.h&gt;</span>
 
-<span class="keyword">int</span> factorial(<span class="keyword">const</span> <span class="keyword">int</span> n)
-{
-	assert(<span class="number">0</span> &lt;= n &amp;&amp; n &lt;= <span class="number">12</span>);
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h2>Definição da função <code>factorial()</code></h2>
 
-	<span class="keyword">if</span> (n == <span class="number">0</span>)
-		<span class="keyword">return</span> <span class="number">1</span>;
-	<span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">int</span> factorial(<span class="keyword">const</span> <span class="keyword">int</span> n)
+{
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Verificamos a validade do argumento recebido usando a rotina especial
+(na realidade uma <em>macro</em> do pré-processador) chamada <code>assert()</code>. O
+limite superior para o valor do argumento é muito baixo: 12. Isso
+deve-se a dois factos:</p>
+<ol>
+<li><p>Os <code>int</code> em C, nos nossos ambientes típicos, são guardados em
+apenas 32 bit interpretados em complemento para dois, pelo que um
+inteiro só pode tomar valores entre <img src="http://bit.ly/16CVI6B" alt="-2^31"> e
+<img src="http://bit.ly/12AavZ0" alt="2^31-1">, ou seja, entre
+-2&thinsp;147&thinsp;483&thinsp;648 e
+2&thinsp;147&thinsp;483&thinsp;647.</p>
+</li>
+<li><p>O factorial é uma função de crescimento muito rápido, pelo que
+13!, com o valor 6&thinsp;227&thinsp;020&thinsp;800, excede já o
+limite superior dos <code>int</code>.</p>
+</li>
+</ol>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	assert(<span class="number">0</span> &lt;= n &amp;&amp; n &lt;= <span class="number">12</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Começamos por verificar se se aplica o caso especial em que o valor
+de <code>n</code> é zero.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (n == <span class="number">0</span>)
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Se se aplicar, retornamos imediatamente (i.e., terminamos a função,
+retornando ao ponto de invocação) <em>devolvendo</em> o valor 1.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		<span class="keyword">return</span> <span class="number">1</span>;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>No caso contrário, retornamos devolvendo o produto entre o valor de
+<code>n</code> e o valor devolvido por uma nova invocação da mesma função,
+embora com um valor mais pequeno passado como argumento, ou seja, <em>n
+- 1</em> em vez de <em>n</em>. Trata-se de uma invocação recursiva da própria
+função.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);
 }
 
-<span class="keyword">int</span> main(<span class="keyword">void</span>)
-{
-	printf(<span class="string">"Hello world! Let's calculate the factorial of a number.\n"</span>);
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <h2>A rotina principal <code>main()</code></h2>
 
-	<span class="keyword">int</span> number;
-	<span class="keyword">while</span>(<span class="keyword">true</span>) {
-		printf(<span class="string">"Please enter a non-negative integer "</span>
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">int</span> main(<span class="keyword">void</span>)
+{
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Começamos por escrever no ecrã o nome e o propósito do programa.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	printf(<span class="string">"Hello world! Let's calculate the factorial of a number.\n"</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Uma vez que o objectivo do programa é calcular o factorial de um
+número, usamos este ciclo para obter do utilizado um número inteiro
+não negativo, que ficará guardado na variável <code>number</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> number;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Usamos um ciclo «infinito», pois o local apropriado para a
+verificação da guarda não é nem no início do passo, nem no seu final,
+mas sim a meio. (Na realidade o ciclo tem duas saídas: uma se a
+leitura tiver sucesso, outra, terminando o programa, se durante a
+leitura ocorrer um erro irrecuperável.)</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">while</span>(<span class="keyword">true</span>) {
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Pedimos ao utilizador para introduzir um número inteiro não
+negativo. Neste caso não terminamos a linha, pois pretendemos
+que a resposta do utilizador surja visualmente à frente do
+texto que escrevemos. Em vez disso, escrevemos um espaço,
+para que o número introduzido pelo utilizador não surja
+«colado» ao nosso texto. A leitura dos caracteres
+introduzidos pelo utilizador só é realizada depois de este
+carregar em «enter», o que terá o efeito visual de terminar
+esta linha.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		printf(<span class="string">"Please enter a non-negative integer "</span>
 		       <span class="string">"between 0 and 12: "</span>);
-		<span class="keyword">if</span> (scanf(<span class="string">"%d"</span>, &amp;number) == <span class="number">1</span> &amp;&amp; <span class="number">0</span> &lt;= number &amp;&amp; number &lt;= <span class="number">12</span>)
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Tentamos ler a resposta do utilizador com um número inteiro.
+Se a leitura tiver sucesso e o número estiver dentro da gama
+pretendida, interrompemos o ciclo. A função <code>scanf()</code> devolve
+o número de atribuições a itens de entrada realizadas com
+sucesso. No nosso caso podemos saber se foi lido um valor
+inteiro com sucesso verificando se o valor devolvido foi 1.
+Para saber se o valor lido é válido, verificamos se se
+encontra entre 0 e 12. Caso tudo tenha corrido bem, o ciclo é
+interrompido através da instrução <code>break</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		<span class="keyword">if</span> (scanf(<span class="string">"%d"</span>, &amp;number) == <span class="number">1</span> &amp;&amp; <span class="number">0</span> &lt;= number &amp;&amp; number &lt;= <span class="number">12</span>)
 			<span class="keyword">break</span>;
-		<span class="keyword">if</span> (feof(stdin) || ferror(stdin)) {
-			fprintf(stderr,
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Neste ponto sabemos que algum erro ocorreu. Temos de
+verificar se esse erro é irrecuperável, o que acontece se o
+canal de leitura <code>stdin</code> tiver ficado marcado como tendo sido
+atingido o fim do ficheiro (a entrada de um programa pode ser
+redireccionada de modo a ser feita a partir de um ficheiro)
+ou como tendo ocorrido um outro erro de leitura.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		<span class="keyword">if</span> (feof(stdin) || ferror(stdin)) {
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Se ocorreu um erro irrecuperável, assinalamo-lo no
+canal apropriado para o efeito, <code>stderr</code>, e
+terminamos o programa devolvendo um código de erro.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>			fprintf(stderr,
 				<span class="string">"Unrecoverable error reading user response. "</span>
 				<span class="string">"Exiting.\n"</span>);
-			<span class="keyword">return</span> EXIT_FAILURE;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Terminamos o programa devolvendo o valor especial
+<code>EXIT_FAILURE</code> para comunicar este erro à entidade
+que executou o programa.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>			<span class="keyword">return</span> EXIT_FAILURE;
 		}
-		printf(<span class="string">"Invalid response. Try again.\n"</span>);
-		scanf(<span class="string">"%*[^\n]%*1[\n]"</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Neste ponto sabemos que a leitura não teve sucesso, mas que
+isso não se deveu a um erro irrecuperável. O erro pode ter
+ocorrido por o utilizador não ter introduzido um número
+inteiro ou por ter introduzido um valor inteiro com um valor
+fora da gama válida. Assim, começamos por alertar o
+utilizador acerca do seu erro.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		printf(<span class="string">"Invalid response. Try again.\n"</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Depois, limpamos o canal de entrada de tudo o que o
+utilizador tiver introduzido até ao final da linha, de modo a
+que este possa tentar introduzir um novo valor. Para
+descartar uma linha completa de caracteres, invocamos o
+procedimento <code>scanf()</code> com a cadeia de formação
+<code>%*[^\n]%*1[\n]</code>. O significado é o seguinte:</p>
+<ul>
+<li><p>Primeira especificação de conversão, <code>%*[^\n]</code>: Ler <em>e
+descartar</em> (daí o caractere <code>*</code>) todos os caracteres até o
+próximo fim-de-linha, exclusive.</p>
+</li>
+<li><p>Segunda especificação de conversão, <code>%*1[\n]</code>: Ler <em>e
+descartar</em> (daí o caractere <code>*</code>) exactamente um caractere
+fim-de-linha. Colocar <code>\n</code> na cadeia de formatação em vez
+desta especificação de conversão não teria o resultado
+pretendido, pois o procedimento <code>scanf()</code> interpreta todos
+os caracteres «brancos» como uma ordem para ignorar um
+número arbitrário de caracteres brancos até ser encontrado
+o primeiro caractere não branco, o que levaria a que não
+surgisse novo pedido de inserção de um número válido
+enquanto o utilizador fosse carregando em «enter».</p>
+</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		scanf(<span class="string">"%*[^\n]%*1[\n]"</span>);
 	}
 
-	printf(<span class="string">"%d! = %d\n"</span>, number, factorial(number));
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Finalmente, podemos calcular o factorial pretendido e escrever o
+resultado no ecrã. Para isso invocamos o procedimento <code>printf()</code>
+passando-lhe três argumentos.</p>
+<p>O primeiro argumento, <code>&quot;%d! = %d\n&quot;</code>, é uma cadeia de caracteres de
+formação. Esta cadeia da caracteres é interpretada pelo procedimento
+<code>printf()</code>, que imprime directamente no ecrã os caracteres da cadeia
+de formação, excepto quando encontra <em>especificações de formatação</em>
+que, tal como no caso do procedimento <code>scanf()</code>, são introduzidas
+pelo caractere <code>%</code>. Neste caso temos duas especificações de
+formatação, ambas <code>%d</code>.</p>
+<p>Quando o procedimento <code>printf()</code> encontra a primeira especificação de
+formatação, transforma o valor do segundo argumento, que tem de ser
+um <code>int</code>, uma vez que após o caractere <code>%</code> se encontra o caractere
+<code>d</code>, numa sequência de caracteres e escreve-os no ecrã. Isso leva a
+que o valor da variável <code>number</code> seja escrito no ecrã, na notação
+decimal usual. Quando o procedimento <code>printf()</code> encontra a segunda
+especificação de formatação, transforma o valor do terceiro argumento
+numa sequência de caracteres e escreve-os no ecrã. Isso leva a que o
+valor devolvido pela função <code>factorial()</code> quando invocada com o
+argumento <code>number</code> seja escrito no ecrã, na notação decimal usual.</p>
+<p>Por exemplo, admitindo que o valor de <code>number</code> é 5, então esta
+instrução escreve no ecrã a seguinte linha:</p>
+<pre><code>5! = 120</code></pre>
 
-	<span class="keyword">return</span> EXIT_SUCCESS;
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	printf(<span class="string">"%d! = %d\n"</span>, number, factorial(number));
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Terminada a impressão do factorial calculado, podemos terminar o
+programa retornando da execução da rotina <code>main()</code>. Uma vez que a
+execução teve sucesso, devolvemos o valor especial <code>EXIT_SUCCESS</code> ao
+retornar.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">return</span> EXIT_SUCCESS;
 }
 
 </pre></div></div>

@@ -24,6 +24,11 @@
           <div id="jump_page">
             
               
+              <a class="source" href="array_of_routines.c.html">
+                array_of_routines.c
+              </a>
+            
+              
               <a class="source" href="array_utils.h.html">
                 array_utils.h
               </a>
@@ -44,6 +49,11 @@
               </a>
             
               
+              <a class="source" href="command_line.c.html">
+                command_line.c
+              </a>
+            
+              
               <a class="source" href="fibonacci.c.html">
                 fibonacci.c
               </a>
@@ -56,6 +66,11 @@
               
               <a class="source" href="hello_world_correct.c.html">
                 hello_world_correct.c
+              </a>
+            
+              
+              <a class="source" href="linked_list.c.html">
+                linked_list.c
               </a>
             
               
@@ -111,6 +126,11 @@
               
               <a class="source" href="sizeof_and_arrays.c.html">
                 sizeof_and_arrays.c
+              </a>
+            
+              
+              <a class="source" href="string_io.c.html">
+                string_io.c
               </a>
             
           </div>
@@ -257,15 +277,15 @@ dar a conhecer ao leitor ou ao compilador a existência de uma dada entidade
 também uma declaração, mas não se limita a declarar a existência de algo:
 define-o de forma completa. As declarações estão, por isso, associadas às
 interfaces das ferramentas declaradas e a definições à sua implementação.</p>
-<p>Neste caso particular incluímos dos ficheiros de cabeçalho da biblioteca
+<p>Neste caso particular incluímos dois dos ficheiros de cabeçalho da biblioteca
 padrão do C, i.e., da biblioteca que acompanha a linguagem C tal como
 definida pela sua norma:</p>
 <ul>
-<li><p><code>stdio.h</code> %ndash; Declara os procedimentos <code>printf()</code> e <code>scanf()</code>, usados
+<li><p><code>stdio.h</code> &ndash; Declara os procedimentos <code>printf()</code> e <code>scanf()</code>, usados
 respectivamente para escrever no ecrã (ou melhor, no canal de saída) e
 para ler do teclado (ou melhor, do canal de entrada).</p>
 </li>
-<li><p><code>stdlib.h</code> %ndash; Define a <em>macro</em> <code>EXIT_SUCCESS</code>, que é usada para
+<li><p><code>stdlib.h</code> &ndash; Define a <em>macro</em> <code>EXIT_SUCCESS</code>, que é usada para
 assinalar sucesso na execução de um programa, quando este termina, ou
 seja, quando se <em>sai</em> do programa.</p>
 </li>
@@ -417,14 +437,14 @@ pré-processador) chamada <code>assert()</code>:</p>
 deve-se a dois factos:</p>
 <ol>
 <li><p>Os <code>int</code> em C, nos nossos ambientes típicos, são guardados em apenas 32
-bit interpretados em complemento para dois, pelo que um inteiro só pode tomar
-valores entre <img src="http://bit.ly/16CVI6B" alt="-2^31"> e
+<em>bit</em> interpretados em complemento para dois, pelo que um inteiro só pode
+tomar valores entre <img src="http://bit.ly/16CVI6B" alt="-2^31"> e
 <img src="http://bit.ly/12AavZ0" alt="2^31-1">, ou seja, entre
 -2&thinsp;147&thinsp;483&thinsp;648 e 2&thinsp;147&thinsp;483&thinsp;647.</p>
 </li>
-<li><p>(i) o factorial é uma função de crescimento muito rápido, pelo que 13!,
-com o valor 6&thinsp;227&thinsp;020&thinsp;800, excede já o limite superior
-dos <code>int</code>.</p>
+<li><p>O factorial é uma função de crescimento muito rápido, pelo que 13!, com o
+valor 6&thinsp;227&thinsp;020&thinsp;800, excede já o limite superior dos
+<code>int</code>.</p>
 </li>
 </ol>
 
@@ -769,7 +789,8 @@ devolvemos o valor especial <code>EXIT_SUCCESS</code> ao retornar.</p>
                 <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>O código tal como está tem erros, como vimos. Uma versão completa (e
-complexa!) do código com todos os erros corrigidos (esperamos!) é a seguinte:</p>
+complexa!) do código com todos os erros corrigidos (esperamos!) é a seguinte
+(ver também <a href="hello_world_correct.c.html"><code>hello_world_correct.c</code></a>):</p>
 <pre><code class="lang-C">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;stdbool.h&gt;
@@ -845,19 +866,19 @@ erro apropriada no canal de escrita de erros <code>stderr</code>.</p>
 problema e, depois de descartar a linha errónea introduzida pelo utilizador,
 repetimos o passo do ciclo.</p>
 </li>
-<li><p>Para descartar um linha completa de caracteres, invocamos o procedimento
+<li><p>Para descartar uma linha completa de caracteres, invocamos o procedimento
 <code>scanf()</code> com a cadeia de formação <code>%*[^\n]%*1[\n]</code>. O significado é o
 seguinte:</p>
 <ul>
 <li><p>Primeira especificação de conversão, <code>%*[^\n]</code>: Ler <em>e descartar</em> (daí o
 caractere <code>*</code>) todos os caracteres até o próximo fim-de-linha, exclusive.</p>
 </li>
-<li><p>Primeira especificação de conversão, <code>%*1[\n]</code>: Ler <em>e descartar</em> (daí o
+<li><p>Segunda especificação de conversão, <code>%*1[\n]</code>: Ler <em>e descartar</em> (daí o
 caractere <code>*</code>) exactamente um caractere fim-de-linha. Colocar <code>\n</code> na
 cadeia de formatação em vez desta especificação de conversão não teria o
 resultado pretendido, pois o procedimento <code>scanf()</code> interpreta todos os
 caracteres «brancos» como uma ordem para ignorar um número arbitrário de
-caracteres brancos até ser encontrada o primeiro caractere não branco, o
+caracteres brancos até ser encontrado o primeiro caractere não branco, o
 que levaria a que não surgisse novo pedido de inserção de um número
 válido enquanto o utilizador fosse carregando em «enter».</p>
 </li>

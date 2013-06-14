@@ -57,6 +57,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -117,51 +118,214 @@ $(document).ready(function(){initNavTree('hello__world__correct_8c_source.html',
 <div class="title">hello_world_correct.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keywordtype">int</span> factorial(<span class="keyword">const</span> <span class="keywordtype">int</span> n)</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;{</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        assert(0 &lt;= n &amp;&amp; n &lt;= 12);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordflow">if</span> (n == 0)</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">return</span> n * factorial(n - 1);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        printf(<span class="stringliteral">&quot;Hello world! Let&#39;s calculate the factorial of a number.\n&quot;</span>);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordtype">int</span> number;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordflow">while</span>(<span class="keyword">true</span>) {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                printf(<span class="stringliteral">&quot;Please enter a non-negative integer &quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                       <span class="stringliteral">&quot;between 0 and 12: &quot;</span>);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <span class="keywordflow">if</span> (scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;number) == 1 &amp;&amp; 0 &lt;= number &amp;&amp; number &lt;= 12)</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                <span class="keywordflow">if</span> (feof(stdin) || ferror(stdin)) {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                        fprintf(stderr,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                                <span class="stringliteral">&quot;Unrecoverable error reading user response. &quot;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                <span class="stringliteral">&quot;Exiting.\n&quot;</span>);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                printf(<span class="stringliteral">&quot;Invalid response. Try again.\n&quot;</span>);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                scanf(<span class="stringliteral">&quot;%*[^\n]%*1[\n]&quot;</span>);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        printf(<span class="stringliteral">&quot;%d! = %d\n&quot;</span>, number, factorial(number));</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// `hello_world_correct.c` &amp;ndash; Versão correcta do `hello_world.c`</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// =============================</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// Este programa é a versão corrigida do código em</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// [`hello_world.c`](hello_world.c.html)).</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// Inclusão de ficheiros de cabeçalho</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// ----------------------------------</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// Incluímos quatro dos ficheiros de cabeçalho da biblioteca padrão do C, i.e.,</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// da biblioteca que acompanha a linguagem C tal como definida pela sua norma:</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// - `stdio.h` &amp;ndash; Declara os procedimentos `printf()` e `scanf()`, usados</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// respectivamente para escrever no ecrã (ou melhor, no canal de saída) e</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">// para ler do teclado (ou melhor, do canal de entrada). Declara também</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// `feof()`, `ferror()`, `fprintf()` e `stderr`.</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">// - `stdlib.h` &amp;ndash; Define a _macro_ `EXIT_SUCCESS`, que é usada para</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">// assinalar sucesso na execução de um programa, quando este termina, ou</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">// seja, quando se _sai_ do programa, e a macro `EXIT_FAILURE`, que é usada da</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">// mesma forma, mas para assinalar insucesso.</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">// - `stdbool.h` &amp;ndash; Para podermos usar o valor booleano `true` como </span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">// _guarda_ do ciclo `while`.</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">// - `assert.h` &amp;ndash; Para podermos usar a rotina `assert()` para verificar a</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">// validade dos argumentos passados à função `factorial()`.</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">// Definição da função `factorial()`</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">// ---------------------------------</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">int</span> factorial(<span class="keyword">const</span> <span class="keywordtype">int</span> n)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;{</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="comment">// Verificamos a validade do argumento recebido usando a rotina especial</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="comment">// (na realidade uma _macro_ do pré-processador) chamada `assert()`. O</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment">// limite superior para o valor do argumento é muito baixo: 12. Isso</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="comment">// deve-se a dois factos:</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="comment">//</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">// 1. Os `int` em C, nos nossos ambientes típicos, são guardados em</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="comment">// apenas 32 bit interpretados em complemento para dois, pelo que um</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="comment">// inteiro só pode tomar valores entre ![-2^31](http://bit.ly/16CVI6B) e</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="comment">// ![2^31-1](http://bit.ly/12AavZ0), ou seja, entre</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="comment">// -2&amp;thinsp;147&amp;thinsp;483&amp;thinsp;648 e</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="comment">// 2&amp;thinsp;147&amp;thinsp;483&amp;thinsp;647.</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="comment">//</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">// 2. O factorial é uma função de crescimento muito rápido, pelo que</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="comment">// 13!, com o valor 6&amp;thinsp;227&amp;thinsp;020&amp;thinsp;800, excede já o</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="comment">// limite superior dos `int`.</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        assert(0 &lt;= n &amp;&amp; n &lt;= 12);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="comment">// Começamos por verificar se se aplica o caso especial em que o valor</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="comment">// de `n` é zero.</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">if</span> (n == 0)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="comment">// Se se aplicar, retornamos imediatamente (i.e., terminamos a função,</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="comment">// retornando ao ponto de invocação) _devolvendo_ o valor 1.</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="comment">// No caso contrário, retornamos devolvendo o produto entre o valor de</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">// `n` e o valor devolvido por uma nova invocação da mesma função,</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="comment">// embora com um valor mais pequeno passado como argumento, ou seja, _n</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment">// - 1_ em vez de _n_. Trata-se de uma invocação recursiva da própria</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="comment">// função.</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> n * factorial(n - 1);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">// A rotina principal `main()`</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">// ---------------------------</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;{</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment">// Começamos por escrever no ecrã o nome e o propósito do programa.</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        printf(<span class="stringliteral">&quot;Hello world! Let&#39;s calculate the factorial of a number.\n&quot;</span>);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="comment">// Uma vez que o objectivo do programa é calcular o factorial de um</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="comment">// número, usamos este ciclo para obter do utilizado um número inteiro</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">// não negativo, que ficará guardado na variável `number`.</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordtype">int</span> number;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="comment">// Usamos um ciclo «infinito», pois o local apropriado para a</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="comment">// verificação da guarda não é nem no início do passo, nem no seu final,</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="comment">// mas sim a meio. (Na realidade o ciclo tem duas saídas: uma se a</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="comment">// leitura tiver sucesso, outra, terminando o programa, se durante a</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="comment">// leitura ocorrer um erro irrecuperável.)</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">while</span>(<span class="keyword">true</span>) {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                <span class="comment">// Pedimos ao utilizador para introduzir um número inteiro não</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                <span class="comment">// negativo. Neste caso não terminamos a linha, pois pretendemos</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="comment">// que a resposta do utilizador surja visualmente à frente do</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                <span class="comment">// texto que escrevemos. Em vez disso, escrevemos um espaço,</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                <span class="comment">// para que o número introduzido pelo utilizador não surja</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                <span class="comment">// «colado» ao nosso texto. A leitura dos caracteres</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                <span class="comment">// introduzidos pelo utilizador só é realizada depois de este</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                <span class="comment">// carregar em «enter», o que terá o efeito visual de terminar</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                <span class="comment">// esta linha.</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                printf(<span class="stringliteral">&quot;Please enter a non-negative integer &quot;</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                       <span class="stringliteral">&quot;between 0 and 12: &quot;</span>);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                <span class="comment">// Tentamos ler a resposta do utilizador com um número inteiro.</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                <span class="comment">// Se a leitura tiver sucesso e o número estiver dentro da gama</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                <span class="comment">// pretendida, interrompemos o ciclo. A função `scanf()` devolve</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                <span class="comment">// o número de atribuições a itens de entrada realizadas com</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                <span class="comment">// sucesso. No nosso caso podemos saber se foi lido um valor</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                <span class="comment">// inteiro com sucesso verificando se o valor devolvido foi 1.</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                <span class="comment">// Para saber se o valor lido é válido, verificamos se se</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                <span class="comment">// encontra entre 0 e 12. Caso tudo tenha corrido bem, o ciclo é</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                <span class="comment">// interrompido através da instrução `break`.</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                <span class="keywordflow">if</span> (scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;number) == 1 &amp;&amp; 0 &lt;= number &amp;&amp; number &lt;= 12)</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                <span class="comment">// Neste ponto sabemos que algum erro ocorreu. Temos de</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                <span class="comment">// verificar se esse erro é irrecuperável, o que acontece se o</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                <span class="comment">// canal de leitura `stdin` tiver ficado marcado como tendo sido</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                <span class="comment">// atingido o fim do ficheiro (a entrada de um programa pode ser</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <span class="comment">// redireccionada de modo a ser feita a partir de um ficheiro)</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                <span class="comment">// ou como tendo ocorrido um outro erro de leitura.</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                <span class="keywordflow">if</span> (feof(stdin) || ferror(stdin)) {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                        <span class="comment">// Se ocorreu um erro irrecuperável, assinalamo-lo no</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                        <span class="comment">// canal apropriado para o efeito, `stderr`, e</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                        <span class="comment">// terminamos o programa devolvendo um código de erro.</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                        fprintf(stderr,</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                                <span class="stringliteral">&quot;Unrecoverable error reading user response. &quot;</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                                <span class="stringliteral">&quot;Exiting.\n&quot;</span>);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                        <span class="comment">// Terminamos o programa devolvendo o valor especial</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                        <span class="comment">// `EXIT_FAILURE` para comunicar este erro à entidade</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                        <span class="comment">// que executou o programa.</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                }</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                <span class="comment">// Neste ponto sabemos que a leitura não teve sucesso, mas que</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;                <span class="comment">// isso não se deveu a um erro irrecuperável. O erro pode ter</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                <span class="comment">// ocorrido por o utilizador não ter introduzido um número</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                <span class="comment">// inteiro ou por ter introduzido um valor inteiro com um valor</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                <span class="comment">// fora da gama válida. Assim, começamos por alertar o</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                <span class="comment">// utilizador acerca do seu erro.</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                printf(<span class="stringliteral">&quot;Invalid response. Try again.\n&quot;</span>);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                <span class="comment">// Depois, limpamos o canal de entrada de tudo o que o</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                <span class="comment">// utilizador tiver introduzido até ao final da linha, de modo a</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                <span class="comment">// que este possa tentar introduzir um novo valor. Para</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                <span class="comment">// descartar uma linha completa de caracteres, invocamos o</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                <span class="comment">// procedimento `scanf()` com a cadeia de formação</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                <span class="comment">// `%*[^\n]%*1[\n]`. O significado é o seguinte:</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <span class="comment">//</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                <span class="comment">// - Primeira especificação de conversão, `%*[^\n]`: Ler _e</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                <span class="comment">//   descartar_ (daí o caractere `*`) todos os caracteres até o</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                <span class="comment">//   próximo fim-de-linha, exclusive.</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                <span class="comment">//</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                <span class="comment">// - Segunda especificação de conversão, `%*1[\n]`: Ler _e</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                <span class="comment">//   descartar_ (daí o caractere `*`) exactamente um caractere</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;                <span class="comment">//   fim-de-linha. Colocar `\n` na cadeia de formatação em vez</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;                <span class="comment">//   desta especificação de conversão não teria o resultado</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                <span class="comment">//   pretendido, pois o procedimento `scanf()` interpreta todos</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                <span class="comment">//   os caracteres «brancos» como uma ordem para ignorar um</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                <span class="comment">//   número arbitrário de caracteres brancos até ser encontrado</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                <span class="comment">//   o primeiro caractere não branco, o que levaria a que não</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;                <span class="comment">//   surgisse novo pedido de inserção de um número válido</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;                <span class="comment">//   enquanto o utilizador fosse carregando em «enter».</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                scanf(<span class="stringliteral">&quot;%*[^\n]%*1[\n]&quot;</span>);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        }</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        <span class="comment">// Finalmente, podemos calcular o factorial pretendido e escrever o</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <span class="comment">// resultado no ecrã. Para isso invocamos o procedimento `printf()`</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <span class="comment">// passando-lhe três argumentos.</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="comment">//</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="comment">// O primeiro argumento, `&quot;%d! = %d\n&quot;`, é uma cadeia de caracteres de</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <span class="comment">// formação. Esta cadeia da caracteres é interpretada pelo procedimento</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="comment">// `printf()`, que imprime directamente no ecrã os caracteres da cadeia</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="comment">// de formação, excepto quando encontra _especificações de formatação_</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="comment">// que, tal como no caso do procedimento `scanf()`, são introduzidas</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        <span class="comment">// pelo caractere `%`. Neste caso temos duas especificações de</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        <span class="comment">// formatação, ambas `%d`.</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        <span class="comment">//</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="comment">// Quando o procedimento `printf()` encontra a primeira especificação de</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <span class="comment">// formatação, transforma o valor do segundo argumento, que tem de ser</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="comment">// um `int`, uma vez que após o caractere `%` se encontra o caractere</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="comment">// `d`, numa sequência de caracteres e escreve-os no ecrã. Isso leva a</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="comment">// que o valor da variável `number` seja escrito no ecrã, na notação</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="comment">// decimal usual. Quando o procedimento `printf()` encontra a segunda</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="comment">// especificação de formatação, transforma o valor do terceiro argumento</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="comment">// numa sequência de caracteres e escreve-os no ecrã. Isso leva a que o</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <span class="comment">// valor devolvido pela função `factorial()` quando invocada com o</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="comment">// argumento `number` seja escrito no ecrã, na notação decimal usual.</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="comment">//</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        <span class="comment">// Por exemplo, admitindo que o valor de `number` é 5, então esta</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="comment">// instrução escreve no ecrã a seguinte linha:</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="comment">//</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="comment">// ```</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="comment">// 5! = 120</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="comment">// ```</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        printf(<span class="stringliteral">&quot;%d! = %d\n&quot;</span>, number, factorial(number));</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <span class="comment">// Terminada a impressão do factorial calculado, podemos terminar o</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="comment">// programa retornando da execução da rotina `main()`. Uma vez que a</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        <span class="comment">// execução teve sucesso, devolvemos o valor especial `EXIT_SUCCESS` ao</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <span class="comment">// retornar.</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_fc9b17c42c52164e3ba2c11243662244.html">hello_world</a></li><li class="navelem"><b>hello_world_correct.c</b></li>
-    <li class="footer">Generated on Tue May 7 2013 17:24:22 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Fri Jun 14 2013 12:50:56 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

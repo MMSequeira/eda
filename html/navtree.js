@@ -2,6 +2,7 @@ var NAVTREE =
 [
   [ "Estrutura de Dados e Algoritmos", "index.html", [
     [ "Introduction", "index.html", null ],
+    [ "Bug List", "bug.html", null ],
     [ "Data Structures", null, [
       [ "Data Structures", "annotated.html", "annotated" ],
       [ "Data Structure Index", "classes.html", null ]

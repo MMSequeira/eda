@@ -57,6 +57,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -156,18 +157,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a1cae2292e1037fe827aeb2ff8feceb1c"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fibonacci_8c.html#a1cae2292e1037fe827aeb2ff8feceb1c">recursive_fibonacci_using_ADT</a> (int n)</td></tr>
 <tr class="memdesc:a1cae2292e1037fe827aeb2ff8feceb1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code>n</code>th term of the Fiboncci sequence.  <a href="#a1cae2292e1037fe827aeb2ff8feceb1c">More...</a><br/></td></tr>
 <tr class="separator:a1cae2292e1037fe827aeb2ff8feceb1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ef5ee673c2f202285f8decfab340a68"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ef5ee673c2f202285f8decfab340a68"></a>
-long&#160;</td><td class="memItemRight" valign="bottom"><b>tr_fibonacci</b> (int n, int previous_value, int value)</td></tr>
-<tr class="separator:a5ef5ee673c2f202285f8decfab340a68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d792c5885a5273e29538ccda0417de3"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fibonacci_8c.html#a4d792c5885a5273e29538ccda0417de3">tail_recursive_fibonacci</a> (int n)</td></tr>
-<tr class="memdesc:a4d792c5885a5273e29538ccda0417de3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code>n</code>th term of the Fibonacci sequence.  <a href="#a4d792c5885a5273e29538ccda0417de3">More...</a><br/></td></tr>
+<tr class="memdesc:a4d792c5885a5273e29538ccda0417de3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code>n</code>th term of the Fiboncci sequence.  <a href="#a4d792c5885a5273e29538ccda0417de3">More...</a><br/></td></tr>
 <tr class="separator:a4d792c5885a5273e29538ccda0417de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af99f473187cfddf7364d23891af07138"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fibonacci_8c.html#af99f473187cfddf7364d23891af07138">iterative_fibonacci</a> (int n)</td></tr>
 <tr class="memdesc:af99f473187cfddf7364d23891af07138"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the <code>n</code>th term of the Fiboncci sequence.  <a href="#af99f473187cfddf7364d23891af07138">More...</a><br/></td></tr>
 <tr class="separator:af99f473187cfddf7364d23891af07138"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72151cfd376a83712ac4d74aa2955a97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fibonacci_8c.html#a72151cfd376a83712ac4d74aa2955a97">experiment_efficiency_of</a> (char title[], long fibonacci(int), int last_term)</td></tr>
-<tr class="memdesc:a72151cfd376a83712ac4d74aa2955a97"><td class="mdescLeft">&#160;</td><td class="mdescRight">!!!!!!!!!!!! (includes month 0)  <a href="#a72151cfd376a83712ac4d74aa2955a97">More...</a><br/></td></tr>
-<tr class="separator:a72151cfd376a83712ac4d74aa2955a97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad81ed87f224bcb897adf3fe051b15ad6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fibonacci_8c.html#ad81ed87f224bcb897adf3fe051b15ad6">experiment_efficiency_of</a> (char title[], long fibonacci(int), int last_term_to_test)</td></tr>
+<tr class="memdesc:ad81ed87f224bcb897adf3fe051b15ad6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Experiments a given Fibonacci sequence term calculation function for a sequence of terms and reports the extimated execution times to <code>stdout</code>.  <a href="#ad81ed87f224bcb897adf3fe051b15ad6">More...</a><br/></td></tr>
+<tr class="separator:ad81ed87f224bcb897adf3fe051b15ad6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a840291bc02cba5474a4cb46a9b9566fe"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></tr>
 <tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,7 +176,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></
 
 <p>Definition in file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a72151cfd376a83712ac4d74aa2955a97"></a>
+<a class="anchor" id="ad81ed87f224bcb897adf3fe051b15ad6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -198,7 +196,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>last_term</em>&#160;</td>
+          <td class="paramname"><em>last_term_to_test</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -208,19 +206,25 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></
       </table>
 </div><div class="memdoc">
 
-<p>!!!!!!!!!!!! (includes month 0) </p>
+<p>Experiments a given Fibonacci sequence term calculation function for a sequence of terms and reports the extimated execution times to <code>stdout</code>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">n</td><td>!!!!!!!!! </td></tr>
+    <tr><td class="paramname">title</td><td>The title of the experiment. </td></tr>
+    <tr><td class="paramname">fibonacci</td><td>Pointer to the function to experiment with. </td></tr>
+    <tr><td class="paramname">last_term_to_test</td><td>The function will be experimented with terms from 0 up to this number. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>!!!!!!!!!!! </dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>n</code> ≥ 0 </dd></dl>
-<dl class="section post"><dt>Postcondition</dt><dd>!!!</dd></dl>
-<p>!!!!!!!!!!!!!!! </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>title</code> ≠ null </dd>
+<dd>
+<code>fibonacci</code> ≠ null </dd>
+<dd>
+<code>last_term_to_test</code> ≥ 0 </dd></dl>
+<dl class="section post"><dt>Postcondition</dt><dd>The results of the experiment are writen in <code>stdout</code>.</dd></dl>
+<p>This procedure performs experiments with the provided Fibonacci function <code>fibonacci()</code>, reporting the estimated execution times for terms 0 up to <code>last_term_to_test</code>. In order to overcome clock resolution issues, each experiment is repeated until a total of at least 0.1 seconds is reached. For all but the first term, the relative increases in execution time are also reported.</p>
+<dl class="bug"><dt><b><a class="el" href="bug.html#_bug000001">Bug:</a></b></dt><dd>The minimum accumulated time should not be hardcoded as 0.1 seconds. It should be a parameter of the procedure instead. </dd></dl>
 
-<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00727">727</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
+<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00935">935</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
 
 </div>
 </div>
@@ -245,15 +249,26 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The value of the <code>n</code>th term of the Fibonacci sequence. The time taken by the function grows linearly with <code>n</code>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of the <code>n</code>th term \(F_{\mathtt{n}}\) of the Fibonacci sequence. </dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd><code>n</code> ≥ 0 </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>result = \(F_{\mathtt{n}}\)</dd></dl>
-<p>Returns the <code>n</code>th term of the Fibonacci sequence. It is assumed the sequence starts at <code>n</code> = 0, with value 0, followed by value 1, at <code>n</code> = 1. That is, the sequence is defined by </p>
+<p>Returns the <code>n</code>th term of the <a href="http://mathworld.wolfram.com/FibonacciNumber.html">Fibonacci sequence</a>, i.e., \(F_{\mathtt{n}}\). It is assumed the sequence \(F_n\) starts at \(n=0\), with value 0, followed by value 1, at \(n=1\). That is, the sequence is defined by </p>
 <p class="formulaDsp">
 \[ F_n = \left\{\begin{array}{ll} 0 &amp; \text{if } n=0, \\ 1 &amp; \text{if } n=1\text{, and} \\ F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1. \end{array}\right. \]
 </p>
- 
-<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00693">693</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
+<p> It can be shown that </p>
+<p class="formulaDsp">
+\[ F_n = \frac{\phi^n-\psi^n}{\sqrt{5}}, \]
+</p>
+<p> where \(\phi=\frac{1+\sqrt{5}}{2}\) and \(\psi=\frac{1-\sqrt{5}}{2}\), and also that, even more simple, </p>
+<p class="formulaDsp">
+\[ F_n = \left[\frac{\phi^n}{\sqrt{5}}\right], \]
+</p>
+<p> where \([\cdot]\) is the nearest integer function.</p>
+<p>The time taken by the function grows linearly with <code>n</code>. More precisely, the number of aditions and subtractions performed is 0 if \(n=0\) or \(n=1\), and \(2(n-2)\) if \(n&gt;1\).</p>
+<p>See <a class="el" href="fibonacci_8c.html#a4d792c5885a5273e29538ccda0417de3" title="Returns the nth term of the Fiboncci sequence.">tail_recursive_fibonacci()</a> for a fast, tail recursive implementation of the Fibonacci sequence with approximately the same efficiency as this implementation. </p>
+
+<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00867">867</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
 
 </div>
 </div>
@@ -333,7 +348,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></
 <li>The ADT guarantees that the amortized number of copies of terms perfomed while adding a new term is always less than 2, approaching 1 as the number of terms in the sequence grows to infinity.</li>
 <li>An ADT such as the one used would be necessary if big integers were used for the result of this function.</li>
 </ul>
-<p>See <a class="el" href="fibonacci_8c.html#af99f473187cfddf7364d23891af07138" title="Returns the nth term of the Fiboncci sequence.">iterative_fibonacci()</a> and <a class="el" href="fibonacci_8c.html#a4d792c5885a5273e29538ccda0417de3" title="Returns the nth term of the Fibonacci sequence.">tail_recursive_fibonacci()</a> for fast implementations of the Fibonacci sequence that do not require static storage and that execute in linear time. </p>
+<p>See <a class="el" href="fibonacci_8c.html#af99f473187cfddf7364d23891af07138" title="Returns the nth term of the Fiboncci sequence.">iterative_fibonacci()</a> and <a class="el" href="fibonacci_8c.html#a4d792c5885a5273e29538ccda0417de3" title="Returns the nth term of the Fiboncci sequence.">tail_recursive_fibonacci()</a> for fast implementations of the Fibonacci sequence that do not require static storage and that execute in linear time. </p>
 
 <p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00542">542</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
 
@@ -396,22 +411,33 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></
       </table>
 </div><div class="memdoc">
 
-<p>Returns the <code>n</code>th term of the Fibonacci sequence. </p>
+<p>Returns the <code>n</code>th term of the Fiboncci sequence. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">n</td><td>The number of the term to return (first valid value is 0). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The value of the <code>n</code>th term of the Fibonacci sequence. The time taken by the function grows !!!!!!!!!!!!!!!!!!!! with <code>n</code>. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The value of the <code>n</code>th term \(F_{\mathtt{n}}\) of the Fibonacci sequence. </dd></dl>
 <dl class="section pre"><dt>Precondition</dt><dd><code>n</code> ≥ 0 </dd></dl>
 <dl class="section post"><dt>Postcondition</dt><dd>result = \(F_{\mathtt{n}}\)</dd></dl>
-<p>Returns the <code>n</code>th term of the Fibonacci sequence. It is assumed the sequence starts at <code>n</code> = 0, with value 0, followed by value 1, at <code>n</code> = 1. That is, the sequence is defined by </p>
+<p>Returns the <code>n</code>th term of the <a href="http://mathworld.wolfram.com/FibonacciNumber.html">Fibonacci sequence</a>, i.e., \(F_{\mathtt{n}}\). It is assumed the sequence \(F_n\) starts at \(n=0\), with value 0, followed by value 1, at \(n=1\). That is, the sequence is defined by </p>
 <p class="formulaDsp">
 \[ F_n = \left\{\begin{array}{ll} 0 &amp; \text{if } n=0, \\ 1 &amp; \text{if } n=1\text{, and} \\ F_{n-2} + F_{n-1} &amp; \text{if } n&gt;1. \end{array}\right. \]
 </p>
- 
-<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00660">660</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
+<p> It can be shown that </p>
+<p class="formulaDsp">
+\[ F_n = \frac{\phi^n-\psi^n}{\sqrt{5}}, \]
+</p>
+<p> where \(\phi=\frac{1+\sqrt{5}}{2}\) and \(\psi=\frac{1-\sqrt{5}}{2}\), and also that, even more simple, </p>
+<p class="formulaDsp">
+\[ F_n = \left[\frac{\phi^n}{\sqrt{5}}\right], \]
+</p>
+<p> where \([\cdot]\) is the nearest integer function.</p>
+<p>The time taken by the function grows linearly with <code>n</code>. More precisely, the number of (recursive) executions of function <code>tr_fibonacci()</code> performed while calculating \(F_n\) by calling <code>tail_recursive_fibonacci(</code> \(n\)<code>)</code> is \(n\) and the number of aditions performed is 0 if \(n=0\) and \(n-1\) if \(n&gt;0\).</p>
+<p>See <a class="el" href="fibonacci_8c.html#af99f473187cfddf7364d23891af07138" title="Returns the nth term of the Fiboncci sequence.">iterative_fibonacci()</a> for a fast, iterative implementation of the Fibonacci sequence with approximately the same efficiency as this implementation. </p>
+
+<p>Definition at line <a class="el" href="fibonacci_8c_source.html#l00705">705</a> of file <a class="el" href="fibonacci_8c_source.html">fibonacci.c</a>.</p>
 
 </div>
 </div>
@@ -421,7 +447,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (void)</td></
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_0d0726f1923a95bf995d2bf64c3b8142.html">fibonacci</a></li><li class="navelem"><a class="el" href="fibonacci_8c.html">fibonacci.c</a></li>
-    <li class="footer">Generated on Tue May 7 2013 17:24:22 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Fri Jun 14 2013 12:50:56 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>
