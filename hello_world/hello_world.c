@@ -83,15 +83,15 @@
 // define-o de forma completa. As declarações estão, por isso, associadas às
 // interfaces das ferramentas declaradas e a definições à sua implementação.
 //
-// Neste caso particular incluímos dos ficheiros de cabeçalho da biblioteca
+// Neste caso particular incluímos dois dos ficheiros de cabeçalho da biblioteca
 // padrão do C, i.e., da biblioteca que acompanha a linguagem C tal como
 // definida pela sua norma:
 //
-// - `stdio.h` %ndash; Declara os procedimentos `printf()` e `scanf()`, usados
+// - `stdio.h` &ndash; Declara os procedimentos `printf()` e `scanf()`, usados
 // respectivamente para escrever no ecrã (ou melhor, no canal de saída) e
 // para ler do teclado (ou melhor, do canal de entrada).
 //
-// - `stdlib.h` %ndash; Define a _macro_ `EXIT_SUCCESS`, que é usada para
+// - `stdlib.h` &ndash; Define a _macro_ `EXIT_SUCCESS`, que é usada para
 // assinalar sucesso na execução de um programa, quando este termina, ou
 // seja, quando se _sai_ do programa.
 //
@@ -203,14 +203,14 @@ int factorial(const int n)
 // deve-se a dois factos:
 //
 // 1. Os `int` em C, nos nossos ambientes típicos, são guardados em apenas 32
-// bit interpretados em complemento para dois, pelo que um inteiro só pode tomar
-// valores entre ![-2^31](http://bit.ly/16CVI6B) e
+// _bit_ interpretados em complemento para dois, pelo que um inteiro só pode
+// tomar valores entre ![-2^31](http://bit.ly/16CVI6B) e
 // ![2^31-1](http://bit.ly/12AavZ0), ou seja, entre
 // -2&thinsp;147&thinsp;483&thinsp;648 e 2&thinsp;147&thinsp;483&thinsp;647.
 //
-// 2. (i) o factorial é uma função de crescimento muito rápido, pelo que 13!,
-// com o valor 6&thinsp;227&thinsp;020&thinsp;800, excede já o limite superior
-// dos `int`.
+// 2. O factorial é uma função de crescimento muito rápido, pelo que 13!, com o
+// valor 6&thinsp;227&thinsp;020&thinsp;800, excede já o limite superior dos
+// `int`.
 
 //
 {
@@ -407,7 +407,8 @@ int main(void)
 }
 
 // O código tal como está tem erros, como vimos. Uma versão completa (e
-// complexa!) do código com todos os erros corrigidos (esperamos!) é a seguinte:
+// complexa!) do código com todos os erros corrigidos (esperamos!) é a seguinte
+// (ver também [`hello_world_correct.c`](hello_world_correct.c.html)):
 //
 // ```C
 // #include <stdio.h>
@@ -487,19 +488,19 @@ int main(void)
 // problema e, depois de descartar a linha errónea introduzida pelo utilizador,
 // repetimos o passo do ciclo.
 //
-// 8. Para descartar um linha completa de caracteres, invocamos o procedimento
+// 8. Para descartar uma linha completa de caracteres, invocamos o procedimento
 // `scanf()` com a cadeia de formação `%*[^\n]%*1[\n]`. O significado é o
 // seguinte:
 //
 //   - Primeira especificação de conversão, `%*[^\n]`: Ler _e descartar_ (daí o
 //     caractere `*`) todos os caracteres até o próximo fim-de-linha, exclusive.
 //
-//   - Primeira especificação de conversão, `%*1[\n]`: Ler _e descartar_ (daí o
+//   - Segunda especificação de conversão, `%*1[\n]`: Ler _e descartar_ (daí o
 //     caractere `*`) exactamente um caractere fim-de-linha. Colocar `\n` na
 //     cadeia de formatação em vez desta especificação de conversão não teria o
 //     resultado pretendido, pois o procedimento `scanf()` interpreta todos os
 //     caracteres «brancos» como uma ordem para ignorar um número arbitrário de
-//     caracteres brancos até ser encontrada o primeiro caractere não branco, o
+//     caracteres brancos até ser encontrado o primeiro caractere não branco, o
 //     que levaria a que não surgisse novo pedido de inserção de um número
 //     válido enquanto o utilizador fosse carregando em «enter».
 //
