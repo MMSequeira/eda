@@ -264,7 +264,7 @@ int division(int first, int second)
 // `*` e (b) invocar a função resultante usando o operador de invocação, que
 // consiste num par de parênteses curvos `()` contendo a lista dos argumentos
 // separados por vírgulas. Como o operador de invocação `()` tem precedência
-// relativamente ao operador de desreferenciação `*` (ver [tabela de preferência
+// relativamente ao operador de desreferenciação `*` (ver [tabela de precedência
 // e associatividade dos operadores do C e do C++ na
 // Wikipédia](http://bit.ly/147TVC2)), temos de garantir que este último é
 // aplicado ao ponteiro para a função antes do operador de invocação. Ou seja,
@@ -355,7 +355,7 @@ int division(int first, int second)
 //   seja, o valor 5. Note-se que a colocação dos parênteses curvos em torno de
 //   `*operators[0]` é necessária porque o operador de invocação `()`, usado
 //   neste caso com os operandos 2 e 3, _tem maior precedência que o operador
-//   `*`_ (ver [tabela de preferência e associatividade dos operadores do C e do
+//   `*`_ (ver [tabela de precedência e associatividade dos operadores do C e do
 //   C++ na Wikipédia](http://bit.ly/147TVC2)).
 //
 // Ou seja, escrevendo `(*operators[`_i_`])(`_n_`, `_m_`)`, com _i_ entre 0 e 3
