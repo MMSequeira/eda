@@ -1,5 +1,5 @@
-// `sequence_of_longs.h`
-// =====================
+// `sequence_of_longs.h` &ndash; Interface das sucessões de `long`
+// ===============================================================
 
 // Interface do módulo físico `sequence_of_longs`
 // ----------------------------------------------

@@ -1,13 +1,16 @@
+// `command_line.c` &ndash; Processamento da linha de comandos
+// ===========================================================
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 int main(int argument_count, char *argument_values[argument_count])
 {
-/*	printf("Number of arguments: '%d'\n", argument_count);
+	printf("Number of arguments: '%d'\n", argument_count);
 	for (int i = 0; i != argument_count; i++)
 		printf("Argument %d: '%s'\n", i, argument_values[i]);
-*/
+
 	if (argument_count < 3) {
 		fprintf(stderr, "Error: Insuficient number of arguments!\n");
 		return EXIT_FAILURE;
@@ -32,7 +35,7 @@ int main(int argument_count, char *argument_values[argument_count])
 	}
 
 	// Process file....
-	printf("Processing file...\n");
+	printf("Processing file '%s'...\n", argument_values[2]);
 
 	fclose(file);
 

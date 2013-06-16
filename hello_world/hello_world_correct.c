@@ -1,5 +1,5 @@
 // `hello_world_correct.c` &ndash; Versão correcta do `hello_world.c`
-// =============================
+// ==================================================================
 //
 // Este programa é a versão corrigida do código em
 // [`hello_world.c`](hello_world.c.html)).

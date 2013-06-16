@@ -1,14 +1,17 @@
+// `malloc_stuff.c` &ndash; Memória dinâmica
+// =========================================
+
 #include <stdio.h>
 #include <stdlib.h>
 
-void tests()
+int main(void)
 {
 	int array_size = 3;
 	double *grades = malloc(array_size * sizeof(double));
 	*grades = 11.5;
 	*(grades + 1) = 33.5;
 	// x[y] => *(x + y)
-	//*(pd + 2) = -1;
+	//*(grades + 2) = -1;
 	grades[2] = -1;
 
 	printf("%p\n", grades);
@@ -16,9 +19,9 @@ void tests()
 	for (int i = 0; i != array_size; i++)
 		printf(" %g", grades[i]);
 	putchar('\n');
-//	printf("%g\n", *pd);
-//	printf("%g\n", *(pd + 1));
-//	printf("%g\n", pd[2]);
+	// printf("%g\n", *grades);
+	// printf("%g\n", *(grades + 1));
+	// printf("%g\n", grades[2]);
 
 	grades = realloc(grades, ++array_size * sizeof(double));
 
@@ -44,11 +47,6 @@ void tests()
 	putchar('\n');
 
 	free(grades);
-}
-
-int main()
-{
-	tests();
 
 	return EXIT_SUCCESS;
 }

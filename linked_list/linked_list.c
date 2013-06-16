@@ -1,5 +1,5 @@
 // `linked_list.c` &ndash; Cadeias simplesmente ligadas
-// =============================
+// ====================================================
 //
 // Este programa ilustra de forma elementar a estrutura de dados _cadeia
 // simplesmente ligada_.

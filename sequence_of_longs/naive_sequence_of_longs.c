@@ -1,5 +1,5 @@
-// `sequence_of_longs.c`
-// =====================
+// `sequence_of_longs.c` &ndash; Implementação das sucessões de `long`
+// ===================================================================
 
 // Implementação do módulo físico `sequence_of_longs`
 // --------------------------------------------------

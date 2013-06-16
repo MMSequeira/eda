@@ -1,3 +1,6 @@
+// `experiments.c` &ndash; Testes das sucessões de `long`
+// ======================================================
+
 #include <stdlib.h>
 #include <check.h>
 

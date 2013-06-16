@@ -1,5 +1,5 @@
-// `arrays_and_pointers.c`
-// =======================
+// `arrays_and_pointers.c` &ndash; Ponteiros e _arrays_
+// ====================================================
 /**
  * \file arrays_and_pointers.c
  * \brief Illustrates the relation between arrays and pointers in C.

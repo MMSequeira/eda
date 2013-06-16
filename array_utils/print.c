@@ -1,5 +1,5 @@
-// `print.c`
-// =========
+// `print.c` &ndash; Ficheiro de implementação (modularização física)
+// ==================================================================
 //
 // Estrutura elementar de um ficheiro de implementação
 // ---------------------------------------------------

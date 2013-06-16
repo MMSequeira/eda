@@ -1,5 +1,5 @@
 // `array_of_routines.c` &ndash; Ponteiros para rotinas e _arrays_
-// =============================
+// ===============================================================
 //
 // Este programa ilustra uma forma particular de usar [ponteiros para
 // rotinas](routine_pointers.c.html): guardando-os dentro de um _array_. Para

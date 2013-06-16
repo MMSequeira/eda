@@ -1,3 +1,6 @@
+// `rationals_with_structs.c` &ndash; Racionais com estruturas C
+// =============================================================
+
 #include <stdio.h>
 #include <stdlib.h>
 

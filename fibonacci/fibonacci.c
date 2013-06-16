@@ -1,5 +1,5 @@
-// `fibonacci.c`
-// =============
+// `fibonacci.c` &ndash; Recursividade, iteração e algoritmos
+// ==========================================================
 /**
  * \file fibonacci.c
  * \brief Illustrates possible implementations of the calculation of terms of
@@ -12,8 +12,8 @@
  * speed up calculations.
  */
 
-// Coelhos, recursão e iteração
-// ----------------------------
+// Coelhos, recursividade e iteração
+// ---------------------------------
 //
 // Ofereceram ao Sr. Fibonacci um casal de coelhos, recém-nascidos, de um
 // espécie curiosa: tornam-se férteis ao fim de um mês de vida, concebem logo

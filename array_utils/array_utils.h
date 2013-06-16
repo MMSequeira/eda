@@ -1,5 +1,5 @@
-// `array_utils.h`
-// ===============
+// `array_utils.h` &ndash; Utilitários para _arrays_ (modularização física)
+// ========================================================================
 
 // Estrutura elementar de ficheiros de cabeçalho
 // ---------------------------------------------

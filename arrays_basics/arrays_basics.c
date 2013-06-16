@@ -1,5 +1,5 @@
-// `arrays_basics.c`
-// =================
+// `arrays_basics.c` &ndash; Noções sobre _arrays_
+// ===============================================
 /**
  * \file arrays_basics.c
  * \brief An introduction, in code, to the basics about arrays. 

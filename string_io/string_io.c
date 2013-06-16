@@ -1,3 +1,6 @@
+// `string_io.c` &ndash; Saídas sobre cadeias de caracteres
+// ========================================================
+
 #include <stdio.h>
 #include <stdlib.h>
 

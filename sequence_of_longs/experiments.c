@@ -1,3 +1,6 @@
+// `experiments.c` &ndash; Experiências com sucessões de `long`
+// ============================================================
+
 #include <stdio.h>
 #include <stdlib.h>
 

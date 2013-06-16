@@ -1,5 +1,5 @@
 // `hello_world.c` &ndash; Estrutura de um programa em C
-// =============================
+// =====================================================
 //
 // Este programa ilustra a estrutura básica de um programa escrito na linguagem
 // C. O objectivo deste programa é imprimir no ecrã o factorial de um número
