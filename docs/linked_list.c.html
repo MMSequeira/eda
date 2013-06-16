@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>linked_list.c</title>
+  <title>`linked_list.c` &ndash; Cadeias simplesmente ligadas</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -139,57 +139,736 @@
     
     <ul class="sections">
         
-          <li id="title">
-              <div class="annotation">
-                  <h1>linked_list.c</h1>
-              </div>
-          </li>
-        
         
         
         <li id="section-1">
             <div class="annotation">
               
-              <div class="pilwrap ">
+              <div class="pilwrap for-h1">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
+              <h1><code>linked_list.c</code> &ndash; Cadeias simplesmente ligadas</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
               
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Este programa ilustra de forma elementar a estrutura de dados <em>cadeia
+simplesmente ligada</em>.</p>
+<h2>Documentação do ficheiro <code>linked_list.c</code></h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Como habitualmente, usamos o formato <a href="doxygen.org">Doxygen</a> para os
+comentários de documentação.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/**
+ * \file linked_list.c
+ * \brief Source file containing simple singly linked list examples.
+ * 
+ * This source file defines the C structure `struct singly_linked_int_list_node`
+ * and uses it to implement and experiment with a singly linked list.
+ */</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h2>Inclusões</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>As inclusões usuais de ficheiros de cabeçalho, para poder usar o procedimento
+<code>printf</code> de escrita no ecrã e para poder devolver <code>EXIT_SUCCESS</code> no final do
+programa.</p>
+
             </div>
             
             <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
 
-<span class="keyword">struct</span> singly_linked_int_node {
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h2>Estrutura C <code>struct singly_linked_int_list_node</code></h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h3>Documentação da estrutura</h3>
+<p>Como habitualmente, precedemos a definição da estrutura do correspondente
+comentário de documentação do <a href="doxygen.org">Doxygen</a>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/** \struct singly_linked_int_list_node
+ * \brief Structure for storing a node of a singly linked list.
+ *
+ * Each node contains a single `int` as payload data.
+ *
+ * \var singly_linked_int_list_node::value
+ * The `int` payload data of a node.
+ *
+ * \var singly_linked_int_list_node::next_node
+ * The pointer to the next node in the linked list (`NULL` if
+ * this is the last node in the list).
+ */</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h3>Definição da estrutura</h3>
+<p>As <em>estruturas C</em> são um mecanismo da linguagem C que permite definir novos
+tipos de dados. As variáveis definidas como tendo como tipo uma estrutura C
+agregam um conjunto de membros ou campos de diferentes tipos. As estruturas C
+são uma das duas categorias de tipos ditos <em>tipos agregados</em> do C, em
+conjunto com os <em>arrays</em>. As estruturas C são muitas vezes essenciais para
+criar <em>estruturas de dados</em>, mas não devem ser confundidas com estas. As
+estruturas C são um mecanismo básico da linguagem C, enquanto as estruturas
+de dados são formas de organização dos dados que transcendem a linguagem de
+programação em particular em que estão implementadas.</p>
+<p>As <em>cadeias simplesmente ligadas</em> são também conhecidas por <em>listas
+simplesmente ligadas</em>, mas preferimos reservar a palavra «lista» para <em>tipos
+abstractos de dados</em> (TAD), que podem ou não recorrer a cadeias simples ou
+duplamente ligadas como forma de implementação. As cadeias simplesmente
+ligadas consistem numa sequência de <em>elos</em> (ou <em>nós</em>), cada um deles
+guardando dados como <em>carga útil</em> e contendo um ponteiro para o elo seguinte
+na cadeia. Estas cadeias dizem-se simplesmente ligadas por cada um dos seus
+elos ter informação apenas acerca do <em>elo seguinte</em> na cadeia. Quando os elos
+contêm também um ponteiro para o <em>elo anterior</em>, dizem-se <em>cadeias duplamente
+ligadas</em>.</p>
+<p>No exemplo abaixo recorre-se directamente à manipulação da estrutura C
+<code>struct singly_linked_int_list_node</code>, que nos permite implementar cadeias
+simplesmente ligadas, mas é raro que as estruturas de dados sejam usadas
+directamente no código <em>cliente</em>. As estruturas de dados são usadas sobretudo
+como implementação de tipos abstractos de dados. O mesmo deveria acontecer
+neste caso, mas optámos por deixar a estrutura de dados «nua» para se
+perceber melhor como os elos se organizam e como se acede e manipula uma
+cadeia simplesmente ligada.</p>
+<p>O nome da estrutura C definida, <code>struct singly_linked_int_list_node</code> reflecte
+os seguintes factos:</p>
+<ul>
+<li>Trata-se de uma estrutura C: <code>struct</code> (esta palavra-chave faz parte do nome
+da estrutura, mas não da sua <em>etiqueta</em>, que consiste apenas no
+identificador <code>singly_linked_int_list_node</code>).</li>
+<li>Trata-se de um <em>elo de uma cadeia</em>: <code>list_node</code>.</li>
+<li>Trata-se de um elo de <em>uma cadeia</em>: <code>list</code>.</li>
+<li>Trata-se de um elo de uma cadeia <em>simplesmente ligada</em>: <code>singly_linked</code>.</li>
+<li>Trata-se de um elo <em>cuja carga útil é um <code>ìnt</code></em>: <code>int</code>.</li>
+</ul>
+<p>As variáveis pertencentes ao tipo <code>struct singly_linked_int_list_node</code> são
+usualmente elos de cadeias simplesmente ligadas. Cada uma dessas variáveis
+contém dois membros:</p>
+<ul>
+<li><code>value</code> &ndash; Um campo do tipo <code>int</code> correspondendo à <em>carga útil</em> do elo
+em causa.</li>
+<li><code>next_node</code> &ndash; Um <em>ponteiro para o elo seguinte</em> da cadeia
+simplesmente ligada a que o elo pertence.</li>
+</ul>
+<p>Note que o campo <code>next_node</code> é definido recorrendo à própria estrutura C em
+definição. Esta definição recursiva da estrutura C é perfeitamente legítima,
+pois o campo está a ser definido como sendo um <em>ponteiro</em> para uma instância,
+objecto ou variável do mesmo tipo.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">struct</span> singly_linked_int_list_node {
 	<span class="keyword">int</span> value;
-	<span class="keyword">struct</span> singly_linked_int_node *next;
+	<span class="keyword">struct</span> singly_linked_int_list_node *next_node;
 };
 
-<span class="keyword">int</span> main()
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h2>Criação e manipulação de uma cadeia simplesmente ligada</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Usamos a rotina <code>main()</code> para criar e manipular uma cadeia simplesmente
+ligada.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h3>Documentação da rotina <code>main()</code></h3>
+<p>Como habitualmente, usamos o formato <a href="doxygen.org">Doxygen</a> para os
+comentários de documentação.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="comment">/**
+ * \brief Routine containing simple singly linked list example code.
+ * 
+ * This routine uses the C structure `struct singly_linked_int_list_node`
+ * to implement and experiment with a singly linked list.
+ */</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <h3>Definição da rotina <code>main()</code></h3>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">int</span> main(<span class="keyword">void</span>)
 {
-	<span class="keyword">struct</span> singly_linked_int_node *first;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Para podermos manipular uma cadeia simplesmente ligada, precisamos de
+uma forma de saber onde está o seu primeiro elo. Fazemo-lo através da
+variável <code>first_node</code>, que serve justamente para apontar o primeiro
+elo. Note que o nome desta variável é um pouco enganador: na
+realidade esta variável não guarda o primeiro elo, mas sim <em>um
+ponteiro para o primeiro elo</em>. Pode confirmar que se trata de um
+ponteiro através do símbolo <code>*</code> antes do seu nome. Os nomes dos
+restantes ponteiros usados neste programa seguem o mesmo padrão: o
+nome refere-se àquilo que é apontado, e não ao ponteiro propriamente
+dito.</p>
+<p>As cadeias ligadas só são verdadeiramente úteis se o programador
+tiver a possibilidade de criar novos elos e de os inserir na cadeia,
+ou de os remover e destruir, nos instantes em que isso lhe é mais
+conveniente. Por isso, os elos das cadeias ligadas são tipicamente
+<em>variáveis dinâmicas</em>, ou seja, variáveis construídas pelo código do
+programador na memória dinâmica por ele reservada usando a rotina
+<code>malloc()</code> (ou das outras rotinas do C com objectivo semelhante),
+numa zona da memória do programa a que se chama normalmente o
+«montão» ou <em>heap</em>, e destruídas pelo código do programador
+libertando essa mesma memória através do procedimento <code>free()</code>.</p>
+<p>Esta instrução define a variável local <code>first_node</code> como um ponteiro
+para <code>struct singly_linked_int_list_node</code> e inicializa esse ponteiro
+com o endereço de uma zona de memória com dimensão apropriada para
+guardar uma instância desse tipo. Essa zona de memória será
+inicializada nas instruções seguintes como sendo o primeiro e único
+elo da cadeia.</p>
 
-	first = malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> singly_linked_int_node));
-	first-&gt;value = <span class="number">10</span>;
-	first-&gt;next = NULL;
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">struct</span> singly_linked_int_list_node *first_node = 
+		malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> singly_linked_int_list_node));
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Para perceber o código de inicialização, bem como o que se segue,
+precisa de se recordar que o operador <code>-&gt;</code> serve para aceder a um
+campo de uma estrutura através de um seu ponteiro. Assim, o código
+apresentado é equivalente a:</p>
+<pre><code class="lang-C">(*first_node).value = 10;
+(*first_node).next_node = NULL;</code></pre>
+<p>A utilização de parênteses no código acima deve-se à maior
+precedência do operador <code>.</code> relativamente ao operador <code>*</code> (ver
+<a href="http://bit.ly/147TVC2">tabela de precedência e associatividade dos operadores do C e do
+C++ na Wikipédia</a>).</p>
+<p>Através do ponteiro <code>first_node</code>, inicializamos os dois membros ou
+campos do primeiro e único elo da cadeia. Esse elo contém como carga
+útil o inteiro 10. A inicialização tem de incidir também sobre o
+campo <code>next_node</code>, que de outro modo conteria um valor indefinido.
+Mas que endereço guardar nesse campo, um ponteiro para o elo seguinte
+na cadeia, se a cadeia ainda só tem um elo? A resposta é simples: o
+último elo da cadeia caracteriza-se por ter o valor especial <code>NULL</code>
+nesse campo, indicando-se com isso que não existe qualquer outro elo
+da cadeia depois dele.</p>
 
-	first-&gt;next = malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> singly_linked_int_node));
-	first-&gt;next-&gt;value = <span class="number">20</span>;
-	first-&gt;next-&gt;next = NULL;
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	first_node-&gt;value = <span class="number">10</span>;
+	first_node-&gt;next_node = NULL;
 
-	<span class="keyword">struct</span> singly_linked_int_node *new_node =
-		malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> singly_linked_int_node));
-	new_node-&gt;value = <span class="number">0</span>;
-	new_node-&gt;next = first;
-	first = new_node;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Vamos agora percorrer a cadeia simplesmente ligada desde o primeiro
+elo até o seu fim. Para isso usamos o ciclo <code>for</code> de um forma um
+pouco diferente do usual. Na inicialização do ciclo <code>for</code>, definimos
+uma nova variável <code>node</code>, um ponteiro para <code>struct
+singly_linked_int_list_node</code>, que inicializamos com o endereço do
+primeiro elo: <code>struct singly_linked_int_list_node *node =
+first_node</code>. No progresso do ciclo <code>for</code>, fazemos o ponteiro <code>node</code>
+avançar, atribuindo-lhe o endereço do elo seguinte em relação ao elo
+apontado pela própria variável <code>node</code>: <code>node = node-&gt;next_node</code>. Como
+guarda do ciclo, usamos o predicado <code>node != NULL</code>, ou seja, o ciclo
+continua, avançando com o ponteiro <code>node</code> ao longo dos elos da
+cadeia, até atingir o valor <code>NULL</code>, guardado no campo <code>next</code> do
+último elo da cadeia. Em cada passo do ciclo, escrevemos no ecrã o
+valor da carga útil do elo corrente da cadeia.</p>
+<p>Se lhe parece um pouco exagerado usar um ciclo <code>for</code> para percorrer
+uma cadeia que neste ponto tem apenas um elo, tem toda a razão. É um
+exagero. Mas pelo menos deixa claro que podemos usar um ciclo para
+percorrer cadeias com qualquer comprimento (inclusive com comprimento
+nulo, como veremos).</p>
+<p>Naturalmente, o resultado da execução deste código será:</p>
+<pre><code>After the first node insertion:
+Node payload: 10</code></pre>
 
-	<span class="keyword">for</span> (<span class="keyword">struct</span> singly_linked_int_node *node_pointer = first;
-		node_pointer != NULL;
-		node_pointer = node_pointer-&gt;next)
-		printf(<span class="string">"%d\n"</span>, node_pointer-&gt;value);
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	printf(<span class="string">"After the first node insertion:\n"</span>);
+	<span class="keyword">for</span> (<span class="keyword">struct</span> singly_linked_int_list_node *node = first_node;
+		node != NULL;
+		node = node-&gt;next_node)
+		printf(<span class="string">"Node payload: %d\n"</span>, node-&gt;value);
+	putchar(<span class="string">'\n'</span>);
 
-	printf(<span class="string">"Hello world!\n"</span>);
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Vamos agora inserir um novo elo na cadeia, no seu final. Para isso,
+reservamos a quantidade de memória apropriada e colocamos o seu
+endereço no membro ponteiro <code>next_node</code> do primeiro elo da cadeia,
+apontado por <code>first_node</code>.</p>
 
-	<span class="keyword">return</span> EXIT_SUCCESS;
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	first_node-&gt;next_node =
+		malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> singly_linked_int_list_node));
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Da mesma forma que anteriormente, inicializamos os membros do novo
+elo com valores apropriados, nomeadamente com 20 na carga útil
+<code>value</code> e com o valor especial <code>NULL</code> no ponteiro <code>next_node</code>,
+deixando claro que não há qualquer elo após este novo elo, que é
+agora o último da cadeia.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	first_node-&gt;next_node-&gt;value = <span class="number">20</span>;
+	first_node-&gt;next_node-&gt;next_node = NULL;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Mostramos no ecrã o conteúdo da cadeia, tal como anteriormente. O
+resultado da execução deste código será:</p>
+<pre><code>After the second node insertion:
+Node payload: 10
+Node payload: 20</code></pre>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	printf(<span class="string">"After the second node insertion:\n"</span>);
+	<span class="keyword">for</span> (<span class="keyword">struct</span> singly_linked_int_list_node *node = first_node;
+		node != NULL;
+		node = node-&gt;next_node)
+		printf(<span class="string">"Node payload: %d\n"</span>, node-&gt;value);
+	putchar(<span class="string">'\n'</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Desta vez vamos inserir um novo elo <em>no início</em> da cadeia. Para isso,
+começamos por construir um novo elo, guardando o seu endereço numa
+variável local <code>new_node</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">struct</span> singly_linked_int_list_node *new_node =
+		malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> singly_linked_int_list_node));
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Inicializamos a carga útil do novo elo com o valor <code>int</code> 0 (zero). O
+elo seguinte da cadeia, relativamente ao novo elo, é o elo que neste
+momento é o primeiro elo da cadeia. Isto acontece porque o novo elo
+está a ser inserido no início da cadeia, ao contrário do que fizemos
+antes.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	new_node-&gt;value = <span class="number">0</span>;
+	new_node-&gt;next_node = first_node;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Construído o novo elo, já com uma referência apropriada para o elo da
+cadeia que se lhe segue, precisamos de actualizar o ponteiro
+<code>first_node</code> de modo a apontar para o novo elo, que passará a ser o
+primeiro elo da cadeia.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	first_node = new_node;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Mostramos no ecrã o conteúdo da cadeia, tal como anteriormente. O
+resultado da execução deste código será:</p>
+<pre><code>After the third node insertion:
+Node payload: 0
+Node payload: 10
+Node payload: 20</code></pre>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	printf(<span class="string">"After the third node insertion:\n"</span>);
+	<span class="keyword">for</span> (<span class="keyword">struct</span> singly_linked_int_list_node *node = first_node;
+		node != NULL;
+		node = node-&gt;next_node)
+		printf(<span class="string">"Node payload: %d\n"</span>, node-&gt;value);
+	putchar(<span class="string">'\n'</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Vamos agora remover o primeiro elo da cadeia. Para isso, poderia
+parecer suficiente fazer avançar o ponteiro <code>first_node</code> usando a
+atribuição <code>first_node = first_node-&gt;next_node</code>. Mas a verdade é que
+precisamos de libertar a memória ocupada pelo primeiro elo, pelo que
+temos de guardar o seu endereço numa variável auxiliar.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">struct</span> singly_linked_int_list_node *node_to_free = first_node;
+	first_node = first_node-&gt;next_node;
+	free(node_to_free);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Mostramos no ecrã o conteúdo da cadeia, tal como anteriormente. O
+resultado da execução deste código será:</p>
+<pre><code>After the first node removal:
+Node payload: 10
+Node payload: 20</code></pre>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	printf(<span class="string">"After the first node removal:\n"</span>);
+	<span class="keyword">for</span> (<span class="keyword">struct</span> singly_linked_int_list_node *node = first_node;
+		node != NULL;
+		node = node-&gt;next_node)
+		printf(<span class="string">"Node payload: %d\n"</span>, node-&gt;value);
+	putchar(<span class="string">'\n'</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Podemos também remover o último elo da cadeia, desde que tenhamos uma
+forma simples de aceder ao seu penúltimo elo. Neste momento o
+penúltimo elo é também o primeiro elo da cadeia, pelo que o acesso é
+fácil.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">struct</span> singly_linked_int_list_node *next_to_last_node = first_node;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>A remoção propriamente dita tem dois passos. O primeiro passo é
+libertar a memória reservada para o último elo.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	free(next_to_last_node-&gt;next_node);
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>O segundo passo é actualizar o campo <code>next_node</code> do que agora é o
+último elo, atribuindo-lhe o valor especial <code>NULL</code>. Isso marca-o como
+último elo da cadeia.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	next_to_last_node-&gt;next_node = NULL;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Mostramos no ecrã o conteúdo da cadeia, tal como anteriormente. O
+resultado da execução deste código será:</p>
+<pre><code>After the second node removal:
+Node payload: 10</code></pre>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	printf(<span class="string">"After the second node removal:\n"</span>);
+	<span class="keyword">for</span> (<span class="keyword">struct</span> singly_linked_int_list_node *node = first_node;
+		node != NULL;
+		node = node-&gt;next_node)
+		printf(<span class="string">"Node payload: %d\n"</span>, node-&gt;value);
+	putchar(<span class="string">'\n'</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Neste momento a cadeia tem apenas um elo. Removê-lo é fácil, bastando
+libertar a sua memória e colocar o valor especial <code>NULL</code> no ponteiro
+<code>first_node</code>, deixando assim claro que a cadeia está agora vazia.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	free(first_node);
+	first_node = NULL;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>Mostramos no ecrã o conteúdo da cadeia, tal como anteriormente. O
+ciclo não sofre qualquer alteração, funcionando por isso
+correctamente, <em>mesmo para cadeias vazias</em>. O resultado da execução
+deste código será:</p>
+<pre><code>After the third node removal:</code></pre>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	printf(<span class="string">"After the third node removal:\n"</span>);
+	<span class="keyword">for</span> (<span class="keyword">struct</span> singly_linked_int_list_node *node = first_node;
+		node != NULL;
+		node = node-&gt;next_node)
+		printf(<span class="string">"Node payload: %d\n"</span>, node-&gt;value);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>Terminamos assinalando sucesso.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">return</span> EXIT_SUCCESS;
 }
 
 </pre></div></div>

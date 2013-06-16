@@ -104,7 +104,7 @@ $(document).ready(function(){initNavTree('array__of__routines_8c_source.html',''
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -384,7 +384,7 @@ $(document).ready(function(){initNavTree('array__of__routines_8c_source.html',''
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment">// `*` e (b) invocar a função resultante usando o operador de invocação, que</span></div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment">// consiste num par de parênteses curvos `()` contendo a lista dos argumentos</span></div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="comment">// separados por vírgulas. Como o operador de invocação `()` tem precedência</span></div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="comment">// relativamente ao operador de desreferenciação `*` (ver [tabela de preferência</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="comment">// relativamente ao operador de desreferenciação `*` (ver [tabela de precedência</span></div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="comment">// e associatividade dos operadores do C e do C++ na</span></div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="comment">// Wikipédia](http://bit.ly/147TVC2)), temos de garantir que este último é</span></div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="comment">// aplicado ao ponteiro para a função antes do operador de invocação. Ou seja,</span></div>
@@ -475,7 +475,7 @@ $(document).ready(function(){initNavTree('array__of__routines_8c_source.html',''
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="comment">//   seja, o valor 5. Note-se que a colocação dos parênteses curvos em torno de</span></div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;<span class="comment">//   `*operators[0]` é necessária porque o operador de invocação `()`, usado</span></div>
 <div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="comment">//   neste caso com os operandos 2 e 3, _tem maior precedência que o operador</span></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="comment">//   `*`_ (ver [tabela de preferência e associatividade dos operadores do C e do</span></div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="comment">//   `*`_ (ver [tabela de precedência e associatividade dos operadores do C e do</span></div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="comment">//   C++ na Wikipédia](http://bit.ly/147TVC2)).</span></div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="comment">// Ou seja, escrevendo `(*operators[`_i_`])(`_n_`, `_m_`)`, com _i_ entre 0 e 3</span></div>
@@ -553,7 +553,7 @@ $(document).ready(function(){initNavTree('array__of__routines_8c_source.html',''
 <div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;</div>
 <div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;<span class="comment">// Definimos a rotina principal, onde experimentamos o conceito de _array_ de</span></div>
 <div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;<span class="comment">// rotinas.</span></div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;<span class="keywordtype">int</span> <a class="code" href="linked__list_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Routine containing simple singly linked list example code.">main</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;{</div>
 <div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;        <span class="comment">// Percorremos cada um dos itens do _array_ `operations`.</span></div>
 <div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != number_of_operations; i++)</div>
@@ -597,7 +597,7 @@ $(document).ready(function(){initNavTree('array__of__routines_8c_source.html',''
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_e40828d7a75b1f059ad6024c4b8f6263.html">array_of_routines</a></li><li class="navelem"><b>array_of_routines.c</b></li>
-    <li class="footer">Generated on Sat Jun 15 2013 22:52:45 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Sun Jun 16 2013 15:50:26 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>
