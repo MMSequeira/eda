@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>command_line.c</title>
+  <title>`command_line.c` &ndash; Processamento da linha de comandos</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -139,19 +139,26 @@
     
     <ul class="sections">
         
-          <li id="title">
-              <div class="annotation">
-                  <h1>command_line.c</h1>
-              </div>
-          </li>
-        
         
         
         <li id="section-1">
             <div class="annotation">
               
-              <div class="pilwrap ">
+              <div class="pilwrap for-h1">
                 <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1><code>command_line.c</code> &ndash; Processamento da linha de comandos</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
               
             </div>
@@ -162,10 +169,10 @@
 
 <span class="keyword">int</span> main(<span class="keyword">int</span> argument_count, <span class="keyword">char</span> *argument_values[argument_count])
 {
-<span class="comment">/*	printf("Number of arguments: '%d'\n", argument_count);
-	for (int i = 0; i != argument_count; i++)
-		printf("Argument %d: '%s'\n", i, argument_values[i]);
-*/</span>
+	printf(<span class="string">"Number of arguments: '%d'\n"</span>, argument_count);
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != argument_count; i++)
+		printf(<span class="string">"Argument %d: '%s'\n"</span>, i, argument_values[i]);
+
 	<span class="keyword">if</span> (argument_count &lt; <span class="number">3</span>) {
 		fprintf(stderr, <span class="string">"Error: Insuficient number of arguments!\n"</span>);
 		<span class="keyword">return</span> EXIT_FAILURE;
@@ -194,17 +201,17 @@
         </li>
         
         
-        <li id="section-2">
+        <li id="section-3">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
+                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>Process file....</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	printf(<span class="string">"Processing file...\n"</span>);
+            <div class="content"><div class="highlight"><pre>	printf(<span class="string">"Processing file '%s'...\n"</span>, argument_values[<span class="number">2</span>]);
 
 	fclose(file);
 

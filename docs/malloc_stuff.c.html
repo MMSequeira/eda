@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>malloc_stuff.c</title>
+  <title>`malloc_stuff.c` &ndash; Memória dinâmica</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -139,33 +139,17 @@
     
     <ul class="sections">
         
-          <li id="title">
-              <div class="annotation">
-                  <h1>malloc_stuff.c</h1>
-              </div>
-          </li>
-        
         
         
         <li id="section-1">
             <div class="annotation">
               
-              <div class="pilwrap ">
+              <div class="pilwrap for-h1">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
-              
-            </div>
-            
-            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
-<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+              <h1><code>malloc_stuff.c</code> &ndash; Memória dinâmica</h1>
 
-<span class="keyword">void</span> tests()
-{
-	<span class="keyword">int</span> array_size = <span class="number">3</span>;
-	<span class="keyword">double</span> *grades = malloc(array_size * <span class="keyword">sizeof</span>(<span class="keyword">double</span>));
-	*grades = <span class="number">11.5</span>;
-	*(grades + <span class="number">1</span>) = <span class="number">33.5</span>;
-</pre></div></div>
+            </div>
             
         </li>
         
@@ -176,8 +160,31 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
+              
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+
+<span class="keyword">int</span> main(<span class="keyword">void</span>)
+{
+	<span class="keyword">int</span> array_size = <span class="number">3</span>;
+	<span class="keyword">double</span> *grades = malloc(array_size * <span class="keyword">sizeof</span>(<span class="keyword">double</span>));
+	*grades = <span class="number">11.5</span>;
+	*(grades + <span class="number">1</span>) = <span class="number">33.5</span>;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
               <p>x[y] =&gt; <em>(x + y)
-</em>(pd + 2) = -1;</p>
+</em>(grades + 2) = -1;</p>
 
             </div>
             
@@ -193,15 +200,15 @@
         </li>
         
         
-        <li id="section-3">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>printf(&quot;%g\n&quot;, <em>pd);
-printf(&quot;%g\n&quot;, </em>(pd + 1));
-printf(&quot;%g\n&quot;, pd[2]);</p>
+              <p>printf(&quot;%g\n&quot;, <em>grades);
+printf(&quot;%g\n&quot;, </em>(grades + 1));
+printf(&quot;%g\n&quot;, grades[2]);</p>
 
             </div>
             
@@ -229,11 +236,6 @@ printf(&quot;%g\n&quot;, pd[2]);</p>
 	putchar(<span class="string">'\n'</span>);
 
 	free(grades);
-}
-
-<span class="keyword">int</span> main()
-{
-	tests();
 
 	<span class="keyword">return</span> EXIT_SUCCESS;
 }

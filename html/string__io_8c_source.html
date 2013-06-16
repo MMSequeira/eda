@@ -118,38 +118,41 @@ $(document).ready(function(){initNavTree('string__io_8c_source.html','');});
 <div class="title">string_io.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// `string_io.c` &amp;ndash; Saídas sobre cadeias de caracteres</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// ========================================================</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keywordtype">int</span> <a class="code" href="linked__list_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Routine containing simple singly linked list example code.">main</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *types[] = {</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;                <span class="stringliteral">&quot;sorted&quot;</span>,</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;                <span class="stringliteral">&quot;partially_sorted&quot;</span>,</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;                <span class="stringliteral">&quot;shuffled&quot;</span>,</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        };</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> number_of_types =</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                <span class="keyword">sizeof</span>(types) / <span class="keyword">sizeof</span>(<span class="keyword">const</span> <span class="keywordtype">char</span>*);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> size = 2; size != 1 &lt;&lt; 21; size *= 2)</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != number_of_types; i++) {</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                        <span class="keywordtype">char</span> filename[FILENAME_MAX];</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                        snprintf(filename, FILENAME_MAX,</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                                <span class="stringliteral">&quot;%s_%d.txt&quot;</span>,</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                                types[i], size);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                        printf(<span class="stringliteral">&quot;The file name is: &#39;%s&#39;\n&quot;</span>, filename);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                }</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">int</span> <a class="code" href="linked__list_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Routine containing simple singly linked list example code.">main</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *types[] = {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;                <span class="stringliteral">&quot;sorted&quot;</span>,</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                <span class="stringliteral">&quot;partially_sorted&quot;</span>,</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                <span class="stringliteral">&quot;shuffled&quot;</span>,</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        };</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">int</span> number_of_types =</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;                <span class="keyword">sizeof</span>(types) / <span class="keyword">sizeof</span>(<span class="keyword">const</span> <span class="keywordtype">char</span>*);</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> size = 2; size != 1 &lt;&lt; 21; size *= 2)</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != number_of_types; i++) {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                        <span class="keywordtype">char</span> filename[FILENAME_MAX];</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                        snprintf(filename, FILENAME_MAX,</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                                <span class="stringliteral">&quot;%s_%d.txt&quot;</span>,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                                types[i], size);</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                        printf(<span class="stringliteral">&quot;The file name is: &#39;%s&#39;\n&quot;</span>, filename);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_1fff6861f76d753d96d5a9e463336654.html">string_io</a></li><li class="navelem"><b>string_io.c</b></li>
-    <li class="footer">Generated on Sun Jun 16 2013 15:50:27 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Sun Jun 16 2013 16:55:39 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

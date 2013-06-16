@@ -124,39 +124,35 @@ $(document).ready(function(){initNavTree('sizeof__and__arrays_8c_source.html',''
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// Change name to something else.</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keywordtype">void</span> print(<span class="keywordtype">int</span> number_of_items, <span class="keywordtype">int</span> items[number_of_items])</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        printf(<span class="stringliteral">&quot;%lu\n&quot;</span>, <span class="keyword">sizeof</span>(items));</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != number_of_items; i++)</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;                printf(<span class="stringliteral">&quot;%d\n&quot;</span>, items[i]);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// Eu: inicialização de arrays de comprimento variável.</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// Todos: %d para sizeof é erro.</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">int</span> <a class="code" href="linked__list_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Routine containing simple singly linked list example code.">main</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordtype">int</span> ages[] = {23, 24, 25, 26};</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        printf(<span class="stringliteral">&quot;%lu\n&quot;</span>, <span class="keyword">sizeof</span>(ages));</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">//      printf(&quot;%lu\n&quot;, sizeof(char));</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">//      printf(&quot;%lu\n&quot;, sizeof(short int));</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">//      printf(&quot;%lu\n&quot;, sizeof(int));</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//      printf(&quot;%lu\n&quot;, sizeof(long int));</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">//      printf(&quot;%lu\n&quot;, sizeof(long long int));</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        print(<span class="keyword">sizeof</span>(ages) / <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>), ages);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;}</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keywordtype">void</span> print(<span class="keywordtype">int</span> number_of_items, <span class="keywordtype">int</span> items[number_of_items])</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        printf(<span class="stringliteral">&quot;sizeof(items): %zu\n&quot;</span>, <span class="keyword">sizeof</span>(items));</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i != number_of_items; i++)</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                printf(<span class="stringliteral">&quot;items[%d] = %d\n&quot;</span>, i, items[i]);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">int</span> <a class="code" href="linked__list_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Routine containing simple singly linked list example code.">main</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordtype">int</span> ages[] = {23, 24, 25, 26};</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        printf(<span class="stringliteral">&quot;sizeof(ages):          %zu\n&quot;</span>, <span class="keyword">sizeof</span>(ages));</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        printf(<span class="stringliteral">&quot;sizeof(char):          %zu\n&quot;</span>, <span class="keyword">sizeof</span>(<span class="keywordtype">char</span>));</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        printf(<span class="stringliteral">&quot;sizeof(short int):     %zu\n&quot;</span>, <span class="keyword">sizeof</span>(<span class="keywordtype">short</span> <span class="keywordtype">int</span>));</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        printf(<span class="stringliteral">&quot;sizeof(int):           %zu\n&quot;</span>, <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        printf(<span class="stringliteral">&quot;sizeof(long int):      %zu\n&quot;</span>, <span class="keyword">sizeof</span>(<span class="keywordtype">long</span> <span class="keywordtype">int</span>));</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        printf(<span class="stringliteral">&quot;sizeof(long long int): %zu\n&quot;</span>, <span class="keyword">sizeof</span>(<span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span>));</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        print(<span class="keyword">sizeof</span>(ages) / <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>), ages);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_f6dec73b10f062f5b1bb7ff2d7663b82.html">sizeof_and_arrays</a></li><li class="navelem"><b>sizeof_and_arrays.c</b></li>
-    <li class="footer">Generated on Sun Jun 16 2013 15:50:27 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Sun Jun 16 2013 16:55:39 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

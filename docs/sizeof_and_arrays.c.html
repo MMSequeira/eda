@@ -154,70 +154,25 @@
             <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
 
-</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-2">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-2">&#182;</a>
-              </div>
-              <p>Change name to something else.</p>
-
-            </div>
-            
-            <div class="content"><div class="highlight"><pre><span class="keyword">void</span> print(<span class="keyword">int</span> number_of_items, <span class="keyword">int</span> items[number_of_items])
+<span class="keyword">void</span> print(<span class="keyword">int</span> number_of_items, <span class="keyword">int</span> items[number_of_items])
 {
-	printf(<span class="string">"%lu\n"</span>, <span class="keyword">sizeof</span>(items));
+	printf(<span class="string">"sizeof(items): %zu\n"</span>, <span class="keyword">sizeof</span>(items));
 
 	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != number_of_items; i++)
-		printf(<span class="string">"%d\n"</span>, items[i]);
+		printf(<span class="string">"items[%d] = %d\n"</span>, i, items[i]);
 }
 
-</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>Eu: inicialização de arrays de comprimento variável.
-Todos: %d para sizeof é erro.</p>
-
-            </div>
-            
-            <div class="content"><div class="highlight"><pre><span class="keyword">int</span> main(<span class="keyword">void</span>)
+<span class="keyword">int</span> main(<span class="keyword">void</span>)
 {
 	<span class="keyword">int</span> ages[] = {<span class="number">23</span>, <span class="number">24</span>, <span class="number">25</span>, <span class="number">26</span>};
 
-	printf(<span class="string">"%lu\n"</span>, <span class="keyword">sizeof</span>(ages));
-</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-4">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
-              </div>
-              <p>printf(&quot;%lu\n&quot;, sizeof(char));
-printf(&quot;%lu\n&quot;, sizeof(short int));
-printf(&quot;%lu\n&quot;, sizeof(int));
-printf(&quot;%lu\n&quot;, sizeof(long int));
-printf(&quot;%lu\n&quot;, sizeof(long long int));</p>
-
-            </div>
-            
-            <div class="content"><div class="highlight"><pre>	print(<span class="keyword">sizeof</span>(ages) / <span class="keyword">sizeof</span>(<span class="keyword">int</span>), ages);
+	printf(<span class="string">"sizeof(ages):          %zu\n"</span>, <span class="keyword">sizeof</span>(ages));
+	printf(<span class="string">"sizeof(char):          %zu\n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">char</span>));
+	printf(<span class="string">"sizeof(short int):     %zu\n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">short</span> <span class="keyword">int</span>));
+	printf(<span class="string">"sizeof(int):           %zu\n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">int</span>));
+	printf(<span class="string">"sizeof(long int):      %zu\n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">long</span> <span class="keyword">int</span>));
+	printf(<span class="string">"sizeof(long long int): %zu\n"</span>, <span class="keyword">sizeof</span>(<span class="keyword">long</span> <span class="keyword">long</span> <span class="keyword">int</span>));
+	print(<span class="keyword">sizeof</span>(ages) / <span class="keyword">sizeof</span>(<span class="keyword">int</span>), ages);
 
 	<span class="keyword">return</span> EXIT_SUCCESS;
 }
