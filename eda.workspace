@@ -15,6 +15,7 @@
 		<Project filename="routine_pointers/routine_pointers.cbp" />
 		<Project filename="sequence_of_longs/sequence_of_longs.cbp" />
 		<Project filename="sizeof_and_arrays/sizeof_and_arrays.cbp" />
+		<Project filename="sorting/sorting.cbp" active="1" />
 		<Project filename="string_io/string_io.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
