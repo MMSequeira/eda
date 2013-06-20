@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters='&quot;/home/mmsequeira/Documents/Sort data/&quot; shuffled' />
+				<Option parameters='&quot;/home/mmsequeira/Documents/Sort data/&quot; shuffled shuffled_results.csv' />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -22,16 +22,19 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-O2" />
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
+					<Add option="-DNDEBUG" />
 				</Compiler>
-				<Linker>
-					<Add option="-s" />
-				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="array_of_doubles.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="array_of_doubles.h" />
 		<Unit filename="experiments.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -42,6 +45,7 @@
 		<Extensions>
 			<code_completion />
 			<debugger />
+			<envvars />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
