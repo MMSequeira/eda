@@ -35,7 +35,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="array_of_doubles.h" />
-		<Unit filename="experiments.c">
+		<Unit filename="perform_experiments.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="sorting_algorithms.c">

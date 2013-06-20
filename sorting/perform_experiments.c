@@ -1,40 +1,184 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdint.h>
-#include <time.h>
-#include <math.h>
-#include <stdbool.h>
+// `perform_experiments.c` &ndash; Experiências com algoritmos de ordenação
+// ========================================================================
+//
+// Este é o módulo principal do programa para realização de experiências com
+// algoritmos de ordenação. O objectivo é obter dados experimentais sobre o
+// número de operações elementares realizadas durante a execução dos algoritmos
+// de ordenação, bem como sobre o tempo despendido durante essa execução, sempre
+// em situações controladas experimentalmente.
+//
+// Note que optámos por _não_ incluir comentários de documentação
+// [Doxygen](http://doxygen.org/) em nenhum dos módulos deste programa.
 
+// Inclusão de ficheiros de interface
+// -----------------------------------
+//
+// As inclusões dividem-se em dois tipos de ficheiros de interface: os que fazem
+// parte da biblioteca padrão e os que fazem parte deste projecto.
+  
+// ### Inclusão de ficheiros de interface da biblioteca padrão
+//
+// Começamos por incluir os vários ficheiro de interface da biblioteca padrão
+// necessários:
+//
+// - `stdlib.h` &ndash; Para podermos usar os procedimentos `free()` e `exit()`,
+//   o valor especial `NULL` dos ponteiros e as constantes de condição de 
+//   terminação do programa `EXIT_SUCCESS` e `EXIT_FAILURE`.
+//
+// - `stdio.h` &ndash; Para podermos usar as rotinas `printf()`, para escrita
+//   formatada ecrã, `snprintf()`, escrita segura em cadeia de caracteres,
+//   `fopen()` e `fclose()`, para abertura e encerramento de canais ligados a
+//   ficheiros, `fprintf()`, para escrita formatada em ficheiros, e `fputc()`,
+//   para escrita de caracteres isolados em ficheiros, bem como o tipo `FILE`,
+//   representando um canal estabelecido para um ficheiro, e a macro `stderr`,
+//   representando o canal de escrita de mensagens de erros.
+//
+// - `string.h` &ndash; Para podermos usar a função `strcmp()`.
+//
+// - `time.h` &ndash; Para podermos usar a função `clock()`, o tipo `clock_t` e
+//   a macro `CLOCKS_PER_SEC`.
+//
+// - `stdbool.h` &ndash; Para podermos usar o tipo booleano ou lógico `bool` e
+//   os seus dois valores `false` e `true`.
+//
+// - `math.h` &ndash; Para podermos usar as macros `NAN` e `INFINITY` (ver
+//   [`nans_and_other_oddities.c`](nans_and_other_oddities.c.html)).
+//
+// - `assert.h` &ndash; Para podermos usar a macro `assert()`.
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
+#include <stdbool.h>
+#include <math.h>
+#include <assert.h>
+
+// ### Inclusão de ficheiros de interface deste projecto
+//
+// Em seguida incluímos os ficheiros de interface de módulos físicos desde mesmo
+// projecto:
+//
+// - `array_of_doubles.h` &ndash; Ficheiro de interface do módulo
+//   `array_of_doubles`, que fornece ferramentas para lidar com _arrays_ de
+//   `double` (ver [`array_of_doubles.h`](array_of_doubles.h.html) e
+//   [`array_of_doubles.c`](array_of_doubles.c.html)).
+//
+// - `sorting_algorithms.h` &ndash; Ficheiro de interface do módulo
+//   `sorting_algorithms`, que fornece o conjunto de procedimentos de ordenação
+//   alvo a experimentação realizada, bem como algumas ferramentas auxiliares
+//   (ver [`sorting_algorithms.h`](sorting_algorithms.h.html) e
+//   [`sorting_algorithms.c`](sorting_algorithms.c.html)).
 #include "array_of_doubles.h"
 #include "sorting_algorithms.h"
 
-const clock_t clock_precision = 1000000U /* CLOCKS */;
+// Definição de constantes
+// -----------------------
+//
+// Definimos agora algumas constantes que determinam alguns dos parâmetros
+// experimentais.
+  
+// ### `clock_precision`
+//
+// Expressa em _clocks_, ou seja, em tiques do relógio. Esta constante indica o
+// número mínimo de tiques de relógio a usar nas medições. Na máquina em que
+// este programa foi testado, o relógio (tal como medido pela função `clock()`)
+// tem um valor de `CLOCKS_PER_SEC` de 1&thinsp;000&thinsp;000. Logo, nenhuma
+// medição será feita com intervalos de tempo inferiores a 1 segundo. Em
+// ambientes onde o valor de `CLOCKS_PER_SEC` seja inferior, poderá ser
+// necessário baixar a precisão, sob pena de as experiências se tornarem
+// demasiado demoradas.
+//
+// Quando o tempo de execução de um algoritmo for inferior à precisão dada por
+// esta variável, serão realizadas tantas execuções quantas necessárias para
+// exceder este tempo, sendo o tempo de cada uma das execuções estimado através
+// do quociente entre o tempo total das execuções sucessivas e o número de
+// execuções realizadas (subtraindo-se depois o tempo necessário para, através
+// de uma cópia, colocar no seu estado inicial, antes de cada ordenação, o
+// _array_ a ordenar). Estas execuções sucessivas destinam-se a lidar com
+// questões de resolução do relógio usado. Não as confunda com as repetições
+// efectuadas com fins estatísticos, pois estas lidam com as flutuações do tempo
+// de execução devido às condições de carga da máquina e outros efeitos com
+// origem externa ao programa.
+static const clock_t clock_precision = 1000000U; // clocks (tics)
 
-const double threshold_repetition_time = 300.0 /* seconds */;
+// ### `threshold_repetition_time`
+//
+// Quando o tempo acumulado das repetições das estimativas do tempo de execução
+// da ordenação, repetições essas realizadas para fins estatísticos, exceder
+// este limiar, as repetições são interrompidas. Este limiar está expresso em
+// segundos e tenta garantir que as experiências não se tornam demasiado
+// demoradas. Naturalmente, as estatísticas obtidas serão tão piores quanto
+// menor for o número de repetições realizadas. Um valor de 300 limita as
+// repetições a cerca de cinco minutos.
+static const double threshold_repetition_time = 300.0; // seconds
 
-const double threshold_time_per_sort = 300.0 /* seconds */;
+// ### `maximum_number_of_repetions`
+//
+// O número de repetições a efectuar para fins estatísticos é também limitado
+// pelo valor desta constante.
+static const int maximum_number_of_repetions = 1001;
 
-const int maximum_file_size = 1 << 24;
-//const int maximum_file_size = 1 << 10;
+// ### `threshold_time_per_sort`
+//
+// Se o tempo de execução de um dado algoritmo se tornar superior a este limiar
+// para uma dada dimensão do _array_ a ordenar, esse algoritmo será excluído das
+// experiências realizadas com _arrays_ de maiores dimensões. Tenta-se assim
+// impedir que algoritmos particularmente maus impeçam a realização de
+// experiências com algoritmos melhores, que são capazes de lidar em tempo
+// «útil» com _arrays_ de maiores dimensões.
+static const double threshold_time_per_sort = 300.0; // seconds
 
-const int maximum_number_of_repetions = 1001;
+// ### `maximum_file_size`
+//
+// A dimensão máxima dos ficheiros a usar nas experiências. Note que recorremos
+// a uma colecção fixa de ficheiros com dimensões que são potências de 2 entre 2
+// e 2<sup>24</sup> (16&thinsp;777&thinsp;216) itens.
+static const int maximum_file_size = 1 << 24;
 
-const char *file_types[] = {
+// ### `file_types` e `number_of_file_types`
+//
+// A constante `file_types` é um _array_ com os tipos de ficheiros (na forma de
+// cadeias de caracteres) na colecção de ficheiros de valores a ordenar. Os
+// nomes dos ficheiros seguem o padrão `_tipo___dimensão_`, em que o tipo pode
+// ser uma dos valores deste _array_ e a dimensão é uma potência de 2 entre 2 e
+// 2<sup>24</sup> (16&thinsp;777&thinsp;216) itens. O número de itens do _array_
+// é dado pela constante `number_of_file_types`.
+const char *const file_types[] = {
 	"sorted",
 	"partially_sorted",
 	"shuffled"
 };
 const int number_of_file_types = sizeof(file_types) / sizeof(file_types[0]);
 
+// Estrutura de estatísticas e seu valor inicial
+// ---------------------------------------------
+  
+// ### Estrutura de estatísticas
+//
+// Esta estrutura serve para guardar as estatísticas resultantes das
+// experiências realizadas com um dado algoritmo ordenando um determinado
+// _array_ de dados.
 struct algorithm_statistics {
+	// Contagem do número de comparações, trocas e cópias realizadas. Estes
+	// valores são obtidos por contagem determinísticas, não sendo resultado
+	// de qualquer outra operação estatística.
 	struct algorithm_counts counts;
+	// Número de execuções do algoritmo realizadas para atingir a precisão
+	// desejada. Estas execuções sucessivas destinam-se a ultrapassar
+	// limitações da resolução do relógio usado.
 	int accumulated_runs;
+	// Número de repetições realizadas para obter as estatísticas de tempos.
 	int repetitions;
+	// Estatísticas dos tempos de execução do algoritmo, incluindo a sua
+	// média, o seu desvio padrão, a mediana, o tempo mínimo e o tempo
+	// máximo.
 	struct double_statistics times;
 };
 
-const struct algorithm_statistics initial_statistics = {
+// ### Valor inicial das estatísticas
+//
+// Usado para inicializar as estatísticas.
+static const struct algorithm_statistics initial_statistics = {
 	.counts = {
 		.comparisons = 0,
 		.swaps = 0,
@@ -46,13 +190,15 @@ const struct algorithm_statistics initial_statistics = {
 		.average = NAN,
 		.stddev = NAN,
 		.median = NAN,
-		.minimum = NAN,
-		.maximum = NAN
+		.minimum = INFINITY,
+		.maximum = -INFINITY
 	}
 };
 
 static bool valid_file_type(const char* file_type)
 {
+	assert(file_type != NULL);
+
 	for (int i = 0; i != number_of_file_types; i++)
 		if (strcmp(file_type, file_types[i]) == 0)
 			return true;
@@ -63,6 +209,10 @@ static bool valid_file_type(const char* file_type)
 static double copy_time_estimate(const int length, double work_items[length],
 				const double items[length])
 {
+	assert(length > 0);
+	assert(work_items != NULL);
+	assert(items != NULL);
+
 	printf("\tEstimating copy time...\n");
 
 	int runs = 0;
@@ -83,17 +233,23 @@ static double copy_time_estimate(const int length, double work_items[length],
 	return copy_time;
 }
 
-double sort_time_estimate(struct sorting_algorithm algorithm,
-			const int length,
-			double work_items[length], const double items[length],
-			const int runs, const double copy_time)
+static double sort_time_estimate(struct sorting_algorithm algorithm,
+				const int length, double work_items[length], 
+				const double items[length], const int runs,
+				const double copy_time)
 {
+	assert(length > 0);
+	assert(work_items != NULL);
+	assert(items != NULL);
+	assert(runs > 0);
+	assert(copy_time > 0.0);
+
 	clock_t start = clock();
 	for (int i = 0; i != runs; i++) {
 		copy_double_array(length, work_items, items);
 		if(!algorithm.sort(length, work_items)) {
-			fprintf(stderr, "Error: could not run sorting algorithm "
-				"'%s'.\n", algorithm.name);
+			fprintf(stderr, "Error: could not run sorting "
+				"algorithm '%s'.\n", algorithm.name);
 			return false;
 		}
 	}
@@ -101,19 +257,23 @@ double sort_time_estimate(struct sorting_algorithm algorithm,
 	return (double) (clock() - start) / CLOCKS_PER_SEC / runs - copy_time;
 }
 
-int number_of_runs(const struct sorting_algorithm algorithm,
-		const int length, const double items[length],
-		double work_items[length],
-		const double copy_time)
+static int number_of_runs(const struct sorting_algorithm algorithm,
+			const int length, double work_items[length],
+			const double items[length], const double copy_time)
 {
+	assert(length > 0);
+	assert(work_items != NULL);
+	assert(items != NULL);
+	assert(copy_time > 0.0);
+
 	int runs = 0;
 	clock_t start = clock();
 	do {
 		copy_double_array(length, work_items, items);
 
 		if(!algorithm.sort(length, work_items)) {
-			fprintf(stderr, "Error: could not run sorting algorithm '%s'.\n",
-				algorithm.name);
+			fprintf(stderr, "Error: could not run sorting "
+				"algorithm '%s'.\n", algorithm.name);
 			return -1;
 		}
 
@@ -126,12 +286,19 @@ int number_of_runs(const struct sorting_algorithm algorithm,
 
 static bool run_experiment(const struct sorting_algorithm algorithm,
 		const int length,
-		const double items[length],
 		double work_items[length],
+		const double items[length],
 		const double sorted_items[length],
-		struct algorithm_statistics *statistics,
-		const double copy_time)
+		const double copy_time,
+		struct algorithm_statistics *statistics)
 {
+	assert(length > 0);
+	assert(work_items != NULL);
+	assert(items != NULL);
+	assert(sorted_items != NULL);
+	assert(copy_time > 0.0);
+	assert(statistics != NULL);
+
 	*statistics = initial_statistics;
 
 	copy_double_array(length, work_items, items);
@@ -173,7 +340,7 @@ static bool run_experiment(const struct sorting_algorithm algorithm,
 	printf("\t\tTime measurements:\n");
 
 	int runs =
-		number_of_runs(algorithm, length, items, work_items, copy_time);
+		number_of_runs(algorithm, length, work_items, items, copy_time);
 
 	if (runs < 0)
 		return false;
@@ -212,23 +379,28 @@ static bool run_experiment(const struct sorting_algorithm algorithm,
 }
 
 static void write_statistics_headers(FILE *const output,
-				const char* name)
+				const char *algorithm_name)
 {
-	fprintf(output, ";Comparisons (%s)", name);
-	fprintf(output, ";Swaps (%s)", name);
-	fprintf(output, ";Copies (%s)", name);
-	fprintf(output, ";Accumulated runs (%s)", name);
-	fprintf(output, ";Repetitions (%s)", name);
-	fprintf(output, ";Time Average [seconds] (%s)", name);
-	fprintf(output, ";Time Stddev [seconds] (%s)", name);
-	fprintf(output, ";Time Median [seconds] (%s)", name);
-	fprintf(output, ";Time Minimum [seconds] (%s)", name);
-	fprintf(output, ";Time Maximum [seconds] (%s)", name);
+	assert(output != NULL);
+	assert(algorithm_name != NULL);
+
+	fprintf(output, ";Comparisons (%s)", algorithm_name);
+	fprintf(output, ";Swaps (%s)", algorithm_name);
+	fprintf(output, ";Copies (%s)", algorithm_name);
+	fprintf(output, ";Accumulated runs (%s)", algorithm_name);
+	fprintf(output, ";Repetitions (%s)", algorithm_name);
+	fprintf(output, ";Time Average [seconds] (%s)", algorithm_name);
+	fprintf(output, ";Time Stddev [seconds] (%s)", algorithm_name);
+	fprintf(output, ";Time Median [seconds] (%s)", algorithm_name);
+	fprintf(output, ";Time Minimum [seconds] (%s)", algorithm_name);
+	fprintf(output, ";Time Maximum [seconds] (%s)", algorithm_name);
 }
 
 static void write_statistics(FILE *const output,
 			const struct algorithm_statistics statistics)
 {
+	assert(output != NULL);
+
 	fprintf(output, ";%d", statistics.counts.comparisons);
 	fprintf(output, ";%d", statistics.counts.swaps);
 	fprintf(output, ";%d", statistics.counts.copies);
@@ -244,7 +416,11 @@ static void write_statistics(FILE *const output,
 static void run_experiments(const char *const path, const char *const file_type,
 		const char *const statistics_file_name)
 {
-	FILE* output = fopen(statistics_file_name, "w");
+	assert(path != NULL);
+	assert(file_type != NULL);
+	assert(statistics_file_name != NULL);
+
+	FILE * const output = fopen(statistics_file_name, "w");
 
 	if (output == NULL)  {
 		fprintf(stderr, "Error: Could not open '%s' for writing!\n",
@@ -323,8 +499,8 @@ static void run_experiments(const char *const path, const char *const file_type,
 			struct algorithm_statistics statistics;
 
 			if (!run_experiment(sorting_algorithms[a], length,
-						items, work_items, sorted_items,
-						&statistics, copy_time)) {
+						work_items, items, sorted_items,
+						copy_time, &statistics)) {
 				free(items);
 				free(sorted_items);
 				free(work_items);
@@ -355,7 +531,8 @@ static void run_experiments(const char *const path, const char *const file_type,
 	fclose(output);
 }
 
-int main(int argument_count, char *argument_values[argument_count])
+int main(const int argument_count,
+	const char *const argument_values[argument_count])
 {
 	if (argument_count < 4) {
 		fprintf(stderr, "Error: Insuficient number of arguments!\n");
@@ -373,14 +550,6 @@ int main(int argument_count, char *argument_values[argument_count])
 
 	printf("Starting experiments from %s files in %s. Storing results "
 		"in %s.\n", file_type, path, statistics_file_name);
-
-	printf("CLOCKS_PER_SEC = %ju\n", (uintmax_t)CLOCKS_PER_SEC);
-	printf("double_array_median(0, NULL) = %g\n",
-		double_array_median(0, NULL));
-	printf("double_array_minimum(0, NULL) = %g\n",
-		double_array_minimum(0, NULL));
-	printf("double_array_maximum(0, NULL) = %g\n",
-		double_array_maximum(0, NULL));
 
 	run_experiments(path, file_type, statistics_file_name);
 
