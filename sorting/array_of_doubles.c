@@ -38,8 +38,6 @@
 // Definições de rotinas
 // ---------------------
 
-// ### `new_double_array_of()`
-//
 // Note como classificamos `length` como `const`. Esta prática ajuda o
 // compilador a detectar os nossos próprios erros. Ao afirmarmos explicitamente
 // que não tencionamos alterar um parâmetro, permitimos que o compilador detecte
@@ -52,7 +50,6 @@ double *new_double_array_of(const int length)
 	return malloc(length * sizeof(double));
 }
 
-// ### `resize_double_array_to()`
 double *resize_double_array_to(double *const items, const int new_length)
 {
 	assert(new_length >= 0);
@@ -60,7 +57,6 @@ double *resize_double_array_to(double *const items, const int new_length)
 	return realloc(items, new_length * sizeof(double));
 }
 
-// ### `read_double_array_from()`
 double *read_double_array_from(const char *const file_name, int *const length)
 {
 	assert(file_name != NULL);
@@ -152,7 +148,6 @@ double *read_double_array_from(const char *const file_name, int *const length)
 	return items;
 }
 
-// ### `copy_double_array()`
 void copy_double_array(const int length,
 		double copy[length], const double original[length])
 {
@@ -164,7 +159,6 @@ void copy_double_array(const int length,
 		copy[i] = original[i];
 }
 
-// ### `double_array_equal()`
 bool double_arrays_equal(int length,
 			const double first[length], const double second[length])
 {
@@ -179,8 +173,6 @@ bool double_arrays_equal(int length,
 	return i == length;
 }
 
-// ### `compare()`
-//
 // Esta função é usada durante a ordenação de _arrays_ de `double` realizada
 // através do procedimento `qsort()` da biblioteca padrão do C. A utilização de
 // ponteiros para `void` como tipo dos seus parâmetros é um requisito do
@@ -209,7 +201,6 @@ static int compare(const void *first_generic, const void *second_generic)
 		return 0;
 }
 
-// ### `double_array_average()`
 double double_array_average(int length, const double items[length])
 {
 	assert(length >= 0);
@@ -223,15 +214,12 @@ double double_array_average(int length, const double items[length])
 	return sum / length;
 }
 
-// ### `square_of()`
-//
 // Uma função auxiliar devolvendo o quadrado do valor recebido como argumento.
 static double square_of(const double value)
 {
 	return value * value;
 }
 
-// ### `double_array_stddev()`
 double double_array_stddev(int length, const double items[length])
 {
 	assert(length >= 0);
@@ -250,8 +238,6 @@ double double_array_stddev(int length, const double items[length])
 	return sqrt(sum / length);
 }
 
-// ### `double_array_median()`
-//
 // Usamos uma forma de cálculo muito ineficaz: ordenar o _array_ de modo
 // a obter a mediana através do ou dos valores centrais. Há formas bem
 // mais eficazes de calcular a mediana. Nomeadamente, pode-se usar uma
@@ -289,8 +275,6 @@ double double_array_median(int length, const double items[length])
 		return work_items[length / 2];
 }
 
-// ### `double_array_minimum()`
-//
 // Note que esta função está definida mesmo para zero itens, devolvendo infinito
 // (+∞) nesse caso, pois o infinito é o elemento neutro da operação de obtenção do
 // menor de dois operandos, da mesma forma que o zero (0) é o elemento neutro da
@@ -309,8 +293,6 @@ double double_array_minimum(int length, const double items[length])
 	return minimum;
 }
 
-// ### `double_array_minimum()`
-//
 // Note que esta função está definida mesmo para zero itens, devolvendo infinito
 // negativo (-∞) nesse caso, pois o infinito negativo é o elemento neutro da
 // operação de obtenção do maior de dois operandos, da mesma forma que o zero
@@ -329,7 +311,6 @@ double double_array_maximum(int length, const double items[length])
 	return maximum;
 }
 
-// ### `double_array_statistics()`
 struct double_statistics double_array_statistics(const int length,
 						const double items[length])
 {
