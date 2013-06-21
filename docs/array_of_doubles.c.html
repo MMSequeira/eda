@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>`array_of_doubles.c` &ndash; Utilitários para _arrays_ de `double`</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+  <script src="http://softwaremaniacs.org/media/soft/highlight/highlight.pack.js"></script>
+  <script>
+    hljs.tabReplace = '        ';
+    hljs.initHighlightingOnLoad();
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="array_of_routines.c.html">
+                array_of_routines.c
+              </a>
+            
+              
+              <a class="source" href="array_utils.h.html">
+                array_utils.h
+              </a>
+            
+              
+              <a class="source" href="print.c.html">
+                print.c
+              </a>
+            
+              
+              <a class="source" href="arrays_and_pointers.c.html">
+                arrays_and_pointers.c
+              </a>
+            
+              
+              <a class="source" href="arrays_basics.c.html">
+                arrays_basics.c
+              </a>
+            
+              
+              <a class="source" href="command_line.c.html">
+                command_line.c
+              </a>
+            
+              
+              <a class="source" href="fibonacci.c.html">
+                fibonacci.c
+              </a>
+            
+              
+              <a class="source" href="hello_world.c.html">
+                hello_world.c
+              </a>
+            
+              
+              <a class="source" href="hello_world_correct.c.html">
+                hello_world_correct.c
+              </a>
+            
+              
+              <a class="source" href="linked_list.c.html">
+                linked_list.c
+              </a>
+            
+              
+              <a class="source" href="malloc_stuff.c.html">
+                malloc_stuff.c
+              </a>
+            
+              
+              <a class="source" href="nans_and_other_oddities.c.html">
+                nans_and_other_oddities.c
+              </a>
+            
+              
+              <a class="source" href="rationals_with_structs.c.html">
+                rationals_with_structs.c
+              </a>
+            
+              
+              <a class="source" href="routine_pointers.c.html">
+                routine_pointers.c
+              </a>
+            
+              
+              <a class="source" href="experiments.c.html">
+                experiments.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.c.html">
+                naive_sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.h.html">
+                naive_sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.c.html">
+                sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.h.html">
+                sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="tests.c.html">
+                tests.c
+              </a>
+            
+              
+              <a class="source" href="sizeof_and_arrays.c.html">
+                sizeof_and_arrays.c
+              </a>
+            
+              
+              <a class="source" href="array_of_doubles.c.html">
+                array_of_doubles.c
+              </a>
+            
+              
+              <a class="source" href="array_of_doubles.h.html">
+                array_of_doubles.h
+              </a>
+            
+              
+              <a class="source" href="perform_experiments.c.html">
+                perform_experiments.c
+              </a>
+            
+              
+              <a class="source" href="sorting_algorithms.c.html">
+                sorting_algorithms.c
+              </a>
+            
+              
+              <a class="source" href="sorting_algorithms.h.html">
+                sorting_algorithms.h
+              </a>
+            
+              
+              <a class="source" href="string_io.c.html">
+                string_io.c
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h1">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1><code>array_of_doubles.c</code> &ndash; Utilitários para <em>arrays</em> de <code>double</code></h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Este é o ficheiro de implementação correspondente ao ficheiro de
+cabeçalho ou de interface <a href="array_of_doubles.h.html"><code>array_of_double.h</code></a>. Ambos
+correspondem ao módulo físico <code>array_of_double</code>, cujo objectivo é fornecer um
+conjunto de ferramentas para lidar com <em>arrays</em> de <code>double</code>.</p>
+<p>Note que optámos por <em>não</em> incluir comentários de documentação
+<a href="http://doxygen.org/">Doxygen</a> em nenhum dos módulos deste programa.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Começamos por incluir o próprio ficheiro de interface. Isso ajuda-nos a
+garantir a coerência entre os dois ficheiros, pois desta forma o compilador
+poderá gerar erros quando detectar incoerências.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include "array_of_doubles.h"</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h2>Inclusão de ficheiros de interface</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Começamos por incluir os vários ficheiro de interface necessários:</p>
+<ul>
+<li><p><code>stdlib.h</code> &ndash; Para podermos usar o valor especial <code>NULL</code> dos ponteiros
+e para podemos usar as rotinas <code>malloc()</code> e <code>realloc()</code> e o procedimento
+<code>qsort()</code>.</p>
+</li>
+<li><p><code>stdio.h</code> &ndash; Para podermos usar as rotinas <code>fopen()</code>, <code>fclose()</code> e
+<code>fscanf()</code>.</p>
+</li>
+<li><p><code>math.h</code> &ndash; Para podermos usar a função <code>sqrt()</code> e as macros <code>NAN</code> e
+<code>INFINITY</code>.</p>
+</li>
+<li><p><code>assert.h</code> &ndash; Para podermos usar a macro <code>assert()</code>.</p>
+</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;math.h&gt;</span>
+<span class="preprocessor">#include &lt;assert.h&gt;</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h2>Definições de rotinas</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Note como classificamos <code>length</code> como <code>const</code>. Esta prática ajuda o
+compilador a detectar os nossos próprios erros. Ao afirmarmos explicitamente
+que não tencionamos alterar um parâmetro, permitimos que o compilador detecte
+alterações realizadas por engano. Seguimos esta prática em todo o código
+deste projecto.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> *new_double_array_of(<span class="keyword">const</span> <span class="keyword">int</span> length)
+{
+	assert(length &gt;= <span class="number">0</span>);
+
+	<span class="keyword">return</span> malloc(length * <span class="keyword">sizeof</span>(<span class="keyword">double</span>));
+}
+
+<span class="keyword">double</span> *resize_double_array_to(<span class="keyword">double</span> *<span class="keyword">const</span> items, <span class="keyword">const</span> <span class="keyword">int</span> new_length)
+{
+	assert(new_length &gt;= <span class="number">0</span>);
+
+	<span class="keyword">return</span> realloc(items, new_length * <span class="keyword">sizeof</span>(<span class="keyword">double</span>));
+}
+
+<span class="keyword">double</span> *read_double_array_from(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> file_name, <span class="keyword">int</span> *<span class="keyword">const</span> length)
+{
+	assert(file_name != NULL);
+	assert(length != NULL);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Começamos por abrir um novo canal de leitura para o ficheiro cujo
+nome recebemos como argumento.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	FILE *file = fopen(file_name, <span class="string">"r"</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Em C, o código que lida com casos de erro e casos excepcionais
+emaranha-se com o código «normal». Isso torna todo o código menos
+legível. Para evitar este problema a melhor solução é mesmo mudar de
+linguagem. :-)</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (file == NULL)
+		<span class="keyword">return</span> NULL;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>O <em>array</em> onde iremos guardando os itens lidos tem de ir crescendo à
+medida que a leitura prossegue. Em cada instante, o <em>array</em> terá como
+capacidade o valor guardado nesta variável. O número de itens já
+lidos e guardados no <em>array</em> será sempre inferior ou igual à sua
+capacidade.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> capacity = <span class="number">32</span>;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Criamos o <em>array</em> com a capacidade definida inicialmente.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">double</span> *items = new_double_array_of(capacity);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>No caso de não se conseguir criar o novo <em>array</em> dinâmico, fechamos o
+canal aberto para o ficheiro em leitura e retornamos devolvendo o
+valor especial <code>NULL</code>, de modo a assinalar o erro.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (items == NULL) {
+		fclose(file);
+		<span class="keyword">return</span> NULL;
+	}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>O ciclo de leitura é feito recorrendo a duas variáveis locais. A
+primeira, <code>i</code>, indica em cada momento, e simultaneamente, quantos
+itens já foram lidos e o índice do item do <em>array</em> onde será guardado
+o próximo valor lido do ficheiro. A segunda variável é usada para ler
+cada um dos itens. Em caso de sucesso na leitura, o valor contido
+neste variável será atribuído ao item apropriado do <em>array</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> i = <span class="number">0</span>;
+	<span class="keyword">double</span> item;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>A guarda do ciclo inclui a própria operação de leitura. Esta forma de
+escrever o ciclo é idiomática do C e seria considerada uma má prática
+em qualquer outra linguagem. Fazemos a leitura usando a usual rotina
+<code>fscanf()</code>, recorrendo à especificação de conversão <code>%lg</code>, onde a
+utilização de <code>l</code> é necessária por se tratar de <code>doubles</code>. A leitura
+é realizada para a variável <code>item</code>, pelo que passamos o seu endereço
+à rotina <code>fscanf()</code>. Se a leitura tiver sucesso, a rotina devolve o
+valor 1, pois terá sido atribuído exactamente um valor, nomeadamente
+o valor lido do ficheiro e guardado na variável <code>item</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">while</span> (fscanf(file, <span class="string">"%lg"</span>, &amp;item) == <span class="number">1</span>) {
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Se o número de itens lidos com sucesso e guardados no <em>array</em>
+for igual à capacidade do <em>array</em>, então esta encontra-se
+esgotada. Sendo necessário aumentar a capacidade do <em>array</em>,
+pode-se demonstrar que uma forma eficiente de o fazer é
+duplicá-la, pois leva a uma número médio de cópias por item
+do <em>array</em> que é constante e pequeno. Note que o valor da
+variável <code>capacidade</code> é aumentado na mesma instrução em que
+se aumenta a capacidade do <em>array</em>, pelo que essa instrução
+terá dois efeitos distintos. Mais uma vez, trata-se de código
+muito discutível, mas idiomático na linguagem C.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		<span class="keyword">if</span> (i == capacity)
+			items = resize_double_array_to(items, capacity *= <span class="number">2</span>);
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Atribuímos o valor lido ao item do <em>array</em> com índice <code>i</code> <em>e
+incrementamos o próprio <code>i</code></em>! O valor de <code>i</code> usado na
+indexação é o valor original de <code>i</code>, antes da incrementação.
+Trata-se, outra vez, de código muito discutível, mas
+idiomático na linguagem C.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		items[i++] = item;
+	}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Finda a leitura, a variável <code>i</code> contém o número de itens lidos e
+guardados no <em>array</em>. Guardamos o seu valor na variável apontada por
+<code>length</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	*length = i;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Se necessário, ajustamos a capacidade do <em>array</em> de modo a
+corresponder exactamente ao número de itens lidos, de modo a garantir
+que não há desperdício de memória.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (*length != capacity)
+		items = resize_double_array_to(items, *length);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Fechamos o canal de entrada.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	fclose(file);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Retornamos, devolvendo o endereço do primeiro item do <em>array</em>
+dinâmico criado, que contém os valores lidos do ficheiro.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">return</span> items;
+}
+
+<span class="keyword">void</span> copy_double_array(<span class="keyword">const</span> <span class="keyword">int</span> length,
+		<span class="keyword">double</span> copy[length], <span class="keyword">const</span> <span class="keyword">double</span> original[length])
+{
+	assert(length &gt;= <span class="number">0</span>);
+	assert(length == <span class="number">0</span> || copy != NULL);
+	assert(length == <span class="number">0</span> || original != NULL);
+
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != length; i++)
+		copy[i] = original[i];
+}
+
+<span class="keyword">bool</span> double_arrays_equal(<span class="keyword">int</span> length,
+			<span class="keyword">const</span> <span class="keyword">double</span> first[length], <span class="keyword">const</span> <span class="keyword">double</span> second[length])
+{
+	assert(length &gt;= <span class="number">0</span>);
+	assert(length == <span class="number">0</span> || first != NULL);
+	assert(length == <span class="number">0</span> || second != NULL);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Note a utilização de um ciclo com apenas um local de terminação.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> i = <span class="number">0</span>;
+	<span class="keyword">while</span>(i != length &amp;&amp; first[i] == second[i])
+		i++;
+	<span class="keyword">return</span> i == length;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Esta função é usada durante a ordenação de <em>arrays</em> de <code>double</code> realizada
+através do procedimento <code>qsort()</code> da biblioteca padrão do C. A utilização de
+ponteiros para <code>void</code> como tipo dos seus parâmetros é um requisito do
+procedimento <code>qsort()</code>, que, desta forma, é capaz de ordenar <em>arrays</em> de
+itens de qualquer tipo. O procedimento <code>qsort()</code> requer que esta função
+devolva um valor inteiro que indica a relação de ordem entre o primeiro e o
+segundo argumento. Se o primeiro for superior ao segundo, o valor <code>int</code>
+devolvido deverá ser positivo. Se for igual, o valor devolvido deverá ser
+nulo. Se for menor, deverá devolver um valor negativo. Sendo esta função de
+utilidade restrita, optámos por lhe dar ligação local, usando para isso o
+qualificador <code>static</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">int</span> compare(<span class="keyword">const</span> <span class="keyword">void</span> *first_generic, <span class="keyword">const</span> <span class="keyword">void</span> *second_generic)
+{
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Os argumentos são ponteiros para os itens a comparar. Sendo o
+procedimento <code>qsort()</code> genérico, os parâmetros correspondentes são do
+tipo <code>void *</code>. Para aceder aos valores do tipo <code>double</code>, fazem-se
+coerções para o tipo ponteiro para <code>double</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">const</span> <span class="keyword">double</span> *first = first_generic;
+	<span class="keyword">const</span> <span class="keyword">double</span> *second = second_generic;
+
+	<span class="keyword">if</span> (first &lt; second)
+		<span class="keyword">return</span> -<span class="number">1</span>;
+	<span class="keyword">else</span> <span class="keyword">if</span>(first &gt; second)
+		<span class="keyword">return</span> <span class="number">1</span>;
+	<span class="keyword">else</span>
+		<span class="keyword">return</span> <span class="number">0</span>;
+}
+
+<span class="keyword">double</span> double_array_average(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
+{
+	assert(length &gt;= <span class="number">0</span>);
+	assert(length == <span class="number">0</span> || items != NULL);
+
+	<span class="keyword">double</span> sum = <span class="number">0.0</span>;
+
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != length; i++)
+		sum += items[i];
+
+	<span class="keyword">return</span> sum / length;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Uma função auxiliar devolvendo o quadrado do valor recebido como argumento.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">double</span> square_of(<span class="keyword">const</span> <span class="keyword">double</span> value)
+{
+	<span class="keyword">return</span> value * value;
+}
+
+<span class="keyword">double</span> double_array_stddev(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
+{
+	assert(length &gt;= <span class="number">0</span>);
+	assert(length == <span class="number">0</span> || items != NULL);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Esta implementação é simples, mas ineficaz. Ver mais abaixo uma
+implementação do cálculo do desvio padrão que não exige percorrer o
+<em>array</em> duas vezes.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">const</span> <span class="keyword">double</span> average = double_array_average(length, items);
+
+	<span class="keyword">double</span> sum = <span class="number">0.0</span>;
+
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != length; i++)
+		sum += square_of(items[i] - average);
+
+	<span class="keyword">return</span> sqrt(sum / length);
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Usamos uma forma de cálculo muito ineficaz: ordenar o <em>array</em> de modo
+a obter a mediana através do ou dos valores centrais. Há formas bem
+mais eficazes de calcular a mediana. Nomeadamente, pode-se usar uma
+versão modificada do algoritmo de ordenação rápida que não se
+preocupa em ordenar o <em>array</em>, mas apenas em realizar
+particionamentos sucessivos até determinar o valor do ou dos itens
+centrais do <em>array</em>, que não precisa por isso de ser totalmente
+ordenado.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_median(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
+{
+	assert(length &gt;= <span class="number">0</span>);
+	assert(length == <span class="number">0</span> || items != NULL);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Primeiro lidamos com o caso especial da mediana de zero itens.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (length == <span class="number">0</span>)
+		<span class="keyword">return</span> NAN;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Criamos um <em>array</em> de trabalho que é uma cópia do <em>array</em> original,
+pois este não deve ser alterado.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">double</span> work_items[length];
+	copy_double_array(length, work_items, items);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Usamos o procedimento de ordenação genérico do C <code>qsort()</code>, que
+utiliza o algoritmo de ordenação rápida, para ordenar o <em>array</em> de
+trabalho.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	qsort(work_items, length, <span class="keyword">sizeof</span>(<span class="keyword">double</span>), compare);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>Se o <em>array</em> tiver um número par de itens, a sua mediana é a média
+aritmética dos valores dos dois itens mais próximos do meio do
+<em>array</em> ordenado. Se tiver um número ímpar de itens, então a mediana
+é o valor do item central do <em>array</em> ordenado.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (length % <span class="number">2</span> == <span class="number">0</span>)
+		<span class="keyword">return</span> (work_items[length / <span class="number">2</span> - <span class="number">1</span>] + work_items[length / <span class="number">2</span>]) / <span class="number">2</span>;
+	<span class="keyword">else</span>
+		<span class="keyword">return</span> work_items[length / <span class="number">2</span>];
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>Note que esta função está definida mesmo para zero itens, devolvendo infinito
+(+∞) nesse caso, pois o infinito é o elemento neutro da operação de obtenção do
+menor de dois operandos, da mesma forma que o zero (0) é o elemento neutro da
+operação de obtenção da soma de dois operandos.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_minimum(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
+{
+	assert(length &gt;= <span class="number">0</span>);
+	assert(length == <span class="number">0</span> || items != NULL);
+
+	<span class="keyword">double</span> minimum = INFINITY;
+
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != length; i++)
+		<span class="keyword">if</span> (items[i] &lt; minimum)
+			minimum = items[i];
+
+	<span class="keyword">return</span> minimum;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>Note que esta função está definida mesmo para zero itens, devolvendo infinito
+negativo (-∞) nesse caso, pois o infinito negativo é o elemento neutro da
+operação de obtenção do maior de dois operandos, da mesma forma que o zero
+(0) é o elemento neutro da operação de obtenção da soma de dois operandos.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_maximum(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
+{
+	assert(length &gt; <span class="number">0</span>);
+	assert(length == <span class="number">0</span> || items != NULL);
+
+	<span class="keyword">double</span> maximum = -INFINITY;
+
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != length; i++)
+		<span class="keyword">if</span> (items[i] &gt; maximum)
+			maximum = items[i];
+
+	<span class="keyword">return</span> maximum;
+}
+
+<span class="keyword">struct</span> double_statistics double_array_statistics(<span class="keyword">const</span> <span class="keyword">int</span> length,
+						<span class="keyword">const</span> <span class="keyword">double</span> items[length])
+{
+	assert(length &gt;= <span class="number">0</span>);
+	assert(length == <span class="number">0</span> || items != NULL);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>Esta variável guarda os valores das estatísticas e será devolvida
+quando a função retornar. Note a forma de inicialização dos campos da
+estrutura.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">struct</span> double_statistics statistics = {
+		.average = NAN,
+		.stddev = NAN,
+		.median = NAN,
+		.minimum = INFINITY,
+		.maximum = -INFINITY
+	};
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>Lidamos primeiro com o caso especial em que há zero itens apenas. O
+valor inicial da variável <code>statistics</code> foi escolhido de modo a cobrir
+este caso.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (length == <span class="number">0</span>)
+		<span class="keyword">return</span> statistics;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>Uma vez que se calculam as várias estatísticas numa única função,
+podemos fazer algumas optimizações. Ainda assim, seria possível
+melhorar francamente a forma de cálculo da mediana, como referido
+anteriormente.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">double</span> work_items[length];
+
+	<span class="keyword">double</span> sum = <span class="number">0.0</span>;
+	<span class="keyword">double</span> sum_of_squares = <span class="number">0.0</span>;
+
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != length; i++) {
+		work_items[i] = items[i];
+		sum += items[i];
+		sum_of_squares += square_of(items[i]);
+	}
+
+	statistics.average = sum / length;
+	statistics.stddev =
+		sqrt(sum_of_squares / length - square_of(statistics.average));
+
+	qsort(work_items, length, <span class="keyword">sizeof</span>(<span class="keyword">double</span>), compare);
+
+	statistics.minimum = work_items[<span class="number">0</span>];
+
+	<span class="keyword">if</span> (length % <span class="number">2</span> == <span class="number">0</span>)
+		statistics.median =
+			(work_items[length / <span class="number">2</span> - <span class="number">1</span>] + work_items[length / <span class="number">2</span>]) / <span class="number">2</span>;
+	<span class="keyword">else</span>
+		statistics.median = work_items[length / <span class="number">2</span>];
+
+	statistics.maximum = work_items[length - <span class="number">1</span>];
+
+	<span class="keyword">return</span> statistics;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

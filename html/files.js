@@ -14,5 +14,6 @@ var files =
     [ "routine_pointers", "dir_284fa80f9370bd69970ad6658f59f984.html", "dir_284fa80f9370bd69970ad6658f59f984" ],
     [ "sequence_of_longs", "dir_d1df231a7ad9331b7f8d9d68722a0ef9.html", "dir_d1df231a7ad9331b7f8d9d68722a0ef9" ],
     [ "sizeof_and_arrays", "dir_f6dec73b10f062f5b1bb7ff2d7663b82.html", "dir_f6dec73b10f062f5b1bb7ff2d7663b82" ],
+    [ "sorting", "dir_bb1b521853a9c46347182a9d10420771.html", "dir_bb1b521853a9c46347182a9d10420771" ],
     [ "string_io", "dir_1fff6861f76d753d96d5a9e463336654.html", "dir_1fff6861f76d753d96d5a9e463336654" ]
 ];

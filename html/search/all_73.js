@@ -9,5 +9,6 @@ var searchData=
   ['sequence_5fof_5flongs',['sequence_of_longs',['../structsequence__of__longs.html',1,'']]],
   ['sequence_5fof_5flongs_2eh',['sequence_of_longs.h',['../sequence__of__longs_8h.html',1,'']]],
   ['singly_5flinked_5fint_5flist_5fnode',['singly_linked_int_list_node',['../structsingly__linked__int__list__node.html',1,'']]],
+  ['sorting_5falgorithm',['sorting_algorithm',['../structsorting__algorithm.html',1,'']]],
   ['stupidly_5frecursive_5ffibonacci',['stupidly_recursive_fibonacci',['../fibonacci_8c.html#abc2de651b4b52f8aa555cfc58f6c2ec0',1,'fibonacci.c']]]
 ];

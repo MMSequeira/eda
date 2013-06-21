@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>`perform_experiments.c` &ndash; Experiências com algoritmos de ordenação</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+  <script src="http://softwaremaniacs.org/media/soft/highlight/highlight.pack.js"></script>
+  <script>
+    hljs.tabReplace = '        ';
+    hljs.initHighlightingOnLoad();
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="array_of_routines.c.html">
+                array_of_routines.c
+              </a>
+            
+              
+              <a class="source" href="array_utils.h.html">
+                array_utils.h
+              </a>
+            
+              
+              <a class="source" href="print.c.html">
+                print.c
+              </a>
+            
+              
+              <a class="source" href="arrays_and_pointers.c.html">
+                arrays_and_pointers.c
+              </a>
+            
+              
+              <a class="source" href="arrays_basics.c.html">
+                arrays_basics.c
+              </a>
+            
+              
+              <a class="source" href="command_line.c.html">
+                command_line.c
+              </a>
+            
+              
+              <a class="source" href="fibonacci.c.html">
+                fibonacci.c
+              </a>
+            
+              
+              <a class="source" href="hello_world.c.html">
+                hello_world.c
+              </a>
+            
+              
+              <a class="source" href="hello_world_correct.c.html">
+                hello_world_correct.c
+              </a>
+            
+              
+              <a class="source" href="linked_list.c.html">
+                linked_list.c
+              </a>
+            
+              
+              <a class="source" href="malloc_stuff.c.html">
+                malloc_stuff.c
+              </a>
+            
+              
+              <a class="source" href="nans_and_other_oddities.c.html">
+                nans_and_other_oddities.c
+              </a>
+            
+              
+              <a class="source" href="rationals_with_structs.c.html">
+                rationals_with_structs.c
+              </a>
+            
+              
+              <a class="source" href="routine_pointers.c.html">
+                routine_pointers.c
+              </a>
+            
+              
+              <a class="source" href="experiments.c.html">
+                experiments.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.c.html">
+                naive_sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="naive_sequence_of_longs.h.html">
+                naive_sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.c.html">
+                sequence_of_longs.c
+              </a>
+            
+              
+              <a class="source" href="sequence_of_longs.h.html">
+                sequence_of_longs.h
+              </a>
+            
+              
+              <a class="source" href="tests.c.html">
+                tests.c
+              </a>
+            
+              
+              <a class="source" href="sizeof_and_arrays.c.html">
+                sizeof_and_arrays.c
+              </a>
+            
+              
+              <a class="source" href="array_of_doubles.c.html">
+                array_of_doubles.c
+              </a>
+            
+              
+              <a class="source" href="array_of_doubles.h.html">
+                array_of_doubles.h
+              </a>
+            
+              
+              <a class="source" href="perform_experiments.c.html">
+                perform_experiments.c
+              </a>
+            
+              
+              <a class="source" href="sorting_algorithms.c.html">
+                sorting_algorithms.c
+              </a>
+            
+              
+              <a class="source" href="sorting_algorithms.h.html">
+                sorting_algorithms.h
+              </a>
+            
+              
+              <a class="source" href="string_io.c.html">
+                string_io.c
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h1">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <h1><code>perform_experiments.c</code> &ndash; Experiências com algoritmos de ordenação</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Este é o módulo principal do programa para realização de experiências com
+algoritmos de ordenação. O objectivo é obter dados experimentais sobre o
+número de operações elementares realizadas durante a execução dos algoritmos
+de ordenação, bem como sobre o tempo despendido durante essa execução, sempre
+em situações controladas experimentalmente.</p>
+<p>Note que optámos por <em>não</em> incluir comentários de documentação
+<a href="http://doxygen.org/">Doxygen</a> em nenhum dos módulos deste programa.</p>
+<h2>Inclusão de ficheiros de interface</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>As inclusões dividem-se em dois tipos de ficheiros de interface: os que fazem
+parte da biblioteca padrão e os que fazem parte deste projecto.</p>
+<h3>Inclusão de ficheiros de interface da biblioteca padrão</h3>
+<p>Começamos por incluir os vários ficheiro de interface da biblioteca padrão
+necessários:</p>
+<ul>
+<li><p><code>stdlib.h</code> &ndash; Para podermos usar os procedimentos <code>free()</code> e <code>exit()</code>,
+o valor especial <code>NULL</code> dos ponteiros e as constantes de condição de
+terminação do programa <code>EXIT_SUCCESS</code> e <code>EXIT_FAILURE</code>.</p>
+</li>
+<li><p><code>stdio.h</code> &ndash; Para podermos usar as rotinas <code>printf()</code>, para escrita
+formatada ecrã, <code>snprintf()</code>, escrita segura em cadeia de caracteres,
+<code>fopen()</code> e <code>fclose()</code>, para abertura e encerramento de canais ligados a
+ficheiros, <code>fprintf()</code>, para escrita formatada em ficheiros, e <code>fputc()</code>,
+para escrita de caracteres isolados em ficheiros, bem como o tipo <code>FILE</code>,
+representando um canal estabelecido para um ficheiro, e a macro <code>stderr</code>,
+representando o canal de escrita de mensagens de erros.</p>
+</li>
+<li><p><code>string.h</code> &ndash; Para podermos usar a função <code>strcmp()</code>.</p>
+</li>
+<li><p><code>time.h</code> &ndash; Para podermos usar a função <code>clock()</code>, o tipo <code>clock_t</code> e
+a macro <code>CLOCKS_PER_SEC</code>.</p>
+</li>
+<li><p><code>stdbool.h</code> &ndash; Para podermos usar o tipo booleano ou lógico <code>bool</code> e
+os seus dois valores <code>false</code> e <code>true</code>.</p>
+</li>
+<li><p><code>math.h</code> &ndash; Para podermos usar as macros <code>NAN</code> e <code>INFINITY</code> (ver
+<a href="nans_and_other_oddities.c.html"><code>nans_and_other_oddities.c</code></a>).</p>
+</li>
+<li><p><code>assert.h</code> &ndash; Para podermos usar a macro <code>assert()</code>.</p>
+</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;string.h&gt;</span>
+<span class="preprocessor">#include &lt;time.h&gt;</span>
+<span class="preprocessor">#include &lt;stdbool.h&gt;</span>
+<span class="preprocessor">#include &lt;math.h&gt;</span>
+<span class="preprocessor">#include &lt;assert.h&gt;</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h3>Inclusão de ficheiros de interface deste projecto</h3>
+<p>Em seguida incluímos os ficheiros de interface de módulos físicos desde mesmo
+projecto:</p>
+<ul>
+<li><p><code>array_of_doubles.h</code> &ndash; Ficheiro de interface do módulo
+<code>array_of_doubles</code>, que fornece ferramentas para lidar com <em>arrays</em> de
+<code>double</code> (ver <a href="array_of_doubles.h.html"><code>array_of_doubles.h</code></a> e
+<a href="array_of_doubles.c.html"><code>array_of_doubles.c</code></a>).</p>
+</li>
+<li><p><code>sorting_algorithms.h</code> &ndash; Ficheiro de interface do módulo
+<code>sorting_algorithms</code>, que fornece o conjunto de procedimentos de ordenação
+alvo a experimentação realizada, bem como algumas ferramentas auxiliares
+(ver <a href="sorting_algorithms.h.html"><code>sorting_algorithms.h</code></a> e
+<a href="sorting_algorithms.c.html"><code>sorting_algorithms.c</code></a>).</p>
+</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include "array_of_doubles.h"</span>
+<span class="preprocessor">#include "sorting_algorithms.h"</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h2>Definição de constantes</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Definimos agora algumas constantes que determinam alguns dos parâmetros
+experimentais.</p>
+<p>Expressa em <em>clocks</em>, ou seja, em tiques do relógio. Esta constante indica o
+número mínimo de tiques de relógio a usar nas medições. Na máquina em que
+este programa foi testado, o relógio (tal como medido pela função <code>clock()</code>)
+tem um valor de <code>CLOCKS_PER_SEC</code> de 1&thinsp;000&thinsp;000. Logo, nenhuma
+medição será feita com intervalos de tempo inferiores a 1 segundo. Em
+ambientes onde o valor de <code>CLOCKS_PER_SEC</code> seja inferior, poderá ser
+necessário baixar a precisão, sob pena de as experiências se tornarem
+demasiado demoradas.</p>
+<p>Quando o tempo de execução de um algoritmo for inferior à precisão dada por
+esta variável, serão realizadas tantas execuções quantas necessárias para
+exceder este tempo, sendo o tempo de cada uma das execuções estimado através
+do quociente entre o tempo total das execuções sucessivas e o número de
+execuções realizadas (subtraindo-se depois o tempo necessário para, através
+de uma cópia, colocar no seu estado inicial, antes de cada ordenação, o
+<em>array</em> a ordenar). Estas execuções sucessivas destinam-se a lidar com
+questões de resolução do relógio usado. Não as confunda com as repetições
+efectuadas com fins estatísticos, pois estas lidam com as flutuações do tempo
+de execução devido às condições de carga da máquina e outros efeitos com
+origem externa ao programa.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">const</span> clock_t clock_precision = <span class="number">1000000U</span>; <span class="comment">// clocks (tics)</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Quando o tempo acumulado das repetições das estimativas do tempo de execução
+da ordenação, repetições essas realizadas para fins estatísticos, exceder
+este limiar, as repetições são interrompidas. Este limiar está expresso em
+segundos e tenta garantir que as experiências não se tornam demasiado
+demoradas. Naturalmente, as estatísticas obtidas serão tão piores quanto
+menor for o número de repetições realizadas. Um valor de 300 limita as
+repetições a cerca de cinco minutos.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">double</span> threshold_repetition_time = <span class="number">300.0</span>; <span class="comment">// seconds</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>O número de repetições a efectuar para fins estatísticos é também limitado
+pelo valor desta constante.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> maximum_number_of_repetions = <span class="number">1001</span>;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Se o tempo de execução de um dado algoritmo se tornar superior a este limiar
+para uma dada dimensão do <em>array</em> a ordenar, esse algoritmo será excluído das
+experiências realizadas com <em>arrays</em> de maiores dimensões. Tenta-se assim
+impedir que algoritmos particularmente maus impeçam a realização de
+experiências com algoritmos melhores, que são capazes de lidar em tempo
+«útil» com <em>arrays</em> de maiores dimensões.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">double</span> threshold_time_per_sort = <span class="number">300.0</span>; <span class="comment">// seconds</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>A dimensão máxima dos ficheiros a usar nas experiências. Note que recorremos
+a uma colecção fixa de ficheiros com dimensões que são potências de 2 entre 2
+e 2<sup>24</sup> (16&thinsp;777&thinsp;216) itens.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> maximum_file_size = <span class="number">1</span> &lt;&lt; <span class="number">24</span>;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>A constante <code>file_types</code> é um <em>array</em> com os tipos de ficheiros (na forma de
+cadeias de caracteres) na colecção de ficheiros de valores a ordenar. Os
+nomes dos ficheiros seguem o padrão <code>_tipo___dimensão_</code>, em que o tipo pode
+ser uma dos valores deste <em>array</em> e a dimensão é uma potência de 2 entre 2 e
+2<sup>24</sup> (16&thinsp;777&thinsp;216) itens. O número de itens do <em>array</em>
+é dado pela constante <code>number_of_file_types</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> file_types[] = {
+	<span class="string">"sorted"</span>,
+	<span class="string">"partially_sorted"</span>,
+	<span class="string">"shuffled"</span>
+};
+<span class="keyword">const</span> <span class="keyword">int</span> number_of_file_types = <span class="keyword">sizeof</span>(file_types) / <span class="keyword">sizeof</span>(file_types[<span class="number">0</span>]);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <h2>Estrutura de estatísticas e seu valor inicial</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Esta estrutura serve para guardar as estatísticas resultantes das
+experiências realizadas com um dado algoritmo ordenando um determinado
+<em>array</em> de dados.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">struct</span> algorithm_statistics {
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Contagem do número de comparações, trocas e cópias realizadas. Estes
+valores são obtidos por contagem determinísticas, não sendo resultado
+de qualquer outra operação estatística.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">struct</span> algorithm_counts counts;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Número de execuções do algoritmo realizadas para atingir a precisão
+desejada. Estas execuções sucessivas destinam-se a ultrapassar
+limitações da resolução do relógio usado.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> accumulated_runs;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Número de repetições realizadas para obter as estatísticas de tempos.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> repetitions;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Estatísticas dos tempos de execução do algoritmo, incluindo a sua
+média, o seu desvio padrão, a mediana, o tempo mínimo e o tempo
+máximo.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">struct</span> double_statistics times;
+};
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Constante usada para inicializar as variáveis de estatísticas.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">struct</span> algorithm_statistics initial_statistics = {
+	.counts = {
+		.comparisons = <span class="number">0</span>,
+		.swaps = <span class="number">0</span>,
+		.copies = <span class="number">0</span>
+	},
+	.accumulated_runs = <span class="number">0</span>,
+	.repetitions = <span class="number">0</span>,
+	.times = {
+		.average = NAN,
+		.stddev = NAN,
+		.median = NAN,
+		.minimum = INFINITY,
+		.maximum = -INFINITY
+	}
+};
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <h2>Definição de rotinas</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Predicado que devolve <code>true</code> se <code>file_type</code> é um dos tipos de ficheiro de
+dados a ordenar suportados pelo programa, i.e., incluídos no <em>array</em>
+constante <code>file_types</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">bool</span> valid_file_type(<span class="keyword">const</span> <span class="keyword">char</span>* file_type)
+{
+	assert(file_type != NULL);
+
+	<span class="keyword">int</span> i = <span class="number">0</span>;
+	<span class="keyword">while</span> (i != number_of_file_types &amp;&amp;
+		strcmp(file_type, file_types[i]) != <span class="number">0</span>)
+		i++;
+
+	<span class="keyword">return</span> i != number_of_file_types;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Função que devolve uma estimativa do tempo necessário para copiar o conteúdo
+do <em>array</em> <code>items</code> para o <em>array</em> <code>work_items</code>. Ambos os <em>arrays</em> têm de ter
+pelo menos <code>length</code> itens. O tempo é devolvido em segundos. A estimativa é
+realizada com uma precisão dada pela constante <code>clock_precision</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">double</span> copy_time_estimate(<span class="keyword">const</span> <span class="keyword">int</span> length, <span class="keyword">double</span> work_items[length],
+				<span class="keyword">const</span> <span class="keyword">double</span> items[length])
+{
+	assert(length &gt; <span class="number">0</span>);
+	assert(work_items != NULL);
+	assert(items != NULL);
+
+	printf(<span class="string">"\tEstimating copy time...\n"</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Um primeiro ciclo estima o número de execuções da cópia necessárias
+para atingir a precisão pretendida.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> runs = <span class="number">0</span>;
+	clock_t start = clock();
+	<span class="keyword">do</span> {
+		copy_double_array(length, work_items, items);
+		runs++;
+	} <span class="keyword">while</span>(clock() - start &lt; clock_precision);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Uma vez que a obtenção da estimativa do número de execuções teve de
+recorrer a invocações repetidas da função <code>clock()</code>, o que poderia
+viciar uma estimativa do tempo de cópia que se baseasse no tempo de
+acumulado da execução do ciclo, repetimos o mesmo número de
+execuções, desta vez sem invocações intermédias à função <code>clock()</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	start = clock();
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != runs; i++)
+		copy_double_array(length, work_items, items);
+	<span class="keyword">double</span> copy_time = (<span class="keyword">double</span>) (clock() - start) / CLOCKS_PER_SEC / runs;
+
+	printf(<span class="string">"\tCopy time estimated to be %g seconds (based on %d runs).\n"</span>,
+		copy_time, runs);
+
+	<span class="keyword">return</span> copy_time;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Função que devolve uma estimativa do tempo de execução do algoritmo de
+ordenação dado por <code>algorithm</code>, quando aplicado à ordenação do <em>array</em>
+<code>work_itens</code> com <code>length</code> itens, obtido por cópia do <em>array</em> <code>items</code> com o
+mesmo número de itens. A estimativa é realizada recorrendo à acumulação do
+tempo de <code>runs</code> execuções sucessivas. Uma vez que cada execução do algoritmo
+tem de ser precedida da cópia dos itens do <em>array</em> <code>items</code> para o <em>array</em>
+<code>work_items</code>, o tempo estimado para essa cópia, <code>copy_time</code>, é subtraído ao
+quociente entre o tempo total acumulado e o número de execuções <code>runs</code>. Em
+caso de erro, devolve um valor negativo.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">double</span> sort_time_estimate(<span class="keyword">struct</span> sorting_algorithm algorithm,
+				<span class="keyword">const</span> <span class="keyword">int</span> length, <span class="keyword">double</span> work_items[length],
+				<span class="keyword">const</span> <span class="keyword">double</span> items[length], <span class="keyword">const</span> <span class="keyword">int</span> runs,
+				<span class="keyword">const</span> <span class="keyword">double</span> copy_time)
+{
+	assert(length &gt; <span class="number">0</span>);
+	assert(work_items != NULL);
+	assert(items != NULL);
+	assert(runs &gt; <span class="number">0</span>);
+	assert(copy_time &gt; <span class="number">0.0</span>);
+
+	clock_t start = clock();
+	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != runs; i++) {
+		copy_double_array(length, work_items, items);
+		<span class="keyword">if</span>(!algorithm.sort(length, work_items)) {
+			fprintf(stderr, <span class="string">"Error: could not run sorting "</span>
+				<span class="string">"algorithm '%s'.\n"</span>, algorithm.name);
+			<span class="keyword">return</span> -<span class="number">1.0</span>;
+		}
+	}
+
+	<span class="keyword">return</span> (<span class="keyword">double</span>) (clock() - start) / CLOCKS_PER_SEC / runs - copy_time;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Devolve uma estimativa do número de execuções do algoritmo de ordenação
+<code>algorithm</code>, quando aplicado à ordenação do <em>array</em> <code>work_itens</code> com <code>length</code>
+itens, obtido por cópia do <em>array</em> <code>items</code> com o mesmo número de itens,
+necessárias para atingir a precisão pretendida. O efeito do tempo de cópia
+entre os <em>arrays</em> <code>copy_time</code> é cancelado na estimativa efectuadas. Em caso
+de erro devolve um valor negativo.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">int</span> number_of_runs(<span class="keyword">const</span> <span class="keyword">struct</span> sorting_algorithm algorithm,
+			<span class="keyword">const</span> <span class="keyword">int</span> length, <span class="keyword">double</span> work_items[length],
+			<span class="keyword">const</span> <span class="keyword">double</span> items[length], <span class="keyword">const</span> <span class="keyword">double</span> copy_time)
+{
+	assert(length &gt; <span class="number">0</span>);
+	assert(work_items != NULL);
+	assert(items != NULL);
+	assert(copy_time &gt; <span class="number">0.0</span>);
+
+	<span class="keyword">int</span> runs = <span class="number">0</span>;
+	clock_t start = clock();
+	<span class="keyword">do</span> {
+		copy_double_array(length, work_items, items);
+
+		<span class="keyword">if</span>(!algorithm.sort(length, work_items)) {
+			fprintf(stderr, <span class="string">"Error: could not run sorting "</span>
+				<span class="string">"algorithm '%s'.\n"</span>, algorithm.name);
+			<span class="keyword">return</span> -<span class="number">1</span>;
+		}
+
+		runs++;
+	} <span class="keyword">while</span>(clock() - start - runs * copy_time * CLOCKS_PER_SEC &lt;
+		clock_precision);
+
+	<span class="keyword">return</span> runs;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Escuta uma experiência com o algoritmo de ordenação <code>algorithm</code>, obtendo
+contagens de operações e estatísticas do tempo de execução resultantes da sua
+aplicação ao <em>array</em> <code>items</code>, com comprimento <code>length</code>. As estatísticas são
+optidas por aplicação repetida da função <code>sort_time_estimate()</code>. O <em>array</em>
+ordenado é sempre <code>work_itens</code>, para onde os itens originais, contidos em
+<code>items</code>, são copiados antes de cada ordenação. Para além da obtenção de
+contagens e estatísticas, a correcção da ordenação obtida é verificada por
+comparação com o <em>array</em> <code>sorted_items</code>, que contém os mesmos itens de
+<code>items</code>, mas já ordenados por ordem crescente. As estimativa dos tempo de
+execução são realizadas levando em conta o tempo estimado <code>copy_time</code>
+necessário para preparar o <em>array</em> <code>sorted_items</code> para cada ordenação,
+copiando os seus itens a partir de <code>items</code>. As contagens e estatísticas são
+guardadas na instância de <code>struct algorithm_statistics</code> apontada pelo
+ponteiro <code>statistics</code>. Em caso de erro devolve o valor <code>false</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">bool</span> run_experiment(<span class="keyword">const</span> <span class="keyword">struct</span> sorting_algorithm algorithm,
+			<span class="keyword">const</span> <span class="keyword">int</span> length,
+			<span class="keyword">double</span> work_items[length],
+			<span class="keyword">const</span> <span class="keyword">double</span> items[length],
+			<span class="keyword">const</span> <span class="keyword">double</span> sorted_items[length],
+			<span class="keyword">const</span> <span class="keyword">double</span> copy_time,
+			<span class="keyword">struct</span> algorithm_statistics *statistics)
+{
+	assert(length &gt; <span class="number">0</span>);
+	assert(work_items != NULL);
+	assert(items != NULL);
+	assert(sorted_items != NULL);
+	assert(copy_time &gt; <span class="number">0.0</span>);
+	assert(statistics != NULL);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Preparamos o <em>array</em> <code>work_items</code> e realizamos uma primeira ordenação
+invocando o procedimento de ordenação que implementa o algoritmo em
+causa e que efectua contagem das operações elementares. Dessa forma,
+não só obtemos as contagens necessárias, como podemos verificar a
+correcção do resultado da ordenação com essa função, comparando-o com
+o <em>array</em> <code>sorted_items</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	copy_double_array(length, work_items, items);
+
+	printf(<span class="string">"\t\tRunning counting algorithm version.\n"</span>);
+
+	<span class="keyword">if</span> (!algorithm.sort_and_count(length, work_items, &amp;statistics-&gt;counts)) {
+		fprintf(stderr, <span class="string">"Error: could not run sorting algorithm '%s' "</span>
+			<span class="string">"(counting version).\n"</span>, algorithm.name);
+		<span class="keyword">return</span> <span class="keyword">false</span>;
+	}
+
+	printf(<span class="string">"\t\tChecking correctness of counting algorithm version.\n"</span>);
+
+	<span class="keyword">if</span> (!double_arrays_equal(length, sorted_items, work_items)) {
+		fprintf(stderr, <span class="string">"Error: sorting algorithm '%s' (counting "</span>
+			<span class="string">"version) did not sort.\n"</span>, algorithm.name);
+		<span class="keyword">return</span> <span class="keyword">false</span>;
+	}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Antes de proceder às estimativas dos tempos de execução e ao cálculo
+das respectivas estatísticas, voltamos a preparar o <em>array</em>
+<code>work_items</code> e aplicamos-lhe a versão do procedimento de ordenação
+que implementa o algoritmo de ordenação em causa <em>sem efectuar
+contagens</em>. Fazemo-lo para podermos verificar a correcção do
+resultado obtido, da mesma forma que anteriormente.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	copy_double_array(length, work_items, items);
+
+	printf(<span class="string">"\t\tRunning non-counting algorithm version.\n"</span>);
+
+	<span class="keyword">if</span>(!algorithm.sort(length, work_items)) {
+		fprintf(stderr, <span class="string">"Error: could not run sorting algorithm '%s'.\n"</span>,
+			algorithm.name);
+		<span class="keyword">return</span> <span class="keyword">false</span>;
+	}
+
+	printf(<span class="string">"\t\tChecking correctness of non-counting algorithm version.\n"</span>);
+
+	<span class="keyword">if</span> (!double_arrays_equal(length, sorted_items, work_items)) {
+		fprintf(stderr, <span class="string">"Error: sorting algorithm '%s' did not sort.\n"</span>,
+			algorithm.name);
+		<span class="keyword">return</span> <span class="keyword">false</span>;
+	}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Feitas as contagens e verificada a correcção das ordenações obtidas
+por aplicação dos dois procedimentos implementando o algoritmo,
+podemos começar a estimar os tempos de execução. Estes tempos são
+estimados usando a versão <em>sem contagem</em> dos procedimentos.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	printf(<span class="string">"\t\tTime measurements:\n"</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>Estimamos o número de execuções da ordenação a realizar para obter
+resultados com a precisão escolhida.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> runs =
+		number_of_runs(algorithm, length, work_items, items, copy_time);
+
+	<span class="keyword">if</span> (runs &lt; <span class="number">0</span>)
+		<span class="keyword">return</span> <span class="keyword">false</span>;
+
+	printf(<span class="string">"\t\t\tEach time will be estimated using %d runs.\n"</span>, runs);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>Guardamos o valor obtido na estrutura de estatísticas.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	statistics-&gt;accumulated_runs = runs;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>Os tempos obtidos em cada uma das repetições das estimativas a
+realizar serão guardados neste <em>array</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">double</span> times[maximum_number_of_repetions];
+
+	printf(<span class="string">"\t\t\tStarting repeated estimations:\n"</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>Este ciclo repete a obtenção de estimativas do tempo de execução até
+se atingir o limite máximo de iterações ou até se ultrapassar o
+limiar do tempo acumulado de execução do ciclo.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> repetitions = <span class="number">0</span>;
+	clock_t start = clock();
+	<span class="keyword">double</span> accumulated_time;
+
+	<span class="keyword">do</span> {
+		<span class="keyword">if</span>((times[repetitions] =
+			sort_time_estimate(algorithm, length, work_items, items,
+					runs, copy_time)) &lt; <span class="number">0.0</span>)
+			<span class="keyword">return</span> <span class="keyword">false</span>;
+
+		repetitions++;
+
+		accumulated_time = (<span class="keyword">double</span>)(clock() - start) / CLOCKS_PER_SEC;
+	} <span class="keyword">while</span>(repetitions != maximum_number_of_repetions &amp;&amp;
+		accumulated_time &lt; threshold_repetition_time);
+
+	printf(<span class="string">"\t\t\t%d repetitions in %g seconds.\n"</span>, repetitions,
+		accumulated_time);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>Guardamos o valor obtido para as repetições na estrutura de
+estatísticas.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	statistics-&gt;repetitions = repetitions;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>Calculamos as estatísticas dos tempos de execução obtidos e guardamo-
+las na estrutura de estatísticas.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	statistics-&gt;times = double_array_statistics(repetitions, times);
+
+	<span class="keyword">return</span> <span class="keyword">true</span>;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>Escreve no canal de saída <code>output</code> os cabeçalhos das colunas de estatísticas
+para o algoritmo com o nome dado por <code>lagorithm_name</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">void</span> write_statistics_headers(FILE *<span class="keyword">const</span> output,
+				<span class="keyword">const</span> <span class="keyword">char</span> *algorithm_name)
+{
+	assert(output != NULL);
+	assert(algorithm_name != NULL);
+
+	fprintf(output, <span class="string">";Comparisons (%s)"</span>, algorithm_name);
+	fprintf(output, <span class="string">";Swaps (%s)"</span>, algorithm_name);
+	fprintf(output, <span class="string">";Copies (%s)"</span>, algorithm_name);
+	fprintf(output, <span class="string">";Accumulated runs (%s)"</span>, algorithm_name);
+	fprintf(output, <span class="string">";Repetitions (%s)"</span>, algorithm_name);
+	fprintf(output, <span class="string">";Time Average [seconds] (%s)"</span>, algorithm_name);
+	fprintf(output, <span class="string">";Time Stddev [seconds] (%s)"</span>, algorithm_name);
+	fprintf(output, <span class="string">";Time Median [seconds] (%s)"</span>, algorithm_name);
+	fprintf(output, <span class="string">";Time Minimum [seconds] (%s)"</span>, algorithm_name);
+	fprintf(output, <span class="string">";Time Maximum [seconds] (%s)"</span>, algorithm_name);
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>Escreve no canal de saída <code>output</code> as estatísticas contidas em <code>statistics</code>
+(que dizem respeito a um dado algoritmo).</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">void</span> write_statistics(FILE *<span class="keyword">const</span> output,
+			<span class="keyword">const</span> <span class="keyword">struct</span> algorithm_statistics statistics)
+{
+	assert(output != NULL);
+
+	fprintf(output, <span class="string">";%d"</span>, statistics.counts.comparisons);
+	fprintf(output, <span class="string">";%d"</span>, statistics.counts.swaps);
+	fprintf(output, <span class="string">";%d"</span>, statistics.counts.copies);
+	fprintf(output, <span class="string">";%d"</span>, statistics.accumulated_runs);
+	fprintf(output, <span class="string">";%d"</span>, statistics.repetitions);
+	fprintf(output, <span class="string">";%g"</span>, statistics.times.average);
+	fprintf(output, <span class="string">";%g"</span>, statistics.times.stddev);
+	fprintf(output, <span class="string">";%g"</span>, statistics.times.median);
+	fprintf(output, <span class="string">";%g"</span>, statistics.times.minimum);
+	fprintf(output, <span class="string">";%g"</span>, statistics.times.maximum);
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>O procedimento principal do programa, que executa as experiências para cada
+dimensão dos ficheiros com valores a ordenar e para cada algoritmo. As
+experiências são efectuadas apenas para os ficheiros do tipo dado por
+<code>file_type</code> (que pode tomar os valores <code>sorted</code>, <code>partially_sorted</code> e
+<code>shuffled</code>). Os ficheiros são lidos a partir da pasta dada por <code>path</code> (que
+tem de terminar no caractere separador de pastas correspondente ao sistema
+operativo em que o programa é executado). Os resultados são escritos no
+ficheiro com nome dado por <code>statistics_file_name</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">void</span> run_experiments(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> path, <span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> file_type,
+		<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> statistics_file_name)
+{
+	assert(path != NULL);
+	assert(file_type != NULL);
+	assert(statistics_file_name != NULL);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>Abrimos o canal para o ficheiro de resultados. O ficheiro de
+resultados tem o formato CSV (comma separated values) e usa o
+caractere «;» como separador. A sua primeira linha contém a
+identificação dos valores em cada coluna, ou seja, os cabeçalhos
+correspondentes a cada uma das colunas. As linhas subsequentes têm os
+valores obtidos experimentalmente, correspondendo cada linha a uma
+dada dimensão dos ficheiros de entrada. A primeira coluna contém essa
+dimensão. As colunas subsequentes contém as estatísticas obtidas para
+cada um dos algoritmos experimentados.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	FILE * <span class="keyword">const</span> output = fopen(statistics_file_name, <span class="string">"w"</span>);
+
+	<span class="keyword">if</span> (output == NULL)  {
+		fprintf(stderr, <span class="string">"Error: Could not open '%s' for writing!\n"</span>,
+			statistics_file_name);
+		exit(EXIT_FAILURE);
+	}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <p>Escrevemos o cabeçalho da primeira coluna, que contém a dimensão dos
+ficheiros usados para obter as estatísticas de cada linha.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	fprintf(output, <span class="string">"Size"</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-41">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-41">&#182;</a>
+              </div>
+              <p>Escrevemos os cabeçalhos correspondentes a cada um dos algoritmos.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">for</span> (<span class="keyword">int</span> a = <span class="number">0</span>; a != number_of_sorting_algorithms; a++)
+		write_statistics_headers(output, sorting_algorithms[a].name);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-42">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-42">&#182;</a>
+              </div>
+              <p>Terminamos a linha de cabeçalho.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	fputc(<span class="string">'\n'</span>, output);
+
+	printf(<span class="string">"Wrote headers to results.\n"</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-43">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-43">&#182;</a>
+              </div>
+              <p>Definimos um <em>array</em> de valores booleanos que indicam se, em alguma
+das experiências já realizada com o correspondente algoritmo se
+excedeu o limiar do tempo de ordenação. Os algoritmos para os quais
+isso aconteça deixam de ser usados com ficheiros de maiores
+dimensões, para evitar que o tempo de execução do programa se torne
+demasiado grande.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">bool</span> threshold_time_per_sort_exceeded[number_of_sorting_algorithms];
+	<span class="keyword">for</span> (<span class="keyword">int</span> a = <span class="number">0</span>; a != number_of_sorting_algorithms; a++)
+		threshold_time_per_sort_exceeded[a] = <span class="keyword">false</span>;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-44">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-44">&#182;</a>
+              </div>
+              <p>Percorremos todas as dimensões de ficheiros, que são potências de 2
+entre 2 e 2<sup>24</sup>. Este último valor é dado pela constante
+<code>maximum_file_size</code>. A operação realizada na guarda serve para obter
+o valor 2<sup>25</sup>, valor para o qual a se tornará falsa. O
+operador <code>&lt;&lt;</code> desloca o padrão de <em>bits</em> guardado numa variável
+inteira de um <em>bit</em> para esquerda, o que corresponde a uma
+multiplicação por 2.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">for</span> (<span class="keyword">int</span> s = <span class="number">1</span> &lt;&lt; <span class="number">1</span>; s != maximum_file_size &lt;&lt; <span class="number">1</span>; s &lt;&lt;= <span class="number">1</span>) {
+		printf(<span class="string">"Starting experiments for size %d:\n"</span>, s);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-45">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-45">&#182;</a>
+              </div>
+              <p>Construímos o nome do ficheiro com o tipo dado por
+<code>file_type</code>, com a dimensão dada por <code>s</code> e na pasta dada por
+<code>path</code>. Este ficheiro contém os itens a ordenar.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		<span class="keyword">char</span> file_name[FILENAME_MAX];
+		snprintf(file_name, FILENAME_MAX, <span class="string">"%s%s_%d.txt"</span>,
+			path, file_type, s);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-46">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-46">&#182;</a>
+              </div>
+              <p>Construímos o nome do ficheiro com o tipo <code>sorted</code>, com a
+dimensão <code>s</code> e na pasta dada por <code>path</code>. Este ficheiro contém
+os itens já ordenados. O seu conteúdo será usado para
+verificar a correcção dos algoritmos.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		<span class="keyword">char</span> sorted_file_name[FILENAME_MAX];
+		snprintf(sorted_file_name, FILENAME_MAX, <span class="string">"%ssorted_%d.txt"</span>,
+			path, s);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-47">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-47">&#182;</a>
+              </div>
+              <p>Lemos o conteúdo do ficheiro com os itens a ordenar para o
+<em>array</em> dinâmico <code>items</code> (na realidade um ponteiro para o seu
+primeiro item). O número de itens lidos fica guardado em
+<code>length</code>. A leitura e criação do <em>array</em> dinâmico podem
+falhar por falta de memória ou por o ficheiro não conter o
+número de itens esperado.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		<span class="keyword">int</span> length;
+		<span class="keyword">double</span> *<span class="keyword">const</span> items =
+			read_double_array_from(file_name, &amp;length);
+
+		<span class="keyword">if</span> (items == NULL || length != s) {
+			fprintf(stderr, <span class="string">"Error: Reading file '%s'."</span>, file_name);
+			fclose(output);
+			free(items);
+			exit(EXIT_FAILURE);
+		}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-48">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-48">&#182;</a>
+              </div>
+              <p>Lemos o conteúdo do ficheiro com os itens já ordenados para o
+<em>array</em> dinâmico <code>sorted_items</code> (na realidade um ponteiro
+para o seu primeiro item). O número de itens lidos fica
+guardado em <code>length</code>. A leitura e criação do <em>array</em> dinâmico
+podem falhar por falta de memória ou por o ficheiro não
+conter o número de itens esperado.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		<span class="keyword">double</span> *<span class="keyword">const</span> sorted_items =
+			read_double_array_from(sorted_file_name, &amp;length);
+
+		<span class="keyword">if</span> (sorted_items == NULL || length != s) {
+			fprintf(stderr, <span class="string">"Error: Reading file '%s'."</span>,
+				sorted_file_name);
+			fclose(output);
+			free(items);
+			free(sorted_items);
+			exit(EXIT_FAILURE);
+		}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-49">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-49">&#182;</a>
+              </div>
+              <p>Construímos o <em>array</em> de trabalho, ou seja, o <em>array</em>
+dinâmico para onde serão copiados os itens a ordenar sempre
+que necessário e que será ordenado durante as experiências a
+realizar. O <em>array</em> <code>items</code> não será alterado. A criação
+deste <em>array</em> pode falhar por falta de memória. Criar este
+<em>array</em> neste local evita a necessidade de o recriar várias
+vezes durante as experiências.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		<span class="keyword">double</span> *<span class="keyword">const</span> work_items = new_double_array_of(s);
+
+		<span class="keyword">if</span> (sorted_items == NULL) {
+			fprintf(stderr, <span class="string">"Error: Reading file '%s'."</span>,
+				sorted_file_name);
+			fclose(output);
+			free(items);
+			free(sorted_items);
+			exit(EXIT_FAILURE);
+		}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-50">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-50">&#182;</a>
+              </div>
+              <p>Estimamos o tempo de execução da cópia dos itens do <em>array</em>
+<code>items</code> para o <em>array</em> <code>work_items</code>. Este tempo será
+descontado das estimativas do tempo de execução dos
+algoritmos, que sem este desconto incluiriam o tempo demorado
+a copiar os itens para o <em>array</em> de trabalho antes de
+proceder à sua ordenação.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		<span class="keyword">double</span> copy_time = copy_time_estimate(length, work_items, items);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-51">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-51">&#182;</a>
+              </div>
+              <p>Escrevemos no ficheiro CSV de resultado o valor da primeira
+coluna, ou seja, a dimensão do ficheiro em ordenação. Ou, o
+que é o mesmo, o número de itens no <em>array</em> a ordenar.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		fprintf(output, <span class="string">"%d"</span>, s);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-52">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-52">&#182;</a>
+              </div>
+              <p>Percorremos cada um dos algoritmos a experimentar.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		<span class="keyword">for</span> (<span class="keyword">int</span> a = <span class="number">0</span>; a != number_of_sorting_algorithms; a++) {
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-53">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-53">&#182;</a>
+              </div>
+              <p>Inicializamos as estatísticas com os valores iniciais.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>			<span class="keyword">struct</span> algorithm_statistics statistics =
+				initial_statistics;
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-54">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-54">&#182;</a>
+              </div>
+              <p>Se o tempo de execução do algoritmo corrente não
+tiver excedido anteriormente (i.e., para uma dimensão
+inferior do ficheiro a ordenar) o limiar
+estabelecido, então a experiência será realizada.
+Caso contrário, os dados guardados no ficheiro de
+resultado serão os valores guardados na constante
+<code>initial_statistics</code>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>			<span class="keyword">if</span> (!threshold_time_per_sort_exceeded[a]) {
+				printf(<span class="string">"\tStarting experiments for %s:\n"</span>,
+					sorting_algorithms[a].name);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-55">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-55">&#182;</a>
+              </div>
+              <p>Realizamos a experiência invocando a rotina
+de experimentação e verificando se ocorreu
+algum erro durante o processo. A experiência
+é realizada com o algoritmo
+<code>sorting_algorithm[a]</code>, usando os <em>arrays</em>
+<code>work_items</code>, <code>items</code> e <code>sorted_items</code>, todos
+com <code>length</code> itens. O tempo de cópia
+<code>copy_time</code> é usado para efectuar descontos
+nos tempos estimados sempre que necessário.
+Os resultados são guardados na variável
+<code>statistics</code>, cujo endereço é passado à
+rotina de experimentação.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>				<span class="keyword">if</span> (!run_experiment(sorting_algorithms[a],
+							length, work_items, items,
+							sorted_items,
+							copy_time, &amp;statistics)) {
+					free(items);
+					free(sorted_items);
+					free(work_items);
+					fclose(output);
+					exit(EXIT_FAILURE);
+				}
+			} <span class="keyword">else</span>
+				printf(<span class="string">"\t\tSkipping algorithm.\n"</span>);
+
+			printf(<span class="string">"\t\tWriting results, if any.\n"</span>);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-56">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-56">&#182;</a>
+              </div>
+              <p>Escrevemos os resultados da experiência, caso esta se
+tenha realizado. Caso contrário, escreve-se o valor
+inicial das estatísticas, que assinalarão a
+experiência como não realizada.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>			write_statistics(output, statistics);
+
+			printf(<span class="string">"\t\tEnding experiments for %s.\n"</span>,
+				sorting_algorithms[a].name);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-57">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-57">&#182;</a>
+              </div>
+              <p>Actualizamos o <em>array</em> que indica se o tempo de
+ordenação excedeu em algum momento, para o algoritmo
+corrente, o limiar estabelecido.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>			<span class="keyword">if</span> (statistics.times.median &gt; threshold_time_per_sort)
+				threshold_time_per_sort_exceeded[a] = <span class="keyword">true</span>;
+		}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-58">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-58">&#182;</a>
+              </div>
+              <p>Terminamos a linha de estatísticas escrita no ficheiro CSV de
+resultado.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		fputc(<span class="string">'\n'</span>, output);
+
+		printf(<span class="string">"\tEnded experiments for size %d.\n"</span>, s);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-59">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-59">&#182;</a>
+              </div>
+              <p>Libertamos a memória reservada para cada um dos <em>arrays</em>
+dinâmicos.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>		free(work_items);
+		free(sorted_items);
+		free(items);
+	}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-60">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-60">&#182;</a>
+              </div>
+              <p>Fechamos o canal para o ficheiro CSV de resultado.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	fclose(output);
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-61">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-61">&#182;</a>
+              </div>
+              <p>Rotina inicial do programa.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">int</span> main(<span class="keyword">const</span> <span class="keyword">int</span> argument_count,
+	<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> argument_values[argument_count])
+{
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-62">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-62">&#182;</a>
+              </div>
+              <p>Os argumentos recebidos através da linha de comandos, incluindo o
+próprio nome do programa executável, são quatro: esse nome, a pasta
+onde os ficheiros a ordenar se encontram, o tipo de ficheiros a
+ordenar e o nome do ficheiro onde os resultados serão escritos no
+formato CSV, por esta ordem.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (argument_count &lt; <span class="number">4</span>) {
+		fprintf(stderr, <span class="string">"Error: Insuficient number of arguments!\n"</span>);
+		<span class="keyword">return</span> EXIT_FAILURE;
+	}
+
+	<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> path = argument_values[<span class="number">1</span>];
+	<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> file_type = argument_values[<span class="number">2</span>];
+	<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> statistics_file_name = argument_values[<span class="number">3</span>];
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-63">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-63">&#182;</a>
+              </div>
+              <p>Verificamos a correcção do tipo de ficheiro passado na linha de
+comandos.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (!valid_file_type(file_type)) {
+		fprintf(stderr, <span class="string">"Error: Unknown file type '%s'!\n"</span>, file_type);
+		<span class="keyword">return</span> EXIT_FAILURE;
+	}
+
+	printf(<span class="string">"Starting experiments from %s files in %s. Storing results "</span>
+		<span class="string">"in %s.\n"</span>, file_type, path, statistics_file_name);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-64">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-64">&#182;</a>
+              </div>
+              <p>Executamos o procedimento principal do programa.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	run_experiments(path, file_type, statistics_file_name);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-65">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-65">&#182;</a>
+              </div>
+              <p>Terminamos assinalando sucesso.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">return</span> EXIT_SUCCESS;
+}
+
+</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
