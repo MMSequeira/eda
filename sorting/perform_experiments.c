@@ -191,7 +191,7 @@ static bool valid_file_type(const char* file_type)
 
 	int i = 0;
 	while (i != number_of_file_types &&
-		strcmp(file_type, file_types[i]) != 0)
+	       strcmp(file_type, file_types[i]) != 0)
 		i++;
 
 	return i != number_of_file_types;
@@ -202,7 +202,7 @@ static bool valid_file_type(const char* file_type)
 // pelo menos `length` itens. O tempo é devolvido em segundos. A estimativa é
 // realizada com uma precisão dada pela constante `clock_precision`.
 static double copy_time_estimate(const int length, double work_items[length],
-				const double items[length])
+				 const double items[length])
 {
 	assert(length > 0);
 	assert(work_items != NULL);
@@ -214,6 +214,7 @@ static double copy_time_estimate(const int length, double work_items[length],
 	// para atingir a precisão pretendida.
 	int runs = 0;
 	clock_t start = clock();
+
 	do {
 		copy_double_array(length, work_items, items);
 		runs++;
@@ -225,12 +226,14 @@ static double copy_time_estimate(const int length, double work_items[length],
 	// acumulado da execução do ciclo, repetimos o mesmo número de
 	// execuções, desta vez sem invocações intermédias à função `clock()`.
 	start = clock();
+
 	for (int i = 0; i != runs; i++)
 		copy_double_array(length, work_items, items);
+
 	double copy_time = (double) (clock() - start) / CLOCKS_PER_SEC / runs;
 
 	printf("\tCopy time estimated to be %g seconds (based on %d runs).\n",
-		copy_time, runs);
+	       copy_time, runs);
 
 	return copy_time;
 }
@@ -245,9 +248,9 @@ static double copy_time_estimate(const int length, double work_items[length],
 // quociente entre o tempo total acumulado e o número de execuções `runs`. Em
 // caso de erro, devolve um valor negativo.
 static double sort_time_estimate(struct sorting_algorithm algorithm,
-				const int length, double work_items[length],
-				const double items[length], const int runs,
-				const double copy_time)
+				 const int length, double work_items[length],
+				 const double items[length], const int runs,
+				 const double copy_time)
 {
 	assert(length > 0);
 	assert(work_items != NULL);
@@ -256,9 +259,11 @@ static double sort_time_estimate(struct sorting_algorithm algorithm,
 	assert(copy_time > 0.0);
 
 	clock_t start = clock();
+
 	for (int i = 0; i != runs; i++) {
 		copy_double_array(length, work_items, items);
-		if(!algorithm.sort(length, work_items)) {
+
+		if(algorithm.sort(length, work_items)) {
 			fprintf(stderr, "Error: could not run sorting "
 				"algorithm '%s'.\n", algorithm.name);
 			return -1.0;
@@ -275,8 +280,8 @@ static double sort_time_estimate(struct sorting_algorithm algorithm,
 // entre os _arrays_ `copy_time` é cancelado na estimativa efectuadas. Em caso
 // de erro devolve um valor negativo.
 static int number_of_runs(const struct sorting_algorithm algorithm,
-			const int length, double work_items[length],
-			const double items[length], const double copy_time)
+			  const int length, double work_items[length],
+			  const double items[length], const double copy_time)
 {
 	assert(length > 0);
 	assert(work_items != NULL);
@@ -285,10 +290,11 @@ static int number_of_runs(const struct sorting_algorithm algorithm,
 
 	int runs = 0;
 	clock_t start = clock();
+
 	do {
 		copy_double_array(length, work_items, items);
 
-		if(!algorithm.sort(length, work_items)) {
+		if(algorithm.sort(length, work_items)) {
 			fprintf(stderr, "Error: could not run sorting "
 				"algorithm '%s'.\n", algorithm.name);
 			return -1;
@@ -301,27 +307,26 @@ static int number_of_runs(const struct sorting_algorithm algorithm,
 	return runs;
 }
 
-// Escuta uma experiência com o algoritmo de ordenação `algorithm`, obtendo
-// contagens de operações e estatísticas do tempo de execução resultantes da sua
-// aplicação ao _array_ `items`, com comprimento `length`. As estatísticas são
-// optidas por aplicação repetida da função `sort_time_estimate()`. O _array_
-// ordenado é sempre `work_itens`, para onde os itens originais, contidos em
-// `items`, são copiados antes de cada ordenação. Para além da obtenção de
-// contagens e estatísticas, a correcção da ordenação obtida é verificada por
-// comparação com o _array_ `sorted_items`, que contém os mesmos itens de
-// `items`, mas já ordenados por ordem crescente. As estimativa dos tempo de
-// execução são realizadas levando em conta o tempo estimado `copy_time`
-// necessário para preparar o _array_ `sorted_items` para cada ordenação,
-// copiando os seus itens a partir de `items`. As contagens e estatísticas são
-// guardadas na instância de `struct algorithm_statistics` apontada pelo
-// ponteiro `statistics`. Em caso de erro devolve o valor `false`.
-static bool run_experiment(const struct sorting_algorithm algorithm,
-			const int length,
-			double work_items[length],
-			const double items[length],
-			const double sorted_items[length],
-			const double copy_time,
-			struct algorithm_statistics *statistics)
+// Esta rotina escuta uma experiência com o algoritmo de ordenação `algorithm`,
+// obtendo contagens de operações e estatísticas do tempo de execução
+// resultantes da sua aplicação ao _array_ `items`, com comprimento `length`. As
+// estatísticas são optidas por aplicação repetida da função
+// `sort_time_estimate()`. O _array_ ordenado é sempre `work_itens`, para onde
+// os itens originais, contidos em `items`, são copiados antes de cada
+// ordenação. Para além da obtenção de contagens e estatísticas, a correcção da
+// ordenação obtida é verificada por comparação com o _array_ `sorted_items`,
+// que contém os mesmos itens de `items`, mas já ordenados por ordem crescente.
+// As estimativa dos tempo de execução são realizadas levando em conta o tempo
+// estimado `copy_time` necessário para preparar o _array_ `sorted_items` para
+// cada ordenação, copiando os seus itens a partir de `items`. As contagens e
+// estatísticas são guardadas na instância de `struct algorithm_statistics`
+// apontada pelo ponteiro `statistics`. Em caso de erro devolve o valor `true`.
+static bool experiment_algorithm(const struct sorting_algorithm algorithm,
+				const int length, double work_items[length],
+				const double items[length],
+				const double sorted_items[length],
+				const double copy_time,
+				struct algorithm_statistics *statistics)
 {
 	assert(length > 0);
 	assert(work_items != NULL);
@@ -335,15 +340,16 @@ static bool run_experiment(const struct sorting_algorithm algorithm,
 	// causa e que efectua contagem das operações elementares. Dessa forma,
 	// não só obtemos as contagens necessárias, como podemos verificar a
 	// correcção do resultado da ordenação com essa função, comparando-o com
-	// o _array_ `sorted_items`.
+	// o _array_ `sorted_items`. Em caso de erro, retornamos devolvendo o
+	// valor `true`.
 	copy_double_array(length, work_items, items);
 
 	printf("\t\tRunning counting algorithm version.\n");
 
-	if (!algorithm.sort_and_count(length, work_items, &statistics->counts)) {
+	if (algorithm.sort_and_count(length, work_items, &statistics->counts)) {
 		fprintf(stderr, "Error: could not run sorting algorithm '%s' "
 			"(counting version).\n", algorithm.name);
-		return false;
+		return true;
 	}
 
 	printf("\t\tChecking correctness of counting algorithm version.\n");
@@ -351,7 +357,7 @@ static bool run_experiment(const struct sorting_algorithm algorithm,
 	if (!double_arrays_equal(length, sorted_items, work_items)) {
 		fprintf(stderr, "Error: sorting algorithm '%s' (counting "
 			"version) did not sort.\n", algorithm.name);
-		return false;
+		return true;
 	}
 
 	// Antes de proceder às estimativas dos tempos de execução e ao cálculo
@@ -359,15 +365,16 @@ static bool run_experiment(const struct sorting_algorithm algorithm,
 	// `work_items` e aplicamos-lhe a versão do procedimento de ordenação
 	// que implementa o algoritmo de ordenação em causa _sem efectuar
 	// contagens_. Fazemo-lo para podermos verificar a correcção do
-	// resultado obtido, da mesma forma que anteriormente.
+	// resultado obtido, da mesma forma que anteriormente. Em caso de erro,
+	// retornamos devolvendo o valor `true`.
 	copy_double_array(length, work_items, items);
 
 	printf("\t\tRunning non-counting algorithm version.\n");
 
-	if(!algorithm.sort(length, work_items)) {
+	if(algorithm.sort(length, work_items)) {
 		fprintf(stderr, "Error: could not run sorting algorithm '%s'.\n",
 			algorithm.name);
-		return false;
+		return true;
 	}
 
 	printf("\t\tChecking correctness of non-counting algorithm version.\n");
@@ -375,7 +382,7 @@ static bool run_experiment(const struct sorting_algorithm algorithm,
 	if (!double_arrays_equal(length, sorted_items, work_items)) {
 		fprintf(stderr, "Error: sorting algorithm '%s' did not sort.\n",
 			algorithm.name);
-		return false;
+		return true;
 	}
 
 	// Feitas as contagens e verificada a correcção das ordenações obtidas
@@ -385,12 +392,13 @@ static bool run_experiment(const struct sorting_algorithm algorithm,
 	printf("\t\tTime measurements:\n");
 
 	// Estimamos o número de execuções da ordenação a realizar para obter
-	// resultados com a precisão escolhida.
+	// resultados com a precisão escolhida.  Em caso de erro, retornamos
+	// devolvendo o valor `true`.
 	int runs =
 		number_of_runs(algorithm, length, work_items, items, copy_time);
 
 	if (runs < 0)
-		return false;
+		return true;
 
 	printf("\t\t\tEach time will be estimated using %d runs.\n", runs);
 
@@ -411,10 +419,14 @@ static bool run_experiment(const struct sorting_algorithm algorithm,
 	double accumulated_time;
 
 	do {
-		if((times[repetitions] =
-			sort_time_estimate(algorithm, length, work_items, items,
-					runs, copy_time)) < 0.0)
-			return false;
+		// Obtemos uma estimativa do tempo de execução do algoritmo. Em
+		// caso de erro, retornamos devolvendo o valor `true`.
+		times[repetitions] =
+			    sort_time_estimate(algorithm, length, work_items,
+						items, runs, copy_time);
+
+		if(times[repetitions] < 0.0)
+			return true;
 
 		repetitions++;
 
@@ -423,7 +435,7 @@ static bool run_experiment(const struct sorting_algorithm algorithm,
 		accumulated_time < threshold_repetition_time);
 
 	printf("\t\t\t%d repetitions in %g seconds.\n", repetitions,
-		accumulated_time);
+	       accumulated_time);
 
 	// Guardamos o valor obtido para as repetições na estrutura de
 	// estatísticas.
@@ -433,13 +445,15 @@ static bool run_experiment(const struct sorting_algorithm algorithm,
 	// las na estrutura de estatísticas.
 	statistics->times = double_array_statistics(repetitions, times);
 
-	return true;
+	// Retornamos devolvendo o valor `false`, indicando que não ocorreram
+	// quaisquer erros.
+	return false;
 }
 
 // Escreve no canal de saída `output` os cabeçalhos das colunas de estatísticas
 // para o algoritmo com o nome dado por `lagorithm_name`.
 static void write_statistics_headers(FILE *const output,
-				const char *algorithm_name)
+				     const char *algorithm_name)
 {
 	assert(output != NULL);
 	assert(algorithm_name != NULL);
@@ -459,7 +473,7 @@ static void write_statistics_headers(FILE *const output,
 // Escreve no canal de saída `output` as estatísticas contidas em `statistics`
 // (que dizem respeito a um dado algoritmo).
 static void write_statistics(FILE *const output,
-			const struct algorithm_statistics statistics)
+			     const struct algorithm_statistics statistics)
 {
 	assert(output != NULL);
 
@@ -475,20 +489,223 @@ static void write_statistics(FILE *const output,
 	fprintf(output, ";%g", statistics.times.maximum);
 }
 
-// O procedimento principal do programa, que executa as experiências para cada
-// dimensão dos ficheiros com valores a ordenar e para cada algoritmo. As
-// experiências são efectuadas apenas para os ficheiros do tipo dado por
+// Esta rotina executa as experiências para os ficheiros com `size` valores a
+// ordenar e para cada algoritmo. Efectuamos as experiências apenas para os
+// ficheiros do tipo dado por `file_type` (que pode tomar os valores `sorted`,
+// `partially_sorted` e `shuffled`). Lemos os ficheiros a partir da pasta dada
+// por `path` (que tem de terminar no caractere separador de pastas
+// correspondente ao sistema operativo em que o programa é executado).
+// Escrevemos os resultados no canal de saída `output`. Se algum dos algoritmos
+// tiver um tempo de execução superior ao limiar definido, actualizamos o
+// _array_ `excessive_time_per_sort` de modo a conter o valor `true` na posição
+// correspondente a esse algoritmo. Se alguma posição desse _array_ já tiver o
+// valor `true`, o algoritmo correspondente não chega a ser experimentado.
+// Devolvemos `true` em caso de erro.
+bool experiment_size(FILE *const output, const char *const path,
+		     const char *const file_type, const int size,
+		     bool excessive_time_per_sort[number_of_sorting_algorithms])
+{
+	// Construímos o nome do ficheiro com o tipo dado por `file_type`, com a
+	// dimensão dada por `s` e na pasta dada por `path`. Este ficheiro
+	// contém os itens a ordenar.
+	char file_name[FILENAME_MAX];
+	snprintf(file_name, FILENAME_MAX, "%s%s_%d.txt", path, file_type, size);
+
+	// Construímos o nome do ficheiro com o tipo `sorted`, com a dimensão
+	// `s` e na pasta dada por `path`. Este ficheiro contém os itens já
+	// ordenados. O seu conteúdo será usado para verificar a correcção dos
+	// algoritmos.
+	char sorted_file_name[FILENAME_MAX];
+	snprintf(sorted_file_name, FILENAME_MAX, "%ssorted_%d.txt", path, size);
+
+	// Definimos os ponteiros que apontarão para os _arrays_ dinâmicos
+	// necessários para a experiência. Violamos aqui explicitamente a regra
+	// de definir as variáveis tão próximo quanto possível do primeiro local
+	// em que podem ser inicializadas com um valor relevante. Essa violação
+	// decorre do estilo de tratamento de erros usado, que recorre à
+	// geralmente pouco recomendável instrução `goto` para se poder «arrumar
+	// a casa», em caso de erro, de forma pouco intrusiva no restante
+	// código.
+	double *items = NULL;
+	double *sorted_items = NULL;
+	double *work_items = NULL;
+
+	// Lemos o conteúdo do ficheiro com os itens a ordenar para o _array_
+	// dinâmico `items` (na realidade um ponteiro para o seu primeiro item).
+	// O número de itens lidos fica guardado em `length`. A leitura e
+	// criação do _array_ dinâmico podem falhar por falta de memória ou por
+	// o ficheiro não conter o número de itens esperado.
+	int length;
+	items = read_double_array_from(file_name, &length);
+
+	// Definimos a variável `error`, cujo valor indica, em cada momento, se
+	// ocorreu algum erro. O estilo de tratamento de erros que adoptámos
+	// inspira-se no utilizado no _kernel_ do Linux. Ou seja, os erros são
+	// detectados logo que possível e levam a um salto, usando a instrução
+	// `goto`, para a secção final e de «arrumação da casa» da rotina em que
+	// nos encontramos. Dessa forma o código fica mais simples e
+	// compreensível. Em linguagens de mais alto nível que o C há melhores
+	// mecanismos para resolver este problema de lidar com os erros de forma
+	// elegante.
+	//
+	// Inicializamos a variável `error` com o valor apropriado, dado o
+	// resultado da tentativa de leitura do ficheiro efectuada na instrução
+	// anterior.
+	bool error = items == NULL || length != size;
+
+	// Em caso de erro escrevemos em `stderr` uma mensagem apropriada e
+	// saltamos para a secção de tratamento de erros, a que daremos o nome
+	// `terminate`.
+	if (error) {
+		fprintf(stderr, "Error: Reading file '%s'.\n", file_name);
+		goto terminate;
+	}
+
+	// Lemos o conteúdo do ficheiro com os itens já ordenados para o _array_
+	// dinâmico `sorted_items` (na realidade um ponteiro para o seu primeiro
+	// item). O número de itens lidos fica guardado em `length`. A leitura e
+	// criação do _array_ dinâmico podem falhar por falta de memória ou por
+	// o ficheiro não conter o número de itens esperado. Em caso de falha, o
+	// erro é tratado como anteriormente.
+	sorted_items = read_double_array_from(sorted_file_name, &length);
+
+	error = sorted_items == NULL || length != size;
+
+	if (error) {
+		fprintf(stderr, "Error: Reading file '%s'.\n", sorted_file_name);
+		goto terminate;
+	}
+
+	// Construímos o _array_ de trabalho, ou seja, o _array_ dinâmico para
+	// onde serão copiados os itens a ordenar sempre que necessário e que
+	// será ordenado durante as experiências a realizar. O _array_ `items`
+	// não será alterado. A criação deste _array_ pode falhar por falta de
+	// memória. Criar este _array_ neste local evita a necessidade de o
+	// recriar várias vezes durante as experiências. A criação do _array_
+	// pode falhar por falta de memória.
+	work_items = new_double_array_of(size);
+
+	error = work_items == NULL;
+
+	if (error) {
+		fprintf(stderr, "Error: Allocating work array.\n");
+		goto terminate;
+	}
+
+	// Estimamos o tempo de execução da cópia dos itens do _array_ `items`
+	// para o _array_ `work_items`. Este tempo será descontado das
+	// estimativas do tempo de execução dos algoritmos, que sem este
+	// desconto incluiriam o tempo demorado a copiar os itens para o _array_
+	// de trabalho antes de proceder à sua ordenação.
+	double copy_time = copy_time_estimate(length, work_items, items);
+
+	// Escrevemos no ficheiro CSV de resultado o valor da primeira coluna,
+	// ou seja, a dimensão do ficheiro em ordenação. Ou, o que é o mesmo, o
+	// número de itens no _array_ a ordenar.
+	fprintf(output, "%d", size);
+
+	// Percorremos cada um dos algoritmos a experimentar.
+	for (int a = 0; a != number_of_sorting_algorithms; a++) {
+		// Inicializamos as estatísticas com os valores iniciais.
+		struct algorithm_statistics statistics = initial_statistics;
+
+		// Se o tempo de execução do algoritmo corrente não tiver
+		// excedido anteriormente (i.e., para uma dimensão inferior do
+		// ficheiro a ordenar) o limiar estabelecido, então a
+		// experiência será realizada. Caso contrário, os dados
+		// guardados no ficheiro de resultado serão os valores guardados
+		// na constante `initial_statistics`.
+		if (!excessive_time_per_sort[a]) {
+			printf("\tStarting experiments for %s:\n",
+			       sorting_algorithms[a].name);
+
+			// Realizamos a experiência invocando a rotina de
+			// experimentação e verificando se ocorreu algum erro
+			// durante o processo. A experiência é realizada com o
+			// algoritmo `sorting_algorithm[a]`, usando os _arrays_
+			// `work_items`, `items` e `sorted_items`, todos com
+			// `length` itens. O tempo de cópia `copy_time` é usado
+			// para efectuar descontos nos tempos estimados sempre
+			// que necessário. Os resultados são guardados na
+			// variável `statistics`, cujo endereço é passado à
+			// rotina de experimentação. A rotina de experimentação
+			// devolve um valor booleano que indica se ocorreu ou
+			// não algum erro.
+			error = experiment_algorithm(sorting_algorithms[a], 
+							size, work_items, items,
+							sorted_items, copy_time,
+							&statistics);
+			if (error)
+				goto terminate;
+		} else
+			printf("\t\tSkipping algorithm.\n");
+
+		printf("\t\tWriting results, if any.\n");
+
+		// Escrevemos os resultados da experiência, caso esta se tenha
+		// realizado. Caso contrário, escreve-se o valor inicial das
+		// estatísticas, que assinalarão a experiência como não
+		// realizada.
+		write_statistics(output, statistics);
+
+		printf("\t\tEnding experiments for %s.\n",
+		       sorting_algorithms[a].name);
+
+		// Actualizamos o _array_ que indica se o tempo de ordenação
+		// excedeu em algum momento, para o algoritmo corrente, o limiar
+		// estabelecido.
+		if (statistics.times.median > threshold_time_per_sort)
+			excessive_time_per_sort[a] = true;
+	}
+
+	// Terminamos a linha de estatísticas escrita no ficheiro CSV de
+	// resultado.
+	fputc('\n', output);
+
+	// A secção final é dedicada a «arrumar a casa», libertando a memória
+	// reservada. Esta secção pode ser executada tanto no caso de não terem
+	// ocorrido erros, como no caso de terem ocorrido erros. Neste último
+	// caso, pode acontecer que o erro tenha ocorrido antes da criação dos
+	// _arrays_ dinâmicos. O código está construído de tal forma que, se
+	// isso acontecer, o correspondente ponteiro terá o valor `NULL`, que
+	// pode ser passado sem inconveniente à rotina `free()`.
+terminate:
+	// Libertamos a memória reservada para cada um dos _arrays_
+	// dinâmicos.
+	free(work_items);
+	free(sorted_items);
+	free(items);
+
+	// Retornamos devolvendo o valor na variável `error`, ou seja, indicando
+	// se ocorreram ou não erros.
+	return error;
+}
+
+// A rotina principal do programa, que executa as experiências para cada
+// dimensão dos ficheiros com valores a ordenar e para cada algoritmo.
+// Efectuamos as experiências apenas para os ficheiros do tipo dado por
 // `file_type` (que pode tomar os valores `sorted`, `partially_sorted` e
-// `shuffled`). Os ficheiros são lidos a partir da pasta dada por `path` (que
-// tem de terminar no caractere separador de pastas correspondente ao sistema
-// operativo em que o programa é executado). Os resultados são escritos no
-// ficheiro com nome dado por `statistics_file_name`.
-static void run_experiments(const char *const path, const char *const file_type,
-		const char *const statistics_file_name)
+// `shuffled`). Lemos os ficheiros a partir da pasta dada por `path` (que tem de
+// terminar no caractere separador de pastas correspondente ao sistema operativo
+// em que o programa é executado). Escrevemos os resultados no ficheiro com nome
+// dado por `statistics_file_name`. Em caso de erro devolvemos o valor `true`.
+static bool experiment_all(const char *const path,
+			   const char *const file_type,
+			   const char *const statistics_file_name)
 {
 	assert(path != NULL);
 	assert(file_type != NULL);
 	assert(statistics_file_name != NULL);
+
+	// Definimos um _array_ de valores booleanos que indicam se, em alguma
+	// das experiências já realizada com o correspondente algoritmo se
+	// excedeu o limiar do tempo de ordenação. Os algoritmos para os quais
+	// isso aconteça deixam de ser usados com ficheiros de maiores
+	// dimensões, para evitar que o tempo de execução do programa se torne
+	// demasiado grande.
+	bool excessive_time_per_sort[number_of_sorting_algorithms];
+	for (int a = 0; a != number_of_sorting_algorithms; a++)
+		excessive_time_per_sort[a] = false;
 
 	// Abrimos o canal para o ficheiro de resultados. O ficheiro de
 	// resultados tem o formato CSV (comma separated values) e usa o
@@ -499,12 +716,17 @@ static void run_experiments(const char *const path, const char *const file_type,
 	// dada dimensão dos ficheiros de entrada. A primeira coluna contém essa
 	// dimensão. As colunas subsequentes contém as estatísticas obtidas para
 	// cada um dos algoritmos experimentados.
-	FILE * const output = fopen(statistics_file_name, "w");
+	FILE *const output = fopen(statistics_file_name, "w");
 
-	if (output == NULL)  {
+	// Definimos a variável `error`, que indicará em cada instante se até
+	// então ocorreu algum erro, e inicializamo-la verificando se a abertura
+	// do canal de escrita teve resultado.
+	bool error = output == NULL;
+
+	if (error) {
 		fprintf(stderr, "Error: Could not open '%s' for writing!\n",
 			statistics_file_name);
-		exit(EXIT_FAILURE);
+		goto terminate;
 	}
 
 	// Escrevemos o cabeçalho da primeira coluna, que contém a dimensão dos
@@ -520,16 +742,6 @@ static void run_experiments(const char *const path, const char *const file_type,
 
 	printf("Wrote headers to results.\n");
 
-	// Definimos um _array_ de valores booleanos que indicam se, em alguma
-	// das experiências já realizada com o correspondente algoritmo se
-	// excedeu o limiar do tempo de ordenação. Os algoritmos para os quais
-	// isso aconteça deixam de ser usados com ficheiros de maiores
-	// dimensões, para evitar que o tempo de execução do programa se torne
-	// demasiado grande.
-	bool threshold_time_per_sort_exceeded[number_of_sorting_algorithms];
-	for (int a = 0; a != number_of_sorting_algorithms; a++)
-		threshold_time_per_sort_exceeded[a] = false;
-
 	// Percorremos todas as dimensões de ficheiros, que são potências de 2
 	// entre 2 e 2<sup>24</sup>. Este último valor é dado pela constante
 	// `maximum_file_size`. A operação realizada na guarda serve para obter
@@ -537,170 +749,33 @@ static void run_experiments(const char *const path, const char *const file_type,
 	// operador `<<` desloca o padrão de _bits_ guardado numa variável
 	// inteira de um _bit_ para esquerda, o que corresponde a uma
 	// multiplicação por 2.
-	for (int s = 1 << 1; s != maximum_file_size << 1; s <<= 1) {
-		printf("Starting experiments for size %d:\n", s);
+	for (int size = 1 << 1; size != maximum_file_size << 1; size <<= 1) {
+		printf("Starting experiments for size %d:\n", size);
 
-		// Construímos o nome do ficheiro com o tipo dado por
-		// `file_type`, com a dimensão dada por `s` e na pasta dada por
-		// `path`. Este ficheiro contém os itens a ordenar.
-		char file_name[FILENAME_MAX];
-		snprintf(file_name, FILENAME_MAX, "%s%s_%d.txt",
-			path, file_type, s);
+		// Invocamos a rotina que executa as experiências para a
+		// dimensão `size` dos ficheiros e para todos os algoritmos.
+		error = experiment_size(output, path, file_type, size,
+					excessive_time_per_sort);
+		if (error)
+			goto terminate;
 
-		// Construímos o nome do ficheiro com o tipo `sorted`, com a
-		// dimensão `s` e na pasta dada por `path`. Este ficheiro contém
-		// os itens já ordenados. O seu conteúdo será usado para
-		// verificar a correcção dos algoritmos.
-		char sorted_file_name[FILENAME_MAX];
-		snprintf(sorted_file_name, FILENAME_MAX, "%ssorted_%d.txt",
-			path, s);
-
-		// Lemos o conteúdo do ficheiro com os itens a ordenar para o
-		// _array_ dinâmico `items` (na realidade um ponteiro para o seu
-		// primeiro item). O número de itens lidos fica guardado em
-		// `length`. A leitura e criação do _array_ dinâmico podem
-		// falhar por falta de memória ou por o ficheiro não conter o
-		// número de itens esperado.
-		int length;
-		double *const items =
-			read_double_array_from(file_name, &length);
-
-		if (items == NULL || length != s) {
-			fprintf(stderr, "Error: Reading file '%s'.", file_name);
-			fclose(output);
-			free(items);
-			exit(EXIT_FAILURE);
-		}
-
-		// Lemos o conteúdo do ficheiro com os itens já ordenados para o
-		// _array_ dinâmico `sorted_items` (na realidade um ponteiro
-		// para o seu primeiro item). O número de itens lidos fica
-		// guardado em `length`. A leitura e criação do _array_ dinâmico
-		// podem falhar por falta de memória ou por o ficheiro não
-		// conter o número de itens esperado.
-		double *const sorted_items =
-			read_double_array_from(sorted_file_name, &length);
-
-		if (sorted_items == NULL || length != s) {
-			fprintf(stderr, "Error: Reading file '%s'.",
-				sorted_file_name);
-			fclose(output);
-			free(items);
-			free(sorted_items);
-			exit(EXIT_FAILURE);
-		}
-
-		// Construímos o _array_ de trabalho, ou seja, o _array_
-		// dinâmico para onde serão copiados os itens a ordenar sempre
-		// que necessário e que será ordenado durante as experiências a
-		// realizar. O _array_ `items` não será alterado. A criação
-		// deste _array_ pode falhar por falta de memória. Criar este
-		// _array_ neste local evita a necessidade de o recriar várias
-		// vezes durante as experiências.
-		double *const work_items = new_double_array_of(s);
-
-		if (sorted_items == NULL) {
-			fprintf(stderr, "Error: Reading file '%s'.",
-				sorted_file_name);
-			fclose(output);
-			free(items);
-			free(sorted_items);
-			exit(EXIT_FAILURE);
-		}
-
-		// Estimamos o tempo de execução da cópia dos itens do _array_
-		// `items` para o _array_ `work_items`. Este tempo será
-		// descontado das estimativas do tempo de execução dos
-		// algoritmos, que sem este desconto incluiriam o tempo demorado
-		// a copiar os itens para o _array_ de trabalho antes de
-		// proceder à sua ordenação.
-		double copy_time = copy_time_estimate(length, work_items, items);
-
-		// Escrevemos no ficheiro CSV de resultado o valor da primeira
-		// coluna, ou seja, a dimensão do ficheiro em ordenação. Ou, o
-		// que é o mesmo, o número de itens no _array_ a ordenar.
-		fprintf(output, "%d", s);
-
-		// Percorremos cada um dos algoritmos a experimentar.
-		for (int a = 0; a != number_of_sorting_algorithms; a++) {
-			// Inicializamos as estatísticas com os valores iniciais.
-			struct algorithm_statistics statistics =
-				initial_statistics;
-
-			// Se o tempo de execução do algoritmo corrente não
-			// tiver excedido anteriormente (i.e., para uma dimensão
-			// inferior do ficheiro a ordenar) o limiar
-			// estabelecido, então a experiência será realizada.
-			// Caso contrário, os dados guardados no ficheiro de
-			// resultado serão os valores guardados na constante
-			// `initial_statistics`.
-			if (!threshold_time_per_sort_exceeded[a]) {
-				printf("\tStarting experiments for %s:\n",
-					sorting_algorithms[a].name);
-
-				// Realizamos a experiência invocando a rotina
-				// de experimentação e verificando se ocorreu
-				// algum erro durante o processo. A experiência
-				// é realizada com o algoritmo
-				// `sorting_algorithm[a]`, usando os _arrays_
-				// `work_items`, `items` e `sorted_items`, todos
-				// com `length` itens. O tempo de cópia
-				// `copy_time` é usado para efectuar descontos
-				// nos tempos estimados sempre que necessário.
-				// Os resultados são guardados na variável
-				// `statistics`, cujo endereço é passado à
-				// rotina de experimentação.
-				if (!run_experiment(sorting_algorithms[a],
-							length, work_items, items,
-							sorted_items,
-							copy_time, &statistics)) {
-					free(items);
-					free(sorted_items);
-					free(work_items);
-					fclose(output);
-					exit(EXIT_FAILURE);
-				}
-			} else
-				printf("\t\tSkipping algorithm.\n");
-
-			printf("\t\tWriting results, if any.\n");
-
-			// Escrevemos os resultados da experiência, caso esta se
-			// tenha realizado. Caso contrário, escreve-se o valor
-			// inicial das estatísticas, que assinalarão a
-			// experiência como não realizada.
-			write_statistics(output, statistics);
-
-			printf("\t\tEnding experiments for %s.\n",
-				sorting_algorithms[a].name);
-
-			// Actualizamos o _array_ que indica se o tempo de
-			// ordenação excedeu em algum momento, para o algoritmo
-			// corrente, o limiar estabelecido.
-			if (statistics.times.median > threshold_time_per_sort)
-				threshold_time_per_sort_exceeded[a] = true;
-		}
-
-		// Terminamos a linha de estatísticas escrita no ficheiro CSV de
-		// resultado.
-		fputc('\n', output);
-
-		printf("\tEnded experiments for size %d.\n", s);
-
-		// Libertamos a memória reservada para cada um dos _arrays_
-		// dinâmicos.
-		free(work_items);
-		free(sorted_items);
-		free(items);
+		printf("\tEnded experiments for size %d.\n", size);
 	}
 
+	// Secção de «arrumação da casa».
+terminate:
 	// Fechamos o canal para o ficheiro CSV de resultado.
-	fclose(output);
+	if (output != NULL)
+		fclose(output);
+
+	// Retornamos devolvendo o valor na variável `error`, ou seja, indicando
+	// se ocorreram ou não erros.
+	return error;
 }
 
 // Rotina inicial do programa.
 int main(const int argument_count,
-	const char *const argument_values[argument_count])
+	 const char *const argument_values[argument_count])
 {
 	// Os argumentos recebidos através da linha de comandos, incluindo o
 	// próprio nome do programa executável, são quatro: esse nome, a pasta
@@ -724,10 +799,12 @@ int main(const int argument_count,
 	}
 
 	printf("Starting experiments from %s files in %s. Storing results "
-		"in %s.\n", file_type, path, statistics_file_name);
+	       "in %s.\n", file_type, path, statistics_file_name);
 
-	// Executamos o procedimento principal do programa.
-	run_experiments(path, file_type, statistics_file_name);
+	// Executamos o procedimento principal do programa, verificando se essa
+	// execução teve sucesso.
+	if (experiment_all(path, file_type, statistics_file_name))
+		return EXIT_FAILURE;
 
 	// Terminamos assinalando sucesso.
 	return EXIT_SUCCESS;

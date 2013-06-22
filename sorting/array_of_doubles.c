@@ -17,7 +17,7 @@
 // Inclusão de ficheiros de interface
 // -----------------------------------
 //
-// Começamos por incluir os vários ficheiro de interface necessários:
+// Incluímos os vários ficheiro de interface necessários:
 //
 // - `stdlib.h` &ndash; Para podermos usar o valor especial `NULL` dos ponteiros
 //   e para podemos usar as rotinas `malloc()` e `realloc()` e o procedimento
