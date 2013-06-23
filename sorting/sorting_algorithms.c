@@ -12,7 +12,7 @@
   
 // Inclusões
 // ---------
-
+  
 // ### Inclusão do próprio ficheiro de interface
 //
 // Começamos por incluir o próprio ficheiro de interface. Isso ajuda-nos a
@@ -153,6 +153,8 @@ bool bubble_sort(const int length, double items[length])
 			if (items[i] > items[i + 1])
 				swap(length, items, i, i + 1);
 
+	// Retornamos devolvendo `false`, i.e., assinalando o sucesso da
+	// ordenação.
 	return false;
 }
 
@@ -208,6 +210,8 @@ bool selection_sort(const int length, double items[length])
 			swap(length, items, sorted, i_of_smallest);
 	}
 
+	// Retornamos devolvendo `false`, i.e., assinalando o sucesso da
+	// ordenação.
 	return false;
 }
 
@@ -276,6 +280,8 @@ bool insertion_sort(const int length, double items[length])
 			items[i] = item_to_insert;
 	}
 
+	// Retornamos devolvendo `false`, i.e., assinalando o sucesso da
+	// ordenação.
 	return false;
 }
 
@@ -339,6 +345,8 @@ bool shell_sort(const int length, double items[length])
 		step /= 3;
 	}
 
+	// Retornamos devolvendo `false`, i.e., assinalando o sucesso da
+	// ordenação.
 	return false;
 }
 
@@ -416,7 +424,7 @@ static void quicksort_segment(const int length, double items[length],
 	// deste particionamento, a ordenação total consegue-se ordenando de
 	// forma independente os sub-segmentos esquerdo e direito, usando
 	// exactamente o mesmo algoritmo.
-
+  
 	// O _pivot_ será o primeiro item do segmento. Para simplificar o ciclo
 	// em `i` do particionamento, em que se procura um item maior ou igual
 	// ao _pivot_ a partir da esquerda, convém garantir que o último item do
@@ -479,7 +487,7 @@ static void quicksort_segment(const int length, double items[length],
 		//
 		// Feito o particionamento, aplica-se recursivamente o mesmo
 		// algoritmo a cada um dos sub-segmentos.
-		  
+  
 		// Invocação do mesmo algoritmo para ordenação do sub-segmento
 		// esquerdo, entre `first` e `j` - 1. (O _pivot_ está na posição
 		// `j`.)
@@ -499,8 +507,14 @@ bool quicksort(const int length, double items[length])
 	assert(length >= 0);
 	assert(length == 0 || items != NULL);
 
+	// Invocamos o procedimento recursivo de ordenação de um segmento do
+	// _array_ passando-lhe como posições extremas do segmento a ordenar os
+	// valores 0 e `length` - 1, ou seja, indicando que pretendemos ordenar
+	// o _array_ no seu todo.
 	quicksort_segment(length, items, 0, length - 1);
 
+	// Retornamos devolvendo `false`, i.e., assinalando o sucesso da
+	// ordenação.
 	return false;
 }
 
@@ -558,49 +572,151 @@ bool quicksort_and_count(const int length, double items[length],
 
 // ### Ordenação por fusão ou _merge sort_
 //
-// !!!
+// A ordenação por fusão é implementada recorrendo a:
+//
+// - um procedimento auxiliar `merge_sort_segment()`, recursivo, que ordena
+//   um segmento de _array_ recorrendo a um _array_ auxiliar com a mesma
+//   dimensão do _array_ a ordenar,
+// - um procedimento auxiliar `merge()`, não recursivo, que funde num único
+//   segmento ordenado de _array_  dois sub-segmentos ordenados e adjacentes de
+//   _array_, e  
+// - uma rotina `merge_sort()`, não recursiva, que constrói um _array_ auxiliar
+//   e invoca o procedimento auxiliar `merge_sort_segment()` passando-lhe o
+//   _array_ a ordenar e o _array_ auxiliar e especificando o array completo
+//   como segmento a ordenar.
   
-// Procedimento auxiliar que ....
+// #### Procedimento não recursivo auxiliar de fusão de segmentos
+  
+// Procedimento auxiliar, não recursivo, que funde num único segmento ordenado
+// os dois sub-segmentos adjacentes do _array_ `items` com comprimento `length`
+// com início no índice `left` e fim no índice `middle`, o primeiro, e com
+// início no índice `middle` + 1 e fim no índice `right`, o segundo. A fusão é
+// feita recorrendo a um _array_ auxiliar `temporary`.
 static void merge(const int length, double items[length],
 		double temporary[length],
 		const int left, const int middle, const int right)
 {
-	int i = left;
-	int j = middle + 1;
-	int k = left;
-	while (i <= middle && j <= right)
-		if (items[i] <= items[j])
-			temporary[k++] = items[i++];
-		else
-			temporary[k++] = items[j++];
+	assert(length >= 0);
+	assert(length == 0 || items != NULL);
+	assert(length == 0 || temporary != NULL);
+	assert(0 <= left && left < length);
+	assert(0 <= right && right < length);
+	assert(left <= middle && middle < right);
 
+	// Note que, recorrendo a apenas uma comparação adicional por fusão,
+	// podemos melhorar substancialmente a eficiência deste algoritmo
+	// _quando o array a ordenar já está ordenado_. Basta acrescentar a
+	// seguinte instrução condicional no início do procedimento:
+	//
+	// ```C
+	// if (items[middle] <= items[middle + 1])
+	//     return;
+	// ```
+  
+	// ##### Fusão dos sub-segmentos
+	//
+	// A primeira fase da fusão ocorre enquanto não se esgotou nenhum dos
+	// dois segmentos a fundir. Durante este ciclo, os itens são copiados
+	// dos dois segmentos a fundir para o segmento resultante da fusão _mas
+	// no array auxiliar_. Usamos três índices para o efeito.
+  
+	// O índice `i` percorre o primeiro sub-segmento a fundir, começando por
+	// isso em `left`.
+	int i = left;
+	// O índice `j` percorre o segundo sub-segmento a fundir, começando por
+	// isso em `middle` + 1.
+	int j = middle + 1;
+	// O índice `k` percorre o segmento resultante da fusão, começando por
+	// isso em `left`, tal como `i`. No entanto, note-se que os valores são
+	// copiados para o segmento resultante da fusão _no array auxiliar_.
+	// Só depois são copiados de volta para o _array_ a ordenar.
+	int k = left;
+	// O ciclo decorre enquanto nenhum dos sub-segmentos se esgotar.
+	for (; i <= middle && j <= right; k++)
+		// O valor a colocar na posição `k` do _array_ auxiliar é o
+		// menor dos valores indexados por `i` e por `j`.
+		if (items[i] <= items[j])
+			// Tendo-se copiado o item em `i` do primeiro sub-
+			// segmento, incrementamos valor de `i`.
+			temporary[k] = items[i++];
+		else
+			// Tendo-se copiado o item em `j` do segundo sub-
+			// segmento, incrementamos valor de `j`.
+			temporary[k] = items[j++];
+
+	// ##### Cópia dos itens remanescentes do primeiro sub-segmento
+  
+	// Quando o ciclo acima termina, pelo menos um dos sub-segmentos está
+	// esgotado. Este primeiro ciclo lida com os itens do primeiro segmento
+	// que não chegaram a ser copiados para o _array_ temporário. Se o
+	// primeiro segmento se tiver esgotado no ciclo anterior, então não terá
+	// qualquer efeito. Para evitar a realização de duas cópias dos valores
+	// destes itens, primeiro para o _array_ auxiliar, depois para o _array_
+	// a ordenar, copiamos estes itens para a sua posição no _array_ a
+	// ordenar, a partir da posição dada por `k`.
 	for (int m = k; i <= middle; i++, m++)
 		items[m] = items[i];
 
+	// Da mesma forma, o segundo sub-segmento do _array_ pode não ter sido
+	// esgotado no ciclo original. Se isso aconteceu, então os itens desse
+	// sub-segmento _já estão na sua posição definitiva_.
+  
+	// ##### Recolocação dos itens fundidos no _array_ a ordenar
+  
+	// Finalmente, é necessário copiar para o _array_ a ordenar os itens
+	// colocados no _array_ auxiliar durante o primeiro ciclo, de fusão, que
+	// decorreu enquanto nenhum dos sub-segmentos se esgotou.
 	for (int i = left; i < k; i++)
 		items[i] = temporary[i];
 }
 
+// #### Procedimento recursivo auxiliar de ordenação por fusão
+  
 // Procedimento auxiliar que implementa o algoritmo de ordenação por fusão sobre
 // o segmento do _array_ `items` (cujo comprimento é `length`) com início no
 // índice `left` e fim no índice `right`, recorrendo ao _array_ auxiliar
 // `temporary` com o mesmo comprimento do _array_ `items`. Este procedimento é
 // recursivo.
 static void merge_sort_segment(const int length,
-			double items[length], double temporary[length],
-			const int left, const int right)
+				double items[length], double temporary[length],
+				const int left, const int right)
 {
+	assert(length >= 0);
+	assert(length == 0 || items != NULL);
+	assert(length == 0 || temporary != NULL);
+	assert(length == 0 || left <= right);
+	assert(0 <= left);
+	assert(right < length);
+
+	// Se o segmento a ordenar tem comprimento inferior a 2, então está já
+	// ordenado por natureza, pelo que terminamos imediatamente o
+	// procedimento.
 	if (left >= right)
 		return;
 
-	int middle = (right + left) / 2;
+	// Calculamos o ponto médio do segmento em ordenação, dividindo-o em
+	// dois sub-segmentos: o primeiro sub-segmento com índices entre `left`
+	// e `middle` e o segundo sub-segmento com índices entre `middle` + 1 e
+	// `right`. Se o segmento tiver um comprimento par, então os dois sub-
+	// segmentos terão exactamente metade desse comprimento. Se o
+	// comprimento do segmento for ímpar, então o primeiro sub-segmento terá
+	// um comprimento maior em uma unidade que o segundo sub-segmento.
+	int middle = (left + right) / 2;
 
+	// Aplicando uma estratégia _dividir para conquistar_, aplica-se o mesmo
+	// procedimento, de forma recursiva, para ordenar _separadamente_ cada
+	// um dos sub-segmentos adjacentes obtidos.
 	merge_sort_segment(length, items, temporary, left, middle);
 	merge_sort_segment(length, items, temporary, middle + 1, right);
 
+	// Neste ponto os dois sub-segmentos adjacentes já estão ordenados, pelo
+	// que podemos fundi-los num único segmento recorrendo ao procedimento
+	// de fusão.
 	merge(length, items, temporary, left, middle, right);
 }
 
+// #### Rotina de ordenação por fusão
+  
 // Esta rotina não é recursiva, recorrendo ao procedimento recursivo definido
 // acima para efectuar a ordenação por fusão.
 bool merge_sort(const int length, double items[length])
@@ -608,15 +724,24 @@ bool merge_sort(const int length, double items[length])
 	assert(length >= 0);
 	assert(length == 0 || items != NULL);
 
+	// Construímos um _array_ auxiliar que será usado durante a fusão.
 	double *const temporary = new_double_array_of(length);
 
+	// Verificamos a construção do novo _array_ teve sucesso.
 	if (temporary == NULL)
 		return true;
 
+	// Invocamos o procedimento recursivo de ordenação de um segmento do
+	// _array_ passando-lhe como posições extremas do segmento a ordenar os
+	// valores 0 e `length` - 1, ou seja, indicando que pretendemos ordenar
+	// o _array_ no seu todo.
 	merge_sort_segment(length, items, temporary, 0, length - 1);
 
+	// Libertamos o _array_ auxiliar.
 	free(temporary);
 
+	// Retornamos devolvendo `false`, i.e., assinalando o sucesso da
+	// ordenação.
 	return false;
 }
 
@@ -627,6 +752,14 @@ static void merge_and_count(const int length, double items[length],
 			const int left, const int middle, const int right,
 			struct algorithm_counts* counts)
 {
+	assert(length >= 0);
+	assert(length == 0 || items != NULL);
+	assert(length == 0 || temporary != NULL);
+	assert(length == 0 || counts != NULL);
+	assert(0 <= left && left < length);
+	assert(0 <= right && right < length);
+	assert(left <= middle && middle < right);
+
 	int i = left;
 	int j = middle + 1;
 	int k = left;
@@ -656,6 +789,14 @@ static void merge_sort_segment_and_count(const int length,
 					const int left, const int right,
 					struct algorithm_counts* counts)
 {
+	assert(length >= 0);
+	assert(length == 0 || items != NULL);
+	assert(length == 0 || temporary != NULL);
+	assert(length == 0 || counts != NULL);
+	assert(length == 0 || left <= right);
+	assert(0 <= left);
+	assert(right < length);
+
 	if (left >= right)
 		return;
 
