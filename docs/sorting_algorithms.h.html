@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>sorting_algorithms.h</title>
+  <title>`sorting_algorithms.h` &ndash; Rotinas de ordenação de _arrays_ de `double`</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -164,71 +164,544 @@
     
     <ul class="sections">
         
-          <li id="title">
-              <div class="annotation">
-                  <h1>sorting_algorithms.h</h1>
-              </div>
-          </li>
-        
         
         
         <li id="section-1">
             <div class="annotation">
               
-              <div class="pilwrap ">
+              <div class="pilwrap for-h1">
                 <a class="pilcrow" href="#section-1">&#182;</a>
               </div>
+              <h1><code>sorting_algorithms.h</code> &ndash; Rotinas de ordenação de <em>arrays</em> de <code>double</code></h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
               
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Este é o ficheiro de cabeçalho ou de interface correspondente ao ficheiro de
+implementação <a href="sorting_algorithms.c.html"><code>sorting_algorithms.c</code></a>. Ambos
+correspondem ao módulo físico <code>sorting_algorithms</code>, cujo objectivo é fornecer
+um conjunto de ferramentas para lidar com a ordenação de <em>arrays</em> de
+<code>double</code>. As rotinas fornecidas implementam alguns dos mais conhecidos
+algoritmos de ordenação:</p>
+<ul>
+<li>Ordenação por bolha ou <em>bubble sort</em>.</li>
+<li>Ordenação por selecção ou <em>selection sort</em>.</li>
+<li>Ordenação por inserção ou <em>insertion sort</em>.</li>
+<li>Ordenação de Shell ou <em>Shell sort</em>.</li>
+<li>Ordenação rápida ou <em>quicksort</em>.</li>
+<li>Ordenação por fusão ou <em>merge sort</em>.</li>
+</ul>
+<p>Este módulo foi concebido para o estudo da algoritmia. Por isso, para além de
+uma implementação «normal» de cada um dos algoritmos, existe uma outra que é
+em tudo igual mas que regista o número de operações elementares realizadas.</p>
+<p>Note que optámos por <em>não</em> incluir comentários de documentação
+<a href="http://doxygen.org/">Doxygen</a> em nenhum dos módulos deste programa.</p>
+<p>A usual protecção contra os efeitos nefastos da inclusão múltipla.</p>
+
             </div>
             
             <div class="content"><div class="highlight"><pre><span class="preprocessor">#ifndef ISLA_EDA_SORTING_ALGORITHMS_H_INCLUDED</span>
 <span class="preprocessor">#define ISLA_EDA_SORTING_ALGORITHMS_H_INCLUDED</span>
 
-<span class="preprocessor">#include &lt;stdbool.h&gt;</span>
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Incluímos o ficheiro de interface <code>stdbool.h</code> para podermos usar o tipo
+<code>bool</code> e os seus dois valores <code>true</code> e <code>false</code>.</p>
 
-<span class="keyword">struct</span> algorithm_counts {
-	<span class="keyword">int</span> comparisons;
-	<span class="keyword">int</span> swaps;
-	<span class="keyword">int</span> copies;
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="preprocessor">#include &lt;stdbool.h&gt;</span>
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h1">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h1>Definições de tipos</h1>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>As rotinas de ordenação que registam o número de operações elementares
+realizadas durante a ordenação de uma <em>array</em> recorrem a esta estrutura para
+guardar as suas contagens.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">struct</span> algorithm_counts {
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Este campo regista o número de comparações envolvendo pelo menos um
+item do <em>array</em> em ordenação.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> comparisons;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Este campo regista o número de trocas de valores entre pares itens do
+<em>array</em> em ordenação.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> swaps;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Este campo regista o número de cópias de valores envolvendo pelo
+menos um item do <em>array</em> em ordenação.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> copies;
 };
 
-<span class="keyword">struct</span> sorting_algorithm {
-	<span class="keyword">const</span> <span class="keyword">char</span>* name;
-	<span class="keyword">bool</span> (*sort)(<span class="keyword">int</span>, <span class="keyword">double</span>[]);
-	<span class="keyword">bool</span> (*sort_and_count)(<span class="keyword">int</span>, <span class="keyword">double</span>[], <span class="keyword">struct</span> algorithm_counts*);
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Esta estrutura guarda informação acerca de um algoritmo.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">struct</span> sorting_algorithm {
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Este campo guarda o nome do algoritmo na forma de uma cadeia de
+caracteres.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">const</span> <span class="keyword">char</span>* name;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Este campo guarda um ponteiro para a rotina que implementa o
+algoritmo em causa e que <em>não</em> efectua contagem de operações
+elementares.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">bool</span> (*sort)(<span class="keyword">int</span>, <span class="keyword">double</span>[]);
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Este campo guarda um ponteiro para a rotina que implementa o
+algoritmo em causa e que efectua contagem de operações elementares.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">bool</span> (*sort_and_count)(<span class="keyword">int</span>, <span class="keyword">double</span>[], <span class="keyword">struct</span> algorithm_counts*);
 };
 
-<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">struct</span> sorting_algorithm sorting_algorithms[];
-<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">int</span> number_of_sorting_algorithms;
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h1">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <h1>Declaração de constantes globais</h1>
 
-<span class="keyword">bool</span> bubble_sort(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length]);
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Este <em>array</em> guarda a colecção dos algoritmos considerados, incluindo o seu
+nome e as rotinas que o implementam.</p>
 
-<span class="keyword">bool</span> selection_sort(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length]);
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">struct</span> sorting_algorithm sorting_algorithms[];
 
-<span class="keyword">bool</span> insertion_sort(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length]);
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Esta constante guarda o número de algoritmos considerados.</p>
 
-<span class="keyword">bool</span> shell_sort(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length]);
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">int</span> number_of_sorting_algorithms;
 
-<span class="keyword">bool</span> quicksort(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length]);
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h1">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <h1>Declaração das rotinas de ordenação</h1>
 
-<span class="keyword">bool</span> merge_sort(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length]);
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <h3>Rotinas sem contagem de operações elementares</h3>
+<p>Ordenação por bolha ou <em>bubble sort</em>.</p>
 
-<span class="keyword">bool</span> bubble_sort_and_count(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length],
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> bubble_sort(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length]);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Ordenação por selecção ou <em>selection sort</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> selection_sort(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length]);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Ordenação por inserção ou <em>insertion sort</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> insertion_sort(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length]);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Ordenação de Shell ou <em>Shell sort</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> shell_sort(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length]);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Ordenação rápida ou <em>quicksort</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> quicksort(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length]);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Ordenação por fusão ou <em>merge sort</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> merge_sort(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length]);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <h3>Rotinas sem contagem de operações elementares</h3>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Ordenação por bolha ou <em>bubble sort</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> bubble_sort_and_count(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length],
 			<span class="keyword">struct</span> algorithm_counts* counts);
 
-<span class="keyword">bool</span> selection_sort_and_count(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length],
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Ordenação por selecção ou <em>selection sort</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> selection_sort_and_count(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length],
 			<span class="keyword">struct</span> algorithm_counts* counts);
 
-<span class="keyword">bool</span> insertion_sort_and_count(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length],
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Ordenação por inserção ou <em>insertion sort</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> insertion_sort_and_count(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length],
 			<span class="keyword">struct</span> algorithm_counts* counts);
 
-<span class="keyword">bool</span> shell_sort_and_count(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length],
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>Ordenação de Shell ou <em>Shell sort</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> shell_sort_and_count(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length],
 			<span class="keyword">struct</span> algorithm_counts* counts);
 
-<span class="keyword">bool</span> quicksort_and_count(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length],
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>Ordenação rápida ou <em>quicksort</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> quicksort_and_count(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length],
 			<span class="keyword">struct</span> algorithm_counts* counts);
 
-<span class="keyword">bool</span> merge_sort_and_count(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length],
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>Ordenação por fusão ou <em>merge sort</em>.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> merge_sort_and_count(<span class="keyword">int</span> length, <span class="keyword">double</span> items[length],
 			<span class="keyword">struct</span> algorithm_counts* counts);
 
 <span class="preprocessor">#endif // ISLA_EDA_SORTING_ALGORITHMS_H_INCLUDED</span>
