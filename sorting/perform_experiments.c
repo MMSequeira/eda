@@ -609,6 +609,9 @@ bool experiment_size(FILE *const output, const char *const path,
 		// Inicializamos as estatísticas com os valores iniciais.
 		struct algorithm_statistics statistics = initial_statistics;
 
+		printf("\tStarting experiments for %s:\n",
+		       sorting_algorithms[a].name);
+
 		// Se o tempo de execução do algoritmo corrente não tiver
 		// excedido anteriormente (i.e., para uma dimensão inferior do
 		// ficheiro a ordenar) o limiar estabelecido, então a
@@ -616,9 +619,7 @@ bool experiment_size(FILE *const output, const char *const path,
 		// guardados no ficheiro de resultado serão os valores guardados
 		// na constante `initial_statistics`.
 		if (!excessive_time_per_sort[a]) {
-			printf("\tStarting experiments for %s:\n",
-			       sorting_algorithms[a].name);
-
+			printf("\t\tPerforming experiments.\n");
 			// Realizamos a experiência invocando a rotina de
 			// experimentação e verificando se ocorreu algum erro
 			// durante o processo. A experiência é realizada com o
@@ -638,7 +639,7 @@ bool experiment_size(FILE *const output, const char *const path,
 			if (error)
 				goto terminate;
 		} else
-			printf("\t\tSkipping algorithm.\n");
+			printf("\t\tSkipping experiments.\n");
 
 		printf("\t\tWriting results, if any.\n");
 
@@ -648,8 +649,8 @@ bool experiment_size(FILE *const output, const char *const path,
 		// realizada.
 		write_statistics(output, statistics);
 
-		printf("\t\tEnding experiments for %s.\n",
-		       sorting_algorithms[a].name);
+		printf("\t\tEnding experiments for %s (median time = %g s).\n",
+		       sorting_algorithms[a].name, statistics.times.median);
 
 		// Actualizamos o _array_ que indica se o tempo de ordenação
 		// excedeu em algum momento, para o algoritmo corrente, o limiar
