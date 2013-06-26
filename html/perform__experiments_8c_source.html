@@ -729,213 +729,214 @@ $(document).ready(function(){initNavTree('perform__experiments_8c_source.html','
 <div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;                <span class="comment">// Inicializamos as estatísticas com os valores iniciais.</span></div>
 <div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;                <span class="keyword">struct </span><a class="code" href="structalgorithm__statistics.html">algorithm_statistics</a> statistics = initial_statistics;</div>
 <div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                <span class="comment">// Se o tempo de execução do algoritmo corrente não tiver</span></div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;                <span class="comment">// excedido anteriormente (i.e., para uma dimensão inferior do</span></div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;                <span class="comment">// ficheiro a ordenar) o limiar estabelecido, então a</span></div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;                <span class="comment">// experiência será realizada. Caso contrário, os dados</span></div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;                <span class="comment">// guardados no ficheiro de resultado serão os valores guardados</span></div>
-<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;                <span class="comment">// na constante `initial_statistics`.</span></div>
-<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;                <span class="keywordflow">if</span> (!excessive_time_per_sort[a]) {</div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;                        printf(<span class="stringliteral">&quot;\tStarting experiments for %s:\n&quot;</span>,</div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;                               sorting_algorithms[a].name);</div>
-<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;</div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;                        <span class="comment">// Realizamos a experiência invocando a rotina de</span></div>
-<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;                        <span class="comment">// experimentação e verificando se ocorreu algum erro</span></div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;                        <span class="comment">// durante o processo. A experiência é realizada com o</span></div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;                        <span class="comment">// algoritmo `sorting_algorithm[a]`, usando os _arrays_</span></div>
-<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;                        <span class="comment">// `work_items`, `items` e `sorted_items`, todos com</span></div>
-<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;                        <span class="comment">// `length` itens. O tempo de cópia `copy_time` é usado</span></div>
-<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;                        <span class="comment">// para efectuar descontos nos tempos estimados sempre</span></div>
-<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;                        <span class="comment">// que necessário. Os resultados são guardados na</span></div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;                        <span class="comment">// variável `statistics`, cujo endereço é passado à</span></div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;                        <span class="comment">// rotina de experimentação. A rotina de experimentação</span></div>
-<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;                        <span class="comment">// devolve um valor booleano que indica se ocorreu ou</span></div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;                        <span class="comment">// não algum erro.</span></div>
-<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;                        error = experiment_algorithm(sorting_algorithms[a], </div>
-<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;                                                        size, work_items, items,</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;                                                        sorted_items, copy_time,</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;                                                        &amp;statistics);</div>
-<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;                        <span class="keywordflow">if</span> (error)</div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;                                <span class="keywordflow">goto</span> terminate;</div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;                } <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;                        printf(<span class="stringliteral">&quot;\t\tSkipping algorithm.\n&quot;</span>);</div>
-<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;</div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;                printf(<span class="stringliteral">&quot;\t\tWriting results, if any.\n&quot;</span>);</div>
-<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;</div>
-<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;                <span class="comment">// Escrevemos os resultados da experiência, caso esta se tenha</span></div>
-<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;                <span class="comment">// realizado. Caso contrário, escreve-se o valor inicial das</span></div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;                <span class="comment">// estatísticas, que assinalarão a experiência como não</span></div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;                <span class="comment">// realizada.</span></div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;                write_statistics(output, statistics);</div>
-<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;</div>
-<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;                printf(<span class="stringliteral">&quot;\t\tEnding experiments for %s.\n&quot;</span>,</div>
-<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;                       sorting_algorithms[a].name);</div>
-<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;</div>
-<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;                <span class="comment">// Actualizamos o _array_ que indica se o tempo de ordenação</span></div>
-<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;                <span class="comment">// excedeu em algum momento, para o algoritmo corrente, o limiar</span></div>
-<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;                <span class="comment">// estabelecido.</span></div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;                <span class="keywordflow">if</span> (statistics.times.median &gt; threshold_time_per_sort)</div>
-<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;                        excessive_time_per_sort[a] = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;        }</div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;</div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;        <span class="comment">// Terminamos a linha de estatísticas escrita no ficheiro CSV de</span></div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;        <span class="comment">// resultado.</span></div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;        fputc(<span class="charliteral">&#39;\n&#39;</span>, output);</div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;</div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;        <span class="comment">// A secção final é dedicada a «arrumar a casa», libertando a memória</span></div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;        <span class="comment">// reservada. Esta secção pode ser executada tanto no caso de não terem</span></div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;        <span class="comment">// ocorrido erros, como no caso de terem ocorrido erros. Neste último</span></div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;        <span class="comment">// caso, pode acontecer que o erro tenha ocorrido antes da criação dos</span></div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;        <span class="comment">// _arrays_ dinâmicos. O código está construído de tal forma que, se</span></div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;        <span class="comment">// isso acontecer, o correspondente ponteiro terá o valor `NULL`, que</span></div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;        <span class="comment">// pode ser passado sem inconveniente à rotina `free()`.</span></div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;terminate:</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;        <span class="comment">// Libertamos a memória reservada para cada um dos _arrays_</span></div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;        <span class="comment">// dinâmicos.</span></div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;        free(work_items);</div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;        free(sorted_items);</div>
-<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;        free(items);</div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;</div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;        <span class="comment">// Retornamos devolvendo o valor na variável `error`, ou seja, indicando</span></div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;        <span class="comment">// se ocorreram ou não erros.</span></div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;        <span class="keywordflow">return</span> error;</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;}</div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;</div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;<span class="comment">// A rotina principal do programa, que executa as experiências para cada</span></div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;<span class="comment">// dimensão dos ficheiros com valores a ordenar e para cada algoritmo.</span></div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;<span class="comment">// Efectuamos as experiências apenas para os ficheiros do tipo dado por</span></div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;<span class="comment">// `file_type` (que pode tomar os valores `sorted`, `partially_sorted` e</span></div>
-<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;<span class="comment">// `shuffled`). Lemos os ficheiros a partir da pasta dada por `path` (que tem de</span></div>
-<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;<span class="comment">// terminar no caractere separador de pastas correspondente ao sistema operativo</span></div>
-<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;<span class="comment">// em que o programa é executado). Escrevemos os resultados no ficheiro com nome</span></div>
-<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;<span class="comment">// dado por `statistics_file_name`. Em caso de erro devolvemos o valor `true`.</span></div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;<span class="keyword">static</span> <span class="keywordtype">bool</span> experiment_all(<span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> path,</div>
-<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> file_type,</div>
-<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> statistics_file_name)</div>
-<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;{</div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;        assert(path != NULL);</div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;        assert(file_type != NULL);</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;        assert(statistics_file_name != NULL);</div>
-<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;</div>
-<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;        <span class="comment">// Definimos um _array_ de valores booleanos que indicam se, em alguma</span></div>
-<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;        <span class="comment">// das experiências já realizada com o correspondente algoritmo se</span></div>
-<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;        <span class="comment">// excedeu o limiar do tempo de ordenação. Os algoritmos para os quais</span></div>
-<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;        <span class="comment">// isso aconteça deixam de ser usados com ficheiros de maiores</span></div>
-<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;        <span class="comment">// dimensões, para evitar que o tempo de execução do programa se torne</span></div>
-<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;        <span class="comment">// demasiado grande.</span></div>
-<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;        <span class="keywordtype">bool</span> excessive_time_per_sort[number_of_sorting_algorithms];</div>
-<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> a = 0; a != number_of_sorting_algorithms; a++)</div>
-<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;                excessive_time_per_sort[a] = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;</div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;        <span class="comment">// Abrimos o canal para o ficheiro de resultados. O ficheiro de</span></div>
-<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;        <span class="comment">// resultados tem o formato CSV (comma separated values) e usa o</span></div>
-<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;        <span class="comment">// caractere «;» como separador. A sua primeira linha contém a</span></div>
-<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;        <span class="comment">// identificação dos valores em cada coluna, ou seja, os cabeçalhos</span></div>
-<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;        <span class="comment">// correspondentes a cada uma das colunas. As linhas subsequentes têm os</span></div>
-<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;        <span class="comment">// valores obtidos experimentalmente, correspondendo cada linha a uma</span></div>
-<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;        <span class="comment">// dada dimensão dos ficheiros de entrada. A primeira coluna contém essa</span></div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;        <span class="comment">// dimensão. As colunas subsequentes contém as estatísticas obtidas para</span></div>
-<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;        <span class="comment">// cada um dos algoritmos experimentados.</span></div>
-<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;        FILE *<span class="keyword">const</span> output = fopen(statistics_file_name, <span class="stringliteral">&quot;w&quot;</span>);</div>
-<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;</div>
-<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;        <span class="comment">// Definimos a variável `error`, que indicará em cada instante se até</span></div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;        <span class="comment">// então ocorreu algum erro, e inicializamo-la verificando se a abertura</span></div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;        <span class="comment">// do canal de escrita teve resultado.</span></div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;        <span class="keywordtype">bool</span> error = output == NULL;</div>
-<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;</div>
-<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;        <span class="keywordflow">if</span> (error) {</div>
-<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;                fprintf(stderr, <span class="stringliteral">&quot;Error: Could not open &#39;%s&#39; for writing!\n&quot;</span>,</div>
-<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;                        statistics_file_name);</div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;                <span class="keywordflow">goto</span> terminate;</div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;        }</div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;</div>
-<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;        <span class="comment">// Escrevemos o cabeçalho da primeira coluna, que contém a dimensão dos</span></div>
-<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;        <span class="comment">// ficheiros usados para obter as estatísticas de cada linha.</span></div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;        fprintf(output, <span class="stringliteral">&quot;Size&quot;</span>);</div>
-<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;</div>
-<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;        <span class="comment">// Escrevemos os cabeçalhos correspondentes a cada um dos algoritmos.</span></div>
-<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> a = 0; a != number_of_sorting_algorithms; a++)</div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;                write_statistics_headers(output, sorting_algorithms[a].name);</div>
-<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;</div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;        <span class="comment">// Terminamos a linha de cabeçalho.</span></div>
-<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;        fputc(<span class="charliteral">&#39;\n&#39;</span>, output);</div>
-<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;</div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;        printf(<span class="stringliteral">&quot;Wrote headers to results.\n&quot;</span>);</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;</div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;        <span class="comment">// Percorremos todas as dimensões de ficheiros, que são potências de 2</span></div>
-<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;        <span class="comment">// entre 2 e 2&lt;sup&gt;24&lt;/sup&gt;. Este último valor é dado pela constante</span></div>
-<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;        <span class="comment">// `maximum_file_size`. A operação realizada na guarda serve para obter</span></div>
-<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;        <span class="comment">// o valor 2&lt;sup&gt;25&lt;/sup&gt;, valor para o qual a se tornará falsa. O</span></div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;        <span class="comment">// operador `&lt;&lt;` desloca o padrão de _bits_ guardado numa variável</span></div>
-<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;        <span class="comment">// inteira de um _bit_ para esquerda, o que corresponde a uma</span></div>
-<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;        <span class="comment">// multiplicação por 2.</span></div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> size = 1 &lt;&lt; 1; size != maximum_file_size &lt;&lt; 1; size &lt;&lt;= 1) {</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;                printf(<span class="stringliteral">&quot;Starting experiments for size %d:\n&quot;</span>, size);</div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;                <span class="comment">// Invocamos a rotina que executa as experiências para a</span></div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;                <span class="comment">// dimensão `size` dos ficheiros e para todos os algoritmos.</span></div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;                error = experiment_size(output, path, file_type, size,</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;                                        excessive_time_per_sort);</div>
-<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;                <span class="keywordflow">if</span> (error)</div>
-<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;                        <span class="keywordflow">goto</span> terminate;</div>
-<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;</div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;                printf(<span class="stringliteral">&quot;\tEnded experiments for size %d.\n&quot;</span>, size);</div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;        }</div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;</div>
-<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;        <span class="comment">// Secção de «arrumação da casa».</span></div>
-<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;terminate:</div>
-<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;        <span class="comment">// Fechamos o canal para o ficheiro CSV de resultado.</span></div>
-<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;        <span class="keywordflow">if</span> (output != NULL)</div>
-<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;                fclose(output);</div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;</div>
-<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;        <span class="comment">// Retornamos devolvendo o valor na variável `error`, ou seja, indicando</span></div>
-<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;        <span class="comment">// se ocorreram ou não erros.</span></div>
-<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;        <span class="keywordflow">return</span> error;</div>
-<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;}</div>
-<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;</div>
-<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;<span class="comment">// Rotina inicial do programa.</span></div>
-<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;<span class="keywordtype">int</span> <a class="code" href="linked__list_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Routine containing simple singly linked list example code.">main</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> argument_count,</div>
-<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;         <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> argument_values[argument_count])</div>
-<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;{</div>
-<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;        <span class="comment">// Os argumentos recebidos através da linha de comandos, incluindo o</span></div>
-<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;        <span class="comment">// próprio nome do programa executável, são quatro: esse nome, a pasta</span></div>
-<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;        <span class="comment">// onde os ficheiros a ordenar se encontram, o tipo de ficheiros a</span></div>
-<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;        <span class="comment">// ordenar e o nome do ficheiro onde os resultados serão escritos no</span></div>
-<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;        <span class="comment">// formato CSV, por esta ordem.</span></div>
-<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;        <span class="keywordflow">if</span> (argument_count &lt; 4) {</div>
-<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;                fprintf(stderr, <span class="stringliteral">&quot;Error: Insuficient number of arguments!\n&quot;</span>);</div>
-<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;                <span class="keywordflow">return</span> EXIT_FAILURE;</div>
-<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;        }</div>
-<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;</div>
-<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> path = argument_values[1];</div>
-<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> file_type = argument_values[2];</div>
-<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> statistics_file_name = argument_values[3];</div>
-<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;</div>
-<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;        <span class="comment">// Verificamos a correcção do tipo de ficheiro passado na linha de</span></div>
-<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;        <span class="comment">// comandos.</span></div>
-<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;        <span class="keywordflow">if</span> (!valid_file_type(file_type)) {</div>
-<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;                fprintf(stderr, <span class="stringliteral">&quot;Error: Unknown file type &#39;%s&#39;!\n&quot;</span>, file_type);</div>
-<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;                <span class="keywordflow">return</span> EXIT_FAILURE;</div>
-<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;        }</div>
-<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;</div>
-<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;        printf(<span class="stringliteral">&quot;Starting experiments from %s files in %s. Storing results &quot;</span></div>
-<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;               <span class="stringliteral">&quot;in %s.\n&quot;</span>, file_type, path, statistics_file_name);</div>
-<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;</div>
-<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;        <span class="comment">// Executamos o procedimento principal do programa, verificando se essa</span></div>
-<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;        <span class="comment">// execução teve sucesso.</span></div>
-<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;        <span class="keywordflow">if</span> (experiment_all(path, file_type, statistics_file_name))</div>
-<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;                <span class="keywordflow">return</span> EXIT_FAILURE;</div>
-<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;</div>
-<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;        <span class="comment">// Terminamos assinalando sucesso.</span></div>
-<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;        <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;}</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                printf(<span class="stringliteral">&quot;\tStarting experiments for %s:\n&quot;</span>,</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;                       sorting_algorithms[a].name);</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;                <span class="comment">// Se o tempo de execução do algoritmo corrente não tiver</span></div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;                <span class="comment">// excedido anteriormente (i.e., para uma dimensão inferior do</span></div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;                <span class="comment">// ficheiro a ordenar) o limiar estabelecido, então a</span></div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;                <span class="comment">// experiência será realizada. Caso contrário, os dados</span></div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;                <span class="comment">// guardados no ficheiro de resultado serão os valores guardados</span></div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;                <span class="comment">// na constante `initial_statistics`.</span></div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;                <span class="keywordflow">if</span> (!excessive_time_per_sort[a]) {</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;                        printf(<span class="stringliteral">&quot;\t\tPerforming experiments.\n&quot;</span>);</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;                        <span class="comment">// Realizamos a experiência invocando a rotina de</span></div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;                        <span class="comment">// experimentação e verificando se ocorreu algum erro</span></div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;                        <span class="comment">// durante o processo. A experiência é realizada com o</span></div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;                        <span class="comment">// algoritmo `sorting_algorithm[a]`, usando os _arrays_</span></div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;                        <span class="comment">// `work_items`, `items` e `sorted_items`, todos com</span></div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;                        <span class="comment">// `length` itens. O tempo de cópia `copy_time` é usado</span></div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;                        <span class="comment">// para efectuar descontos nos tempos estimados sempre</span></div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;                        <span class="comment">// que necessário. Os resultados são guardados na</span></div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;                        <span class="comment">// variável `statistics`, cujo endereço é passado à</span></div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;                        <span class="comment">// rotina de experimentação. A rotina de experimentação</span></div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;                        <span class="comment">// devolve um valor booleano que indica se ocorreu ou</span></div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;                        <span class="comment">// não algum erro.</span></div>
+<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;                        error = experiment_algorithm(sorting_algorithms[a], </div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;                                                        size, work_items, items,</div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;                                                        sorted_items, copy_time,</div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;                                                        &amp;statistics);</div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;                        <span class="keywordflow">if</span> (error)</div>
+<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;                                <span class="keywordflow">goto</span> terminate;</div>
+<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;                } <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;                        printf(<span class="stringliteral">&quot;\t\tSkipping experiments.\n&quot;</span>);</div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;</div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;                printf(<span class="stringliteral">&quot;\t\tWriting results, if any.\n&quot;</span>);</div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;</div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;                <span class="comment">// Escrevemos os resultados da experiência, caso esta se tenha</span></div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;                <span class="comment">// realizado. Caso contrário, escreve-se o valor inicial das</span></div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;                <span class="comment">// estatísticas, que assinalarão a experiência como não</span></div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;                <span class="comment">// realizada.</span></div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;                write_statistics(output, statistics);</div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;</div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;                printf(<span class="stringliteral">&quot;\t\tEnding experiments for %s (median time = %g s).\n&quot;</span>,</div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;                       sorting_algorithms[a].name, statistics.times.median);</div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;</div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;                <span class="comment">// Actualizamos o _array_ que indica se o tempo de ordenação</span></div>
+<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;                <span class="comment">// excedeu em algum momento, para o algoritmo corrente, o limiar</span></div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;                <span class="comment">// estabelecido.</span></div>
+<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;                <span class="keywordflow">if</span> (statistics.times.median &gt; threshold_time_per_sort)</div>
+<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;                        excessive_time_per_sort[a] = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;        }</div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;</div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;        <span class="comment">// Terminamos a linha de estatísticas escrita no ficheiro CSV de</span></div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;        <span class="comment">// resultado.</span></div>
+<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;        fputc(<span class="charliteral">&#39;\n&#39;</span>, output);</div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;        <span class="comment">// A secção final é dedicada a «arrumar a casa», libertando a memória</span></div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;        <span class="comment">// reservada. Esta secção pode ser executada tanto no caso de não terem</span></div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;        <span class="comment">// ocorrido erros, como no caso de terem ocorrido erros. Neste último</span></div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;        <span class="comment">// caso, pode acontecer que o erro tenha ocorrido antes da criação dos</span></div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;        <span class="comment">// _arrays_ dinâmicos. O código está construído de tal forma que, se</span></div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;        <span class="comment">// isso acontecer, o correspondente ponteiro terá o valor `NULL`, que</span></div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;        <span class="comment">// pode ser passado sem inconveniente à rotina `free()`.</span></div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;terminate:</div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;        <span class="comment">// Libertamos a memória reservada para cada um dos _arrays_</span></div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;        <span class="comment">// dinâmicos.</span></div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;        free(work_items);</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;        free(sorted_items);</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;        free(items);</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;        <span class="comment">// Retornamos devolvendo o valor na variável `error`, ou seja, indicando</span></div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;        <span class="comment">// se ocorreram ou não erros.</span></div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;        <span class="keywordflow">return</span> error;</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;}</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;</div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;<span class="comment">// A rotina principal do programa, que executa as experiências para cada</span></div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;<span class="comment">// dimensão dos ficheiros com valores a ordenar e para cada algoritmo.</span></div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;<span class="comment">// Efectuamos as experiências apenas para os ficheiros do tipo dado por</span></div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;<span class="comment">// `file_type` (que pode tomar os valores `sorted`, `partially_sorted` e</span></div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;<span class="comment">// `shuffled`). Lemos os ficheiros a partir da pasta dada por `path` (que tem de</span></div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;<span class="comment">// terminar no caractere separador de pastas correspondente ao sistema operativo</span></div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;<span class="comment">// em que o programa é executado). Escrevemos os resultados no ficheiro com nome</span></div>
+<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;<span class="comment">// dado por `statistics_file_name`. Em caso de erro devolvemos o valor `true`.</span></div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;<span class="keyword">static</span> <span class="keywordtype">bool</span> experiment_all(<span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> path,</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> file_type,</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> statistics_file_name)</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;{</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;        assert(path != NULL);</div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;        assert(file_type != NULL);</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;        assert(statistics_file_name != NULL);</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;</div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;        <span class="comment">// Definimos um _array_ de valores booleanos que indicam se, em alguma</span></div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;        <span class="comment">// das experiências já realizada com o correspondente algoritmo se</span></div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;        <span class="comment">// excedeu o limiar do tempo de ordenação. Os algoritmos para os quais</span></div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;        <span class="comment">// isso aconteça deixam de ser usados com ficheiros de maiores</span></div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;        <span class="comment">// dimensões, para evitar que o tempo de execução do programa se torne</span></div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;        <span class="comment">// demasiado grande.</span></div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;        <span class="keywordtype">bool</span> excessive_time_per_sort[number_of_sorting_algorithms];</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> a = 0; a != number_of_sorting_algorithms; a++)</div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;                excessive_time_per_sort[a] = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;        <span class="comment">// Abrimos o canal para o ficheiro de resultados. O ficheiro de</span></div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;        <span class="comment">// resultados tem o formato CSV (comma separated values) e usa o</span></div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;        <span class="comment">// caractere «;» como separador. A sua primeira linha contém a</span></div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;        <span class="comment">// identificação dos valores em cada coluna, ou seja, os cabeçalhos</span></div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;        <span class="comment">// correspondentes a cada uma das colunas. As linhas subsequentes têm os</span></div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;        <span class="comment">// valores obtidos experimentalmente, correspondendo cada linha a uma</span></div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;        <span class="comment">// dada dimensão dos ficheiros de entrada. A primeira coluna contém essa</span></div>
+<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;        <span class="comment">// dimensão. As colunas subsequentes contém as estatísticas obtidas para</span></div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;        <span class="comment">// cada um dos algoritmos experimentados.</span></div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;        FILE *<span class="keyword">const</span> output = fopen(statistics_file_name, <span class="stringliteral">&quot;w&quot;</span>);</div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;</div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;        <span class="comment">// Definimos a variável `error`, que indicará em cada instante se até</span></div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;        <span class="comment">// então ocorreu algum erro, e inicializamo-la verificando se a abertura</span></div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;        <span class="comment">// do canal de escrita teve resultado.</span></div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;        <span class="keywordtype">bool</span> error = output == NULL;</div>
+<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;</div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;        <span class="keywordflow">if</span> (error) {</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;                fprintf(stderr, <span class="stringliteral">&quot;Error: Could not open &#39;%s&#39; for writing!\n&quot;</span>,</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;                        statistics_file_name);</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;                <span class="keywordflow">goto</span> terminate;</div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;        }</div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;</div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;        <span class="comment">// Escrevemos o cabeçalho da primeira coluna, que contém a dimensão dos</span></div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;        <span class="comment">// ficheiros usados para obter as estatísticas de cada linha.</span></div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;        fprintf(output, <span class="stringliteral">&quot;Size&quot;</span>);</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;        <span class="comment">// Escrevemos os cabeçalhos correspondentes a cada um dos algoritmos.</span></div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> a = 0; a != number_of_sorting_algorithms; a++)</div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;                write_statistics_headers(output, sorting_algorithms[a].name);</div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;        <span class="comment">// Terminamos a linha de cabeçalho.</span></div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;        fputc(<span class="charliteral">&#39;\n&#39;</span>, output);</div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;        printf(<span class="stringliteral">&quot;Wrote headers to results.\n&quot;</span>);</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;        <span class="comment">// Percorremos todas as dimensões de ficheiros, que são potências de 2</span></div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;        <span class="comment">// entre 2 e 2&lt;sup&gt;24&lt;/sup&gt;. Este último valor é dado pela constante</span></div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;        <span class="comment">// `maximum_file_size`. A operação realizada na guarda serve para obter</span></div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;        <span class="comment">// o valor 2&lt;sup&gt;25&lt;/sup&gt;, valor para o qual a se tornará falsa. O</span></div>
+<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;        <span class="comment">// operador `&lt;&lt;` desloca o padrão de _bits_ guardado numa variável</span></div>
+<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;        <span class="comment">// inteira de um _bit_ para esquerda, o que corresponde a uma</span></div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;        <span class="comment">// multiplicação por 2.</span></div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> size = 1 &lt;&lt; 1; size != maximum_file_size &lt;&lt; 1; size &lt;&lt;= 1) {</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;                printf(<span class="stringliteral">&quot;Starting experiments for size %d:\n&quot;</span>, size);</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;</div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;                <span class="comment">// Invocamos a rotina que executa as experiências para a</span></div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;                <span class="comment">// dimensão `size` dos ficheiros e para todos os algoritmos.</span></div>
+<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;                error = experiment_size(output, path, file_type, size,</div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;                                        excessive_time_per_sort);</div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;                <span class="keywordflow">if</span> (error)</div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;                        <span class="keywordflow">goto</span> terminate;</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;                printf(<span class="stringliteral">&quot;\tEnded experiments for size %d.\n&quot;</span>, size);</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;        }</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;        <span class="comment">// Secção de «arrumação da casa».</span></div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;terminate:</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;        <span class="comment">// Fechamos o canal para o ficheiro CSV de resultado.</span></div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;        <span class="keywordflow">if</span> (output != NULL)</div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;                fclose(output);</div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;</div>
+<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;        <span class="comment">// Retornamos devolvendo o valor na variável `error`, ou seja, indicando</span></div>
+<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;        <span class="comment">// se ocorreram ou não erros.</span></div>
+<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;        <span class="keywordflow">return</span> error;</div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;}</div>
+<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;</div>
+<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;<span class="comment">// Rotina inicial do programa.</span></div>
+<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;<span class="keywordtype">int</span> <a class="code" href="linked__list_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Routine containing simple singly linked list example code.">main</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> argument_count,</div>
+<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;         <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> argument_values[argument_count])</div>
+<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;{</div>
+<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;        <span class="comment">// Os argumentos recebidos através da linha de comandos, incluindo o</span></div>
+<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;        <span class="comment">// próprio nome do programa executável, são quatro: esse nome, a pasta</span></div>
+<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;        <span class="comment">// onde os ficheiros a ordenar se encontram, o tipo de ficheiros a</span></div>
+<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;        <span class="comment">// ordenar e o nome do ficheiro onde os resultados serão escritos no</span></div>
+<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;        <span class="comment">// formato CSV, por esta ordem.</span></div>
+<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;        <span class="keywordflow">if</span> (argument_count &lt; 4) {</div>
+<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;                fprintf(stderr, <span class="stringliteral">&quot;Error: Insuficient number of arguments!\n&quot;</span>);</div>
+<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;                <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;        }</div>
+<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;</div>
+<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> path = argument_values[1];</div>
+<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> file_type = argument_values[2];</div>
+<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> *<span class="keyword">const</span> statistics_file_name = argument_values[3];</div>
+<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;</div>
+<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;        <span class="comment">// Verificamos a correcção do tipo de ficheiro passado na linha de</span></div>
+<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;        <span class="comment">// comandos.</span></div>
+<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;        <span class="keywordflow">if</span> (!valid_file_type(file_type)) {</div>
+<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;                fprintf(stderr, <span class="stringliteral">&quot;Error: Unknown file type &#39;%s&#39;!\n&quot;</span>, file_type);</div>
+<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;                <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;        }</div>
+<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;</div>
+<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;        printf(<span class="stringliteral">&quot;Starting experiments from %s files in %s. Storing results &quot;</span></div>
+<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;               <span class="stringliteral">&quot;in %s.\n&quot;</span>, file_type, path, statistics_file_name);</div>
+<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;</div>
+<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;        <span class="comment">// Executamos o procedimento principal do programa, verificando se essa</span></div>
+<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;        <span class="comment">// execução teve sucesso.</span></div>
+<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;        <span class="keywordflow">if</span> (experiment_all(path, file_type, statistics_file_name))</div>
+<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;                <span class="keywordflow">return</span> EXIT_FAILURE;</div>
+<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;</div>
+<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;        <span class="comment">// Terminamos assinalando sucesso.</span></div>
+<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;        <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_bb1b521853a9c46347182a9d10420771.html">sorting</a></li><li class="navelem"><b>perform_experiments.c</b></li>
-    <li class="footer">Generated on Sun Jun 23 2013 13:39:53 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Wed Jun 26 2013 07:56:22 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

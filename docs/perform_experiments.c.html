@@ -1476,6 +1476,9 @@ número de itens no <em>array</em> a ordenar.</p>
             
             <div class="content"><div class="highlight"><pre>		<span class="keyword">struct</span> algorithm_statistics statistics = initial_statistics;
 
+		printf(<span class="string">"\tStarting experiments for %s:\n"</span>,
+		       sorting_algorithms[a].name);
+
 </pre></div></div>
             
         </li>
@@ -1497,9 +1500,7 @@ na constante <code>initial_statistics</code>.</p>
             </div>
             
             <div class="content"><div class="highlight"><pre>		<span class="keyword">if</span> (!excessive_time_per_sort[a]) {
-			printf(<span class="string">"\tStarting experiments for %s:\n"</span>,
-			       sorting_algorithms[a].name);
-
+			printf(<span class="string">"\t\tPerforming experiments.\n"</span>);
 </pre></div></div>
             
         </li>
@@ -1533,7 +1534,7 @@ não algum erro.</p>
 			<span class="keyword">if</span> (error)
 				<span class="keyword">goto</span> terminate;
 		} <span class="keyword">else</span>
-			printf(<span class="string">"\t\tSkipping algorithm.\n"</span>);
+			printf(<span class="string">"\t\tSkipping experiments.\n"</span>);
 
 		printf(<span class="string">"\t\tWriting results, if any.\n"</span>);
 
@@ -1557,8 +1558,8 @@ realizada.</p>
             
             <div class="content"><div class="highlight"><pre>		write_statistics(output, statistics);
 
-		printf(<span class="string">"\t\tEnding experiments for %s.\n"</span>,
-		       sorting_algorithms[a].name);
+		printf(<span class="string">"\t\tEnding experiments for %s (median time = %g s).\n"</span>,
+		       sorting_algorithms[a].name, statistics.times.median);
 
 </pre></div></div>
             
