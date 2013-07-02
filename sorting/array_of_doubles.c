@@ -119,8 +119,16 @@ double *read_double_array_from(const char *const file_name, int *const length)
 		// se aumenta a capacidade do _array_, pelo que essa instrução
 		// terá dois efeitos distintos. Mais uma vez, trata-se de código
 		// muito discutível, mas idiomático na linguagem C.
-		if (i == capacity)
-			items = resize_double_array_to(items, capacity *= 2);
+		if (i == capacity) {
+			double *new_items =
+				resize_double_array_to(items, capacity *= 2);
+			if (new_items == NULL) {
+				fclose(file);
+				free(items);
+				return NULL;
+			}
+			items = new_items;
+		}
 		// Atribuímos o valor lido ao item do _array_ com índice `i` _e
 		// incrementamos o próprio `i`_! O valor de `i` usado na
 		// indexação é o valor original de `i`, antes da incrementação.
