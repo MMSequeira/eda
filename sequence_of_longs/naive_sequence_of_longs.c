@@ -11,8 +11,9 @@
 // sucessão de `long`.
 //
 // Este ficheiro de implementação contém a implementação do módulo físico
-// `naive_sequence_of_longs`. A interface deste módulo encontra-se no ficheiro de
-// cabeçalho ou de interface [`naive_sequence_of_longs.h`](naive_sequence_of_longs.h.html).
+// `naive_sequence_of_longs`. A interface deste módulo encontra-se no ficheiro
+// de cabeçalho ou de interface
+// [`naive_sequence_of_longs.h`](naive_sequence_of_longs.h.html).
   
 // ### Inclusão do cabeçalho correspondente a esta implementação
 //
@@ -94,16 +95,17 @@ int NSEQL_length(struct naive_sequence_of_longs *sl)
 //
 void NSEQL_add(struct naive_sequence_of_longs *sl, long new_term)
 {
-	// Uma vez que o _array_ dinâmico tem sempre a sua capacidade esgotada, adicionar um novo termo à sucessão implica sempre redimensionar esse _array_. Para aumentar a capacidade, usamos a rotina `realloc()` para reservar um
-	// novo _array_ dinâmico com capacidade para mais um termo _e incluindo
-	// todos os termos que já constam na sucessão_. É este último
-	// requisito que nos leva a usar a rotina `realloc()`, e não a
-	// rotina `malloc()`. A rotina `realloc()`, se precisar de
-	// reservar nova memória, i.e., se não conseguir simplesmente
-	// estender o _array_ existente, copiará automaticamente os
-	// termos da memória original. É por isso que o primeiro
-	// argumento passado a `realloc()` é um ponteiro para o _array_
-	// original.
+	// Uma vez que o _array_ dinâmico tem sempre a sua capacidade esgotada,
+	// adicionar um novo termo à sucessão implica sempre redimensionar esse
+	// _array_. Para aumentar a capacidade, usamos a rotina `realloc()` para
+	// reservar um novo _array_ dinâmico com capacidade para mais um termo
+	// _e incluindo todos os termos que já constam na sucessão_. É este
+	// último requisito que nos leva a usar a rotina `realloc()`, e não a
+	// rotina `malloc()`. A rotina `realloc()`, se precisar de reservar nova
+	// memória, i.e., se não conseguir simplesmente estender o _array_
+	// existente, copiará automaticamente os termos da memória original. É
+	// por isso que o primeiro argumento passado a `realloc()` é um ponteiro
+	// para o _array_ original.
 	sl->terms = realloc(sl->terms, (sl->length + 1) * sizeof(long));
 
  	// Finalmente, guardamos o novo termo `new_term` no local apropriado do
