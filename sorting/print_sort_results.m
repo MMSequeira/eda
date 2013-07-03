@@ -72,9 +72,11 @@ function print_sort_results(types_to_plot, algs_to_plot, stats_to_plot, file)
 
   index = logical(kron(types_index, algs_index, stats_index));
 
+  figure('Position',[0, 0, 1800, 900]);
+
   loglog(sizes, results(:, index), styles(:, index));
 
-  legend(headers(:, index));
+  legend(headers(:, index), 'location', 'northeastoutside');
 
   title(plot_title);
 
@@ -82,5 +84,5 @@ function print_sort_results(types_to_plot, algs_to_plot, stats_to_plot, file)
   ylabel('Sort time [seconds]')
 
   grid
-  print('-dpng', [ file '.png']);
+  print('-dpng', '-S2600,1200', [ file '.png']);
 end
