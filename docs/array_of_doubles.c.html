@@ -478,8 +478,16 @@ muito discutível, mas idiomático na linguagem C.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>		<span class="keyword">if</span> (i == capacity)
-			items = resize_double_array_to(items, capacity *= <span class="number">2</span>);
+            <div class="content"><div class="highlight"><pre>		<span class="keyword">if</span> (i == capacity) {
+			<span class="keyword">double</span> *new_items =
+				resize_double_array_to(items, capacity *= <span class="number">2</span>);
+			<span class="keyword">if</span> (new_items == NULL) {
+				fclose(file);
+				free(items);
+				<span class="keyword">return</span> NULL;
+			}
+			items = new_items;
+		}
 </pre></div></div>
             
         </li>

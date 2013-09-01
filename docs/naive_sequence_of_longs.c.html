@@ -204,8 +204,9 @@ ficheiro <a href="sequence_of_longs.c.html"><code>sequence_of_longs.c</code></a>
 explica-se apenas aquilo que é específico desta implementação ingénua do TAD
 sucessão de <code>long</code>.</p>
 <p>Este ficheiro de implementação contém a implementação do módulo físico
-<code>naive_sequence_of_longs</code>. A interface deste módulo encontra-se no ficheiro de
-cabeçalho ou de interface <a href="naive_sequence_of_longs.h.html"><code>naive_sequence_of_longs.h</code></a>.</p>
+<code>naive_sequence_of_longs</code>. A interface deste módulo encontra-se no ficheiro
+de cabeçalho ou de interface
+<a href="naive_sequence_of_longs.h.html"><code>naive_sequence_of_longs.h</code></a>.</p>
 
             </div>
             
@@ -433,16 +434,17 @@ endereço (ou ponteiro), guardado na variável <code>sl</code>.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
-              <p>Uma vez que o <em>array</em> dinâmico tem sempre a sua capacidade esgotada, adicionar um novo termo à sucessão implica sempre redimensionar esse <em>array</em>. Para aumentar a capacidade, usamos a rotina <code>realloc()</code> para reservar um
-novo <em>array</em> dinâmico com capacidade para mais um termo <em>e incluindo
-todos os termos que já constam na sucessão</em>. É este último
-requisito que nos leva a usar a rotina <code>realloc()</code>, e não a
-rotina <code>malloc()</code>. A rotina <code>realloc()</code>, se precisar de
-reservar nova memória, i.e., se não conseguir simplesmente
-estender o <em>array</em> existente, copiará automaticamente os
-termos da memória original. É por isso que o primeiro
-argumento passado a <code>realloc()</code> é um ponteiro para o <em>array</em>
-original.</p>
+              <p>Uma vez que o <em>array</em> dinâmico tem sempre a sua capacidade esgotada,
+adicionar um novo termo à sucessão implica sempre redimensionar esse
+<em>array</em>. Para aumentar a capacidade, usamos a rotina <code>realloc()</code> para
+reservar um novo <em>array</em> dinâmico com capacidade para mais um termo
+<em>e incluindo todos os termos que já constam na sucessão</em>. É este
+último requisito que nos leva a usar a rotina <code>realloc()</code>, e não a
+rotina <code>malloc()</code>. A rotina <code>realloc()</code>, se precisar de reservar nova
+memória, i.e., se não conseguir simplesmente estender o <em>array</em>
+existente, copiará automaticamente os termos da memória original. É
+por isso que o primeiro argumento passado a <code>realloc()</code> é um ponteiro
+para o <em>array</em> original.</p>
 
             </div>
             
