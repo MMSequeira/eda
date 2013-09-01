@@ -129,6 +129,11 @@ bool bubble_sort(const int length, double items[length])
 	assert(length >= 0);
 	assert(length == 0 || items != NULL);
 
+	// _Arrays_ vazios ou com apenas um item estão sempre ordenados, pelo
+	// que podemos terminar a execução da rotina.
+	if (length <= 1)
+		return false;
+
 	// A variável `unsorted` guarda o número de itens que ainda não se sabe
 	// se estão ordenados e na sua posição definitiva. Inicialmente tem como
 	// valor o comprimento do _array_, pois ainda não se procedeu a qualquer
@@ -166,6 +171,9 @@ bool bubble_sort_and_count(const int length, double items[length],
 	assert(length == 0 || items != NULL);
 	assert(length == 0 || counts != NULL);
 
+	if (length <= 1)
+		return false;
+
 	for (int unsorted = length; unsorted != 1; unsorted--)
 		for (int i = 0; i != unsorted - 1; i++) {
 			counts->comparisons++;
@@ -181,6 +189,11 @@ bool selection_sort(const int length, double items[length])
 {
 	assert(length >= 0);
 	assert(length == 0 || items != NULL);
+
+	// _Arrays_ vazios ou com apenas um item estão sempre ordenados, pelo
+	// que podemos terminar a execução da rotina.
+	if (length <= 1)
+		return false;
 
 	// A variável `sorted` guarda o número de itens que já se sabe estarem
 	// ordenados e na sua posição definitiva. Inicialmente tem 0 como valor,
@@ -223,6 +236,9 @@ bool selection_sort_and_count(const int length, double items[length],
 	assert(length == 0 || items != NULL);
 	assert(length == 0 || counts != NULL);
 
+	if (length <= 1)
+		return false;
+
 	for (int sorted = 0;
 		sorted != length - 1;
 		sorted++) {
@@ -245,6 +261,11 @@ bool insertion_sort(const int length, double items[length])
 {
 	assert(length >= 0);
 	assert(length == 0 || items != NULL);
+
+	// _Arrays_ vazios ou com apenas um item estão sempre ordenados, pelo
+	// que podemos terminar a execução da rotina.
+	if (length <= 1)
+		return false;
 
 	// A variável `sorted` guarda o número de itens que já se sabe estarem
 	// ordenados embora não necessariamente na sua posição definitiva.
@@ -293,6 +314,9 @@ bool insertion_sort_and_count(const int length, double items[length],
 	assert(length == 0 || items != NULL);
 	assert(length == 0 || counts != NULL);
 
+	if (length <= 1)
+		return false;
+
 	for (int sorted = 1; sorted != length; sorted++) {
 		counts->copies++;
 		const double item_to_insert = items[sorted];
@@ -319,6 +343,11 @@ bool shell_sort(const int length, double items[length])
 {
 	assert(length >= 0);
 	assert(length == 0 || items != NULL);
+
+	// _Arrays_ vazios ou com apenas um item estão sempre ordenados, pelo
+	// que podemos terminar a execução da rotina.
+	if (length <= 1)
+		return false;
 
 	// Os incrementos decrescentes a usar pertencem à sucessão 1, 4, 13, 40,
 	// 121, etc. Este ciclo procura o valor inicial desses incrementos. Ver
@@ -357,6 +386,9 @@ bool shell_sort_and_count(const int length, double items[length],
 	assert(length >= 0);
 	assert(length == 0 || items != NULL);
 	assert(length == 0 || counts != NULL);
+
+	if (length <= 1)
+		return false;
 
 	int step = 1;
 	while (step < length / 3)
@@ -437,7 +469,7 @@ static void quicksort_segment(const int length, double items[length],
 	// ciclo em `i`.
 	if (items[first] > items[last])
 		swap(length, items, first, last);
-	double pivot = items[first];
+	const double pivot = items[first];
 
 	// Inicializamos a variável `i`, que percorrerá o segmento a partir da
 	// esquerda, «saltando» sobre o _pivot_. Note que a primeira operação
@@ -538,7 +570,7 @@ static void quicksort_segment_and_count(const int length, double items[length],
 	counts->comparisons++;
 	if (items[first] > items[last])
 		swap_and_count(length, items, first, last, counts);
-	double pivot = items[first];
+	const double pivot = items[first];
 	do {
 		do {
 			i++;
