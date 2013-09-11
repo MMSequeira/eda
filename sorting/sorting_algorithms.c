@@ -756,6 +756,11 @@ bool merge_sort(const int length, double items[length])
 	assert(length >= 0);
 	assert(length == 0 || items != NULL);
 
+	// _Arrays_ vazios ou com apenas um item estão sempre ordenados, pelo
+	// que podemos terminar a execução da rotina.
+	if (length <= 1)
+		return false;
+
 	// Construímos um _array_ auxiliar que será usado durante a fusão.
 	double *const temporary = new_double_array_of(length);
 
@@ -848,6 +853,9 @@ bool merge_sort_and_count(const int length, double items[length],
 	assert(length >= 0);
 	assert(length == 0 || items != NULL);
 	assert(length == 0 || counts != NULL);
+
+	if (length <= 1)
+		return false;
 
 	double *const temporary = new_double_array_of(length);
 
