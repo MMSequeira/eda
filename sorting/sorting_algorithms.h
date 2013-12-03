@@ -32,20 +32,20 @@
 
 // Definições de tipos
 // ===================
-  
+
 // As rotinas de ordenação que registam o número de operações elementares
 // realizadas durante a ordenação de uma _array_ recorrem a esta estrutura para
 // guardar as suas contagens.
 struct algorithm_counts {
 	// Este campo regista o número de comparações envolvendo pelo menos um
 	// item do _array_ em ordenação.
-	int comparisons;
+	long comparisons;
 	// Este campo regista o número de trocas de valores entre pares itens do
 	// _array_ em ordenação.
-	int swaps;
+	long swaps;
 	// Este campo regista o número de cópias de valores envolvendo pelo
 	// menos um item do _array_ em ordenação.
-	int copies;
+	long copies;
 };
 
 // Esta estrutura guarda informação acerca de um algoritmo.
@@ -64,7 +64,7 @@ struct sorting_algorithm {
 
 // Declaração de constantes globais
 // ================================
-  
+
 // Este _array_ guarda a colecção dos algoritmos considerados, incluindo o seu
 // nome e as rotinas que o implementam.
 extern const struct sorting_algorithm sorting_algorithms[];
@@ -74,7 +74,7 @@ extern const int number_of_sorting_algorithms;
 
 // Declaração das rotinas de ordenação
 // ===================================
-  
+
 // ### Rotinas sem contagem de operações elementares
 
 // Ordenação por bolha ou _bubble sort_.
@@ -96,7 +96,7 @@ bool quicksort(int length, double items[length]);
 bool merge_sort(int length, double items[length]);
 
 // ### Rotinas sem contagem de operações elementares
-  
+
 // Ordenação por bolha ou _bubble sort_.
 bool bubble_sort_and_count(int length, double items[length],
 			struct algorithm_counts* counts);

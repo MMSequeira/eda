@@ -8,7 +8,7 @@
 //
 // Note que optámos por _não_ incluir comentários de documentação
 // [Doxygen](http://doxygen.org/) em nenhum dos módulos deste programa.
-  
+
 // Começamos por incluir o próprio ficheiro de interface. Isso ajuda-nos a
 // garantir a coerência entre os dois ficheiros, pois desta forma o compilador
 // poderá gerar erros quando detectar incoerências.
@@ -43,21 +43,21 @@
 // que não tencionamos alterar um parâmetro, permitimos que o compilador detecte
 // alterações realizadas por engano. Seguimos esta prática em todo o código
 // deste projecto.
-double *new_double_array_of(const int length)
+double *new_double_array_of(const long length)
 {
-	assert(length >= 0);
+	assert(length >= 0L);
 
 	return malloc(length * sizeof(double));
 }
 
-double *resize_double_array_to(double *const items, const int new_length)
+double *resize_double_array_to(double *const items, const long new_length)
 {
-	assert(new_length >= 0);
+	assert(new_length >= 0L);
 
 	return realloc(items, new_length * sizeof(double));
 }
 
-double *read_double_array_from(const char *const file_name, int *const length)
+double *read_double_array_from(const char *const file_name, long *const length)
 {
 	assert(file_name != NULL);
 	assert(length != NULL);
@@ -78,7 +78,7 @@ double *read_double_array_from(const char *const file_name, int *const length)
 	// capacidade o valor guardado nesta variável. O número de itens já
 	// lidos e guardados no _array_ será sempre inferior ou igual à sua
 	// capacidade.
-	int capacity = 32;
+	long capacity = 32L;
 
 	// Criamos o _array_ com a capacidade definida inicialmente.
 	double *items = new_double_array_of(capacity);
@@ -97,7 +97,7 @@ double *read_double_array_from(const char *const file_name, int *const length)
 	// o próximo valor lido do ficheiro. A segunda variável é usada para ler
 	// cada um dos itens. Em caso de sucesso na leitura, o valor contido
 	// neste variável será atribuído ao item apropriado do _array_.
-	int i = 0;
+	long i = 0L;
 	double item;
 	// A guarda do ciclo inclui a própria operação de leitura. Esta forma de
 	// escrever o ciclo é idiomática do C e seria considerada uma má prática
@@ -121,7 +121,7 @@ double *read_double_array_from(const char *const file_name, int *const length)
 		// muito discutível, mas idiomático na linguagem C.
 		if (i == capacity) {
 			double *new_items =
-				resize_double_array_to(items, capacity *= 2);
+				resize_double_array_to(items, capacity *= 2L);
 			if (new_items == NULL) {
 				fclose(file);
 				free(items);
@@ -156,26 +156,26 @@ double *read_double_array_from(const char *const file_name, int *const length)
 	return items;
 }
 
-void copy_double_array(const int length,
+void copy_double_array(const long length,
 		double copy[length], const double original[length])
 {
-	assert(length >= 0);
-	assert(length == 0 || copy != NULL);
-	assert(length == 0 || original != NULL);
+	assert(length >= 0L);
+	assert(length == 0L || copy != NULL);
+	assert(length == 0L || original != NULL);
 
-	for (int i = 0; i != length; i++)
+	for (long i = 0L; i != length; i++)
 		copy[i] = original[i];
 }
 
-bool double_arrays_equal(int length,
+bool double_arrays_equal(const long length,
 			const double first[length], const double second[length])
 {
-	assert(length >= 0);
-	assert(length == 0 || first != NULL);
-	assert(length == 0 || second != NULL);
+	assert(length >= 0L);
+	assert(length == 0L || first != NULL);
+	assert(length == 0L || second != NULL);
 
 	// Note a utilização de um ciclo com apenas um local de terminação.
-	int i = 0;
+	long i = 0L;
 	while(i != length && first[i] == second[i])
 		i++;
 	return i == length;
@@ -209,14 +209,14 @@ static int compare(const void *first_generic, const void *second_generic)
 		return 0;
 }
 
-double double_array_average(int length, const double items[length])
+double double_array_average(const long length, const double items[length])
 {
-	assert(length >= 0);
-	assert(length == 0 || items != NULL);
+	assert(length >= 0L);
+	assert(length == 0L || items != NULL);
 
 	double sum = 0.0;
 
-	for (int i = 0; i != length; i++)
+	for (long i = 0L; i != length; i++)
 		sum += items[i];
 
 	return sum / length;
@@ -228,10 +228,10 @@ static double square_of(const double value)
 	return value * value;
 }
 
-double double_array_stddev(int length, const double items[length])
+double double_array_stddev(const long length, const double items[length])
 {
-	assert(length >= 0);
-	assert(length == 0 || items != NULL);
+	assert(length >= 0L);
+	assert(length == 0L || items != NULL);
 
 	// Esta implementação é simples, mas ineficaz. Ver mais abaixo uma
 	// implementação do cálculo do desvio padrão que não exige percorrer o
@@ -240,7 +240,7 @@ double double_array_stddev(int length, const double items[length])
 
 	double sum = 0.0;
 
-	for (int i = 0; i != length; i++)
+	for (long i = 0L; i != length; i++)
 		sum += square_of(items[i] - average);
 
 	return sqrt(sum / length);
@@ -254,13 +254,13 @@ double double_array_stddev(int length, const double items[length])
 // particionamentos sucessivos até determinar o valor do ou dos itens
 // centrais do _array_, que não precisa por isso de ser totalmente
 // ordenado.
-double double_array_median(int length, const double items[length])
+double double_array_median(const long length, const double items[length])
 {
-	assert(length >= 0);
-	assert(length == 0 || items != NULL);
+	assert(length >= 0L);
+	assert(length == 0L || items != NULL);
 
 	// Primeiro lidamos com o caso especial da mediana de zero itens.
-	if (length == 0)
+	if (length == 0L)
 		return NAN;
 
 	// Criamos um _array_ de trabalho que é uma cópia do _array_ original,
@@ -277,7 +277,7 @@ double double_array_median(int length, const double items[length])
 	// aritmética dos valores dos dois itens mais próximos do meio do
 	// _array_ ordenado. Se tiver um número ímpar de itens, então a mediana
 	// é o valor do item central do _array_ ordenado.
-	if (length % 2 == 0)
+	if (length % 2 == 0L)
 		return (work_items[length / 2 - 1] + work_items[length / 2]) / 2;
 	else
 		return work_items[length / 2];
@@ -287,14 +287,14 @@ double double_array_median(int length, const double items[length])
 // (+∞) nesse caso, pois o infinito é o elemento neutro da operação de obtenção do
 // menor de dois operandos, da mesma forma que o zero (0) é o elemento neutro da
 // operação de obtenção da soma de dois operandos.
-double double_array_minimum(int length, const double items[length])
+double double_array_minimum(const long length, const double items[length])
 {
-	assert(length >= 0);
-	assert(length == 0 || items != NULL);
+	assert(length >= 0L);
+	assert(length == 0L || items != NULL);
 
 	double minimum = INFINITY;
 
-	for (int i = 0; i != length; i++)
+	for (long i = 0L; i != length; i++)
 		if (items[i] < minimum)
 			minimum = items[i];
 
@@ -305,25 +305,25 @@ double double_array_minimum(int length, const double items[length])
 // negativo (-∞) nesse caso, pois o infinito negativo é o elemento neutro da
 // operação de obtenção do maior de dois operandos, da mesma forma que o zero
 // (0) é o elemento neutro da operação de obtenção da soma de dois operandos.
-double double_array_maximum(int length, const double items[length])
+double double_array_maximum(const long length, const double items[length])
 {
-	assert(length > 0);
-	assert(length == 0 || items != NULL);
+	assert(length > 0L);
+	assert(length == 0L || items != NULL);
 
 	double maximum = -INFINITY;
 
-	for (int i = 0; i != length; i++)
+	for (long i = 0L; i != length; i++)
 		if (items[i] > maximum)
 			maximum = items[i];
 
 	return maximum;
 }
 
-struct double_statistics double_array_statistics(const int length,
+struct double_statistics double_array_statistics(const long length,
 						const double items[length])
 {
-	assert(length >= 0);
-	assert(length == 0 || items != NULL);
+	assert(length >= 0L);
+	assert(length == 0L || items != NULL);
 
 	// Esta variável guarda os valores das estatísticas e será devolvida
 	// quando a função retornar. Note a forma de inicialização dos campos da
@@ -339,7 +339,7 @@ struct double_statistics double_array_statistics(const int length,
 	// Lidamos primeiro com o caso especial em que há zero itens apenas. O
 	// valor inicial da variável `statistics` foi escolhido de modo a cobrir
 	// este caso.
-	if (length == 0)
+	if (length == 0L)
 		return statistics;
 
 	// Uma vez que se calculam as várias estatísticas numa única função,
@@ -351,7 +351,7 @@ struct double_statistics double_array_statistics(const int length,
 	double sum = 0.0;
 	double sum_of_squares = 0.0;
 
-	for (int i = 0; i != length; i++) {
+	for (long i = 0L; i != length; i++) {
 		work_items[i] = items[i];
 		sum += items[i];
 		sum_of_squares += square_of(items[i]);
@@ -365,7 +365,7 @@ struct double_statistics double_array_statistics(const int length,
 
 	statistics.minimum = work_items[0];
 
-	if (length % 2 == 0)
+	if (length % 2 == 0L)
 		statistics.median =
 			(work_items[length / 2 - 1] + work_items[length / 2]) / 2;
 	else
