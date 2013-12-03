@@ -288,7 +288,7 @@ de erro.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> *new_double_array_of(<span class="keyword">int</span> length);
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> *new_double_array_of(<span class="keyword">long</span> length);
 
 </pre></div></div>
             
@@ -311,7 +311,7 @@ ser <code>NULL</code>. Nesse caso admite-se que o <em>array</em> a dimensionar t
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> *resize_double_array_to(<span class="keyword">double</span> *items, <span class="keyword">int</span> new_length);
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> *resize_double_array_to(<span class="keyword">double</span> *items, <span class="keyword">long</span> new_length);
 
 </pre></div></div>
             
@@ -332,7 +332,7 @@ lidos. Os valores de <code>file_name</code> e de <code>length</code> não podem 
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> *read_double_array_from(<span class="keyword">const</span> <span class="keyword">char</span> *file_name, <span class="keyword">int</span> *length);
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> *read_double_array_from(<span class="keyword">const</span> <span class="keyword">char</span> *file_name, <span class="keyword">long</span> *length);
 
 </pre></div></div>
             
@@ -353,7 +353,7 @@ tiver o valor zero.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">void</span> copy_double_array(<span class="keyword">int</span> length, <span class="keyword">double</span> copy[length],
+            <div class="content"><div class="highlight"><pre><span class="keyword">void</span> copy_double_array(<span class="keyword">long</span> length, <span class="keyword">double</span> copy[length],
 		<span class="keyword">const</span> <span class="keyword">double</span> original[length]);
 
 </pre></div></div>
@@ -374,7 +374,7 @@ podem ser <code>NULL</code>, mas apenas se o valor de <code>length</code> for ze
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> double_arrays_equal(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> first[length],
+            <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> double_arrays_equal(<span class="keyword">long</span> length, <span class="keyword">const</span> <span class="keyword">double</span> first[length],
 			<span class="keyword">const</span> <span class="keyword">double</span> second[length]);
 
 </pre></div></div>
@@ -395,7 +395,7 @@ apenas se <code>length</code> for zero.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_average(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length]);
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_average(<span class="keyword">long</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length]);
 
 </pre></div></div>
             
@@ -415,7 +415,7 @@ apenas se <code>length</code> for zero.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_stddev(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length]);
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_stddev(<span class="keyword">long</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length]);
 
 </pre></div></div>
             
@@ -435,7 +435,7 @@ apenas se <code>length</code> for zero.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_median(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length]);
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_median(<span class="keyword">long</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length]);
 
 </pre></div></div>
             
@@ -455,7 +455,7 @@ apenas se <code>length</code> for zero.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_minimum(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length]);
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_minimum(<span class="keyword">long</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length]);
 
 </pre></div></div>
             
@@ -475,7 +475,7 @@ apenas se <code>length</code> for zero.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_maximum(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length]);
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_maximum(<span class="keyword">long</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length]);
 
 </pre></div></div>
             
@@ -497,7 +497,7 @@ tem o valor ∞ e o máximo tem o valor -∞. O valor de <code>items</code> pode
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">struct</span> double_statistics double_array_statistics(<span class="keyword">int</span> length,
+            <div class="content"><div class="highlight"><pre><span class="keyword">struct</span> double_statistics double_array_statistics(<span class="keyword">long</span> length,
 						<span class="keyword">const</span> <span class="keyword">double</span> items[length]);
 
 </pre></div></div>

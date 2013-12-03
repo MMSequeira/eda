@@ -191,19 +191,7 @@ correspondem ao módulo físico <code>array_of_double</code>, cujo objectivo é 
 conjunto de ferramentas para lidar com <em>arrays</em> de <code>double</code>.</p>
 <p>Note que optámos por <em>não</em> incluir comentários de documentação
 <a href="http://doxygen.org/">Doxygen</a> em nenhum dos módulos deste programa.</p>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>Começamos por incluir o próprio ficheiro de interface. Isso ajuda-nos a
+<p>Começamos por incluir o próprio ficheiro de interface. Isso ajuda-nos a
 garantir a coerência entre os dois ficheiros, pois desta forma o compilador
 poderá gerar erros quando detectar incoerências.</p>
 
@@ -216,11 +204,11 @@ poderá gerar erros quando detectar incoerências.</p>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-3">
             <div class="annotation">
               
               <div class="pilwrap for-h2">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <h2>Inclusão de ficheiros de interface</h2>
 
@@ -229,11 +217,11 @@ poderá gerar erros quando detectar incoerências.</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>Incluímos os vários ficheiro de interface necessários:</p>
 <ul>
@@ -263,11 +251,11 @@ e para podemos usar as rotinas <code>malloc()</code> e <code>realloc()</code> e 
         </li>
         
         
-        <li id="section-6">
+        <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap for-h2">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <h2>Definições de rotinas</h2>
 
@@ -276,11 +264,11 @@ e para podemos usar as rotinas <code>malloc()</code> e <code>realloc()</code> e 
         </li>
         
         
-        <li id="section-7">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Note como classificamos <code>length</code> como <code>const</code>. Esta prática ajuda o
 compilador a detectar os nossos próprios erros. Ao afirmarmos explicitamente
@@ -290,21 +278,21 @@ deste projecto.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> *new_double_array_of(<span class="keyword">const</span> <span class="keyword">int</span> length)
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> *new_double_array_of(<span class="keyword">const</span> <span class="keyword">long</span> length)
 {
-	assert(length &gt;= <span class="number">0</span>);
+	assert(length &gt;= <span class="number">0L</span>);
 
 	<span class="keyword">return</span> malloc(length * <span class="keyword">sizeof</span>(<span class="keyword">double</span>));
 }
 
-<span class="keyword">double</span> *resize_double_array_to(<span class="keyword">double</span> *<span class="keyword">const</span> items, <span class="keyword">const</span> <span class="keyword">int</span> new_length)
+<span class="keyword">double</span> *resize_double_array_to(<span class="keyword">double</span> *<span class="keyword">const</span> items, <span class="keyword">const</span> <span class="keyword">long</span> new_length)
 {
-	assert(new_length &gt;= <span class="number">0</span>);
+	assert(new_length &gt;= <span class="number">0L</span>);
 
 	<span class="keyword">return</span> realloc(items, new_length * <span class="keyword">sizeof</span>(<span class="keyword">double</span>));
 }
 
-<span class="keyword">double</span> *read_double_array_from(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> file_name, <span class="keyword">int</span> *<span class="keyword">const</span> length)
+<span class="keyword">double</span> *read_double_array_from(<span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> file_name, <span class="keyword">long</span> *<span class="keyword">const</span> length)
 {
 	assert(file_name != NULL);
 	assert(length != NULL);
@@ -314,11 +302,11 @@ deste projecto.</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>Começamos por abrir um novo canal de leitura para o ficheiro cujo
 nome recebemos como argumento.</p>
@@ -332,11 +320,11 @@ nome recebemos como argumento.</p>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Em C, o código que lida com casos de erro e casos excepcionais
 emaranha-se com o código «normal». Isso torna todo o código menos
@@ -353,11 +341,11 @@ linguagem. :-)</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>O <em>array</em> onde iremos guardando os itens lidos tem de ir crescendo à
 medida que a leitura prossegue. Em cada instante, o <em>array</em> terá como
@@ -367,18 +355,18 @@ capacidade.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> capacity = <span class="number">32</span>;
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">long</span> capacity = <span class="number">32L</span>;
 
 </pre></div></div>
             
         </li>
         
         
-        <li id="section-11">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>Criamos o <em>array</em> com a capacidade definida inicialmente.</p>
 
@@ -391,11 +379,11 @@ capacidade.</p>
         </li>
         
         
-        <li id="section-12">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>No caso de não se conseguir criar o novo <em>array</em> dinâmico, fechamos o
 canal aberto para o ficheiro em leitura e retornamos devolvendo o
@@ -413,11 +401,11 @@ valor especial <code>NULL</code>, de modo a assinalar o erro.</p>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>O ciclo de leitura é feito recorrendo a duas variáveis locais. A
 primeira, <code>i</code>, indica em cada momento, e simultaneamente, quantos
@@ -428,18 +416,18 @@ neste variável será atribuído ao item apropriado do <em>array</em>.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> i = <span class="number">0</span>;
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">long</span> i = <span class="number">0L</span>;
 	<span class="keyword">double</span> item;
 </pre></div></div>
             
         </li>
         
         
-        <li id="section-14">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>A guarda do ciclo inclui a própria operação de leitura. Esta forma de
 escrever o ciclo é idiomática do C e seria considerada uma má prática
@@ -459,11 +447,11 @@ o valor lido do ficheiro e guardado na variável <code>item</code>.</p>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>Se o número de itens lidos com sucesso e guardados no <em>array</em>
 for igual à capacidade do <em>array</em>, então esta encontra-se
@@ -480,7 +468,7 @@ muito discutível, mas idiomático na linguagem C.</p>
             
             <div class="content"><div class="highlight"><pre>		<span class="keyword">if</span> (i == capacity) {
 			<span class="keyword">double</span> *new_items =
-				resize_double_array_to(items, capacity *= <span class="number">2</span>);
+				resize_double_array_to(items, capacity *= <span class="number">2L</span>);
 			<span class="keyword">if</span> (new_items == NULL) {
 				fclose(file);
 				free(items);
@@ -493,11 +481,11 @@ muito discutível, mas idiomático na linguagem C.</p>
         </li>
         
         
-        <li id="section-16">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>Atribuímos o valor lido ao item do <em>array</em> com índice <code>i</code> <em>e
 incrementamos o próprio <code>i</code></em>! O valor de <code>i</code> usado na
@@ -515,11 +503,11 @@ idiomático na linguagem C.</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>Finda a leitura, a variável <code>i</code> contém o número de itens lidos e
 guardados no <em>array</em>. Guardamos o seu valor na variável apontada por
@@ -534,11 +522,11 @@ guardados no <em>array</em>. Guardamos o seu valor na variável apontada por
         </li>
         
         
-        <li id="section-18">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p>Se necessário, ajustamos a capacidade do <em>array</em> de modo a
 corresponder exactamente ao número de itens lidos, de modo a garantir
@@ -554,11 +542,11 @@ que não há desperdício de memória.</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Fechamos o canal de entrada.</p>
 
@@ -571,11 +559,11 @@ que não há desperdício de memória.</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Retornamos, devolvendo o endereço do primeiro item do <em>array</em>
 dinâmico criado, que contém os valores lidos do ficheiro.</p>
@@ -585,23 +573,44 @@ dinâmico criado, que contém os valores lidos do ficheiro.</p>
             <div class="content"><div class="highlight"><pre>	<span class="keyword">return</span> items;
 }
 
-<span class="keyword">void</span> copy_double_array(<span class="keyword">const</span> <span class="keyword">int</span> length,
+<span class="keyword">void</span> copy_double_array(<span class="keyword">const</span> <span class="keyword">long</span> length,
 		<span class="keyword">double</span> copy[length], <span class="keyword">const</span> <span class="keyword">double</span> original[length])
 {
-	assert(length &gt;= <span class="number">0</span>);
-	assert(length == <span class="number">0</span> || copy != NULL);
-	assert(length == <span class="number">0</span> || original != NULL);
+	assert(length &gt;= <span class="number">0L</span>);
+	assert(length == <span class="number">0L</span> || copy != NULL);
+	assert(length == <span class="number">0L</span> || original != NULL);
 
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != length; i++)
+	<span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0L</span>; i != length; i++)
 		copy[i] = original[i];
 }
 
-<span class="keyword">bool</span> double_arrays_equal(<span class="keyword">int</span> length,
+<span class="keyword">bool</span> double_arrays_equal(<span class="keyword">const</span> <span class="keyword">long</span> length,
 			<span class="keyword">const</span> <span class="keyword">double</span> first[length], <span class="keyword">const</span> <span class="keyword">double</span> second[length])
 {
-	assert(length &gt;= <span class="number">0</span>);
-	assert(length == <span class="number">0</span> || first != NULL);
-	assert(length == <span class="number">0</span> || second != NULL);
+	assert(length &gt;= <span class="number">0L</span>);
+	assert(length == <span class="number">0L</span> || first != NULL);
+	assert(length == <span class="number">0L</span> || second != NULL);
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Note a utilização de um ciclo com apenas um local de terminação.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">long</span> i = <span class="number">0L</span>;
+	<span class="keyword">while</span>(i != length &amp;&amp; first[i] == second[i])
+		i++;
+	<span class="keyword">return</span> i == length;
+}
 
 </pre></div></div>
             
@@ -613,27 +622,6 @@ dinâmico criado, que contém os valores lidos do ficheiro.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-21">&#182;</a>
-              </div>
-              <p>Note a utilização de um ciclo com apenas um local de terminação.</p>
-
-            </div>
-            
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> i = <span class="number">0</span>;
-	<span class="keyword">while</span>(i != length &amp;&amp; first[i] == second[i])
-		i++;
-	<span class="keyword">return</span> i == length;
-}
-
-</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-22">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Esta função é usada durante a ordenação de <em>arrays</em> de <code>double</code> realizada
 através do procedimento <code>qsort()</code> da biblioteca padrão do C. A utilização de
@@ -656,11 +644,11 @@ qualificador <code>static</code>.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Os argumentos são ponteiros para os itens a comparar. Sendo o
 procedimento <code>qsort()</code> genérico, os parâmetros correspondentes são do
@@ -680,18 +668,43 @@ coerções para o tipo ponteiro para <code>double</code>.</p>
 		<span class="keyword">return</span> <span class="number">0</span>;
 }
 
-<span class="keyword">double</span> double_array_average(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
+<span class="keyword">double</span> double_array_average(<span class="keyword">const</span> <span class="keyword">long</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
 {
-	assert(length &gt;= <span class="number">0</span>);
-	assert(length == <span class="number">0</span> || items != NULL);
+	assert(length &gt;= <span class="number">0L</span>);
+	assert(length == <span class="number">0L</span> || items != NULL);
 
 	<span class="keyword">double</span> sum = <span class="number">0.0</span>;
 
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != length; i++)
+	<span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0L</span>; i != length; i++)
 		sum += items[i];
 
 	<span class="keyword">return</span> sum / length;
 }
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Uma função auxiliar devolvendo o quadrado do valor recebido como argumento.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">double</span> square_of(<span class="keyword">const</span> <span class="keyword">double</span> value)
+{
+	<span class="keyword">return</span> value * value;
+}
+
+<span class="keyword">double</span> double_array_stddev(<span class="keyword">const</span> <span class="keyword">long</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
+{
+	assert(length &gt;= <span class="number">0L</span>);
+	assert(length == <span class="number">0L</span> || items != NULL);
 
 </pre></div></div>
             
@@ -704,19 +717,21 @@ coerções para o tipo ponteiro para <code>double</code>.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
-              <p>Uma função auxiliar devolvendo o quadrado do valor recebido como argumento.</p>
+              <p>Esta implementação é simples, mas ineficaz. Ver mais abaixo uma
+implementação do cálculo do desvio padrão que não exige percorrer o
+<em>array</em> duas vezes.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">double</span> square_of(<span class="keyword">const</span> <span class="keyword">double</span> value)
-{
-	<span class="keyword">return</span> value * value;
-}
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">const</span> <span class="keyword">double</span> average = double_array_average(length, items);
 
-<span class="keyword">double</span> double_array_stddev(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
-{
-	assert(length &gt;= <span class="number">0</span>);
-	assert(length == <span class="number">0</span> || items != NULL);
+	<span class="keyword">double</span> sum = <span class="number">0.0</span>;
+
+	<span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0L</span>; i != length; i++)
+		sum += square_of(items[i] - average);
+
+	<span class="keyword">return</span> sqrt(sum / length);
+}
 
 </pre></div></div>
             
@@ -729,21 +744,21 @@ coerções para o tipo ponteiro para <code>double</code>.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
-              <p>Esta implementação é simples, mas ineficaz. Ver mais abaixo uma
-implementação do cálculo do desvio padrão que não exige percorrer o
-<em>array</em> duas vezes.</p>
+              <p>Usamos uma forma de cálculo muito ineficaz: ordenar o <em>array</em> de modo
+a obter a mediana através do ou dos valores centrais. Há formas bem
+mais eficazes de calcular a mediana. Nomeadamente, pode-se usar uma
+versão modificada do algoritmo de ordenação rápida que não se
+preocupa em ordenar o <em>array</em>, mas apenas em realizar
+particionamentos sucessivos até determinar o valor do ou dos itens
+centrais do <em>array</em>, que não precisa por isso de ser totalmente
+ordenado.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">const</span> <span class="keyword">double</span> average = double_array_average(length, items);
-
-	<span class="keyword">double</span> sum = <span class="number">0.0</span>;
-
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != length; i++)
-		sum += square_of(items[i] - average);
-
-	<span class="keyword">return</span> sqrt(sum / length);
-}
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_median(<span class="keyword">const</span> <span class="keyword">long</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
+{
+	assert(length &gt;= <span class="number">0L</span>);
+	assert(length == <span class="number">0L</span> || items != NULL);
 
 </pre></div></div>
             
@@ -756,21 +771,12 @@ implementação do cálculo do desvio padrão que não exige percorrer o
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
-              <p>Usamos uma forma de cálculo muito ineficaz: ordenar o <em>array</em> de modo
-a obter a mediana através do ou dos valores centrais. Há formas bem
-mais eficazes de calcular a mediana. Nomeadamente, pode-se usar uma
-versão modificada do algoritmo de ordenação rápida que não se
-preocupa em ordenar o <em>array</em>, mas apenas em realizar
-particionamentos sucessivos até determinar o valor do ou dos itens
-centrais do <em>array</em>, que não precisa por isso de ser totalmente
-ordenado.</p>
+              <p>Primeiro lidamos com o caso especial da mediana de zero itens.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_median(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
-{
-	assert(length &gt;= <span class="number">0</span>);
-	assert(length == <span class="number">0</span> || items != NULL);
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (length == <span class="number">0L</span>)
+		<span class="keyword">return</span> NAN;
 
 </pre></div></div>
             
@@ -782,24 +788,6 @@ ordenado.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-27">&#182;</a>
-              </div>
-              <p>Primeiro lidamos com o caso especial da mediana de zero itens.</p>
-
-            </div>
-            
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (length == <span class="number">0</span>)
-		<span class="keyword">return</span> NAN;
-
-</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-28">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Criamos um <em>array</em> de trabalho que é uma cópia do <em>array</em> original,
 pois este não deve ser alterado.</p>
@@ -814,11 +802,11 @@ pois este não deve ser alterado.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Usamos o procedimento de ordenação genérico do C <code>qsort()</code>, que
 utiliza o algoritmo de ordenação rápida, para ordenar o <em>array</em> de
@@ -833,11 +821,11 @@ trabalho.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>Se o <em>array</em> tiver um número par de itens, a sua mediana é a média
 aritmética dos valores dos dois itens mais próximos do meio do
@@ -846,10 +834,42 @@ aritmética dos valores dos dois itens mais próximos do meio do
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (length % <span class="number">2</span> == <span class="number">0</span>)
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (length % <span class="number">2</span> == <span class="number">0L</span>)
 		<span class="keyword">return</span> (work_items[length / <span class="number">2</span> - <span class="number">1</span>] + work_items[length / <span class="number">2</span>]) / <span class="number">2</span>;
 	<span class="keyword">else</span>
 		<span class="keyword">return</span> work_items[length / <span class="number">2</span>];
+}
+
+</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>Note que esta função está definida mesmo para zero itens, devolvendo infinito
+(+∞) nesse caso, pois o infinito é o elemento neutro da operação de obtenção do
+menor de dois operandos, da mesma forma que o zero (0) é o elemento neutro da
+operação de obtenção da soma de dois operandos.</p>
+
+            </div>
+            
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_minimum(<span class="keyword">const</span> <span class="keyword">long</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
+{
+	assert(length &gt;= <span class="number">0L</span>);
+	assert(length == <span class="number">0L</span> || items != NULL);
+
+	<span class="keyword">double</span> minimum = INFINITY;
+
+	<span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0L</span>; i != length; i++)
+		<span class="keyword">if</span> (items[i] &lt; minimum)
+			minimum = items[i];
+
+	<span class="keyword">return</span> minimum;
 }
 
 </pre></div></div>
@@ -864,25 +884,31 @@ aritmética dos valores dos dois itens mais próximos do meio do
                 <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Note que esta função está definida mesmo para zero itens, devolvendo infinito
-(+∞) nesse caso, pois o infinito é o elemento neutro da operação de obtenção do
-menor de dois operandos, da mesma forma que o zero (0) é o elemento neutro da
-operação de obtenção da soma de dois operandos.</p>
+negativo (-∞) nesse caso, pois o infinito negativo é o elemento neutro da
+operação de obtenção do maior de dois operandos, da mesma forma que o zero
+(0) é o elemento neutro da operação de obtenção da soma de dois operandos.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_minimum(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
+            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_maximum(<span class="keyword">const</span> <span class="keyword">long</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
 {
-	assert(length &gt;= <span class="number">0</span>);
-	assert(length == <span class="number">0</span> || items != NULL);
+	assert(length &gt; <span class="number">0L</span>);
+	assert(length == <span class="number">0L</span> || items != NULL);
 
-	<span class="keyword">double</span> minimum = INFINITY;
+	<span class="keyword">double</span> maximum = -INFINITY;
 
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != length; i++)
-		<span class="keyword">if</span> (items[i] &lt; minimum)
-			minimum = items[i];
+	<span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0L</span>; i != length; i++)
+		<span class="keyword">if</span> (items[i] &gt; maximum)
+			maximum = items[i];
 
-	<span class="keyword">return</span> minimum;
+	<span class="keyword">return</span> maximum;
 }
+
+<span class="keyword">struct</span> double_statistics double_array_statistics(<span class="keyword">const</span> <span class="keyword">long</span> length,
+						<span class="keyword">const</span> <span class="keyword">double</span> items[length])
+{
+	assert(length &gt;= <span class="number">0L</span>);
+	assert(length == <span class="number">0L</span> || items != NULL);
 
 </pre></div></div>
             
@@ -894,44 +920,6 @@ operação de obtenção da soma de dois operandos.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-32">&#182;</a>
-              </div>
-              <p>Note que esta função está definida mesmo para zero itens, devolvendo infinito
-negativo (-∞) nesse caso, pois o infinito negativo é o elemento neutro da
-operação de obtenção do maior de dois operandos, da mesma forma que o zero
-(0) é o elemento neutro da operação de obtenção da soma de dois operandos.</p>
-
-            </div>
-            
-            <div class="content"><div class="highlight"><pre><span class="keyword">double</span> double_array_maximum(<span class="keyword">int</span> length, <span class="keyword">const</span> <span class="keyword">double</span> items[length])
-{
-	assert(length &gt; <span class="number">0</span>);
-	assert(length == <span class="number">0</span> || items != NULL);
-
-	<span class="keyword">double</span> maximum = -INFINITY;
-
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != length; i++)
-		<span class="keyword">if</span> (items[i] &gt; maximum)
-			maximum = items[i];
-
-	<span class="keyword">return</span> maximum;
-}
-
-<span class="keyword">struct</span> double_statistics double_array_statistics(<span class="keyword">const</span> <span class="keyword">int</span> length,
-						<span class="keyword">const</span> <span class="keyword">double</span> items[length])
-{
-	assert(length &gt;= <span class="number">0</span>);
-	assert(length == <span class="number">0</span> || items != NULL);
-
-</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-33">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Esta variável guarda os valores das estatísticas e será devolvida
 quando a função retornar. Note a forma de inicialização dos campos da
@@ -952,11 +940,11 @@ estrutura.</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Lidamos primeiro com o caso especial em que há zero itens apenas. O
 valor inicial da variável <code>statistics</code> foi escolhido de modo a cobrir
@@ -964,7 +952,7 @@ este caso.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (length == <span class="number">0</span>)
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">if</span> (length == <span class="number">0L</span>)
 		<span class="keyword">return</span> statistics;
 
 </pre></div></div>
@@ -972,11 +960,11 @@ este caso.</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>Uma vez que se calculam as várias estatísticas numa única função,
 podemos fazer algumas optimizações. Ainda assim, seria possível
@@ -990,7 +978,7 @@ anteriormente.</p>
 	<span class="keyword">double</span> sum = <span class="number">0.0</span>;
 	<span class="keyword">double</span> sum_of_squares = <span class="number">0.0</span>;
 
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != length; i++) {
+	<span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0L</span>; i != length; i++) {
 		work_items[i] = items[i];
 		sum += items[i];
 		sum_of_squares += square_of(items[i]);
@@ -1004,7 +992,7 @@ anteriormente.</p>
 
 	statistics.minimum = work_items[<span class="number">0</span>];
 
-	<span class="keyword">if</span> (length % <span class="number">2</span> == <span class="number">0</span>)
+	<span class="keyword">if</span> (length % <span class="number">2</span> == <span class="number">0L</span>)
 		statistics.median =
 			(work_items[length / <span class="number">2</span> - <span class="number">1</span>] + work_items[length / <span class="number">2</span>]) / <span class="number">2</span>;
 	<span class="keyword">else</span>

@@ -1,6 +1,6 @@
 var structalgorithm__counts =
 [
-    [ "comparisons", "structalgorithm__counts.html#ac87cc4a877fe873a187f6d601b7ac2db", null ],
-    [ "copies", "structalgorithm__counts.html#a63b5b11146fd505f1c48092504eba624", null ],
-    [ "swaps", "structalgorithm__counts.html#a5416eee2a4b0abb3815fbee99257825d", null ]
+    [ "comparisons", "structalgorithm__counts.html#a0580886b17bf9f2e0ee54fee001907b4", null ],
+    [ "copies", "structalgorithm__counts.html#aaf587c911e820a507a42585c2e5b44f6", null ],
+    [ "swaps", "structalgorithm__counts.html#ab983bcd2d0dff59bada01b35c17010e6", null ]
 ];

@@ -152,20 +152,20 @@ $(document).ready(function(){initNavTree('sorting__algorithms_8h_source.html',''
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">// Definições de tipos</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">// ===================</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">// As rotinas de ordenação que registam o número de operações elementares</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">// realizadas durante a ordenação de uma _array_ recorrem a esta estrutura para</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">// guardar as suas contagens.</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="structalgorithm__counts.html">   39</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structalgorithm__counts.html">algorithm_counts</a> {</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="comment">// Este campo regista o número de comparações envolvendo pelo menos um</span></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="comment">// item do _array_ em ordenação.</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">int</span> comparisons;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">long</span> comparisons;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="comment">// Este campo regista o número de trocas de valores entre pares itens do</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">// _array_ em ordenação.</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">int</span> swaps;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">long</span> swaps;</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="comment">// Este campo regista o número de cópias de valores envolvendo pelo</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="comment">// menos um item do _array_ em ordenação.</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">int</span> copies;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">long</span> copies;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">// Esta estrutura guarda informação acerca de um algoritmo.</span></div>
@@ -184,7 +184,7 @@ $(document).ready(function(){initNavTree('sorting__algorithms_8h_source.html',''
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">// Declaração de constantes globais</span></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">// ================================</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">// Este _array_ guarda a colecção dos algoritmos considerados, incluindo o seu</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">// nome e as rotinas que o implementam.</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code" href="structsorting__algorithm.html">sorting_algorithm</a> sorting_algorithms[];</div>
@@ -194,7 +194,7 @@ $(document).ready(function(){initNavTree('sorting__algorithms_8h_source.html',''
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">// Declaração das rotinas de ordenação</span></div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">// ===================================</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">// ### Rotinas sem contagem de operações elementares</span></div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">// Ordenação por bolha ou _bubble sort_.</span></div>
@@ -216,7 +216,7 @@ $(document).ready(function(){initNavTree('sorting__algorithms_8h_source.html',''
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keywordtype">bool</span> merge_sort(<span class="keywordtype">int</span> length, <span class="keywordtype">double</span> items[length]);</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">// ### Rotinas sem contagem de operações elementares</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">// Ordenação por bolha ou _bubble sort_.</span></div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keywordtype">bool</span> bubble_sort_and_count(<span class="keywordtype">int</span> length, <span class="keywordtype">double</span> items[length],</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                        <span class="keyword">struct</span> <a class="code" href="structalgorithm__counts.html">algorithm_counts</a>* counts);</div>
@@ -250,7 +250,7 @@ $(document).ready(function(){initNavTree('sorting__algorithms_8h_source.html',''
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_bb1b521853a9c46347182a9d10420771.html">sorting</a></li><li class="navelem"><b>sorting_algorithms.h</b></li>
-    <li class="footer">Generated on Mon Sep 16 2013 18:43:40 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Tue Dec 3 2013 14:31:43 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>

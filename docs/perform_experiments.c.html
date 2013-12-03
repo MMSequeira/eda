@@ -370,7 +370,7 @@ pelo valor desta constante.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> maximum_number_of_repetions = <span class="number">1001</span>;
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">long</span> maximum_number_of_repetions = <span class="number">1001L</span>;
 
 </pre></div></div>
             
@@ -411,7 +411,7 @@ e 2<sup>24</sup> (16&thinsp;777&thinsp;216) itens.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">int</span> maximum_file_size = <span class="number">1</span> &lt;&lt; <span class="number">24</span>;
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">long</span> maximum_file_size = <span class="number">1L</span> &lt;&lt; <span class="number">24</span>;
 
 </pre></div></div>
             
@@ -506,7 +506,7 @@ limitações da resolução do relógio usado.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> accumulated_runs;
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">long</span> accumulated_runs;
 </pre></div></div>
             
         </li>
@@ -522,7 +522,7 @@ limitações da resolução do relógio usado.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> repetitions;
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">long</span> repetitions;
 </pre></div></div>
             
         </li>
@@ -635,10 +635,10 @@ realizada com uma precisão dada pela constante <code>clock_precision</code>.</p
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">double</span> copy_time_estimate(<span class="keyword">const</span> <span class="keyword">int</span> length, <span class="keyword">double</span> work_items[length],
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">double</span> copy_time_estimate(<span class="keyword">const</span> <span class="keyword">long</span> length, <span class="keyword">double</span> work_items[length],
 				 <span class="keyword">const</span> <span class="keyword">double</span> items[length])
 {
-	assert(length &gt; <span class="number">0</span>);
+	assert(length &gt; <span class="number">0L</span>);
 	assert(work_items != NULL);
 	assert(items != NULL);
 
@@ -660,7 +660,7 @@ para atingir a precisão pretendida.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> runs = <span class="number">0</span>;
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">long</span> runs = <span class="number">0L</span>;
 	clock_t start = clock();
 
 	<span class="keyword">do</span> {
@@ -689,12 +689,12 @@ execuções, desta vez sem invocações intermédias à função <code>clock()</
             
             <div class="content"><div class="highlight"><pre>	start = clock();
 
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != runs; i++)
+	<span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0L</span>; i != runs; i++)
 		copy_double_array(length, work_items, items);
 
 	<span class="keyword">double</span> copy_time = (<span class="keyword">double</span>) (clock() - start) / CLOCKS_PER_SEC / runs;
 
-	printf(<span class="string">"\tCopy time estimated to be %g seconds (based on %d runs).\n"</span>,
+	printf(<span class="string">"\tCopy time estimated to be %g seconds (based on %ld runs).\n"</span>,
 	       copy_time, runs);
 
 	<span class="keyword">return</span> copy_time;
@@ -724,19 +724,19 @@ caso de erro, devolve um valor negativo.</p>
             </div>
             
             <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">double</span> sort_time_estimate(<span class="keyword">struct</span> sorting_algorithm algorithm,
-				 <span class="keyword">const</span> <span class="keyword">int</span> length, <span class="keyword">double</span> work_items[length],
-				 <span class="keyword">const</span> <span class="keyword">double</span> items[length], <span class="keyword">const</span> <span class="keyword">int</span> runs,
+				 <span class="keyword">const</span> <span class="keyword">long</span> length, <span class="keyword">double</span> work_items[length],
+				 <span class="keyword">const</span> <span class="keyword">double</span> items[length], <span class="keyword">const</span> <span class="keyword">long</span> runs,
 				 <span class="keyword">const</span> <span class="keyword">double</span> copy_time)
 {
-	assert(length &gt; <span class="number">0</span>);
+	assert(length &gt; <span class="number">0L</span>);
 	assert(work_items != NULL);
 	assert(items != NULL);
-	assert(runs &gt; <span class="number">0</span>);
+	assert(runs &gt; <span class="number">0L</span>);
 	assert(copy_time &gt; <span class="number">0.0</span>);
 
 	clock_t start = clock();
 
-	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i != runs; i++) {
+	<span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">0</span>; i != runs; i++) {
 		copy_double_array(length, work_items, items);
 
 		<span class="keyword">if</span>(algorithm.sort(length, work_items)) {
@@ -769,16 +769,16 @@ de erro devolve um valor negativo.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">int</span> number_of_runs(<span class="keyword">const</span> <span class="keyword">struct</span> sorting_algorithm algorithm,
-			  <span class="keyword">const</span> <span class="keyword">int</span> length, <span class="keyword">double</span> work_items[length],
+            <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">long</span> number_of_runs(<span class="keyword">const</span> <span class="keyword">struct</span> sorting_algorithm algorithm,
+			  <span class="keyword">const</span> <span class="keyword">long</span> length, <span class="keyword">double</span> work_items[length],
 			  <span class="keyword">const</span> <span class="keyword">double</span> items[length], <span class="keyword">const</span> <span class="keyword">double</span> copy_time)
 {
-	assert(length &gt; <span class="number">0</span>);
+	assert(length &gt; <span class="number">0L</span>);
 	assert(work_items != NULL);
 	assert(items != NULL);
 	assert(copy_time &gt; <span class="number">0.0</span>);
 
-	<span class="keyword">int</span> runs = <span class="number">0</span>;
+	<span class="keyword">long</span> runs = <span class="number">0L</span>;
 	clock_t start = clock();
 
 	<span class="keyword">do</span> {
@@ -826,13 +826,13 @@ apontada pelo ponteiro <code>statistics</code>. Em caso de erro devolve o valor 
             </div>
             
             <div class="content"><div class="highlight"><pre><span class="keyword">static</span> <span class="keyword">bool</span> experiment_algorithm(<span class="keyword">const</span> <span class="keyword">struct</span> sorting_algorithm algorithm,
-				<span class="keyword">const</span> <span class="keyword">int</span> length, <span class="keyword">double</span> work_items[length],
+				<span class="keyword">const</span> <span class="keyword">long</span> length, <span class="keyword">double</span> work_items[length],
 				<span class="keyword">const</span> <span class="keyword">double</span> items[length],
 				<span class="keyword">const</span> <span class="keyword">double</span> sorted_items[length],
 				<span class="keyword">const</span> <span class="keyword">double</span> copy_time,
 				<span class="keyword">struct</span> algorithm_statistics *statistics)
 {
-	assert(length &gt; <span class="number">0</span>);
+	assert(length &gt; <span class="number">0L</span>);
 	assert(work_items != NULL);
 	assert(items != NULL);
 	assert(sorted_items != NULL);
@@ -954,13 +954,13 @@ devolvendo o valor <code>true</code>.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> runs =
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">long</span> runs =
 		number_of_runs(algorithm, length, work_items, items, copy_time);
 
-	<span class="keyword">if</span> (runs &lt; <span class="number">0</span>)
+	<span class="keyword">if</span> (runs &lt; <span class="number">0L</span>)
 		<span class="keyword">return</span> <span class="keyword">true</span>;
 
-	printf(<span class="string">"\t\t\tEach time will be estimated using %d runs.\n"</span>, runs);
+	printf(<span class="string">"\t\t\tEach time will be estimated using %ld runs.\n"</span>, runs);
 
 </pre></div></div>
             
@@ -1016,7 +1016,7 @@ limiar do tempo acumulado de execução do ciclo.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> repetitions = <span class="number">0</span>;
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">long</span> repetitions = <span class="number">0L</span>;
 	clock_t start = clock();
 	<span class="keyword">double</span> accumulated_time;
 
@@ -1050,7 +1050,7 @@ caso de erro, retornamos devolvendo o valor <code>true</code>.</p>
 	} <span class="keyword">while</span>(repetitions != maximum_number_of_repetions &amp;&amp;
 		accumulated_time &lt; threshold_repetition_time);
 
-	printf(<span class="string">"\t\t\t%d repetitions in %g seconds.\n"</span>, repetitions,
+	printf(<span class="string">"\t\t\t%ld repetitions in %g seconds.\n"</span>, repetitions,
 	       accumulated_time);
 
 </pre></div></div>
@@ -1163,11 +1163,11 @@ para o algoritmo com o nome dado por <code>lagorithm_name</code>.</p>
 {
 	assert(output != NULL);
 
-	fprintf(output, <span class="string">";%d"</span>, statistics.counts.comparisons);
-	fprintf(output, <span class="string">";%d"</span>, statistics.counts.swaps);
-	fprintf(output, <span class="string">";%d"</span>, statistics.counts.copies);
-	fprintf(output, <span class="string">";%d"</span>, statistics.accumulated_runs);
-	fprintf(output, <span class="string">";%d"</span>, statistics.repetitions);
+	fprintf(output, <span class="string">";%ld"</span>, statistics.counts.comparisons);
+	fprintf(output, <span class="string">";%ld"</span>, statistics.counts.swaps);
+	fprintf(output, <span class="string">";%ld"</span>, statistics.counts.copies);
+	fprintf(output, <span class="string">";%ld"</span>, statistics.accumulated_runs);
+	fprintf(output, <span class="string">";%ld"</span>, statistics.repetitions);
 	fprintf(output, <span class="string">";%g"</span>, statistics.times.average);
 	fprintf(output, <span class="string">";%g"</span>, statistics.times.stddev);
 	fprintf(output, <span class="string">";%g"</span>, statistics.times.median);
@@ -1202,7 +1202,7 @@ Devolvemos <code>true</code> em caso de erro.</p>
             </div>
             
             <div class="content"><div class="highlight"><pre><span class="keyword">bool</span> experiment_size(FILE *<span class="keyword">const</span> output, <span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> path,
-		     <span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> file_type, <span class="keyword">const</span> <span class="keyword">int</span> size,
+		     <span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> file_type, <span class="keyword">const</span> <span class="keyword">long</span> size,
 		     <span class="keyword">bool</span> excessive_time_per_sort[number_of_sorting_algorithms])
 {
 </pre></div></div>
@@ -1223,7 +1223,7 @@ contém os itens a ordenar.</p>
             </div>
             
             <div class="content"><div class="highlight"><pre>	<span class="keyword">char</span> file_name[FILENAME_MAX];
-	snprintf(file_name, FILENAME_MAX, <span class="string">"%s%s_%d.txt"</span>, path, file_type, size);
+	snprintf(file_name, FILENAME_MAX, <span class="string">"%s%s_%ld.txt"</span>, path, file_type, size);
 
 </pre></div></div>
             
@@ -1244,7 +1244,7 @@ algoritmos.</p>
             </div>
             
             <div class="content"><div class="highlight"><pre>	<span class="keyword">char</span> sorted_file_name[FILENAME_MAX];
-	snprintf(sorted_file_name, FILENAME_MAX, <span class="string">"%ssorted_%d.txt"</span>, path, size);
+	snprintf(sorted_file_name, FILENAME_MAX, <span class="string">"%ssorted_%ld.txt"</span>, path, size);
 
 </pre></div></div>
             
@@ -1291,7 +1291,7 @@ o ficheiro não conter o número de itens esperado.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">int</span> length;
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">long</span> length;
 	items = read_double_array_from(file_name, &amp;length);
 
 </pre></div></div>
@@ -1441,7 +1441,7 @@ número de itens no <em>array</em> a ordenar.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	fprintf(output, <span class="string">"%d"</span>, size);
+            <div class="content"><div class="highlight"><pre>	fprintf(output, <span class="string">"%ld"</span>, size);
 
 </pre></div></div>
             
@@ -1527,7 +1527,7 @@ não algum erro.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>			error = experiment_algorithm(sorting_algorithms[a], 
+            <div class="content"><div class="highlight"><pre>			error = experiment_algorithm(sorting_algorithms[a],
 							size, work_items, items,
 							sorted_items, copy_time,
 							&amp;statistics);
@@ -1841,8 +1841,8 @@ multiplicação por 2.</p>
 
             </div>
             
-            <div class="content"><div class="highlight"><pre>	<span class="keyword">for</span> (<span class="keyword">int</span> size = <span class="number">1</span> &lt;&lt; <span class="number">1</span>; size != maximum_file_size &lt;&lt; <span class="number">1</span>; size &lt;&lt;= <span class="number">1</span>) {
-		printf(<span class="string">"Starting experiments for size %d:\n"</span>, size);
+            <div class="content"><div class="highlight"><pre>	<span class="keyword">for</span> (<span class="keyword">long</span> size = <span class="number">1L</span> &lt;&lt; <span class="number">1</span>; size != maximum_file_size &lt;&lt; <span class="number">1</span>; size &lt;&lt;= <span class="number">1</span>) {
+		printf(<span class="string">"Starting experiments for size %ld:\n"</span>, size);
 
 </pre></div></div>
             
@@ -1865,7 +1865,9 @@ dimensão <code>size</code> dos ficheiros e para todos os algoritmos.</p>
 		<span class="keyword">if</span> (error)
 			<span class="keyword">goto</span> terminate;
 
-		printf(<span class="string">"\tEnded experiments for size %d.\n"</span>, size);
+		fflush(output);
+
+		printf(<span class="string">"\tEnded experiments for size %ld.\n"</span>, size);
 	}
 
 </pre></div></div>

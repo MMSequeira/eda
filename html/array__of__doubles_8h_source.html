@@ -153,7 +153,7 @@ $(document).ready(function(){initNavTree('array__of__doubles_8h_source.html','')
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">// Rotina que cria um novo _array_ com `length` items `double`, todos por</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">// inicializar. Devolve um ponteiro para o novo _array_. Devolve `NULL` em caso</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">// de erro.</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">double</span> *new_double_array_of(<span class="keywordtype">int</span> length);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">double</span> *new_double_array_of(<span class="keywordtype">long</span> length);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">// Rotina que redimensiona um _array_ de `double` `items` recebido como</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">// argumento de modo a passar a conter `new_length` itens. Devolve um ponteiro</span></div>
@@ -162,59 +162,59 @@ $(document).ready(function(){initNavTree('array__of__doubles_8h_source.html','')
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">// crescer, os novos itens estarão por inicializar. Devolve `NULL` em caso de</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">// erro. O valor de `new_length` não pode ser negativo. O valor de `items` pode</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">// ser `NULL`. Nesse caso admite-se que o _array_ a dimensionar tem zero itens.</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">double</span> *resize_double_array_to(<span class="keywordtype">double</span> *items, <span class="keywordtype">int</span> new_length);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">double</span> *resize_double_array_to(<span class="keywordtype">double</span> *items, <span class="keywordtype">long</span> new_length);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">// Rotina que lê todos os `double` que conseguir a partir do ficheiro cujo nome</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">// é passado como argumento e os guarda num _array_. Devolve o _array_ com os</span></div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">// valores lidos do ficheiro. Devolve `NULL` em caso de erro. Em caso de</span></div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">// sucesso, altera o inteiro apontado por `length` para o número de `double`</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">// lidos. Os valores de `file_name` e de `length` não podem ser `NULL`.</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">double</span> *read_double_array_from(<span class="keyword">const</span> <span class="keywordtype">char</span> *file_name, <span class="keywordtype">int</span> *length);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">double</span> *read_double_array_from(<span class="keyword">const</span> <span class="keywordtype">char</span> *file_name, <span class="keywordtype">long</span> *length);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">// Procedimento que copia todos os `length` itens do _array_ de `double`</span></div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">// `original` para o _array_ de `double` `copy`. Ambos os _arrays_ têm de conter</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">// pelo menos `length` items. O valor de `length` tem de ser não negativo. Os</span></div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">// valores de `original` e de `copy` podem ser nulos, mas apenas se `length`</span></div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">// tiver o valor zero.</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span> copy_double_array(<span class="keywordtype">int</span> length, <span class="keywordtype">double</span> copy[length],</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span> copy_double_array(<span class="keywordtype">long</span> length, <span class="keywordtype">double</span> copy[length],</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                <span class="keyword">const</span> <span class="keywordtype">double</span> original[length]);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">// Predicado que devolve `true` se os primeiros _length_ itens dos _arrays_ de</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">// `double` `first` e `second` forem iguais. Devolve `false` no caso contrário.</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">// O valor de `length` não pode ser negativo. Os valores de `first` e `second`</span></div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">// podem ser `NULL`, mas apenas se o valor de `length` for zero.</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">bool</span> double_arrays_equal(<span class="keywordtype">int</span> length, <span class="keyword">const</span> <span class="keywordtype">double</span> first[length],</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">bool</span> double_arrays_equal(<span class="keywordtype">long</span> length, <span class="keyword">const</span> <span class="keywordtype">double</span> first[length],</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                        <span class="keyword">const</span> <span class="keywordtype">double</span> second[length]);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">// Função que devolve o valor médio dos primeiros `length` itens do _array_ de</span></div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">// `double` `items`. O valor de `length` não pode ser negativo. Devolve o valor</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">// especial NaN se `length` for zero. O valor de `items` pode ser `NULL`, mas</span></div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">// apenas se `length` for zero.</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">double</span> double_array_average(<span class="keywordtype">int</span> length, <span class="keyword">const</span> <span class="keywordtype">double</span> items[length]);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">double</span> double_array_average(<span class="keywordtype">long</span> length, <span class="keyword">const</span> <span class="keywordtype">double</span> items[length]);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">// Função que devolve o desvio padrão dos primeiros `length` itens do _array_ de</span></div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment">// `double` `items`. O valor de `length` não pode ser negativo. Devolve o valor</span></div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">// especial NaN se `length` for zero. O valor de `items` pode ser `NULL`, mas</span></div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">// apenas se `length` for zero.</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">double</span> double_array_stddev(<span class="keywordtype">int</span> length, <span class="keyword">const</span> <span class="keywordtype">double</span> items[length]);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">double</span> double_array_stddev(<span class="keywordtype">long</span> length, <span class="keyword">const</span> <span class="keywordtype">double</span> items[length]);</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">// Função que devolve o valor mediano dos primeiros `length` itens do _array_ de</span></div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">// `double` `items`. O valor de `length` não pode ser negativo. Devolve o valor</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">// especial NaN se `length` for zero. O valor de `items` pode ser `NULL`, mas</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">// apenas se `length` for zero.</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keywordtype">double</span> double_array_median(<span class="keywordtype">int</span> length, <span class="keyword">const</span> <span class="keywordtype">double</span> items[length]);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keywordtype">double</span> double_array_median(<span class="keywordtype">long</span> length, <span class="keyword">const</span> <span class="keywordtype">double</span> items[length]);</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">// Função que devolve o valor mínimo dos primeiros `length` itens do _array_ de</span></div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">// `double` `items`. O valor de `length` não pode ser negativo. Devolve o valor</span></div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">// ∞ se `length` for zero. O valor de `items` pode ser `NULL`, mas</span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">// apenas se `length` for zero.</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keywordtype">double</span> double_array_minimum(<span class="keywordtype">int</span> length, <span class="keyword">const</span> <span class="keywordtype">double</span> items[length]);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keywordtype">double</span> double_array_minimum(<span class="keywordtype">long</span> length, <span class="keyword">const</span> <span class="keywordtype">double</span> items[length]);</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">// Função que devolve o valor máximo dos primeiros `length` itens do _array_ de</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">// `double` `items`. O valor de `length` não pode ser negativo. Devolve o valor</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">// -∞ se `length` for zero. O valor de `items` pode ser `NULL`, mas</span></div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">// apenas se `length` for zero.</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keywordtype">double</span> double_array_maximum(<span class="keywordtype">int</span> length, <span class="keyword">const</span> <span class="keywordtype">double</span> items[length]);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="keywordtype">double</span> double_array_maximum(<span class="keywordtype">long</span> length, <span class="keyword">const</span> <span class="keywordtype">double</span> items[length]);</div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">// Função que devolve uma instância da estrutura `struct double_statistics`</span></div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">// contendo várias estatísticas dos primeiros `length` itens do _array_ de</span></div>
@@ -222,7 +222,7 @@ $(document).ready(function(){initNavTree('array__of__doubles_8h_source.html','')
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">// zero, a média, o desvio padrão e a mediana têm o valor especial NaN, o mínimo</span></div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">// tem o valor ∞ e o máximo tem o valor -∞. O valor de `items` pode ser</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="comment">// `NULL`, mas apenas se `length` for zero.</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">struct </span><a class="code" href="structdouble__statistics.html">double_statistics</a> double_array_statistics(int length,</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">struct </span><a class="code" href="structdouble__statistics.html">double_statistics</a> double_array_statistics(long length,</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                                                const double items[length]);</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">// Fecho da protecção contra os efeitos perversos da inclusão múltipla.</span></div>
@@ -234,7 +234,7 @@ $(document).ready(function(){initNavTree('array__of__doubles_8h_source.html','')
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_bb1b521853a9c46347182a9d10420771.html">sorting</a></li><li class="navelem"><b>array_of_doubles.h</b></li>
-    <li class="footer">Generated on Mon Sep 16 2013 18:43:40 for Estrutura de Dados e Algoritmos by
+    <li class="footer">Generated on Tue Dec 3 2013 14:31:43 for Estrutura de Dados e Algoritmos by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.5 </li>
   </ul>
