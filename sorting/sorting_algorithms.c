@@ -1,4 +1,4 @@
-// `sorting_algorithms.c` &ndash; Utilitários para _arrays_ de `double`
+// `sorting_algorithms.c` &ndash; Rotinas de ordenação de _arrays_ de `double`
 // ==================================================================
 //
 // Este é o ficheiro de implementação correspondente ao ficheiro de
